@@ -11,5 +11,8 @@
     <mapping class="beans.Pessoa"/>
     <mapping class="beans.Aluno"/>
     <mapping class="beans.Servidor"/>
+    <mapping class="beans.Atividade_complementar_tipo"/>
+    <mapping class="beans.Atividade_complementar"/>
+    <mapping class="beans.Entrada_atividade"/>
   </session-factory>
 </hibernate-configuration>
