@@ -22,8 +22,7 @@ public class HibernateUtil {
             sessionThread = new ThreadLocal<Session>();
 
         } catch (Throwable ex) {
-            // Log the exception. 
-            System.err.println("Initial SessionFactory creation failed." + ex);
+            System.err.println("A criação da SessionFactory inicial falhou." + ex);
             throw new ExceptionInInitializerError(ex);
         }
     }
