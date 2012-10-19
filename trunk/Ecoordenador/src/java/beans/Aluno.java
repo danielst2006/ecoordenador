@@ -57,9 +57,6 @@ public class Aluno extends Pessoa {
         @Column(name="ano_formacao_anterior",nullable=false)
 	private int ano_formacao_anterior;
 	 
-        @Column(name="zona_procedencia",length=8)
-	private String zona_procedencia;
-	 
         @Column(name="tipo_escola_anterior",length=15)
 	private String tipo_escola_anterior;
 	 
