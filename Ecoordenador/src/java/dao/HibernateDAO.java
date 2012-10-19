@@ -72,28 +72,5 @@ public class HibernateDAO<T> implements InterfaceDAO<T>{
         session.close();
         return beans;
     }
-    
-    @Override
-    public List<T> listRepasse() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        List<T> beans = (List<T>)session.createQuery("from Repasse group "
-                + "by id,usuario_id order by datarepasse asc, id asc").list();
-        session.beginTransaction().commit();
-        session.close();
-        return beans;
-    }
-  
-    /*public List<T> getlistByExample(T bean) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        Example example = Example.create(bean);
-        example.enableLike(MatchMode.ANYWHERE);
-        example.ignoreCase();
-        example.excludeZeroes();
-        return session.createCriteria(classe).add(example).list();
-    }*/
-    
-    /////////////////////////////////////
 
 }

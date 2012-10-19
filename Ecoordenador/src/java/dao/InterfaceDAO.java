@@ -18,6 +18,4 @@ public interface InterfaceDAO<T> {
     void remove (T bean);
     T getBean (Serializable codigo);
     List<T> list();
-    List<T> listRepasse();
-    //List<T> getlistByExample(T bean);
 }
