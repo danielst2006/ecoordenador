@@ -3,12 +3,12 @@ package beans;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashSet;
+import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 @ManagedBean(name="aluno")
 @SessionScoped
@@ -72,6 +72,10 @@ public class Aluno extends Pessoa {
         @Column(name="uf_instituicao_ensino",length=2)
 	private String uf_instituicao_ensino;
         
+        @OneToMany(mappedBy="id_aluno",fetch=FetchType.LAZY)
+        @Cascade(org.hibernate.annotations.CascadeType.ALL)
+        Set<Entrada_atividade> ent_atv = new HashSet<Entrada_atividade>();
+        
         ////////////////////////////////////////////////////////////////////////
 	 
 	 public String senhaMD5(String senha) throws NoSuchAlgorithmException {
@@ -83,6 +87,14 @@ public class Aluno extends Pessoa {
 	}
          
         ////////////////////////////////////////////////////////////////////////
+         
+    public Set<Entrada_atividade> getEnt_atv() {
+        return ent_atv;
+    }
+
+    public void setEnt_atv(Set<Entrada_atividade> ent_atv) {
+        this.ent_atv = ent_atv;
+    }
 
     public int getAno_formacao_anterior() {
         return ano_formacao_anterior;
