@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+    </head>
+    <body>
+        <h:form>
+            <h:panelGrid columns="2">
+                Nome do Responsável: <h:inputText value="#{controlerAluno.aluno.nome_responsavel}" />
+                CPF do Responsável: <h:inputText value="#{controlerAluno.aluno.cpf_responsavel}" />
+                Senha: <h:inputSecret value="#{controlerAluno.aluno.senha}" />
+                Parentesco: <h:inputText value="#{controlerAluno.aluno.parentesco}" />
+                Renda: <h:inputText value="#{controlerAluno.aluno.renda}" />
+                Renda Familiar: <h:inputText value="#{controlerAluno.aluno.renda_familiar}" />
+                Tamanho da Familia: <h:inputText value="#{controlerAluno.aluno.tamanho_familia}" />
+                Trabalha: <h:inputText value="#{controlerAluno.aluno.trabalha}" />
+                <h:selectOneRadio id="trabalha"
+                                  value="#{controlerAluno.aluno.trabalha}">
+                <f:selectItem id="true" itemLabel="Sim" itemValue="1" />
+                <f:selectItem id="false" itemLabel="Não" itemValue="2" />
+
+                 </h:selectOneRadio>
+            
+            </h:panelGrid>
+            
+        </h:form>
+    </body>
+</html>
