@@ -236,6 +236,14 @@ public class Servidor extends Pessoa {
         return orgao_origem;
     }
 
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
     public void setOrgao_origem(String orgao_origem) {
         this.orgao_origem = orgao_origem;
     }

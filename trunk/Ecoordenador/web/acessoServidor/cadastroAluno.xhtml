@@ -170,8 +170,8 @@ and open the template in the editor.
                     </p:selectOneMenu>
                     Cidade da Instituição de Ensino: <h:inputText value="#{controlerAluno.aluno.cidade_instituicao_ensino}" />
                     UF da Instituição de Ensino: <h:inputText value="#{controlerAluno.aluno.uf_instituicao_ensino}" />
-
-                    <h:commandButton  value="Save"  action="#{controlerAluno.cadastrarAluno()}"/>
+                    
+                    <p:commandButton value="Salvar" actionListener="#{controlerAluno.cadastrarAluno()}" ajax="true" update="@form"/>
 
 
                 </h:panelGrid>

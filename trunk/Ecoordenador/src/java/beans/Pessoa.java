@@ -89,7 +89,7 @@ public abstract class Pessoa implements Serializable{
 	private String logradouro;
 	 
         @Column(name="numero",nullable=false)
-	private int numero;
+	private int numero_lote;
 	 
         @Column(name="complemento",length=100)
 	private String complemento;
@@ -459,12 +459,12 @@ public abstract class Pessoa implements Serializable{
         this.nome_pai = nome_pai;
     }
 
-    public int getNumero() {
-        return numero;
+    public int getNumero_lote() {
+        return numero_lote;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setNumero_lote(int numero_lote) {
+        this.numero_lote = numero_lote;
     }
 
     public int getNumero_filhos() {
