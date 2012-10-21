@@ -16,32 +16,32 @@ and open the template in the editor.
             <h:panelGrid columns="2">
                 
                                 
-                Nome: <h:inputText value="#{controlerAluno.aluno.nome}" /><br/>
+                Nome: <h:inputText value="#{controlerAluno.aluno.nome}" />
                 Foto:
                 
-                Senha: <h:inputSecret value="#{controlerAluno.aluno.senha}" /><br/>
+                Senha: <h:inputSecret value="#{controlerAluno.aluno.senha}" />
                 Etnia:<p:selectOneMenu value="#{controlerAluno.aluno.etnia}" >
                      <f:selectItem itemLabel="Branca" itemValue="branca" />
                      <f:selectItem itemLabel="Pardo" itemValue="pardo" />
                      <f:selectItem itemLabel="Negra" itemValue="negra" />
                      <f:selectItem itemLabel="Amarela" itemValue="amarelo" />
                      <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
-                      </p:selectOneMenu><br/>
+                      </p:selectOneMenu>
                               
                Genero: <p:selectOneMenu value="#{controlerAluno.aluno.nome_responsavel}" >
                      <f:selectItem itemLabel="Masculino" itemValue="M" />
                       <f:selectItem itemLabel="Feminino" itemValue="F" />
                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />      
-                </p:selectOneMenu><br/>
+                </p:selectOneMenu>
                 
                 Necessidade Espeial: <h:selectOneRadio 
                     value="#{controlerAluno.aluno.necessidade_especial}">
-                <f:selectItem  itemLabel="Sim" itemValue="true" /><br/>
+                <f:selectItem  itemLabel="Sim" itemValue="true" />
                 <f:selectItem  itemLabel="Não" itemValue="false" />
-                </h:selectOneRadio><br/>
+                </h:selectOneRadio>
                 Data de Nascimento: <p:calendar value="#{controlerAluno.aluno.data_nascimento}" />
-                Naturalidade: <h:inputText value="#{controlerAluno.aluno.naturalidade}" /><br/>
-                UF da Naturalidade: <h:inputText value="#{controlerAluno.aluno.uf_naturalidade}" /><br/>
+                Naturalidade: <h:inputText value="#{controlerAluno.aluno.naturalidade}" />
+                UF da Naturalidade: <h:inputText value="#{controlerAluno.aluno.uf_naturalidade}" />
                 Nacionalidade: <h:inputText value="#{controlerAluno.aluno.nacionalidade}" />
                 Tipo Sanguineo: <p:selectOneMenu value="#{controlerAluno.aluno.tipo_sanguineo}" >
                       <f:selectItem itemLabel="A" itemValue="A" />
@@ -73,7 +73,7 @@ and open the template in the editor.
                 Ramal: <h:inputText value="#{controlerAluno.aluno.ramal}" />
                 Filiação: <h:selectOneRadio 
                     value="#{controlerAluno.aluno.filiacao}">
-                <f:selectItem  itemLabel="Sim" itemValue="true" /><br/>
+                <f:selectItem  itemLabel="Sim" itemValue="true" />
                 <f:selectItem  itemLabel="Não" itemValue="false" />
                 </h:selectOneRadio>
                 Nome da Mãe: <h:inputText value="#{controlerAluno.aluno.nome_mae}" />
@@ -81,7 +81,7 @@ and open the template in the editor.
                 Zona de Procedência: <p:selectOneMenu value="#{controlerAluno.aluno.zona_procedencia}" >
                      <f:selectItem itemLabel="Urbana" itemValue="Ubarna" />
                      <f:selectItem itemLabel="Rural" itemValue="Rural" />
-                </p:selectOneMenu><br/>
+                </p:selectOneMenu>
                 CEP: <h:inputText value="#{controlerAluno.aluno.cep}" />
                 Logradouro: <h:inputText value="#{controlerAluno.aluno.logradouro}" />
                 Numero: <h:inputText value="#{controlerAluno.aluno.numero}" />
@@ -93,10 +93,23 @@ and open the template in the editor.
                 RG: <h:inputText value="#{controlerAluno.aluno.rg_numero}" />
                 Orgão Exepedidor: <h:inputText value="#{controlerAluno.aluno.rg_expedidor}" />
                 Data da Expedição: <p:calendar value="#{controlerAluno.aluno.rg_data_expedicao}" />
-                Cerdidão de Nascimento (Numero): <h:inputText value="#{controlerAluno.aluno.cnasc_numero}" />
+                Cerdidão de Nascimento (Número): <h:inputText value="#{controlerAluno.aluno.cnasc_numero}" />
                 Cerdidão de Nascimento (Livro/Folha): <h:inputText value="#{controlerAluno.aluno.cnasc_folha}" />
                 Cerdidão de Nascimento (Cartório): <h:inputText value="#{controlerAluno.aluno.cnasc_cartorio}" />
                 Cerdidão de Nascimento (Data da Expedição): <p:calendar value="#{controlerAluno.aluno.cnasc_data_expedicao}" />
+                Carteira de Trabalho (Número): <h:inputText value="#{controlerAluno.aluno.ctps_numero}" />
+                Carteira de Trabalho (Série): <h:inputText value="#{controlerAluno.aluno.ctps_serie}" />
+                Carteira de Trabalho (PIS/PASEP): <h:inputText value="#{controlerAluno.aluno.pis_pasep}" />
+                Carteira de Habilitação (Número): <h:inputText value="#{controlerAluno.aluno.chabilitacao_numero}" />
+                Carteira de Habilitação (Data Expedeição): <p:calendar value="#{controlerAluno.aluno.chabilitacao_data_expedicao}" />
+                Carteira de Habilitação (Data Validade): <p:calendar value="#{controlerAluno.aluno.chabilitacao_data_validade}" />
+                Documento Militar (Tipo): <h:inputText value="#{controlerAluno.aluno.dmilitar_tipo}" />
+                Documento Militar (Número): <h:inputText value="#{controlerAluno.aluno.dmilitar_numero}" />
+                Documento Militar (Região Militar): <h:inputText value="#{controlerAluno.aluno.dmilitar_regiao}" />
+                Título de Eleitor (Número): <h:inputText value="#{controlerAluno.aluno.teleitor_numero}" />
+                Título de Eleitor (Zona/Seção): <h:inputText value="#{controlerAluno.aluno.teleitor_zona}" />
+                Título de Eleitor (UF): <h:inputText value="#{controlerAluno.aluno.teleitor_uf}" />
+                Título de Eleitor (Data Exp.): <p:calendar value="#{controlerAluno.aluno.teleitor_data_expedicao}" />
                 E-mail: <h:inputText value="#{controlerAluno.aluno.email}" />
                 Estado Civil: <p:selectOneMenu value="#{controlerAluno.aluno.estado_civil}" >
                      <f:selectItem itemLabel="Solteiro" itemValue="solteiro" />
@@ -105,32 +118,32 @@ and open the template in the editor.
                      <f:selectItem itemLabel="Separado Judicialmente" itemValue="Separado Judicialmente" />
                      <f:selectItem itemLabel="Viúvo" itemValue="viúvo" />
                      <f:selectItem itemLabel="Não declarado" itemValue="N/D" />
-                </p:selectOneMenu><br/>
-                Nome do Responsável: <h:inputText value="#{controlerAluno.aluno.nome_responsavel}" /><br/>
-                CPF do Responsável: <h:inputText value="#{controlerAluno.aluno.cpf_responsavel}" /><br/>
+                </p:selectOneMenu>
+                Nome do Responsável: <h:inputText value="#{controlerAluno.aluno.nome_responsavel}" />
+                CPF do Responsável: <h:inputText value="#{controlerAluno.aluno.cpf_responsavel}" />
                 
-                Parentesco: <h:inputText value="#{controlerAluno.aluno.parentesco}" /><br/>
+                Parentesco: <h:inputText value="#{controlerAluno.aluno.parentesco}" />
                 Renda: <h:selectOneRadio id="renda"
                                          value="#{controlerAluno.aluno.renda}">
-                <f:selectItem id="sim" itemLabel="Sim" itemValue="true" /><br/>
+                <f:selectItem id="sim" itemLabel="Sim" itemValue="true" />
                 <f:selectItem id="não" itemLabel="Não" itemValue="false" />
 
-                </h:selectOneRadio><br/>
-                Renda Familiar: <h:inputText value="#{controlerAluno.aluno.renda_familiar}" /><br/>
-                Tamanho da Familia: <h:inputText value="#{controlerAluno.aluno.tamanho_familia}" /><br/>
+                </h:selectOneRadio>
+                Renda Familiar: <h:inputText value="#{controlerAluno.aluno.renda_familiar}" />
+                Tamanho da Familia: <h:inputText value="#{controlerAluno.aluno.tamanho_familia}" />
                 Numeros de Filhos: <h:inputText value="#{controlerAluno.aluno.numero_filhos}" />
                 Trabalha: <h:selectOneRadio 
                                   value="#{controlerAluno.aluno.trabalha}">
-                <f:selectItem  itemLabel="Sim" itemValue="true" /><br/>
+                <f:selectItem  itemLabel="Sim" itemValue="true" />
                 <f:selectItem  itemLabel="Não" itemValue="false" />
 
-                 </h:selectOneRadio><br/>
+                 </h:selectOneRadio>
                  
                  Local de Trabalho: <h:inputText value="#{controlerAluno.aluno.local_trabalho}" />
-                 Telefone do Trabalho: <h:inputText value="#{controlerAluno.aluno.telefone_trabalho}" /><br/>
-                 Profissão: <h:inputText value="#{controlerAluno.aluno.profissao}" /><br/>
-                 Escola Formação Anterior: <h:inputText value="#{controlerAluno.aluno.escola_formacao_anterior}" /><br/>
-                 Ano da Formação Anterior: <h:inputText value="#{controlerAluno.aluno.ano_formacao_anterior}" /><br/>
+                 Telefone do Trabalho: <h:inputText value="#{controlerAluno.aluno.telefone_trabalho}" />
+                 Profissão: <h:inputText value="#{controlerAluno.aluno.profissao}" />
+                 Escola Formação Anterior: <h:inputText value="#{controlerAluno.aluno.escola_formacao_anterior}" />
+                 Ano da Formação Anterior: <h:inputText value="#{controlerAluno.aluno.ano_formacao_anterior}" />
                  Tipo da Escola Anterior: <p:selectOneMenu value="#{controlerAluno.aluno.tipo_escola_anterior}" >
                       <f:selectItem itemLabel="Municipal" itemValue="municipal" />
                       <f:selectItem itemLabel="Estadual" itemValue="estadual" />
@@ -139,9 +152,21 @@ and open the template in the editor.
                       <f:selectItem itemLabel="Filantrópica" itemValue="filantropica" />
                                       
                 </p:selectOneMenu>
-                    <br/>
+                 Ano da Formação Anterior: <h:inputText value="#{controlerAluno.aluno.ano_formacao_anterior}" />
+                 Tipo de Escola Anterior: <h:inputText value="#{controlerAluno.aluno.tipo_escola_anterior}" />
+                 Etapa do Ensino Anterior: <p:selectOneMenu value="#{controlerAluno.aluno.etapa_ensino_anterior}" >
+                      <f:selectItem itemLabel="Infantil" itemValue="Infantil" />
+                      <f:selectItem itemLabel="Fundamental" itemValue="Fundamental" />
+                      <f:selectItem itemLabel="Médio" itemValue="Médio" /> 
+                      <f:selectItem itemLabel="Superior" itemValue="Superior" />
+                                                            
+                </p:selectOneMenu>
+                 Cidade da Instituição de Ensino: <h:inputText value="#{controlerAluno.aluno.cidade_instituicao_ensino}" />
+                 UF da Instituição de Ensino: <h:inputText value="#{controlerAluno.aluno.uf_instituicao_ensino}" />
+                  
 
-            
+                    <h:commandButton value="Salvar" action="#{controlerAluno.cadastrarAluno()}" />
+             
             </h:panelGrid>
             
         </h:form>
