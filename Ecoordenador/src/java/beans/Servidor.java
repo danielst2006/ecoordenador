@@ -70,7 +70,7 @@ public class Servidor extends Pessoa {
         @Column(name="ato_autorizativo_tipo",length=30)
 	private String ato_autorizativo_tipo;
 	 
-        @Column(name="numero")
+        @Column(name="numero", insertable=false, updatable=false)
 	private int numero;
 	 
         @Column(name="data_expedicao")
