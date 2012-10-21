@@ -47,7 +47,7 @@ public class controllerServidor {
         List<Servidor> list = dao.list();
         listaServidor = new ListDataModel(list);
         return listaServidor;
-    }
+    } 
     
     public void cadastrarServidor() {
         dao.save(servidor);
