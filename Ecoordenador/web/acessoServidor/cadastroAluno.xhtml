@@ -9,166 +9,177 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        
+
     </h:head>
     <h:body>
         <h:form>
-            <h:panelGrid columns="2">
-                
-                                
-                Nome: <h:inputText value="#{controlerAluno.aluno.nome}" />
-                Foto:
-                
-                Senha: <h:inputSecret value="#{controlerAluno.aluno.senha}" />
-                Etnia:<p:selectOneMenu value="#{controlerAluno.aluno.etnia}" >
-                     <f:selectItem itemLabel="Branca" itemValue="branca" />
-                     <f:selectItem itemLabel="Pardo" itemValue="pardo" />
-                     <f:selectItem itemLabel="Negra" itemValue="negra" />
-                     <f:selectItem itemLabel="Amarela" itemValue="amarelo" />
-                     <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
-                      </p:selectOneMenu>
-                              
-               Genero: <p:selectOneMenu value="#{controlerAluno.aluno.nome_responsavel}" >
-                     <f:selectItem itemLabel="Masculino" itemValue="M" />
-                      <f:selectItem itemLabel="Feminino" itemValue="F" />
-                       <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />      
-                </p:selectOneMenu>
-                
-                Necessidade Espeial: <h:selectOneRadio 
-                    value="#{controlerAluno.aluno.necessidade_especial}">
-                <f:selectItem  itemLabel="Sim" itemValue="true" />
-                <f:selectItem  itemLabel="Não" itemValue="false" />
-                </h:selectOneRadio>
-                Data de Nascimento: <p:calendar value="#{controlerAluno.aluno.data_nascimento}" />
-                Naturalidade: <h:inputText value="#{controlerAluno.aluno.naturalidade}" />
-                UF da Naturalidade: <h:inputText value="#{controlerAluno.aluno.uf_naturalidade}" />
-                Nacionalidade: <h:inputText value="#{controlerAluno.aluno.nacionalidade}" />
-                Tipo Sanguineo: <p:selectOneMenu value="#{controlerAluno.aluno.tipo_sanguineo}" >
-                      <f:selectItem itemLabel="A" itemValue="A" />
-                      <f:selectItem itemLabel="B" itemValue="B" />
-                      <f:selectItem itemLabel="AB" itemValue="AB" /> 
-                      <f:selectItem itemLabel="O" itemValue="O" />
-                      <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
-                                                            
-                </p:selectOneMenu>
-                Fator Rh: <p:selectOneMenu value="#{controlerAluno.aluno.fator_rh}" >
-                      <f:selectItem itemLabel="Positivo" itemValue="positivo" />
-                      <f:selectItem itemLabel="Negativo" itemValue="negativo" />
-                      <f:selectItem itemLabel="Não Declarado" itemValue="N/D" /> 
-                                                                                 
-                </p:selectOneMenu>
-                Grau de Formação: <p:selectOneMenu value="#{controlerAluno.aluno.grau_formacao}" >
-                      <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
-                      <f:selectItem itemLabel="Educação Infantil" itemValue="Educação Infantil" />
-                      <f:selectItem itemLabel="Ensino Fundamental" itemValue="Ensino Fundamental" />
-                      <f:selectItem itemLabel="Ensino Médio" itemValue="Ensino Médio" />
-                      <f:selectItem itemLabel="Graduação" itemValue="Graduação" />
-                      <f:selectItem itemLabel="Especialização" itemValue="Especialiazação" />
-                      <f:selectItem itemLabel="Mestrado" itemValue="Mestrado" />
-                      <f:selectItem itemLabel="Doutorado" itemValue="Doutorado" />
-                </p:selectOneMenu>
-                Endereço Curriculo Lattes: <h:inputText value="#{controlerAluno.aluno.end_curriculo_lattes}" />
-                DDD: <h:inputText value="#{controlerAluno.aluno.ddd}" />
-                Numero do Telefone: <h:inputText value="#{controlerAluno.aluno.numero_telefone}" />
-                Ramal: <h:inputText value="#{controlerAluno.aluno.ramal}" />
-                Filiação: <h:selectOneRadio 
-                    value="#{controlerAluno.aluno.filiacao}">
-                <f:selectItem  itemLabel="Sim" itemValue="true" />
-                <f:selectItem  itemLabel="Não" itemValue="false" />
-                </h:selectOneRadio>
-                Nome da Mãe: <h:inputText value="#{controlerAluno.aluno.nome_mae}" />
-                Nome do Pai: <h:inputText value="#{controlerAluno.aluno.nome_pai}" />
-                Zona de Procedência: <p:selectOneMenu value="#{controlerAluno.aluno.zona_procedencia}" >
-                     <f:selectItem itemLabel="Urbana" itemValue="Ubarna" />
-                     <f:selectItem itemLabel="Rural" itemValue="Rural" />
-                </p:selectOneMenu>
-                CEP: <h:inputText value="#{controlerAluno.aluno.cep}" />
-                Logradouro: <h:inputText value="#{controlerAluno.aluno.logradouro}" />
-                Numero: <h:inputText value="#{controlerAluno.aluno.numero}" />
-                Complemento: <h:inputText value="#{controlerAluno.aluno.complemento}" />
-                Bairro: <h:inputText value="#{controlerAluno.aluno.bairro}" />
-                Cidade: <h:inputText value="#{controlerAluno.aluno.cidade}" />
-                UF: <h:inputText value="#{controlerAluno.aluno.uf}" />
-                CPF: <p:inputMask value="#{controlerAluno.aluno.cpf}" mask="999.999.999-99" />
-                RG: <h:inputText value="#{controlerAluno.aluno.rg_numero}" />
-                Orgão Exepedidor: <h:inputText value="#{controlerAluno.aluno.rg_expedidor}" />
-                Data da Expedição: <p:calendar value="#{controlerAluno.aluno.rg_data_expedicao}" />
-                Cerdidão de Nascimento (Número): <h:inputText value="#{controlerAluno.aluno.cnasc_numero}" />
-                Cerdidão de Nascimento (Livro/Folha): <h:inputText value="#{controlerAluno.aluno.cnasc_folha}" />
-                Cerdidão de Nascimento (Cartório): <h:inputText value="#{controlerAluno.aluno.cnasc_cartorio}" />
-                Cerdidão de Nascimento (Data da Expedição): <p:calendar value="#{controlerAluno.aluno.cnasc_data_expedicao}" />
-                Carteira de Trabalho (Número): <h:inputText value="#{controlerAluno.aluno.ctps_numero}" />
-                Carteira de Trabalho (Série): <h:inputText value="#{controlerAluno.aluno.ctps_serie}" />
-                Carteira de Trabalho (PIS/PASEP): <h:inputText value="#{controlerAluno.aluno.pis_pasep}" />
-                Carteira de Habilitação (Número): <h:inputText value="#{controlerAluno.aluno.chabilitacao_numero}" />
-                Carteira de Habilitação (Data Expedeição): <p:calendar value="#{controlerAluno.aluno.chabilitacao_data_expedicao}" />
-                Carteira de Habilitação (Data Validade): <p:calendar value="#{controlerAluno.aluno.chabilitacao_data_validade}" />
-                Documento Militar (Tipo): <h:inputText value="#{controlerAluno.aluno.dmilitar_tipo}" />
-                Documento Militar (Número): <h:inputText value="#{controlerAluno.aluno.dmilitar_numero}" />
-                Documento Militar (Região Militar): <h:inputText value="#{controlerAluno.aluno.dmilitar_regiao}" />
-                Título de Eleitor (Número): <h:inputText value="#{controlerAluno.aluno.teleitor_numero}" />
-                Título de Eleitor (Zona/Seção): <h:inputText value="#{controlerAluno.aluno.teleitor_zona}" />
-                Título de Eleitor (UF): <h:inputText value="#{controlerAluno.aluno.teleitor_uf}" />
-                Título de Eleitor (Data Exp.): <p:calendar value="#{controlerAluno.aluno.teleitor_data_expedicao}" />
-                E-mail: <h:inputText value="#{controlerAluno.aluno.email}" />
-                Estado Civil: <p:selectOneMenu value="#{controlerAluno.aluno.estado_civil}" >
-                     <f:selectItem itemLabel="Solteiro" itemValue="solteiro" />
-                     <f:selectItem itemLabel="Casado" itemValue="casado" />
-                     <f:selectItem itemLabel="Divociado" itemValue="divociado" />
-                     <f:selectItem itemLabel="Separado Judicialmente" itemValue="Separado Judicialmente" />
-                     <f:selectItem itemLabel="Viúvo" itemValue="viúvo" />
-                     <f:selectItem itemLabel="Não declarado" itemValue="N/D" />
-                </p:selectOneMenu>
-                Nome do Responsável: <h:inputText value="#{controlerAluno.aluno.nome_responsavel}" />
-                CPF do Responsável: <h:inputText value="#{controlerAluno.aluno.cpf_responsavel}" />
-                
-                Parentesco: <h:inputText value="#{controlerAluno.aluno.parentesco}" />
-                Renda: <h:selectOneRadio id="renda"
-                                         value="#{controlerAluno.aluno.renda}">
-                <f:selectItem id="sim" itemLabel="Sim" itemValue="true" />
-                <f:selectItem id="não" itemLabel="Não" itemValue="false" />
+            <p:panel  header="Cadastro de Aluno"> 
+                <p:messages id="msgs"/> 
+                <h:panelGrid >
 
-                </h:selectOneRadio>
-                Renda Familiar: <h:inputText value="#{controlerAluno.aluno.renda_familiar}" />
-                Tamanho da Familia: <h:inputText value="#{controlerAluno.aluno.tamanho_familia}" />
-                Numeros de Filhos: <h:inputText value="#{controlerAluno.aluno.numero_filhos}" />
-                Trabalha: <h:selectOneRadio 
-                                  value="#{controlerAluno.aluno.trabalha}">
-                <f:selectItem  itemLabel="Sim" itemValue="true" />
-                <f:selectItem  itemLabel="Não" itemValue="false" />
+                    <h:outputLabel for="Nome" value="Nome: *" />                 
+                    <p:inputText  value="#{controlerAluno.aluno.nome}" required="true" label="Nome">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>  
+                    
+                    
+                    Foto:
 
-                 </h:selectOneRadio>
-                 
-                 Local de Trabalho: <h:inputText value="#{controlerAluno.aluno.local_trabalho}" />
-                 Telefone do Trabalho: <h:inputText value="#{controlerAluno.aluno.telefone_trabalho}" />
-                 Profissão: <h:inputText value="#{controlerAluno.aluno.profissao}" />
-                 Escola Formação Anterior: <h:inputText value="#{controlerAluno.aluno.escola_formacao_anterior}" />
-                 Ano da Formação Anterior: <h:inputText value="#{controlerAluno.aluno.ano_formacao_anterior}" />
-                 Tipo da Escola Anterior: <p:selectOneMenu value="#{controlerAluno.aluno.tipo_escola_anterior}" >
-                      <f:selectItem itemLabel="Municipal" itemValue="municipal" />
-                      <f:selectItem itemLabel="Estadual" itemValue="estadual" />
-                      <f:selectItem itemLabel="Federal" itemValue="pederal" /> 
-                      <f:selectItem itemLabel="Privada" itemValue="private" />
-                      <f:selectItem itemLabel="Filantrópica" itemValue="filantropica" />
-                                      
-                </p:selectOneMenu>
-                 Ano da Formação Anterior: <h:inputText value="#{controlerAluno.aluno.ano_formacao_anterior}" />
-                 Tipo de Escola Anterior: <h:inputText value="#{controlerAluno.aluno.tipo_escola_anterior}" />
-                 Etapa do Ensino Anterior: <p:selectOneMenu value="#{controlerAluno.aluno.etapa_ensino_anterior}" >
-                      <f:selectItem itemLabel="Infantil" itemValue="Infantil" />
-                      <f:selectItem itemLabel="Fundamental" itemValue="Fundamental" />
-                      <f:selectItem itemLabel="Médio" itemValue="Médio" /> 
-                      <f:selectItem itemLabel="Superior" itemValue="Superior" />
-                                                            
-                </p:selectOneMenu>
-                 Cidade da Instituição de Ensino: <h:inputText value="#{controlerAluno.aluno.cidade_instituicao_ensino}" />
-                 UF da Instituição de Ensino: <h:inputText value="#{controlerAluno.aluno.uf_instituicao_ensino}" />
-                  
+                    Senha: <h:inputSecret value="#{controlerAluno.aluno.senha}" />
+                    Etnia:<p:selectOneMenu value="#{controlerAluno.aluno.etnia}" >
+                        <f:selectItem itemLabel="Branca" itemValue="branca" />
+                        <f:selectItem itemLabel="Pardo" itemValue="pardo" />
+                        <f:selectItem itemLabel="Negra" itemValue="negra" />
+                        <f:selectItem itemLabel="Amarela" itemValue="amarelo" />
+                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
+                    </p:selectOneMenu>
 
-                    <h:commandButton value="Salvar" action="#{controlerAluno.cadastrarAluno()}" />
-             
-            </h:panelGrid>
-            
+                    Genero: <p:selectOneMenu value="#{controlerAluno.aluno.nome_responsavel}" >
+                        <f:selectItem itemLabel="Masculino" itemValue="M" />
+                        <f:selectItem itemLabel="Feminino" itemValue="F" />
+                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />      
+                    </p:selectOneMenu>
+
+                    Necessidade Espeial: <h:selectOneRadio 
+                        value="#{controlerAluno.aluno.necessidade_especial}">
+                        <f:selectItem  itemLabel="Sim" itemValue="true" />
+                        <f:selectItem  itemLabel="Não" itemValue="false" />
+                    </h:selectOneRadio>
+                    <h:outputLabel for="Data Nascimento" value="Data de Nascimento: *" />  
+                    <p:calendar value="#{controlerAluno.aluno.data_nascimento}" />
+                    Naturalidade: <h:inputText value="#{controlerAluno.aluno.naturalidade}" />
+                    UF da Naturalidade: <h:inputText value="#{controlerAluno.aluno.uf_naturalidade}" />
+                    Nacionalidade: <h:inputText value="#{controlerAluno.aluno.nacionalidade}" />
+                    Tipo Sanguineo: <p:selectOneMenu value="#{controlerAluno.aluno.tipo_sanguineo}" >
+                        <f:selectItem itemLabel="A" itemValue="A" />
+                        <f:selectItem itemLabel="B" itemValue="B" />
+                        <f:selectItem itemLabel="AB" itemValue="AB" /> 
+                        <f:selectItem itemLabel="O" itemValue="O" />
+                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
+
+                    </p:selectOneMenu>
+                    Fator Rh: <p:selectOneMenu value="#{controlerAluno.aluno.fator_rh}" >
+                        <f:selectItem itemLabel="Positivo" itemValue="positivo" />
+                        <f:selectItem itemLabel="Negativo" itemValue="negativo" />
+                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" /> 
+
+                    </p:selectOneMenu>
+                    Grau de Formação: <p:selectOneMenu value="#{controlerAluno.aluno.grau_formacao}" >
+                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
+                        <f:selectItem itemLabel="Educação Infantil" itemValue="Educação Infantil" />
+                        <f:selectItem itemLabel="Ensino Fundamental" itemValue="Ensino Fundamental" />
+                        <f:selectItem itemLabel="Ensino Médio" itemValue="Ensino Médio" />
+                        <f:selectItem itemLabel="Graduação" itemValue="Graduação" />
+                        <f:selectItem itemLabel="Especialização" itemValue="Especialiazação" />
+                        <f:selectItem itemLabel="Mestrado" itemValue="Mestrado" />
+                        <f:selectItem itemLabel="Doutorado" itemValue="Doutorado" />
+                    </p:selectOneMenu>
+                    Endereço Curriculo Lattes: <h:inputText value="#{controlerAluno.aluno.end_curriculo_lattes}" />
+                    DDD: <h:inputText value="#{controlerAluno.aluno.ddd}" />
+                    Numero do Telefone: <h:inputText value="#{controlerAluno.aluno.numero_telefone}" />
+                    Ramal: <h:inputText value="#{controlerAluno.aluno.ramal}" />
+                    Filiação: <h:selectOneRadio 
+                        value="#{controlerAluno.aluno.filiacao}">
+                        <f:selectItem  itemLabel="Sim" itemValue="true" />
+                        <f:selectItem  itemLabel="Não" itemValue="false" />
+                    </h:selectOneRadio>
+                    Nome da Mãe: <h:inputText value="#{controlerAluno.aluno.nome_mae}" />
+                    Nome do Pai: <h:inputText value="#{controlerAluno.aluno.nome_pai}" />
+                    Zona de Procedência: <p:selectOneMenu value="#{controlerAluno.aluno.zona_procedencia}" >
+                        <f:selectItem itemLabel="Urbana" itemValue="Ubarna" />
+                        <f:selectItem itemLabel="Rural" itemValue="Rural" />
+                    </p:selectOneMenu>
+                    CEP: <h:inputText value="#{controlerAluno.aluno.cep}" />
+                    Logradouro: <h:inputText value="#{controlerAluno.aluno.logradouro}" />
+                    Numero: <h:inputText value="#{controlerAluno.aluno.numero}" />
+                    Complemento: <h:inputText value="#{controlerAluno.aluno.complemento}" />
+                    Bairro: <h:inputText value="#{controlerAluno.aluno.bairro}" />
+                    Cidade: <h:inputText value="#{controlerAluno.aluno.cidade}" />
+                    UF: <h:inputText value="#{controlerAluno.aluno.uf}" />
+                    CPF: <p:inputMask value="#{controlerAluno.aluno.cpf}" mask="999.999.999-99" />
+                    RG: <h:inputText value="#{controlerAluno.aluno.rg_numero}" />
+                    Orgão Exepedidor: <h:inputText value="#{controlerAluno.aluno.rg_expedidor}" />
+                    Data da Expedição: <p:calendar value="#{controlerAluno.aluno.rg_data_expedicao}" />
+                    Cerdidão de Nascimento (Número): <h:inputText value="#{controlerAluno.aluno.cnasc_numero}" />
+                    Cerdidão de Nascimento (Livro/Folha): <h:inputText value="#{controlerAluno.aluno.cnasc_folha}" />
+                    Cerdidão de Nascimento (Cartório): <h:inputText value="#{controlerAluno.aluno.cnasc_cartorio}" />
+                    Cerdidão de Nascimento (Data da Expedição): <p:calendar value="#{controlerAluno.aluno.cnasc_data_expedicao}" />
+                    Carteira de Trabalho (Número): <h:inputText value="#{controlerAluno.aluno.ctps_numero}" />
+                    Carteira de Trabalho (Série): <h:inputText value="#{controlerAluno.aluno.ctps_serie}" />
+                    Carteira de Trabalho (PIS/PASEP): <h:inputText value="#{controlerAluno.aluno.pis_pasep}" />
+                    Carteira de Habilitação (Número): <h:inputText value="#{controlerAluno.aluno.chabilitacao_numero}" />
+                    Carteira de Habilitação (Data Expedeição): <p:calendar value="#{controlerAluno.aluno.chabilitacao_data_expedicao}" />
+                    Carteira de Habilitação (Data Validade): <p:calendar value="#{controlerAluno.aluno.chabilitacao_data_validade}" />
+                    Documento Militar (Tipo): <h:inputText value="#{controlerAluno.aluno.dmilitar_tipo}" />
+                    Documento Militar (Número): <h:inputText value="#{controlerAluno.aluno.dmilitar_numero}" />
+                    Documento Militar (Região Militar): <h:inputText value="#{controlerAluno.aluno.dmilitar_regiao}" />
+                    Título de Eleitor (Número): <h:inputText value="#{controlerAluno.aluno.teleitor_numero}" />
+                    Título de Eleitor (Zona/Seção): <h:inputText value="#{controlerAluno.aluno.teleitor_zona}" />
+                    Título de Eleitor (UF): <h:inputText value="#{controlerAluno.aluno.teleitor_uf}" />
+                    Título de Eleitor (Data Exp.): <p:calendar value="#{controlerAluno.aluno.teleitor_data_expedicao}" />
+                    E-mail: <h:inputText value="#{controlerAluno.aluno.email}" />
+                    Estado Civil: <p:selectOneMenu value="#{controlerAluno.aluno.estado_civil}" >
+                        <f:selectItem itemLabel="Solteiro" itemValue="solteiro" />
+                        <f:selectItem itemLabel="Casado" itemValue="casado" />
+                        <f:selectItem itemLabel="Divociado" itemValue="divociado" />
+                        <f:selectItem itemLabel="Separado Judicialmente" itemValue="Separado Judicialmente" />
+                        <f:selectItem itemLabel="Viúvo" itemValue="viúvo" />
+                        <f:selectItem itemLabel="Não declarado" itemValue="N/D" />
+                    </p:selectOneMenu>
+                    Nome do Responsável: <h:inputText value="#{controlerAluno.aluno.nome_responsavel}" />
+                    CPF do Responsável: <h:inputText value="#{controlerAluno.aluno.cpf_responsavel}" />
+
+                    Parentesco: <h:inputText value="#{controlerAluno.aluno.parentesco}" />
+                    Renda: <h:selectOneRadio id="renda"
+                                             value="#{controlerAluno.aluno.renda}">
+                        <f:selectItem id="sim" itemLabel="Sim" itemValue="true" />
+                        <f:selectItem id="não" itemLabel="Não" itemValue="false" />
+
+                    </h:selectOneRadio>
+                    Renda Familiar: <h:inputText value="#{controlerAluno.aluno.renda_familiar}" />
+                    Tamanho da Familia: <h:inputText value="#{controlerAluno.aluno.tamanho_familia}" />
+                    Numeros de Filhos: <h:inputText value="#{controlerAluno.aluno.numero_filhos}" />
+                    Trabalha: <h:selectOneRadio 
+                        value="#{controlerAluno.aluno.trabalha}">
+                        <f:selectItem  itemLabel="Sim" itemValue="true" />
+                        <f:selectItem  itemLabel="Não" itemValue="false" />
+
+                    </h:selectOneRadio>
+
+                    Local de Trabalho: <h:inputText value="#{controlerAluno.aluno.local_trabalho}" />
+                    Telefone do Trabalho: <h:inputText value="#{controlerAluno.aluno.telefone_trabalho}" />
+                    Profissão: <h:inputText value="#{controlerAluno.aluno.profissao}" />
+                    Escola Formação Anterior: <h:inputText value="#{controlerAluno.aluno.escola_formacao_anterior}" />
+                    Ano da Formação Anterior: <h:inputText value="#{controlerAluno.aluno.ano_formacao_anterior}" />
+                    Tipo da Escola Anterior: <p:selectOneMenu value="#{controlerAluno.aluno.tipo_escola_anterior}" >
+                        <f:selectItem itemLabel="Municipal" itemValue="municipal" />
+                        <f:selectItem itemLabel="Estadual" itemValue="estadual" />
+                        <f:selectItem itemLabel="Federal" itemValue="pederal" /> 
+                        <f:selectItem itemLabel="Privada" itemValue="private" />
+                        <f:selectItem itemLabel="Filantrópica" itemValue="filantropica" />
+
+                    </p:selectOneMenu>
+                    Ano da Formação Anterior: <h:inputText value="#{controlerAluno.aluno.ano_formacao_anterior}" />
+                    Tipo de Escola Anterior: <h:inputText value="#{controlerAluno.aluno.tipo_escola_anterior}" />
+                    Etapa do Ensino Anterior: <p:selectOneMenu value="#{controlerAluno.aluno.etapa_ensino_anterior}" >
+                        <f:selectItem itemLabel="Infantil" itemValue="Infantil" />
+                        <f:selectItem itemLabel="Fundamental" itemValue="Fundamental" />
+                        <f:selectItem itemLabel="Médio" itemValue="Médio" /> 
+                        <f:selectItem itemLabel="Superior" itemValue="Superior" />
+
+                    </p:selectOneMenu>
+                    Cidade da Instituição de Ensino: <h:inputText value="#{controlerAluno.aluno.cidade_instituicao_ensino}" />
+                    UF da Instituição de Ensino: <h:inputText value="#{controlerAluno.aluno.uf_instituicao_ensino}" />
+
+                    <h:commandButton  value="Save"  action="#{controlerAluno.cadastrarAluno()}"/>
+
+
+                </h:panelGrid>
+
+
+
+            </p:panel>
+
         </h:form>
     </h:body>
 </html>
