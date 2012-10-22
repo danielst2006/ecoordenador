@@ -14,12 +14,12 @@ and open the template in the editor.
     <h:body>
         <h:form>
             <p:panel  header="Cadastro de Aluno"> 
-                <p:messages id="msgs"/> 
+                <p:messages /> 
                 <h:panelGrid >
 
-                    <h:outputLabel for="Nome" value="Nome: *" />                 
+                    <h:outputLabel  value="Nome: *" />                 
                     <p:inputText  value="#{controlerAluno.aluno.nome}" required="true" label="Nome">
-                        <f:validateLength minimum="2" />
+                        
                     </p:inputText>  
                     
                     
@@ -34,7 +34,7 @@ and open the template in the editor.
                         <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
                     </p:selectOneMenu>
 
-                    Genero: <p:selectOneMenu value="#{controlerAluno.aluno.nome_responsavel}" >
+                    Genero: <p:selectOneMenu value="#{controlerAluno.aluno.genero}" >
                         <f:selectItem itemLabel="Masculino" itemValue="M" />
                         <f:selectItem itemLabel="Feminino" itemValue="F" />
                         <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />      
@@ -45,7 +45,7 @@ and open the template in the editor.
                         <f:selectItem  itemLabel="Sim" itemValue="true" />
                         <f:selectItem  itemLabel="Não" itemValue="false" />
                     </h:selectOneRadio>
-                    <h:outputLabel for="Data Nascimento" value="Data de Nascimento: *" />  
+                    <h:outputLabel  value="Data de Nascimento: *" />  
                     <p:calendar value="#{controlerAluno.aluno.data_nascimento}" />
                     Naturalidade: <h:inputText value="#{controlerAluno.aluno.naturalidade}" />
                     UF da Naturalidade: <h:inputText value="#{controlerAluno.aluno.uf_naturalidade}" />
@@ -78,11 +78,11 @@ and open the template in the editor.
                     DDD: <h:inputText value="#{controlerAluno.aluno.ddd}" />
                     Numero do Telefone: <h:inputText value="#{controlerAluno.aluno.numero_telefone}" />
                     Ramal: <h:inputText value="#{controlerAluno.aluno.ramal}" />
-                    Filiação: <h:selectOneRadio 
-                        value="#{controlerAluno.aluno.filiacao}">
-                        <f:selectItem  itemLabel="Sim" itemValue="true" />
-                        <f:selectItem  itemLabel="Não" itemValue="false" />
-                    </h:selectOneRadio>
+                    Filiação: <p:selectOneMenu value="#{controlerAluno.aluno.filiacao}" >
+                        <f:selectItem itemLabel="Sim" itemValue="true" />
+                        <f:selectItem itemLabel="Não" itemValue="false" />
+                        
+                    </p:selectOneMenu>
                     Nome da Mãe: <h:inputText value="#{controlerAluno.aluno.nome_mae}" />
                     Nome do Pai: <h:inputText value="#{controlerAluno.aluno.nome_pai}" />
                     Zona de Procedência: <p:selectOneMenu value="#{controlerAluno.aluno.zona_procedencia}" >
@@ -96,7 +96,7 @@ and open the template in the editor.
                     Bairro: <h:inputText value="#{controlerAluno.aluno.bairro}" />
                     Cidade: <h:inputText value="#{controlerAluno.aluno.cidade}" />
                     UF: <h:inputText value="#{controlerAluno.aluno.uf}" />
-                    CPF: <p:inputMask value="#{controlerAluno.aluno.cpf}" mask="999.999.999-99" />
+                    CPF: <h:inputText value="#{controlerAluno.aluno.cpf}"  />
                     RG: <h:inputText value="#{controlerAluno.aluno.rg_numero}" />
                     Orgão Exepedidor: <h:inputText value="#{controlerAluno.aluno.rg_expedidor}" />
                     Data da Expedição: <p:calendar value="#{controlerAluno.aluno.rg_data_expedicao}" />
@@ -130,10 +130,9 @@ and open the template in the editor.
                     CPF do Responsável: <h:inputText value="#{controlerAluno.aluno.cpf_responsavel}" />
 
                     Parentesco: <h:inputText value="#{controlerAluno.aluno.parentesco}" />
-                    Renda: <h:selectOneRadio id="renda"
-                                             value="#{controlerAluno.aluno.renda}">
-                        <f:selectItem id="sim" itemLabel="Sim" itemValue="true" />
-                        <f:selectItem id="não" itemLabel="Não" itemValue="false" />
+                    Renda: <h:selectOneRadio value="#{controlerAluno.aluno.renda}">
+                        <f:selectItem  itemLabel="Sim" itemValue="true" />
+                        <f:selectItem  itemLabel="Não" itemValue="false" />
 
                     </h:selectOneRadio>
                     Renda Familiar: <h:inputText value="#{controlerAluno.aluno.renda_familiar}" />
