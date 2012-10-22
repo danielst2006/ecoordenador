@@ -40,10 +40,10 @@ public abstract class Pessoa implements Serializable{
         @Column(name="nacionalidade",length=20,nullable=false)
 	private String nacionalidade;
 	 
-        @Column(name="tipo_sanguineo",length=3)
+        @Column(name="tipo_sanguineo")
 	private String tipo_sanguineo;
 	 
-        @Column(name="fator_rh",length=3)
+        @Column(name="fator_rh")
 	private String fator_rh;
 	 
         @Column(name="grau_formacao",length=30,nullable=false)
@@ -79,7 +79,7 @@ public abstract class Pessoa implements Serializable{
         @Column(name="nome_pai",length=80)
 	private String nome_pai;
 	 
-        @Column(name="zona_procedencia",length=7,nullable=false)
+        @Column(name="zona_procedencia",length=20,nullable=false)
 	private String zona_procedencia;
 	 
         @Column(name="cep",nullable=false)
