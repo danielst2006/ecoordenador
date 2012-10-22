@@ -7,6 +7,7 @@ package controller;
 import beans.Atividade_complementar_tipo;
 import dao.HibernateDAO;
 import dao.InterfaceDAO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
