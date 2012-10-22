@@ -17,7 +17,7 @@ public class Atividade_complementar implements Serializable {
         @GeneratedValue(strategy=GenerationType.IDENTITY)
         @SequenceGenerator(name="atv_seq", sequenceName="atv_seq", allocationSize=1)
 	private Long id;
-	 
+ 
         @ManyToOne
         @JoinColumn(name="id_tipo_atividade")
 	private Atividade_complementar_tipo id_tipo_atividade;
@@ -31,6 +31,14 @@ public class Atividade_complementar implements Serializable {
         @OneToOne(mappedBy="id_atividade_complementar",cascade=CascadeType.ALL)
         private Entrada_atividade entrada_atividade;
 
+    public Entrada_atividade getEntrada_atividade() {
+        return entrada_atividade;
+    }
+
+    public void setEntrada_atividade(Entrada_atividade entrada_atividade) {
+        this.entrada_atividade = entrada_atividade;
+    }    
+        
     public String getAtividade() {
         return atividade;
     }
