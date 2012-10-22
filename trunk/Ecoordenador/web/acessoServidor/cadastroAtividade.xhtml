@@ -20,10 +20,18 @@ and open the template in the editor.
                     
 
                     Tipo da atividade:
-                    <h:selectOneMenu value="#{controlerAtvTipo.atv_tipo}" valueChangeListener="#{mb.changeObj}" immediate="true" >  
-                        <f:selectItems value="#{mb.listaObjs}"   var="obj" itemLabel="#{obj.nome}"   itemValue="#{obj}" />  
-                     </h:selectOneMenu>
+                    <!-- ESSA BCT N TA FUNFANDO -->
+                    <p:selectOneMenu value="#{controlerAtividade.atividade.id_tipo_atividade}">
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItems value="#{controlerAtvTipo.listaTipoAtv}" var="tipo"
+                        itemValue="#{tipo}" itemLabel="#{tipo.tipo_atividade}"/>
+                    </p:selectOneMenu>
                     
+                    Nome da atividade: *<p:inputText value="#{controlerAtividade.atividade.atividade}"/>
+                    
+                    Pontuação: *<p:inputText value="#{controlerAtividade.atividade.pontuacao}"/>
+                    
+                    <p:commandButton value="Salvar" actionListener="#{controlerAtividade.cadastrarAtividade()}" ajax="true" update="@form"/>
                     
                     <p:ajaxStatus>  
                         <f:facet name="start">

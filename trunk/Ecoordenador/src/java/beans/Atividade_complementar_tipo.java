@@ -51,6 +51,6 @@ public class Atividade_complementar_tipo implements Serializable {
     public void setTipo_atividade(String tipo_atividade) {
         this.tipo_atividade = tipo_atividade;
     } 
-	 
+     
 }
  

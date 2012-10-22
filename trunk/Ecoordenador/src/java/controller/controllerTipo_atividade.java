@@ -65,5 +65,5 @@ public class controllerTipo_atividade {
         dao.update(atv_tipo);
         limpar();
     }
-    
+        
 }
