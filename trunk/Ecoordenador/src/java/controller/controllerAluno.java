@@ -5,6 +5,7 @@
 package controller;
 
 import beans.Aluno;
+import dao.DaoFactory;
 import dao.HibernateDAO;
 import dao.InterfaceDAO;
 import java.util.List;
@@ -34,6 +35,8 @@ public class controllerAluno {
     }
     
     InterfaceDAO<Aluno> dao = new HibernateDAO<Aluno>(Aluno.class);
+    DaoFactory dao1 = new DaoFactory();
+    
     private DataModel listaAluno;
     
     public void limpar() {
@@ -50,8 +53,11 @@ public class controllerAluno {
     }
     
     public void cadastrarAluno() {
-        dao.save(aluno);
-        limpar();
+        dao1.beginTransaction();
+        dao1.getAlunoDao().adicionar(aluno);
+        dao1.commit();
+        dao1.close();       
+        
     }
     
     public void removerAluno() {

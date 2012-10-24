@@ -18,15 +18,17 @@ and open the template in the editor.
                 <h:panelGrid >
 
                     <h:outputLabel  value="Nome: *" />                 
-                    <p:inputText  value="#{controlerAluno.aluno.nome}" required="true" label="Nome">
-                        
+                    <p:inputText  value="#{controlerAluno.aluno.nome}" required="true" label="Nome"  maxlength="14" size="40" >
+                       
                     </p:inputText>  
                     
                     
-                    Foto:
+                   <h:outputLabel  value="Foto: " />   
 
-                    Senha: <h:inputSecret value="#{controlerAluno.aluno.senha}" />
-                    Etnia:<p:selectOneMenu value="#{controlerAluno.aluno.etnia}" >
+                    <h:outputLabel  value="Senha: " />   
+                    <h:inputSecret value="#{controlerAluno.aluno.senha}"  maxlength="40" size="40"  />
+                    <h:outputLabel  value="Etnia: " />   
+                    <p:selectOneMenu value="#{controlerAluno.aluno.etnia}"    >
                         <f:selectItem itemLabel="Branca" itemValue="branca" />
                         <f:selectItem itemLabel="Pardo" itemValue="pardo" />
                         <f:selectItem itemLabel="Negra" itemValue="negra" />
@@ -172,13 +174,23 @@ and open the template in the editor.
                     
                     <p:commandButton value="Salvar" actionListener="#{controlerAluno.cadastrarAluno()}" ajax="true" update="@form"/>
 
+                    
+                      <p:ajaxStatus>  
+                        <f:facet name="start">
+                            <h:graphicImage value="../images/ajax-loader.gif" />
+                        </f:facet>
+                        <f:facet name="complete">
+                            <h:outputText value="" />
+                        </f:facet>
+                    </p:ajaxStatus>
 
                 </h:panelGrid>
 
-
-
+                                 
             </p:panel>
-
+          
+            
+            
         </h:form>
     </h:body>
 </html>
