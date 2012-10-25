@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <script type="text/javascript">  
+            function start() {  
+                statusDialog.show();  
+            }  
+
+            function stop() {  
+                statusDialog.hide();  
+            }  
+        </script>
+    </h:head>
+    <h:body>
+        <h:form enctype="multipart/form-data">
+            <p:panel  header="Cadastro dos tipos de atividades complementares"> 
+                <p:messages id="msgs"/> 
+                <h:panelGrid >
+
+                    Certificado escaneado:
+                    <p:fileUpload fileUploadListener="#{controllerEntradaAtividade.handleFileUpload}" mode="advanced" sizeLimit="100000" allowTypes="/(\.|\/)(pdf)$/"
+                                  multiple="false" style="width: 600px;"/>
+                    
+                   Atividade Requerida:
+                    <!-- POPULANDO COM OBJETO -->
+                    <p:selectOneMenu value="#{controllerEntradaAtividade.entradaAtv.id_atividade_complementar}" converter="#{AtividadeComplementarConverter}" style="width: 150px">
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItems value="#{controllerAtvComp.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.atividade}"/>
+                    </p:selectOneMenu>
+                    
+                      
+
+                    
+                    <p:commandButton value="Salvar" actionListener="#{controllerEntradaAtividade.salvar()}" ajax="true" update="@form"/>
+                    
+                    <p:ajaxStatus>  
+                        <f:facet name="start">
+                            <h:graphicImage value="../resources/images/ajax-loader.gif" />
+                        </f:facet>
+                        <f:facet name="complete">
+                            <h:outputText value="" />
+                        </f:facet>
+                    </p:ajaxStatus>
+
+                </h:panelGrid>
+            </p:panel>
+            
+            <p:dataTable id="tabela" var="p" value="#{controllerEntradaAtividade.listaDM}" emptyMessage="Nada encontrado...">
+                <p:column>
+                    <h:outputText value="#{p.id_aluno.nome}"/>
+                </p:column>
+                <p:column>
+                    <h:outputText value="#{p.id_atividade_complementar.id_tipo_atividade.tipo_atividade}"/>
+                </p:column>
+                <p:column>
+                    <h:outputText value="#{p.id_atividade_complementar.atividade}"/>
+                </p:column>
+                <p:column>
+                    <h:outputText value="#{p.data_entrada}"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Download" ajax="true" onclick="PrimeFaces.monitorDownload(start, stop)" icon="ui-icon-arrowthichk-s" update="@form">  
+                        <p:fileDownload value="#{controllerEntradaAtividade.fileDownloadAction()}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column>
+                    <p:commandLink value="apagar" actionListener="#{controllerEntradaAtividade.remover()}" ajax="true" update="@form"/>
+                </p:column>
+            </p:dataTable>
+           
+
+        </h:form>
+    </h:body>
+</html>

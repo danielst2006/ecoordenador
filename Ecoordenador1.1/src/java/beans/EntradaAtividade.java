@@ -2,8 +2,13 @@ package beans;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
 import org.hibernate.annotations.Cascade;
+
+@ManagedBean(name="entrada_atividade")
+@SessionScoped
 
 @Entity
 @Table(schema="public",name="entrada_atividade")
