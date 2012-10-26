@@ -23,6 +23,7 @@ public class EntradaAtividade implements Serializable {
         @JoinColumn(name="id_aluno")
 	private Aluno id_aluno;
 	 
+        //Aqui está travando o sistema quando exclui o item.
         @OneToOne
         @JoinColumn(name="id_atividade_complementar")
 	private AtividadeComplementar id_atividade_complementar;
