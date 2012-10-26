@@ -76,7 +76,7 @@ public class controllerEntradaAtividade {
         //intancia um novo objeto passando o id do antigo objeto
         EntradaAtividadeRN rn = new EntradaAtividadeRN();
         EntradaAtividade ent = rn.carregar(this.entradaAtv.getId());
-        //limpa o primeiro objeto, pois ele não pode contar dados, senão da pau na exclusão =)
+        //limpa o primeiro objeto, pois ele não pode contar dados, senão da pau hora de atulizar etc =)
         //dae tem q fazer esse esquema bruto pro ajax o/
         limpar();
         //faz o metodo de download
