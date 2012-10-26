@@ -30,7 +30,7 @@ public class AtividadeComplementar implements Serializable {
 	private int pontuacao;
         
         @OneToOne(mappedBy="id_atividade_complementar",fetch= FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+        @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
         private EntradaAtividade entrada_atividade;
 
     public EntradaAtividade getEntrada_atividade() {
