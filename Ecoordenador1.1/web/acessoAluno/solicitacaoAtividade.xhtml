@@ -39,7 +39,7 @@ and open the template in the editor.
                       
 
                     
-                    <p:commandButton value="Salvar" actionListener="#{controllerEntradaAtividade.salvar()}" ajax="true" update="@form"/>
+                    <p:commandButton value="Solicitar" actionListener="#{controllerEntradaAtividade.salvar()}" ajax="true" update="@form"/>
                     
                     <p:ajaxStatus>  
                         <f:facet name="start">
@@ -64,10 +64,12 @@ and open the template in the editor.
                     <h:outputText value="#{p.id_atividade_complementar.atividade}"/>
                 </p:column>
                 <p:column>
-                    <h:outputText value="#{p.data_entrada}"/>
+                    <h:outputText value="#{p.data_entrada}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
                 </p:column>
                 <p:column>
-                    <p:commandButton value="Download" ajax="true" onclick="PrimeFaces.monitorDownload(start, stop)" icon="ui-icon-arrowthichk-s" update="@form">  
+                    <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)" icon="ui-icon-arrowthichk-s" update="@form">  
                         <p:fileDownload value="#{controllerEntradaAtividade.fileDownloadAction()}"/>
                     </p:commandButton>
                 </p:column>
@@ -76,6 +78,9 @@ and open the template in the editor.
                 </p:column>
             </p:dataTable>
            
+            <p:dialog modal="true" widgetVar="statusDialog" draggable="false" closable="false" resizable="false" style="width: 220px;height: 200px">  
+                <p:graphicImage value="../resources/images/ajax-bar.gif" />  
+            </p:dialog>
 
         </h:form>
     </h:body>

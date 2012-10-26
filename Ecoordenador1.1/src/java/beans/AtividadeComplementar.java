@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 @ManagedBean(name="atividade_complementar")
 @SessionScoped
@@ -28,7 +29,8 @@ public class AtividadeComplementar implements Serializable {
         @Column(name="pontuacao")
 	private int pontuacao;
         
-        @OneToOne(mappedBy="id_atividade_complementar",cascade=CascadeType.ALL)
+        @OneToOne(mappedBy="id_atividade_complementar",fetch= FetchType.LAZY)
+        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
         private EntradaAtividade entrada_atividade;
 
     public EntradaAtividade getEntrada_atividade() {
