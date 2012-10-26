@@ -66,7 +66,7 @@ public class Aluno extends Pessoa {
 	private String uf_instituicao_ensino;
         
         @OneToMany(mappedBy="id_aluno",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.ALL)
+        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
         Set<EntradaAtividade> ent_atv = new HashSet<EntradaAtividade>();
         
         ////////////////////////////////////////////////////////////////////////
