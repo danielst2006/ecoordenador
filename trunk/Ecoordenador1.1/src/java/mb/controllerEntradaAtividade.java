@@ -71,8 +71,16 @@ public class controllerEntradaAtividade {
     }
   
     public StreamedContent fileDownloadAction() {
+        //pega o objeto
         this.entradaAtv = (EntradaAtividade)this.listaDataModel.getRowData();
-        this.file = new DefaultStreamedContent(new ByteArrayInputStream(this.entradaAtv.getAnexo()));
+        //intancia um novo objeto passando o id do antigo objeto
+        EntradaAtividadeRN rn = new EntradaAtividadeRN();
+        EntradaAtividade ent = rn.carregar(this.entradaAtv.getId());
+        //limpa o primeiro objeto, pois ele não pode contar dados, senão da pau na exclusão =)
+        //dae tem q fazer esse esquema bruto pro ajax o/
+        limpar();
+        //faz o metodo de download
+        this.file = new DefaultStreamedContent(new ByteArrayInputStream(ent.getAnexo()));
         return this.file;
     }
     

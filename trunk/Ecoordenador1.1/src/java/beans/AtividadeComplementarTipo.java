@@ -25,7 +25,7 @@ public class AtividadeComplementarTipo implements Serializable {
 	private String tipo_atividade;
         
         @OneToMany(mappedBy="id_tipo_atividade",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.ALL)
+        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
         Set<AtividadeComplementar> atv_comp = new HashSet<AtividadeComplementar>();
 
     public Integer getId() {
