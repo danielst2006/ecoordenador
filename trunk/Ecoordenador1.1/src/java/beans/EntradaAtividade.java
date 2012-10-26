@@ -5,7 +5,6 @@ import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
-import org.hibernate.annotations.Cascade;
 
 @ManagedBean(name="entrada_atividade")
 @SessionScoped
@@ -26,7 +25,6 @@ public class EntradaAtividade implements Serializable {
 	 
         @OneToOne
         @JoinColumn(name="id_atividade_complementar")
-        @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
 	private AtividadeComplementar id_atividade_complementar;
 	 
 	@Column(name="anexo",nullable=false)
