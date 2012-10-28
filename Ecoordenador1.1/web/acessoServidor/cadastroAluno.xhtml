@@ -18,7 +18,7 @@ and open the template in the editor.
                 <h:panelGrid >
 
                     <h:outputLabel  value="Nome: *" />                 
-                    <p:inputText  value="#{controlerAluno.aluno.nome}" required="true" label="Nome"  maxlength="14" size="40" >
+                    <p:inputText  value="#{controlerAluno.aluno.nome}" required="true" label="Nome"   >
                        
                     </p:inputText>  
                     
@@ -172,12 +172,12 @@ and open the template in the editor.
                     Cidade da Instituição de Ensino: <h:inputText value="#{controlerAluno.aluno.cidade_instituicao_ensino}" />
                     UF da Instituição de Ensino: <h:inputText value="#{controlerAluno.aluno.uf_instituicao_ensino}" />
                     
-                    <p:commandButton value="Salvar" actionListener="#{controlerAluno.cadastrarAluno()}" ajax="true" update="@form"/>
+                    <p:commandButton value="Salvar" actionListener="#{controlerAluno.salvar()}" ajax="true" update="@form"/>
 
                     
                       <p:ajaxStatus>  
                         <f:facet name="start">
-                            <h:graphicImage value="../images/ajax-loader.gif" />
+                            <h:graphicImage value="../resources/images/ajax-loader.gif" />
                         </f:facet>
                         <f:facet name="complete">
                             <h:outputText value="" />
@@ -189,6 +189,18 @@ and open the template in the editor.
                                  
             </p:panel>
           
+            <p:dataTable id="tabela" var="p" value="#{controlerAluno.listaAluno}" emptyMessage="Nada encontrado...">
+                <p:column>
+                    <h:outputText value="#{p.nome}"/>
+                </p:column>
+                <p:column>
+                    <h:outputText value="#{p.senha}"/>
+                </p:column>
+
+                <p:column>
+                    <p:commandLink value="apagar" actionListener="#{controlerAluno.remover()}" ajax="true" update="@form"/>
+                </p:column>
+            </p:dataTable>
             
             
         </h:form>
