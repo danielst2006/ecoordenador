@@ -4,11 +4,114 @@ To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"> 
+    <h:head>
+        
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel header="Cadastro de Servidor">
+                <p:messages />
+                <h:panelGrid>
+                    
+                    Matricula Siape:<p:inputText value="#{controllerServidor.servidor.matricula_siape}">
+                        </p:inputText>
+                    
+                    Cargo:*<p:inputText value="#{controllerServidor.servidor.cargo}">
+                        </p:inputText>
+                    
+                    Mandato da Função:*<p:inputText value="#{controllerServidor.servidor.mandato_funcao}">
+                        </p:inputText>
+                   
+                    Data de Inicio:*<p:calendar value="#{controllerServidor.servidor.data_inicio}">
+                        </p:calendar>
+                    
+                    Data de Terminio:<p:calendar value="#{controllerServidor.servidor.data_termino}">
+                        </p:calendar>
+                    
+                    Unidade de Ensino:*<p:inputText value="#{controllerServidor.servidor.unidade_ensino}">
+                        </p:inputText>
+                    
+                    Regime Juridico:*<p:inputText value="#{controllerServidor.servidor.regime_juridico}">
+                        </p:inputText>
+                    
+                    Situação:*<p:inputText value="#{controllerServidor.servidor.situacao}">
+                        </p:inputText>
+                    
+                    Data de Admissão:<p:calendar value="#{controllerServidor.servidor.data_admissao}">
+                        </p:calendar>
+                    
+                    Banco:*<p:inputText value="#{controllerServidor.servidor.banco}">
+                        </p:inputText>
+                    
+                    Agencia:*<p:inputText value="#{controllerServidor.servidor.agencia}">
+                        </p:inputText>
+                    
+                    Conta:*<p:inputText value="#{controllerServidor.servidor.conta}">
+                        </p:inputText>
+                    
+                    Classe:*<p:inputText value="#{controllerServidor.servidor.classe}">
+                        </p:inputText>
+                    
+                    Nivel funcional:*<p:inputText value="#{controllerServidor.servidor.nivel_funcional}">
+                        </p:inputText>
+                    
+                    Area de Conhecimento:<p:inputText value="#{controllerServidor.servidor.area_conhecimento}">
+                        </p:inputText>
+                    
+                    Regime de Trabalho:<p:inputText value="#{controllerServidor.servidor.regime_trabalho}">
+                        </p:inputText>
+                    
+                    Classificação:<p:inputText value="#{controllerServidor.servidor.classificacao}">
+                        </p:inputText>
+                    
+                    Tipo do ato de autorização:<p:inputText value="#{controllerServidor.servidor.ato_autorizativo_tipo}">
+                        </p:inputText>
+                    
+                    Numero:<p:inputText value="#{controllerServidor.servidor.numero}">
+                        </p:inputText>
+                    
+                    Data de Expedição:<p:calendar value="#{controllerServidor.servidor.data_expedicao}">
+                        </p:calendar>
+                    
+                    Data do Diario Oficial:<p:calendar value="#{controllerServidor.servidor.data_diario_oficial}">
+                        </p:calendar>
+                    
+                    Orgao de origem da Matricula:<p:inputText value="#{controllerServidor.servidor.orgao_origem_matricula}">
+                        </p:inputText>
+                    
+                    Orgão de Origem:<p:inputText value="#{controllerServidor.servidor.orgao_origem}">
+                        </p:inputText>
+                    
+                    Orgão de origem do Cargo:<p:inputText value="#{controllerServidor.servidor.orgao_origem_cargo}">
+                        </p:inputText>
+                    
+                    Servidor Rede:<p:selectOneMenu value="#{controllerServidor.servidor.servidor_rede}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sim" itemValue="true" />
+                        <f:selectItem itemLabel="Não" itemValue="false" />
+                        
+                    </p:selectOneMenu>
+                    
+                    Carga Horaria Semanal:<p:inputText value="#{controllerServidor.servidor.carga_horaria_semanal}">
+                        </p:inputText>
+                    
+                    <p:commandButton value="Salvar" actionListener="#{controllerServidor.salvar()}" ajax="true" update="@form"/>
+
+                    
+                      <p:ajaxStatus>  
+                        <f:facet name="start">
+                            <h:graphicImage value="../resources/images/ajax-loader.gif" />
+                        </f:facet>
+                        <f:facet name="complete">
+                            <h:outputText value="" />
+                        </f:facet>
+                    </p:ajaxStatus>
+                </h:panelGrid>
+            </p:panel>>
+        </h:form>>
+    </h:body>
 </html>
