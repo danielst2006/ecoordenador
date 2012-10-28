@@ -5,9 +5,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Set;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
 import org.hibernate.annotations.Cascade;
 
+@ManagedBean(name="aluno")
+@SessionScoped
  
 @Entity
 @SequenceGenerator(allocationSize= 1, name = "idgen", sequenceName = "aluno_seq")
