@@ -56,6 +56,17 @@ public class controllerAtvCompTipo {
         limpar();
         return "Removido";
     }
+    
+    public String alterar() {
+        AtividadeComplementarTipoRN rn = new AtividadeComplementarTipoRN();
+        rn.atualizar(this.atvCompTipo);
+        limpar();
+        return "Alterado";
+    }
+    
+    public void prepararAlterar() {
+        this.atvCompTipo = (AtividadeComplementarTipo)this.listaDataModel.getRowData();
+    }
   
 
     ////////////////////////////////////////////////////////////////////////////

@@ -80,7 +80,7 @@ public class controllerEntradaAtividade {
         //dae tem q fazer esse esquema bruto pro ajax o/
         limpar();
         //faz o metodo de download
-        this.file = new DefaultStreamedContent(new ByteArrayInputStream(ent.getAnexo()),"application/pdf","documento");
+        this.file = new DefaultStreamedContent(new ByteArrayInputStream(ent.getAnexo()),"application/pdf","Certificado");
         return this.file;
     }
     
