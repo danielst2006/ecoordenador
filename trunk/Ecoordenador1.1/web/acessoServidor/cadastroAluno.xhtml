@@ -17,18 +17,18 @@ and open the template in the editor.
                 <p:messages /> 
                 <h:panelGrid >
 
-                    <h:outputLabel  value="Nome: *" />                 
-                    <p:inputText  value="#{controllerAluno.aluno.nome}" required="true" label="Nome"   >
+                        
+                    Nome:*<p:inputText  value="#{controllerAluno.aluno.nome}" label="Nome"   >
                        
                     </p:inputText>  
                     
                     
                    <h:outputLabel  value="Foto: " />   
-
-                    <h:outputLabel  value="Senha: " />   
-                    <h:inputSecret value="#{controllerAluno.aluno.senha}"  maxlength="40" size="40"  />
-                    <h:outputLabel  value="Etnia: " />   
-                    <p:selectOneMenu value="#{controllerAluno.aluno.etnia}"    >
+                     
+                    Senha:*<h:inputSecret value="#{controllerAluno.aluno.senha}"  maxlength="40" size="40"  />
+                   
+                    Etnia:<p:selectOneMenu value="#{controllerAluno.aluno.etnia}"    >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Branca" itemValue="branca" />
                         <f:selectItem itemLabel="Pardo" itemValue="pardo" />
                         <f:selectItem itemLabel="Negra" itemValue="negra" />
@@ -37,6 +37,7 @@ and open the template in the editor.
                     </p:selectOneMenu>
 
                     Genero: <p:selectOneMenu value="#{controllerAluno.aluno.genero}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Masculino" itemValue="M" />
                         <f:selectItem itemLabel="Feminino" itemValue="F" />
                         <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />      
@@ -53,6 +54,7 @@ and open the template in the editor.
                     UF da Naturalidade: <h:inputText value="#{controllerAluno.aluno.uf_naturalidade}" />
                     Nacionalidade: <h:inputText value="#{controllerAluno.aluno.nacionalidade}" />
                     Tipo Sanguineo: <p:selectOneMenu value="#{controllerAluno.aluno.tipo_sanguineo}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="A" itemValue="A" />
                         <f:selectItem itemLabel="B" itemValue="B" />
                         <f:selectItem itemLabel="AB" itemValue="AB" /> 
@@ -61,12 +63,14 @@ and open the template in the editor.
 
                     </p:selectOneMenu>
                     Fator Rh: <p:selectOneMenu value="#{controllerAluno.aluno.fator_rh}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Positivo" itemValue="positivo" />
                         <f:selectItem itemLabel="Negativo" itemValue="negativo" />
                         <f:selectItem itemLabel="Não Declarado" itemValue="N/D" /> 
 
                     </p:selectOneMenu>
                     Grau de Formação: <p:selectOneMenu value="#{controllerAluno.aluno.grau_formacao}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
                         <f:selectItem itemLabel="Educação Infantil" itemValue="Educação Infantil" />
                         <f:selectItem itemLabel="Ensino Fundamental" itemValue="Ensino Fundamental" />
@@ -81,6 +85,7 @@ and open the template in the editor.
                     Numero do Telefone: <h:inputText value="#{controllerAluno.aluno.numero_telefone}" />
                     Ramal: <h:inputText value="#{controllerAluno.aluno.ramal}" />
                     Filiação: <p:selectOneMenu value="#{controllerAluno.aluno.filiacao}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Sim" itemValue="true" />
                         <f:selectItem itemLabel="Não" itemValue="false" />
                         
@@ -88,6 +93,7 @@ and open the template in the editor.
                     Nome da Mãe: <h:inputText value="#{controllerAluno.aluno.nome_mae}" />
                     Nome do Pai: <h:inputText value="#{controllerAluno.aluno.nome_pai}" />
                     Zona de Procedência: <p:selectOneMenu value="#{controllerAluno.aluno.zona_procedencia}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Urbana" itemValue="Ubarna" />
                         <f:selectItem itemLabel="Rural" itemValue="Rural" />
                     </p:selectOneMenu>
@@ -121,6 +127,7 @@ and open the template in the editor.
                     Título de Eleitor (Data Exp.): <p:calendar value="#{controllerAluno.aluno.teleitor_data_expedicao}" />
                     E-mail: <h:inputText value="#{controllerAluno.aluno.email}" />
                     Estado Civil: <p:selectOneMenu value="#{controllerAluno.aluno.estado_civil}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Solteiro" itemValue="solteiro" />
                         <f:selectItem itemLabel="Casado" itemValue="casado" />
                         <f:selectItem itemLabel="Divociado" itemValue="divociado" />
@@ -154,6 +161,7 @@ and open the template in the editor.
                     Ano da Formação Anterior: <h:inputText value="#{controllerAluno.aluno.ano_formacao_anterior}" />
                     Tipo da Escola Anterior: <p:selectOneMenu value="#{controllerAluno.aluno.tipo_escola_anterior}" >
                         <f:selectItem itemLabel="Municipal" itemValue="municipal" />
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Estadual" itemValue="estadual" />
                         <f:selectItem itemLabel="Federal" itemValue="pederal" /> 
                         <f:selectItem itemLabel="Privada" itemValue="private" />
@@ -163,6 +171,7 @@ and open the template in the editor.
                   
                    
                     Etapa do Ensino Anterior: <p:selectOneMenu value="#{controllerAluno.aluno.etapa_ensino_anterior}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>s
                         <f:selectItem itemLabel="Infantil" itemValue="Infantil" />
                         <f:selectItem itemLabel="Fundamental" itemValue="Fundamental" />
                         <f:selectItem itemLabel="Médio" itemValue="Médio" /> 
@@ -190,6 +199,9 @@ and open the template in the editor.
             </p:panel>
           
             <p:dataTable id="tabela" var="p" value="#{controllerAluno.listaDM}" emptyMessage="Nada encontrado...">
+                <p:column>
+                    <h:outputText value="#{p.id}"/>
+                </p:column>
                 <p:column>
                     <h:outputText value="#{p.nome}"/>
                 </p:column>
