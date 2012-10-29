@@ -82,6 +82,17 @@ and open the template in the editor.
                         
                     </p:selectOneMenu>
                     
+                    Estado Civil: <p:selectOneMenu value="#{controllerServidor.servidor.estado_civil}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Solteiro" itemValue="solteiro" />
+                        <f:selectItem itemLabel="Casado" itemValue="casado" />
+                        <f:selectItem itemLabel="Divociado" itemValue="divociado" />
+                        <f:selectItem itemLabel="Separado Judicialmente" itemValue="Separado Judicialmente" />
+                        <f:selectItem itemLabel="Viúvo" itemValue="viúvo" />
+                        <f:selectItem itemLabel="Não declarado" itemValue="N/D" />
+                    </p:selectOneMenu>
+                    
+                    
                     Nome da Mãe: <h:inputText value="#{controllerServidor.servidor.nome_mae}" />
                     Nome do Pai: <h:inputText value="#{controllerServidor.servidor.nome_pai}" />
                     Zona de Procedência: <p:selectOneMenu value="#{controllerServidor.servidor.zona_procedencia}" >

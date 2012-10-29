@@ -1,7 +1,13 @@
 package beans;
 
 import java.util.Date;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
+
+@ManagedBean(name="servidor")
+@SessionScoped
+
 
 @Entity
 @SequenceGenerator(allocationSize= 1, name = "idgen", sequenceName = "servidor_seq")
