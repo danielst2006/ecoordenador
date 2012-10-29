@@ -56,8 +56,10 @@ and open the template in the editor.
                     <h:panelGrid columns="2">
                         Tipo de atividade: *
                             <p:inputText value="#{controllerAtvCompTipo.atvCompTipo.tipo_atividade}"/>
-                            <p:commandButton value="Alterar" actionListener="#{controllerAtvCompTipo.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar"/>
-                            <p:commandButton value="cancelar" actionListener="#{controllerAtvCompTipo.limpar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar"/>
+                            <p:commandButton value="Alterar" actionListener="#{controllerAtvCompTipo.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
+                                             style="margin-top: 30px"/>
+                            <p:commandButton value="cancelar" actionListener="#{controllerAtvCompTipo.limpar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
+                                             style="margin-top: 30px;margin-left: -50px;"/>
                     </h:panelGrid>
                 </p:panel>
             </h:form>
