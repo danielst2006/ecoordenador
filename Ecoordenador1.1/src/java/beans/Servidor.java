@@ -5,6 +5,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
 
+
 @ManagedBean(name="servidor")
 @SessionScoped
 
