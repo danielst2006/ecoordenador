@@ -9,12 +9,6 @@ public class DAOFactory {
         return dao;
     }
     
-    public static InterfaceHibernateDAO<Servidor> criarServidorDAO(){
-        HibernateDAO<Servidor> dao = new HibernateDAO<Servidor>(Servidor.class);
-        dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
-        return dao;
-    }
-    
     public static InterfaceHibernateDAO<AtividadeComplementarTipo> criarAtvCompTipoDAO(){
         HibernateDAO<AtividadeComplementarTipo> dao = new HibernateDAO<AtividadeComplementarTipo>(AtividadeComplementarTipo.class);
         dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
@@ -33,5 +27,16 @@ public class DAOFactory {
         return dao;
     }
     
+    public static InterfaceHibernateDAO<Servidor> criarServidorDAO(){
+        HibernateDAO<Servidor> dao = new HibernateDAO<Servidor>(Servidor.class);
+        dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+        return dao;
+    }
+    
+    public static InterfaceHibernateDAO<Curso> criarCursoDAO(){
+        HibernateDAO<Curso> dao = new HibernateDAO<Curso>(Curso.class);
+        dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+        return dao;
+    }
     
 }
