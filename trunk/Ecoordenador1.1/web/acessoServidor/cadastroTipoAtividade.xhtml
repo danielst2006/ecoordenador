@@ -49,14 +49,15 @@ and open the template in the editor.
         </h:form>
         
         
-        <p:dialog widgetVar="dialogAlterar" resizable="false" modal="true" showEffect="slide">
+        <p:dialog widgetVar="dialogAlterar" resizable="false" closable="false" modal="true" showEffect="slide" hideEffect="slide">
             <h:form id="formAlterar">
                 <p:panel>
                     <p:messages id="msgs"/> 
-                    <h:panelGrid>
+                    <h:panelGrid columns="2">
                         Tipo de atividade: *
-                            <p:inputText value="#{controllerAtvCompTipo.atvCompTipo.tipo_atividade}"/>  
+                            <p:inputText value="#{controllerAtvCompTipo.atvCompTipo.tipo_atividade}"/>
                             <p:commandButton value="Alterar" actionListener="#{controllerAtvCompTipo.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar"/>
+                            <p:commandButton value="cancelar" actionListener="#{controllerAtvCompTipo.limpar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar"/>
                     </h:panelGrid>
                 </p:panel>
             </h:form>
