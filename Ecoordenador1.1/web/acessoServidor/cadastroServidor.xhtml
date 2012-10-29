@@ -30,7 +30,13 @@ and open the template in the editor.
                         <f:selectItem itemLabel="Amarela" itemValue="amarelo" />
                         <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
                     </p:selectOneMenu>
-                     
+                    Genero: <p:selectOneMenu value="#{controllerServidor.servidor.genero}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Masculino" itemValue="M" />
+                        <f:selectItem itemLabel="Feminino" itemValue="F" />
+                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />      
+                    </p:selectOneMenu> 
+                    
                     Necessidade Especial: <h:selectOneRadio 
                         value="#{controllerServidor.servidor.necessidade_especial}">
                         <f:selectItem  itemLabel="Sim" itemValue="true" />
@@ -212,7 +218,7 @@ and open the template in the editor.
                     Título de Eleitor (Zona/Seção): <h:inputText value="#{controllerServidor.servidor.teleitor_zona}" />
                     Título de Eleitor (UF): <h:inputText value="#{controllerServidor.servidor.teleitor_uf}" />
                     Título de Eleitor (Data Exp.): <p:calendar value="#{controllerServidor.servidor.teleitor_data_expedicao}" />
-                    E-mail: <h:inputText value="#{controllerServidor.servidor.email}" /> 
+                    
                     
                     <p:commandButton value="Salvar" actionListener="#{controllerServidor.salvar()}" ajax="true" update="@form"/>
 
