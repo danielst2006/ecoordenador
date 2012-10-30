@@ -1,8 +1,5 @@
  package beans;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
@@ -17,16 +14,13 @@ import org.hibernate.annotations.Cascade;
 @SequenceGenerator(allocationSize= 1, name = "idgen", sequenceName = "aluno_seq")
 @Table(name = "aluno")
 public class Aluno extends Pessoa {
- 
+            
         @Column(name="nome_responsavel",length=80)
 	private String nome_responsavel;
 	 
         @Column(name="cpf_responsavel",length=12)
 	private String cpf_responsavel;
-	
-        @Column(name="senha",length=35)
-	private String senha;
-	 
+		 
         @Column(name="parentesco",length=20)
 	private String parentesco;
 	 
@@ -73,18 +67,17 @@ public class Aluno extends Pessoa {
         @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
         Set<EntradaAtividade> ent_atv = new HashSet<EntradaAtividade>();
         
-        ////////////////////////////////////////////////////////////////////////
-	 
-	 public String senhaMD5(String senha) throws NoSuchAlgorithmException {
-		MessageDigest md = MessageDigest.getInstance("MD5");
-                md.update( senha.getBytes() );  
-                BigInteger hash = new BigInteger( 1, md.digest() );
-                String retornaSenha = hash.toString( 16 );
-                return retornaSenha;
-	}
-         
-        ////////////////////////////////////////////////////////////////////////
-         
+        @OneToOne
+        @JoinColumn(name="usuario_id")
+        private Usuario usuario_id;
+        
+    public Usuario getId_usuario() {
+        return usuario_id;
+    }
+    public void setId_usuario(Usuario usuario_id) {
+        this.usuario_id = usuario_id;
+    }
+        
     public Set<EntradaAtividade> getEnt_atv() {
         return ent_atv;
     }
@@ -179,15 +172,6 @@ public class Aluno extends Pessoa {
 
     public void setRenda_familiar(Double renda_familiar) {
         this.renda_familiar = renda_familiar;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    //Converter senha em um MD5
-    public void setSenha(String senha) throws NoSuchAlgorithmException {
-        this.senha = senhaMD5(senha);
     }
 
     public int getTamanho_familia() {

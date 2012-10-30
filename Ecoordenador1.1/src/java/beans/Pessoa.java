@@ -11,7 +11,7 @@ public abstract class Pessoa implements Serializable{
         @Column(name="id")
         @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="idgen")
         private Integer id;
-	
+     
         @Column(name="nome",length=80,nullable=false)
 	private String nome;
 	 
@@ -170,7 +170,7 @@ public abstract class Pessoa implements Serializable{
         @Column(name="teleitor_data_expedicao")
         @Temporal(javax.persistence.TemporalType.DATE)
 	private Date teleitor_data_expedicao;
-
+            
     public String getBairro() {
         return bairro;
     }
