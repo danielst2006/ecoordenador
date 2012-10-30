@@ -23,9 +23,7 @@ public class EntradaAtividade implements Serializable {
         @JoinColumn(name="id_aluno")
 	private Aluno id_aluno;
 	 
-        //Para funcionar a exclusão da ligação, cascade=DELETE_ORPHAN
-        //Erro gerado: deleted object would be re-saved by cascade
-        @OneToOne
+        @ManyToOne
         @JoinColumn(name="id_atividade_complementar")
 	private AtividadeComplementar id_atividade_complementar;
 	 

@@ -1,6 +1,8 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
@@ -29,18 +31,18 @@ public class AtividadeComplementar implements Serializable {
         @Column(name="pontuacao")
 	private int pontuacao;
         
-        @OneToOne(mappedBy="id_atividade_complementar",fetch= FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
-        private EntradaAtividade entrada_atividade;
+        @OneToMany(mappedBy="id_atividade_complementar",fetch=FetchType.LAZY)
+        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+        Set<EntradaAtividade> entrada_atividade = new HashSet<EntradaAtividade>();
 
-    public EntradaAtividade getEntrada_atividade() {
+    public Set<EntradaAtividade> getEntrada_atividade() {
         return entrada_atividade;
     }
 
-    public void setEntrada_atividade(EntradaAtividade entrada_atividade) {
+    public void setEntrada_atividade(Set<EntradaAtividade> entrada_atividade) {
         this.entrada_atividade = entrada_atividade;
-    }    
-        
+    }
+
     public String getAtividade() {
         return atividade;
     }
