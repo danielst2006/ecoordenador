@@ -97,6 +97,18 @@ public class Servidor extends Pessoa {
 	 
         @Column(name="carga_horaria_semanal")
 	private int carga_horaria_semanal;
+        
+        @OneToOne
+        @JoinColumn(name="usuario_id")
+        private Usuario usuario_id;
+
+    public Usuario getUsuario_id() {
+        return usuario_id;
+    }
+
+    public void setUsuario_id(Usuario usuario_id) {
+        this.usuario_id = usuario_id;
+    }
 
     public String getAgencia() {
         return agencia;

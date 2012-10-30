@@ -23,5 +23,7 @@
     <mapping class="beans.AtividadeComplementar"/>
     <mapping class="beans.EntradaAtividade"/>
     <mapping class="beans.Curso"/>
+    <mapping class="beans.Usuario"/>
+    <mapping class="beans.UsuarioPermissao"/>
   </session-factory>
 </hibernate-configuration>
