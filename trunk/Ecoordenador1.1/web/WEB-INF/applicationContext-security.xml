@@ -11,7 +11,7 @@
         <intercept-url pattern="/site/acessoAluno/**" access="ROLE_ALUNO" />
     
         <form-login login-page="/index.jsf" always-use-default-target="true" 
-            default-target-url="/login/principal.jsf"
+            default-target-url="/site/login/principal.jsf"
             authentication-failure-url="/index.jsf?login_error=1" />
         <logout />
     </http>
