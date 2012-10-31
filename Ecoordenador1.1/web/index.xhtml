@@ -1,12 +1,36 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        
-    </h:body>
-</html>
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <title>
+                <ui:insert name="title">Repasse interno</ui:insert>
+            </title>
+            <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+        </h:head>
+        <h:body style="background-image:url(resources/images/wall.jpg);background-position: 50% 0%;background-repeat: no-repeat">    
+            
+            <p:dialog id="dialog" visible="true" closable="false" draggable="true" resizable="false" width="350" widgetVar="dlg"
+                      header="Ecoordenador - Faça login para entrar no sistema">
+                <center>
+                    <h:outputText value="Usuário e/	ou senha inválidos!" rendered="#{param.error}" 
+                    style="color:darkred; font-size: 14px; padding-bottom: 10px;"/>
 
+                    <form action="j_spring_security_check" method="post">
+                        <h:panelGrid columns="2" cellpadding="3" style="font-weight: bold;">
+                                <h:outputLabel for="j_username" value="Usuário: *" />
+                                <h:inputText id="j_username" size="15" />
+
+                                <h:outputLabel for="j_password" value="Senha: *" />
+                                <h:inputSecret id="j_password" size="15" />
+                        </h:panelGrid>
+                        <h:commandButton value="Entrar"/>
+                    </form>
+                </center>
+            </p:dialog>
+ 
+        </h:body>
+    </f:view>
+</html>
