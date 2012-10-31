@@ -1,6 +1,7 @@
 package mb;
 
 import beans.Aluno;
+import beans.AtividadeComplementarTipo;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -8,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import rn.AlunoRN;
+import rn.AtividadeComplementarTipoRN;
 
 
 @ManagedBean(name="controllerAluno")
@@ -57,6 +59,17 @@ public class controllerAluno {
         return "Removido";
     }
   
+    
+        public String alterar() {
+        AlunoRN rn = new AlunoRN();
+        rn.atualizar(this.aluno);
+        limpar();
+        return "Alterado";
+    }
+    
+    public void prepararAlterar() {
+        this.aluno = (Aluno)this.listaDataModel.getRowData();
+    }
 
     ////////////////////////////////////////////////////////////////////////////
     //SETTERS E GETTERS

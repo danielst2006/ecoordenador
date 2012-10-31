@@ -11,10 +11,11 @@ and open the template in the editor.
     <h:head>
 
     </h:head>
+   
     <h:body>
-        <h:form>
+        <h:form id="formSalvar">
             <p:panel  header="Cadastro de Aluno"> 
-                <p:messages /> 
+                <p:messages id="msgs"/> 
                 <h:panelGrid >
 
                         
@@ -27,7 +28,7 @@ and open the template in the editor.
                     
                    <h:outputLabel  value="Foto: " />   
                      
-                    Senha:*<h:inputSecret value="#{controllerAluno.aluno.senha}"  maxlength="40" size="40"  />
+                  
                    
                     Etnia:<p:selectOneMenu value="#{controllerAluno.aluno.etnia}"    >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
@@ -208,7 +209,7 @@ and open the template in the editor.
                     <h:outputText value="#{p.nome}"/>
                 </p:column>
                 <p:column>
-                    <h:outputText value="#{p.senha}"/>
+                    <p:commandLink value="alterar" actionListener="#{controllerAluno.prepararAlterar()}" ajax="true" oncomplete="dialogAlterar.show();" update=":formAlterar"/>
                 </p:column>
 
                 <p:column>
@@ -216,7 +217,99 @@ and open the template in the editor.
                 </p:column>
             </p:dataTable>
             
+                    
+            
             
         </h:form>
+        
+                            
+        <p:dialog widgetVar="dialogAlterar" resizable="false" closable="false" modal="true" showEffect="slide" hideEffect="slide">
+            <h:form id="formAlterar">
+                <p:panel>
+                    <p:messages id="msgs"/> 
+                    <h:panelGrid columns="2">
+                        Nome: *
+                        <p:inputText value="#{controllerAluno.aluno.nome}"/>
+                        CPF:*
+                        <p:inputText value="#{controllerAluno.aluno.cpf}"/>
+                        
+                         Data de Nascimento: *<p:calendar value="#{controllerAluno.aluno.data_nascimento}" />
+                         
+                        Etnia:<p:selectOneMenu value="#{controllerAluno.aluno.etnia}"    >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Branca" itemValue="branca" />
+                        <f:selectItem itemLabel="Pardo" itemValue="pardo" />
+                        <f:selectItem itemLabel="Negra" itemValue="negra" />
+                        <f:selectItem itemLabel="Amarela" itemValue="amarelo" />
+                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
+                    </p:selectOneMenu>
+                        
+                        Genero: <p:selectOneMenu value="#{controllerAluno.aluno.genero}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Masculino" itemValue="M" />
+                        <f:selectItem itemLabel="Feminino" itemValue="F" />
+                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />      
+                    </p:selectOneMenu>
+
+                    Necessidade Espeial: <h:selectOneRadio 
+                        value="#{controllerAluno.aluno.necessidade_especial}">
+                        <f:selectItem  itemLabel="Sim" itemValue="true" />
+                        <f:selectItem  itemLabel="Não" itemValue="false" />
+                    </h:selectOneRadio>
+                    
+                    Data de Nascimento: *<p:calendar value="#{controllerAluno.aluno.data_nascimento}" />
+                    Naturalidade: <h:inputText value="#{controllerAluno.aluno.naturalidade}" />
+                    UF da Naturalidade: <h:inputText value="#{controllerAluno.aluno.uf_naturalidade}" />
+                    Nacionalidade: <h:inputText value="#{controllerAluno.aluno.nacionalidade}" />
+                    Tipo Sanguineo: <p:selectOneMenu value="#{controllerAluno.aluno.tipo_sanguineo}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="A" itemValue="A" />
+                        <f:selectItem itemLabel="B" itemValue="B" />
+                        <f:selectItem itemLabel="AB" itemValue="AB" /> 
+                        <f:selectItem itemLabel="O" itemValue="O" />
+                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
+
+                    </p:selectOneMenu>
+                    
+                    Fator Rh: <p:selectOneMenu value="#{controllerAluno.aluno.fator_rh}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Positivo" itemValue="positivo" />
+                        <f:selectItem itemLabel="Negativo" itemValue="negativo" />
+                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" /> 
+
+                    </p:selectOneMenu>
+                    Grau de Formação: <p:selectOneMenu value="#{controllerAluno.aluno.grau_formacao}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
+                        <f:selectItem itemLabel="Educação Infantil" itemValue="Educação Infantil" />
+                        <f:selectItem itemLabel="Ensino Fundamental" itemValue="Ensino Fundamental" />
+                        <f:selectItem itemLabel="Ensino Médio" itemValue="Ensino Médio" />
+                        <f:selectItem itemLabel="Graduação" itemValue="Graduação" />
+                        <f:selectItem itemLabel="Especialização" itemValue="Especialiazação" />
+                        <f:selectItem itemLabel="Mestrado" itemValue="Mestrado" />
+                        <f:selectItem itemLabel="Doutorado" itemValue="Doutorado" />
+                    </p:selectOneMenu>
+                    Endereço Curriculo Lattes: <h:inputText value="#{controllerAluno.aluno.end_curriculo_lattes}" />
+                    DDD: <h:inputText value="#{controllerAluno.aluno.ddd}" />
+                    Numero do Telefone: <h:inputText value="#{controllerAluno.aluno.numero_telefone}" />
+                    Ramal: <h:inputText value="#{controllerAluno.aluno.ramal}" />
+                    Filiação: <p:selectOneMenu value="#{controllerAluno.aluno.filiacao}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sim" itemValue="true" />
+                        <f:selectItem itemLabel="Não" itemValue="false" />
+                        
+                    </p:selectOneMenu>
+                        
+                        <p:commandButton value="Alterar" actionListener="#{controllerAluno.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
+                                             style="margin-top: 30px"/>
+                        <p:commandButton value="cancelar" actionListener="#{controllerAluno.limpar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
+                                             style="margin-top: 30px;margin-left: -50px;"/>
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+        </p:dialog>
+        
+        
+        
     </h:body>
 </html>
