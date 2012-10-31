@@ -5,9 +5,6 @@
 package beans;
 
 import java.io.Serializable;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
@@ -56,18 +53,6 @@ public class Usuario implements Serializable {
         @Cascade(org.hibernate.annotations.CascadeType.ALL)
         private Servidor servidor;
         
-        ////////////////////////////////////////////////////////////////////////
-	 
-	 public String senhaMD5(String senha) throws NoSuchAlgorithmException {
-		MessageDigest md = MessageDigest.getInstance("MD5");
-                md.update( senha.getBytes() );  
-                BigInteger hash = new BigInteger( 1, md.digest() );
-                String retornaSenha = hash.toString( 16 );
-                return retornaSenha;
-	}
-         
-        ////////////////////////////////////////////////////////////////////////
-
     public Servidor getServidor() {
         return servidor;
     }
@@ -128,9 +113,8 @@ public class Usuario implements Serializable {
         return senha;
     }
 
-    //Converter senha em um MD5
-    public void setSenha(String senha) throws NoSuchAlgorithmException {
-        this.senha = senhaMD5(senha);
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public Set<UsuarioPermissao> getUsu_perm() {

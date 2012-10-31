@@ -1,14 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:sec="http://www.springframework.org/security/facelets/tags">
+    <f:view contentType="text/html">
+        <h:head>
+            <title>
+                <ui:insert name="title">Repasse interno</ui:insert>
+            </title>
+            <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+        </h:head>
+        <h:body>    
+            
+            Bem vindo, 
+            <a href="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">Sair</a>
+ 
+        </h:body>
+    </f:view>
 </html>
