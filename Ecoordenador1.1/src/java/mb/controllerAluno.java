@@ -60,7 +60,7 @@ public class controllerAluno {
     }
   
     
-        public String alterar() {
+    public String alterar() {
         AlunoRN rn = new AlunoRN();
         rn.atualizar(this.aluno);
         limpar();
