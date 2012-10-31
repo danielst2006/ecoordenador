@@ -12,7 +12,7 @@
     
         <form-login login-page="/index.jsf" always-use-default-target="true" 
             default-target-url="/site/login/principal.jsf"
-            authentication-failure-url="/index.jsf?login_error=1" />
+            authentication-failure-url="/index.jsf?error=true" />
         <logout />
     </http>
 

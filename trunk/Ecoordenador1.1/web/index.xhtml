@@ -13,20 +13,21 @@
         <h:body style="background-image:url(resources/images/wall.jpg);background-position: 50% 0%;background-repeat: no-repeat">    
             
             <p:dialog id="dialog" visible="true" closable="false" draggable="true" resizable="false" width="350" widgetVar="dlg"
-                      header="Ecoordenador - Faça login para entrar no sistema">
+                      header="Ecoordenador - login">
                 <center>
-                    <h:outputText value="Usuário e/	ou senha inválidos!" rendered="#{param.error}" 
+                    <h:outputText value="Usuário e/ou senha inválidos!" rendered="#{param.error}" 
                     style="color:darkred; font-size: 14px; padding-bottom: 10px;"/>
 
                     <form action="j_spring_security_check" method="post">
                         <h:panelGrid columns="2" cellpadding="3" style="font-weight: bold;">
                                 <h:outputLabel for="j_username" value="Usuário: *" />
-                                <h:inputText id="j_username" size="15" />
+                                <p:inputText id="j_username" size="20" style="width: 180px;"/>
 
                                 <h:outputLabel for="j_password" value="Senha: *" />
-                                <h:inputSecret id="j_password" size="15" />
+                                <p:password id="j_password" size="18" style="width: 180px;"/>
                         </h:panelGrid>
-                        <h:commandButton value="Entrar"/>
+                        <h:commandButton value="Entrar" style="margin-top: 15px;"/>
+                        <h:commandButton value="sair" onclick="self.close()"/>
                     </form>
                 </center>
             </p:dialog>
