@@ -39,4 +39,10 @@ public class DAOFactory {
         return dao;
     }
     
+    public static InterfaceHibernateDAO<Usuario> criarUsuarioDAO(){
+        HibernateDAO<Usuario> dao = new HibernateDAO<Usuario>(Usuario.class);
+        dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+        return dao;
+    }
+    
 }
