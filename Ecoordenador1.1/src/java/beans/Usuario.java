@@ -56,6 +56,9 @@ public class Usuario implements Serializable {
         private Servidor servidor;
         
         ////////////////////////////////////////////////////////////////////////
+        // para inserir no banco o MD5 use a sequinte query:
+        // insert into usuario(id,login,senha,ativo,email,apelido)
+        // values (1,'teste',MD5('123'),true,'bla@gm','Nome');
         
         public static String MD5(String senha) {
             PasswordEncoder encoder = new Md5PasswordEncoder();
