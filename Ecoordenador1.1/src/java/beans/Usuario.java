@@ -11,6 +11,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
 import org.hibernate.annotations.Cascade;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
 
 
 @ManagedBean(name="usuario")
@@ -52,6 +54,16 @@ public class Usuario implements Serializable {
         @OneToOne(mappedBy="usuario_id",fetch=FetchType.EAGER)
         @Cascade(org.hibernate.annotations.CascadeType.ALL)
         private Servidor servidor;
+        
+        ////////////////////////////////////////////////////////////////////////
+        
+        public static String MD5(String senha) {
+            PasswordEncoder encoder = new Md5PasswordEncoder();
+            senha = encoder.encodePassword(senha, null);
+            return senha;
+        }
+        
+        ////////////////////////////////////////////////////////////////////////
         
     public Servidor getServidor() {
         return servidor;
@@ -114,7 +126,7 @@ public class Usuario implements Serializable {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        this.senha = MD5(senha);
     }
 
     public Set<UsuarioPermissao> getUsu_perm() {
