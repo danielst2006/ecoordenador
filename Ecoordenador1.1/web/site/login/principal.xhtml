@@ -1,21 +1,18 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
+<?xml version='1.0' encoding='iso-8859-1' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../../resources/templates/login.xhtml"
+                xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:sec="http://www.springframework.org/security/facelets/tags">
-    <f:view contentType="text/html">
-        <h:head>
-            <title>
-                <ui:insert name="title">Repasse interno</ui:insert>
-            </title>
-            <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
-        </h:head>
-        <h:body>    
-            
-           
-            Bem vindo, #{request.userPrincipal.name} |
+                xmlns:sec="http://www.springframework.org/security/facelets/tags" >
+
+    <ui:define name="menu_horizontal">
+        
+    </ui:define>
+    
+    <ui:define name="corpo">
+        Bem vindo, #{request.userPrincipal.name} |
             <a href="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">Sair</a>
-        </h:body>
-    </f:view>
-</html>
+    </ui:define>
+</ui:composition>
