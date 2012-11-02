@@ -1,38 +1,27 @@
+body{
+    margin:0;
+    padding:0;
+    text-align:center; /* hack para o IE */
+}
+
+#container{
+    width: 900px;
+    margin:0 auto;         
+    text-align:left; /* "remédio" para o hack do IE */ 
+}
 
 #logotipo {
     float: inside;
-    text-align: center;
 }
-
-/*#logo_titulo1{
-    text-shadow: 4px 4px 3px #211f1f;
-    color: #ffffff;
-    font-weight: bold;
-    background-color: #6a7993;
-    margin-bottom: 1px;
-    margin-left: 280px;
-    margin-top: -80px;
-    font-size: 50pt;
-}
-
-#logo_titulo2{
-    background-color: #6a7993;
-    color: #ffffff;
-    margin-bottom: 50px;
-    margin-left: 760px; 
-    margin-top: -50px;
-    font-size: 15pt;
-}*/
 
 #menu_horizontal {
     text-align: center;
     margin-top: 0px;
     margin-bottom: 5px;
-    min-height: 30px;    
+    min-height: 30px;
 }
 
 #corpo {
-    text-align: center;
     margin-bottom: 5px;   
 }
 
@@ -43,13 +32,13 @@
 }
 
 #menu_horizontal a:link, #menu_horizontal a:visited {
-    color: #a60303;
+    color: darkslategray;
     text-shadow: none;
     text-decoration: none;
 }
 
 #menu_horizontal a:link:hover, #menu_horizontal a:visited:hover  {
-    color: #004276;
+    color: black;
     text-decoration: underline;
 }
 

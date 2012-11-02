@@ -7,12 +7,12 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui">
     <p:menubar>
-        <p:menuitem value="Home" url="/site/login/principal.jsf"/>
-        <p:submenu label="Atividades Complementares">
+        <p:menuitem value="Home" url="/site/login/principal.jsf" icon="ui-icon-home"/>
+        <p:submenu label="Atividades Complementares" icon="ui-icon-bookmark">
             <p:menuitem value="Solicitação" url="/site/acessoAluno/solicitacaoAtividade.jsf"/>
             <p:menuitem value="Situação" url="#"/>
             <p:menuitem value="Pontuações" url="#"/>
         </p:submenu>
-        <p:menuitem value="sair" url="/j_spring_security_logout"/>
+        <p:menuitem value="sair" url="/j_spring_security_logout" icon="ui-icon-close"/>
     </p:menubar>
 </html>

@@ -8,11 +8,12 @@
                 xmlns:sec="http://www.springframework.org/security/facelets/tags" >
 
     <ui:define name="menu_horizontal">
-        
+        <sec:ifAnyGranted roles="ROLE_ALUNO,ROLE_ADMINISTRADOR">
+            <ui:include src="/site/acessoAluno/menu.xhtml" />
+        </sec:ifAnyGranted>
     </ui:define>
     
     <ui:define name="corpo">
-        Bem vindo, #{request.userPrincipal.name} |
-            <a href="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">Sair</a>
+        Bem vindo, #{request.userPrincipal.name}
     </ui:define>
 </ui:composition>
