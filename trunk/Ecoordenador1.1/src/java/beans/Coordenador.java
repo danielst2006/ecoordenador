@@ -6,7 +6,12 @@ package beans;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
+
+@ManagedBean(name="coordenador")
+@SessionScoped
 
 @Entity
 @SequenceGenerator(allocationSize= 1, name = "idgen", sequenceName = "coordenador_seq")
