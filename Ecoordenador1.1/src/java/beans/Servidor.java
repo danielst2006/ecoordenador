@@ -4,6 +4,7 @@ import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 
 @ManagedBean(name="servidor")
@@ -101,6 +102,18 @@ public class Servidor extends Pessoa {
         @OneToOne
         @JoinColumn(name="usuario_id")
         private Usuario usuario_id;
+        
+        @OneToOne(mappedBy="id_servidor",fetch=FetchType.EAGER)
+        @Cascade(org.hibernate.annotations.CascadeType.ALL)
+        private Coordenador coordenador;
+
+    public Coordenador getCoordenador() {
+        return coordenador;
+    }
+
+    public void setCoordenador(Coordenador coordenador) {
+        this.coordenador = coordenador;
+    }
 
     public Usuario getUsuario_id() {
         return usuario_id;
