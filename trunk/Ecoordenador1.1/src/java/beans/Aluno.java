@@ -71,6 +71,10 @@ public class Aluno extends Pessoa {
         @JoinColumn(name="usuario_id")
         private Usuario usuario_id;
         
+        @ManyToOne
+        @JoinColumn(name="id_curso")
+	private Curso id_curso;
+        
     public Usuario getId_usuario() {
         return usuario_id;
     }
