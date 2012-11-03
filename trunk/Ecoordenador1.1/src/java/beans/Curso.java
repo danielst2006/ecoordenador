@@ -128,6 +128,10 @@ public class Curso implements Serializable {
         @OneToMany(mappedBy="id_curso",fetch=FetchType.LAZY)
         @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
         Set<Aluno> alunos = new HashSet<Aluno>();
+        
+        @OneToMany(mappedBy="curso_id",fetch=FetchType.LAZY)
+        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+        Set<Coordenador> coordenadores = new HashSet<Coordenador>();
 
     public Set<Aluno> getAlunos() {
         return alunos;
