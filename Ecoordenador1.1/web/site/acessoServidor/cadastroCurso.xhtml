@@ -17,24 +17,24 @@ and open the template in the editor.
             <p:panel>
                 <p:messages/>
                 <h:panelGrid>
-                    Instituição:<p:inputText value="#{controllerCurso.curso.instituicao}"/>
-                    Unidade de ensino:<p:inputText value="#{controllerCurso.curso.unidade_ensino}"/>
-                    Unidade organizacional:<p:inputText value="#{controllerCurso.curso.unidade_organizacional}"/>
-                    Nome:<p:inputText value="#{controllerCurso.curso.nome}"/>
-                    Nome reduzido:<p:inputText value="#{controllerCurso.curso.nome_reduzido}"/>
-                    Tipo ato de autorização:<p:inputText value="#{controllerCurso.curso.ato_autorizativo_tipo}"/>
-                    Número ato autorizativo:<p:inputText value="#{controllerCurso.curso.ato_autorizativo_numero}"/>
-                    Data expedição ato autorizativo:<p:calendar value="#{controllerCurso.curso.ato_autorizativo_data_expedicao}" />
-                    Data DOU ato autorizativo:<p:calendar value="#{controllerCurso.curso.ato_autorizacao_ato_dou}" />
-                    Periodicidade de ingresso:<p:inputText value="#{controllerCurso.curso.periodicidade_ingresso}"/>
-                    Data início:<p:calendar value="#{controllerCurso.curso.data_inicio}" />
-                    Data fim:<p:calendar value="#{controllerCurso.curso.data_fim}" />
-                    Numero de períodos mínimo para integralização:<p:inputText value="#{controllerCurso.curso.periodo_minimo_numero_integralizacao}"/>
+                    Instituição:<p:inputText value="#{controllerCurso.curso.instituicao}" required="true"/>
+                    Unidade de ensino:<p:inputText value="#{controllerCurso.curso.unidade_ensino}" required="true"/>
+                    Unidade organizacional:<p:inputText value="#{controllerCurso.curso.unidade_organizacional}" required="true"/>
+                    Nome:<p:inputText value="#{controllerCurso.curso.nome}"  maxlength="50" required="true"/>
+                    Nome reduzido:<p:inputText value="#{controllerCurso.curso.nome_reduzido}" maxlength="10" required="true"/>
+                    Tipo ato de autorização:<p:inputText value="#{controllerCurso.curso.ato_autorizativo_tipo}" required="true"/>
+                    Número ato autorizativo:<p:inputText value="#{controllerCurso.curso.ato_autorizativo_numero}" required="true"/>
+                    Data expedição ato autorizativo:<p:calendar value="#{controllerCurso.curso.ato_autorizativo_data_expedicao}" required="true"/>
+                    Data DOU ato autorizativo:<p:calendar value="#{controllerCurso.curso.ato_autorizacao_ato_dou}" required="true"/>
+                    Periodicidade de ingresso:<p:inputText value="#{controllerCurso.curso.periodicidade_ingresso}" required="true"/>
+                    Data início:<p:calendar value="#{controllerCurso.curso.data_inicio}" required="true"/>
+                    Data fim:<p:calendar value="#{controllerCurso.curso.data_fim}" required="true"/>
+                    Numero de períodos mínimo para integralização:<p:inputText value="#{controllerCurso.curso.periodo_minimo_numero_integralizacao}" required="true"/>
                     Numero de períodos máximo para integralização:<p:inputText value="#{controllerCurso.curso.periodo_maximo_numero_integralizacao}"/>
-                    Área de conhecimento:<p:inputText value="#{controllerCurso.curso.area_conhecimento}"/>
-                    Regime de competência:<p:selectBooleanButton value="#{controllerCurso.curso.regime_competencia}" onLabel="Sim" offLabel="Não" />
-                    Regime de matrícula:<p:inputText value="#{controllerCurso.curso.regime_matricula}"/>
-                    Situação:<p:inputText value="#{controllerCurso.curso.situacao}"/>
+                    Área de conhecimento:<p:inputText value="#{controllerCurso.curso.area_conhecimento}" required="true"/>
+                    Regime de competência:<p:selectBooleanButton value="#{controllerCurso.curso.regime_competencia}" onLabel="Sim" offLabel="Não"/>
+                    Regime de matrícula:<p:inputText value="#{controllerCurso.curso.regime_matricula}" required="true"/>
+                    Situação:<p:inputText value="#{controllerCurso.curso.situacao}" required="true"/>
                     Nível de ensino:<p:inputText value="#{controllerCurso.curso.nivel_ensino}"/>
                     Etapa de ensino:<p:inputText value="#{controllerCurso.curso.etapa_ensino}"/>
                     Modalidade de ensino:<p:inputText value="#{controllerCurso.curso.modalidade_ensino}"/>
@@ -49,7 +49,7 @@ and open the template in the editor.
                     <p:fileUpload fileUploadListener="#{controllerCurso.handleFileUpload}" mode="advanced" sizeLimit="100000" allowTypes="/(\.|\/)(pdf)$/"
                                     multiple="false" style="width: 600px;" invalidFileMessage="Apenas PDF" invalidSizeMessage="Tamanho máximo 100kb"
                                     required="true" requiredMessage="É obrigatório anexar o arquivo." showButtons="false" label="Arquivo"/>
-                    Data do projeto pedagógico:<p:calendar value="#{controllerCurso.curso.data_projeto_pedagogico}"/>
+                    Data do projeto pedagógico:<p:calendar value="#{controllerCurso.curso.data_projeto_pedagogico}" required="true"/>
                     
                     
                     Finalidade:<p:editor value="#{controllerCurso.curso.finalidade}"/>

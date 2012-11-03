@@ -2,9 +2,12 @@ package beans;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 @ManagedBean(name="curso")
 @SessionScoped
@@ -19,65 +22,65 @@ public class Curso implements Serializable {
         @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="idgen")
 	private Integer id;
 	 
-        @Column(name="instituicao")
+        @Column(name="instituicao",nullable=false)
 	private String instituicao;
 	 
-        @Column(name="unidade_ensino")
+        @Column(name="unidade_ensino",nullable=false)
 	private String unidade_ensino;
 	 
-        @Column(name="unidade_organizacional")
+        @Column(name="unidade_organizacional",nullable=false)
 	private String unidade_organizacional;
 	 
-        @Column(name="nome")
+        @Column(name="nome",length=50,nullable=false)
 	private String nome;
 	 
-        @Column(name="nome_reduzido")
+        @Column(name="nome_reduzido",length=10,nullable=false)
 	private String nome_reduzido;
 	 
         @Column(name="finalidade")
 	private String finalidade;
 	 
-        @Column(name="ato_autorizativo_tipo")
+        @Column(name="ato_autorizativo_tipo",nullable=false)
 	private String ato_autorizativo_tipo;
 	 
-        @Column(name="ato_autorizativo_numero")
+        @Column(name="ato_autorizativo_numero",nullable=false)
 	private int ato_autorizativo_numero;
 	 
-        @Column(name="ato_autorizativo_data_expedicao")
+        @Column(name="ato_autorizativo_data_expedicao",nullable=false)
         @Temporal(javax.persistence.TemporalType.DATE)
 	private Date ato_autorizativo_data_expedicao;
 	 
-        @Column(name="ato_autorizacao_ato_dou")
+        @Column(name="ato_autorizacao_ato_dou",nullable=false)
         @Temporal(javax.persistence.TemporalType.DATE)
 	private Date ato_autorizacao_ato_dou;
 	 
-        @Column(name="periodicidade_ingresso")
+        @Column(name="periodicidade_ingresso",nullable=false)
 	private String periodicidade_ingresso;
 	 
-        @Column(name="data_inicio")
+        @Column(name="data_inicio",nullable=false)
         @Temporal(javax.persistence.TemporalType.DATE)
 	private Date data_inicio;
 	 
-        @Column(name="data_fim")
+        @Column(name="data_fim",nullable=false)
         @Temporal(javax.persistence.TemporalType.DATE)
 	private Date data_fim;
 	 
-        @Column(name="periodo_minimo_numero_integralizacao")
+        @Column(name="periodo_minimo_numero_integralizacao",nullable=false)
 	private int periodo_minimo_numero_integralizacao;
 	 
         @Column(name="periodo_maximo_numero_integralizacao")
 	private int periodo_maximo_numero_integralizacao;
 	 
-        @Column(name="area_conhecimento")
+        @Column(name="area_conhecimento",nullable=false)
 	private String area_conhecimento;
 	 
-        @Column(name="regime_competencia")
+        @Column(name="regime_competencia",nullable=false)
 	private Boolean regime_competencia;
 	 
-        @Column(name="regime_matricula")
+        @Column(name="regime_matricula",nullable=false)
 	private String regime_matricula;
 	 
-        @Column(name="situacao")
+        @Column(name="situacao",nullable=false)
 	private String situacao;
 	 
         @Column(name="nivel_ensino")
@@ -118,9 +121,21 @@ public class Curso implements Serializable {
         @Column(name="nome_arquivo_proj_pedagogico")
 	private String nome_arquivo_proj_pedagogico;
 	 
-        @Column(name="data_projeto_pedagogico")
+        @Column(name="data_projeto_pedagogico",nullable=false)
         @Temporal(javax.persistence.TemporalType.DATE)
 	private Date data_projeto_pedagogico;
+        
+        @OneToMany(mappedBy="id_curso",fetch=FetchType.LAZY)
+        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+        Set<Aluno> alunos = new HashSet<Aluno>();
+
+    public Set<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(Set<Aluno> alunos) {
+        this.alunos = alunos;
+    }
 
     public String getArea_conhecimento() {
         return area_conhecimento;
