@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        
+    </h:head>
+    <h:body>
+        <h:form>
+            
+            <p:panel>
+                <p:messages/>
+                <h:panelGrid>
+                    
+                    Servidor:
+                    <!-- POPULANDO COM OBJETO -->
+                    <p:selectOneMenu value="#{controllerCoordenador.coordenador.id_servidor}" converter="#{ServidorConverter}" style="width: 150px">
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItems value="#{controllerServidor.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
+                    </p:selectOneMenu>
+                    
+                    Curso:
+                    <!-- POPULANDO COM OBJETO -->
+                    <p:selectOneMenu value="#{controllerCoordenador.coordenador.curso_id}" converter="#{CursoConverter}" style="width: 150px">
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItems value="#{controllerCurso.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
+                    </p:selectOneMenu>
+                    
+                    Já entra em vigor?<p:selectBooleanButton value="#{controllerCoordenador.coordenador.ativo}" onLabel="Sim" offLabel="Não" />
+                    
+                    <p:commandButton value="Cadastrar" actionListener="#{controllerCoordenador.salvar()}" ajax="true" update="@form"/>
+                    
+                </h:panelGrid>
+                
+            </p:panel>
+
+        </h:form>
+    </h:body>
+</html>
