@@ -7,6 +7,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.StreamedContent;
 import rn.CursoRN;
 
 
@@ -22,6 +24,8 @@ public class controllerCurso {
     private List<Curso> lista;
     
     private DataModel listaDataModel;
+    
+    private StreamedContent file;
     
     public void limpar() {
         setCurso(new Curso());
@@ -56,11 +60,24 @@ public class controllerCurso {
         limpar();
         return "Removido";
     }
+    
+    public void handleFileUpload(FileUploadEvent event) throws Exception {         
+        byte[] array = event.getFile().getContents();  
+        getCurso().setProjeto_pedagogico(array);
+    }
   
 
     ////////////////////////////////////////////////////////////////////////////
     //SETTERS E GETTERS
 
+    public StreamedContent getFile() {
+        return file;
+    }
+
+    public void setFile(StreamedContent file) {
+        this.file = file;
+    }
+    
     public Curso getCurso() {
         return curso;
     }
