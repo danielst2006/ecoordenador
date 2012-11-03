@@ -1,6 +1,7 @@
 package mb;
 
 import beans.Coordenador;
+import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -45,6 +46,7 @@ public class controllerCoordenador {
        
     public String salvar(){
         CoordenadorRN rn = new CoordenadorRN();
+        getCoordenador().setData_inicio(new Date());
         rn.salvar(this.coordenador);
         limpar();
         return "Salvo";
