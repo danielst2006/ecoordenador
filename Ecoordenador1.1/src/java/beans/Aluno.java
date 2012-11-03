@@ -74,14 +74,23 @@ public class Aluno extends Pessoa {
         @ManyToOne
         @JoinColumn(name="id_curso")
 	private Curso id_curso;
-        
-    public Usuario getId_usuario() {
+
+    public Curso getId_curso() {
+        return id_curso;
+    }
+
+    public void setId_curso(Curso id_curso) {
+        this.id_curso = id_curso;
+    }
+
+    public Usuario getUsuario_id() {
         return usuario_id;
     }
-    public void setId_usuario(Usuario usuario_id) {
+
+    public void setUsuario_id(Usuario usuario_id) {
         this.usuario_id = usuario_id;
     }
-        
+    
     public Set<EntradaAtividade> getEnt_atv() {
         return ent_atv;
     }
