@@ -1,67 +1,74 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
+<?xml version='1.0' encoding='iso-8859-1' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../../resources/templates/login.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:sec="http://www.springframework.org/security/facelets/tags" >
 
-    </h:head>
-    <h:body>
-        <h:form>
-            <p:panel  header="Cadastro das atividades complementares"> 
-                <p:messages id="msgs"/> 
-                <h:panelGrid >
-                    
-                    
+    <ui:define name="menu_horizontal">
+        <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
+            <ui:include src="/site/acessoServidor/menu.xhtml" />
+        </sec:ifAnyGranted>
+    </ui:define>
+    
+    <ui:define name="corpo">
+        <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
+            
+            <h:form>
+                <p:panel> 
+                    <p:messages id="msgs"/> 
+                    <h:panelGrid >
 
-                    Tipo da atividade:
-                    <!-- POPULANDO COM OBJETO -->
-                    <p:selectOneMenu value="#{controllerAtvComp.atvComp.id_tipo_atividade}" converter="#{AtividadeComplementarTipoConverter}" style="width: 150px">
-                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                        <f:selectItems value="#{controllerAtvCompTipo.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.tipo_atividade}"/>
-                    </p:selectOneMenu>
-                    
-                    
-                    
-                    
-                    Nome da atividade: *<p:inputText value="#{controllerAtvComp.atvComp.atividade}"/>
-                    
-                    Pontuação: *<p:inputText value="#{controllerAtvComp.atvComp.pontuacao}"/>
-                    
-                    <p:commandButton value="Salvar" actionListener="#{controllerAtvComp.salvar()}" ajax="true" update="@form"/>
-                    
-                    <p:ajaxStatus style="position:fixed;right:20px;top:20px">  
-                        <f:facet name="start">
-                            <h:graphicImage value="../resources/images/ajax-loader.gif" />
-                        </f:facet>
-                        <f:facet name="complete">
-                            <h:outputText value="" />
-                        </f:facet>
-                    </p:ajaxStatus>
 
-                </h:panelGrid>
-            </p:panel>
 
-            <p:dataTable id="tabela" var="p" value="#{controllerAtvComp.listaDM}" emptyMessage="Nada encontrado...">
-                <p:column>
-                    <h:outputText value="#{p.id_tipo_atividade.tipo_atividade}"/>
-                </p:column>
-                <p:column>
-                    <h:outputText value="#{p.atividade}"/>
-                </p:column>
-                <p:column>
-                    <h:outputText value="#{p.pontuacao}"/>
-                </p:column>
-                <p:column>
-                    <p:commandLink value="apagar" actionListener="#{controllerAtvComp.remover()}" ajax="true" update="@form"/>
-                </p:column>
-            </p:dataTable>
+                        Tipo da atividade:
+                        <!-- POPULANDO COM OBJETO -->
+                        <p:selectOneMenu value="#{controllerAtvComp.atvComp.id_tipo_atividade}" converter="#{AtividadeComplementarTipoConverter}" style="width: 150px">
+                            <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                            <f:selectItems value="#{controllerAtvCompTipo.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.tipo_atividade}"/>
+                        </p:selectOneMenu>
 
-        </h:form>
-    </h:body>
-</html>
+
+
+
+                        Nome da atividade: *<p:inputText value="#{controllerAtvComp.atvComp.atividade}"/>
+
+                        Pontuação: *<p:inputText value="#{controllerAtvComp.atvComp.pontuacao}"/>
+
+                        <p:commandButton value="Salvar" actionListener="#{controllerAtvComp.salvar()}" ajax="true" update="@form"/>
+
+                        <p:ajaxStatus style="position:fixed;right:20px;top:20px">  
+                            <f:facet name="start">
+                                <h:graphicImage value="../resources/images/ajax-loader.gif" />
+                            </f:facet>
+                            <f:facet name="complete">
+                                <h:outputText value="" />
+                            </f:facet>
+                        </p:ajaxStatus>
+
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:dataTable id="tabela" var="p" value="#{controllerAtvComp.listaDM}" emptyMessage="Nada encontrado...">
+                    <p:column>
+                        <h:outputText value="#{p.id_tipo_atividade.tipo_atividade}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{p.atividade}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{p.pontuacao}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandLink value="apagar" actionListener="#{controllerAtvComp.remover()}" ajax="true" update="@form"/>
+                    </p:column>
+                </p:dataTable>
+
+            </h:form>
+            
+        </sec:ifAnyGranted>
+    </ui:define>
+    
+</ui:composition>

@@ -11,13 +11,13 @@
         <sec:ifAnyGranted roles="ROLE_ALUNO,ROLE_ADMINISTRADOR">
             <ui:include src="/site/acessoAluno/menu.xhtml" />
         </sec:ifAnyGranted>
-        <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
-            <ui:include src="/site/acessoServidor/menu.xhtml" />
+    </ui:define>
+    
+    <ui:define name="corpo">
+        <sec:ifAnyGranted roles="ROLE_ALUNO,ROLE_ADMINISTRADOR">
+            
+            
         </sec:ifAnyGranted>
     </ui:define>
     
-    
-    <ui:define name="corpo">
-        Bem vindo, #{request.userPrincipal.name}
-    </ui:define>
 </ui:composition>
