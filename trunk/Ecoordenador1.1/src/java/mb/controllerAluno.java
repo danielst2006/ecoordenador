@@ -1,15 +1,15 @@
 package mb;
 
 import beans.Aluno;
-import beans.AtividadeComplementarTipo;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import org.primefaces.event.FlowEvent;
 import rn.AlunoRN;
-import rn.AtividadeComplementarTipoRN;
 
 
 @ManagedBean(name="controllerAluno")
@@ -24,6 +24,10 @@ public class controllerAluno {
     private List<Aluno> lista;
     
     private DataModel listaDataModel;
+
+    private static Logger logger = Logger.getLogger(Aluno.class.getName());
+    private boolean skip;
+    
     
     public void limpar() {
         setAluno(new Aluno());
@@ -74,6 +78,8 @@ public class controllerAluno {
     ////////////////////////////////////////////////////////////////////////////
     //SETTERS E GETTERS
 
+    
+    
     public Aluno getAluno() {
         return aluno;
     }
@@ -81,5 +87,33 @@ public class controllerAluno {
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
+    
+    
+    	public boolean isSkip() {
+		return skip;
+	}
 
+	public void setSkip(boolean skip) {
+		this.skip = skip;
+	}
+
+    
+    
+    
+    public String onFlowProcess(FlowEvent event) {
+		logger.info("Current wizard step:" + event.getOldStep());
+		logger.info("Next step:" + event.getNewStep());
+		
+		if(skip) {
+			skip = false;	//reset in case user goes back
+			return "confirm";
+		}
+		else {
+			return event.getNewStep();
+		}
+	}
+    
+    
+    
+    
 }
