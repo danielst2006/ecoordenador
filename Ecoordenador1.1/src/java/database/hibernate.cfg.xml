@@ -31,5 +31,7 @@
     <mapping class="beans.PreRequisito"/>
     <mapping class="beans.DisciplinaEquivalente"/>
     <mapping class="beans.PeriodoLetivo"/>
+    <mapping class="beans.Turma"/>
+    <mapping class="beans.Classe"/>
   </session-factory>
 </hibernate-configuration>

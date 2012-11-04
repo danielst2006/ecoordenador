@@ -81,4 +81,10 @@ public class DAOFactory {
         return dao;
     }
     
+    public static InterfaceHibernateDAO<Turma> criarTurmaDAO(){
+        HibernateDAO<Turma> dao = new HibernateDAO<Turma>(Turma.class);
+        dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+        return dao;
+    }
+    
 }
