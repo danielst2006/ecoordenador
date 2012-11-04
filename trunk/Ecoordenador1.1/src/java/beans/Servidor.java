@@ -1,6 +1,8 @@
 package beans;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
@@ -106,6 +108,18 @@ public class Servidor extends Pessoa {
         @OneToOne(mappedBy="id_servidor",fetch=FetchType.EAGER)
         @Cascade(org.hibernate.annotations.CascadeType.ALL)
         private Coordenador coordenador;
+        
+        @OneToMany(mappedBy="servidor_id",fetch=FetchType.LAZY)
+        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+        Set<Classe> classes = new HashSet<Classe>();
+
+    public Set<Classe> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(Set<Classe> classes) {
+        this.classes = classes;
+    }
 
     public Coordenador getCoordenador() {
         return coordenador;

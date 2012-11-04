@@ -63,6 +63,18 @@ public class MatrizCurricular implements Serializable {
         @OneToMany(mappedBy="id_matriz",fetch=FetchType.LAZY)
         @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
         Set<Disciplina> disciplinas = new HashSet<Disciplina>();
+        
+        @OneToMany(mappedBy="matriz_id",fetch=FetchType.LAZY)
+        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+        Set<Turma> turmas = new HashSet<Turma>();
+
+    public Set<Turma> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(Set<Turma> turmas) {
+        this.turmas = turmas;
+    }
 
     public Set<Disciplina> getDisciplinas() {
         return disciplinas;
