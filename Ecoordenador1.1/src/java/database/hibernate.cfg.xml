@@ -26,5 +26,6 @@
     <mapping class="beans.Usuario"/>
     <mapping class="beans.UsuarioPermissao"/>
     <mapping class="beans.Coordenador"/>
+    <mapping class="beans.MatrizCurricular"/>
   </session-factory>
 </hibernate-configuration>
