@@ -57,4 +57,10 @@ public class DAOFactory {
         return dao;
     }
     
+    public static InterfaceHibernateDAO<Disciplina> criarDisciplinaDAO(){
+        HibernateDAO<Disciplina> dao = new HibernateDAO<Disciplina>(Disciplina.class);
+        dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+        return dao;
+    }
+    
 }

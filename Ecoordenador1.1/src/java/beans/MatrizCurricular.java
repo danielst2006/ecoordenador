@@ -6,9 +6,12 @@ package beans;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 @ManagedBean(name="matriz_curricular")
 @SessionScoped
@@ -28,10 +31,10 @@ public class MatrizCurricular implements Serializable {
         @JoinColumn(name="ident_curso")
         private Curso ident_curso;
 
-        @Column(name="instituicao")
-        private String siatuacao_matriz;
+        @Column(name="situacao_matriz")
+        private String situacao_matriz;
 
-        @Column(name="instituicao")
+        @Column(name="forma_avaliacao")
         private String forma_avaliacao;
 
         @Column(name="inicio_vigencia")
@@ -56,6 +59,18 @@ public class MatrizCurricular implements Serializable {
 
         @Column(name="grupo_curricular")
         private String grupo_curricular;
+        
+        @OneToMany(mappedBy="id_matriz",fetch=FetchType.LAZY)
+        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+        Set<Disciplina> disciplinas = new HashSet<Disciplina>();
+
+    public Set<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(Set<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
 
     public Date getFim_vigencia() {
         return fim_vigencia;
@@ -129,12 +144,12 @@ public class MatrizCurricular implements Serializable {
         this.periodo = periodo;
     }
 
-    public String getSiatuacao_matriz() {
-        return siatuacao_matriz;
+    public String getSituacao_matriz() {
+        return situacao_matriz;
     }
 
-    public void setSiatuacao_matriz(String siatuacao_matriz) {
-        this.siatuacao_matriz = siatuacao_matriz;
+    public void setSituacao_matriz(String situacao_matriz) {
+        this.situacao_matriz = situacao_matriz;
     }
 
     public String getTipo_periodo_matriz() {
