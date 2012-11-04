@@ -33,5 +33,6 @@
     <mapping class="beans.PeriodoLetivo"/>
     <mapping class="beans.Turma"/>
     <mapping class="beans.Classe"/>
+    <mapping class="beans.Horario"/>
   </session-factory>
 </hibernate-configuration>

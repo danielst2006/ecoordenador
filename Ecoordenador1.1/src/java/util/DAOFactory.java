@@ -87,4 +87,16 @@ public class DAOFactory {
         return dao;
     }
     
+    public static InterfaceHibernateDAO<Classe> criarClasseDAO(){
+        HibernateDAO<Classe> dao = new HibernateDAO<Classe>(Classe.class);
+        dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+        return dao;
+    }
+    
+    public static InterfaceHibernateDAO<Horario> criarHorarioDAO(){
+        HibernateDAO<Horario> dao = new HibernateDAO<Horario>(Horario.class);
+        dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+        return dao;
+    }
+    
 }
