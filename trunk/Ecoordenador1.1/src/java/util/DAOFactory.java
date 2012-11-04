@@ -51,4 +51,10 @@ public class DAOFactory {
         return dao;
     }
     
+    public static InterfaceHibernateDAO<MatrizCurricular> criarMatrizDAO(){
+        HibernateDAO<MatrizCurricular> dao = new HibernateDAO<MatrizCurricular>(MatrizCurricular.class);
+        dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+        return dao;
+    }
+    
 }

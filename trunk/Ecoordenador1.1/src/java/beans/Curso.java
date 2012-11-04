@@ -132,6 +132,18 @@ public class Curso implements Serializable {
         @OneToMany(mappedBy="curso_id",fetch=FetchType.LAZY)
         @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
         Set<Coordenador> coordenadores = new HashSet<Coordenador>();
+        
+        @OneToMany(mappedBy="ident_curso",fetch=FetchType.LAZY)
+        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+        Set<MatrizCurricular> matrizes = new HashSet<MatrizCurricular>();
+
+    public Set<MatrizCurricular> getMatrizes() {
+        return matrizes;
+    }
+
+    public void setMatrizes(Set<MatrizCurricular> matrizes) {
+        this.matrizes = matrizes;
+    }
 
     public Set<Aluno> getAlunos() {
         return alunos;
