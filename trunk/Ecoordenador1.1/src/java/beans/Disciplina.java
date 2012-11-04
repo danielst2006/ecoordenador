@@ -5,9 +5,12 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 @ManagedBean(name="disciplina")
 @SessionScoped
@@ -65,6 +68,54 @@ public class Disciplina implements Serializable {
 
         @Column(name="referencia_bibliografica")
         private String referencia_bibliografica;
+        
+        @OneToMany(mappedBy="id_disciplina",fetch=FetchType.LAZY)
+        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+        Set<PreRequisito> requisitos = new HashSet<PreRequisito>();
+        
+        @OneToMany(mappedBy="id_disciplina_requisitada",fetch=FetchType.LAZY)
+        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+        Set<PreRequisito> requisitos_requisitados = new HashSet<PreRequisito>();
+        
+        @OneToMany(mappedBy="disciplina_id",fetch=FetchType.LAZY)
+        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+        Set<DisciplinaEquivalente> disciplinas = new HashSet<DisciplinaEquivalente>();
+        
+        @OneToMany(mappedBy="disciplina_equivalente_id",fetch=FetchType.LAZY)
+        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+        Set<DisciplinaEquivalente> equivalentes = new HashSet<DisciplinaEquivalente>();
+
+    public Set<DisciplinaEquivalente> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(Set<DisciplinaEquivalente> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+
+    public Set<DisciplinaEquivalente> getEquivalentes() {
+        return equivalentes;
+    }
+
+    public void setEquivalentes(Set<DisciplinaEquivalente> equivalentes) {
+        this.equivalentes = equivalentes;
+    } 
+
+    public Set<PreRequisito> getRequisitos() {
+        return requisitos;
+    }
+
+    public void setRequisitos(Set<PreRequisito> requisitos) {
+        this.requisitos = requisitos;
+    }
+
+    public Set<PreRequisito> getRequisitos_requisitados() {
+        return requisitos_requisitados;
+    }
+
+    public void setRequisitos_requisitados(Set<PreRequisito> requisitos_requisitados) {
+        this.requisitos_requisitados = requisitos_requisitados;
+    }
 
     public String getBase_cientifica() {
         return base_cientifica;
