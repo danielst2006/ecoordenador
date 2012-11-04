@@ -29,7 +29,7 @@ public class Horario implements Serializable {
         @Column(name="horario_inicio",length=6,nullable=false)
         private String horario_inicio;
         
-        @Column(name="horario_inicio",length=6,nullable=false)
+        @Column(name="horario_fim",length=6,nullable=false)
         private String horario_fim;
         
         @Column(name="dia_semana",length=8,nullable=false)
