@@ -8,6 +8,7 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 @ManagedBean(name="classe")
 @SessionScoped
@@ -29,6 +30,18 @@ public class Classe implements Serializable {
         @ManyToOne
         @JoinColumn(name="servidor_id")
         private Servidor servidor_id;
+        
+        @OneToOne(mappedBy="id_classe",fetch=FetchType.EAGER)
+        @Cascade(org.hibernate.annotations.CascadeType.ALL)
+        private Horario horario;
+
+    public Horario getHorario() {
+        return horario;
+    }
+
+    public void setHorario(Horario horario) {
+        this.horario = horario;
+    }
 
     public Integer getId() {
         return id;
