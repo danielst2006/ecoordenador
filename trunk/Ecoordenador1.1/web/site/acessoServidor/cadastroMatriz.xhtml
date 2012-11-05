@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../../resources/templates/login.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:sec="http://www.springframework.org/security/facelets/tags" >
+
+    <ui:define name="menu_horizontal">
+        <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
+            <ui:include src="/site/acessoServidor/menu.xhtml" />
+        </sec:ifAnyGranted>
+    </ui:define>
+    
+    <ui:define name="corpo">
+        <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
+            
+            <h:form>
+                <p:panel> 
+                    <p:messages id="msgs"/> 
+                    <h:panelGrid >
+                    
+                    
+                    Curso: <p:selectOneMenu value="#{controllerMatriz.matriz.ident_curso}" converter="#{CursoConverter}" style="width: 150px">
+                            <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                            <f:selectItems value="#{controllerCurso.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
+                    </p:selectOneMenu>
+                    Situação da Matriz: <p:inputText value="#{controllerMatriz.matriz.situacao_matriz}" />
+                    Forma de Avaliação: <p:inputText value="#{controllerMatriz.matriz.forma_avaliacao}" />
+                    Inicio da Vigência: <p:calendar value="#{controllerMatriz.matriz.inicio_vigencia}" />
+                    Fim da Vigência: <p:calendar value="#{controllerMatriz.matriz.fim_vigencia}" />
+                    Tipo do Periodo da Matriz: <p:inputText value="#{controllerMatriz.matriz.tipo_periodo_matriz}" />
+                    Número do Pedido: <p:inputText value="#{controllerMatriz.matriz.numero_pedido}" />
+                    Número Máximo de Elementos: <p:inputText value="#{controllerMatriz.matriz.numero_max_elementos}" />
+                    Período: <p:inputText value="#{controllerMatriz.matriz.periodo}" />
+                    Grupo Curricular: <p:inputText value="#{controllerMatriz.matriz.grupo_curricular}" />
+                    
+                    <p:commandButton value="Salvar" ajax="true" update="@form" actionListener="#{controllerMatriz.salvar()}"/>
+                         
+                     <p:ajaxStatus style="position:fixed;right:20px;top:20px">  
+                            <f:facet name="start">
+                                <h:graphicImage value="../resources/images/ajax-loader.gif" />
+                            </f:facet>
+                            <f:facet name="complete">
+                                <h:outputText value="" />
+                            </f:facet>
+                     </p:ajaxStatus>
+
+                    </h:panelGrid>
+                </p:panel>
+                 
+
+            </h:form>
+            
+        </sec:ifAnyGranted>
+    </ui:define>
+    
+</ui:composition>
