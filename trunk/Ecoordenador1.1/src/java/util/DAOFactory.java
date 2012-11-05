@@ -45,6 +45,12 @@ public class DAOFactory {
         return dao;
     }
     
+    public static InterfaceHibernateDAO<UsuarioPermissao> criarUsuarioPermissaoDAO(){
+        HibernateDAO<UsuarioPermissao> dao = new HibernateDAO<UsuarioPermissao>(UsuarioPermissao.class);
+        dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+        return dao;
+    }
+    
     public static InterfaceHibernateDAO<Coordenador> criarCoordenadorDAO(){
         HibernateDAO<Coordenador> dao = new HibernateDAO<Coordenador>(Coordenador.class);
         dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
