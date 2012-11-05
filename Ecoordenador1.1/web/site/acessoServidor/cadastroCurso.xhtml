@@ -9,17 +9,25 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        
+
     </h:head>
+   
     <h:body>
-        <h:form enctype="multipart/form-data">
-            
-            <p:panel>
-                <p:messages/>
-                <h:panelGrid>
-                    Instituição:<p:inputText value="#{controllerCurso.curso.instituicao}" required="true"/>
-                    Unidade de ensino:<p:inputText value="#{controllerCurso.curso.unidade_ensino}" required="true"/>
-                    Unidade organizacional:<p:inputText value="#{controllerCurso.curso.unidade_organizacional}" required="true"/>
+        <h:form>
+
+    <p:growl id="growl" sticky="true" showDetail="true"/>
+
+    <p:wizard widgetVar="wiz"
+              flowListener="#{controllerServidor.onFlowProcess}">
+
+        <p:tab id="curso" title="Curso">
+
+            <p:panel header="Dados do Curso">
+
+                <h:messages errorClass="error"/>
+
+                <h:panelGrid columns="4" columnClasses="label, value" styleClass="grid">
+                    
                     Nome:<p:inputText value="#{controllerCurso.curso.nome}"  maxlength="50" required="true"/>
                     Nome reduzido:<p:inputText value="#{controllerCurso.curso.nome_reduzido}" maxlength="10" required="true"/>
                     Tipo ato de autorização:<p:inputText value="#{controllerCurso.curso.ato_autorizativo_tipo}" required="true"/>
@@ -38,28 +46,112 @@ and open the template in the editor.
                     Nível de ensino:<p:inputText value="#{controllerCurso.curso.nivel_ensino}"/>
                     Etapa de ensino:<p:inputText value="#{controllerCurso.curso.etapa_ensino}"/>
                     Modalidade de ensino:<p:inputText value="#{controllerCurso.curso.modalidade_ensino}"/>
-                    Formação profissional:<p:inputText value="#{controllerCurso.curso.formacao_profissional}"/>
-                    Formação acadêmica:<p:inputText value="#{controllerCurso.curso.formacao_academica}"/>
-                    EJA:<p:selectBooleanButton value="#{controllerCurso.curso.eja}" onLabel="Sim" offLabel="Não" />
                     Tipo de ato reconhecimento:<p:inputText value="#{controllerCurso.curso.ato_reconhecimento_tipo}"/>
                     Número do ato reconhecimento:<p:inputText value="#{controllerCurso.curso.ato_reconhecimento_numero}"/>
                     Data de expedição reconhecimento:<p:calendar value="#{controllerCurso.curso.data_expedicao_reconhecimento}"/>
                     Data DOU reconhecimento:<p:calendar value="#{controllerCurso.curso.data_dou_reconhecimento}"/>
-                    Projeto Pedagógico:
-                    <p:fileUpload fileUploadListener="#{controllerCurso.handleFileUpload}" mode="advanced" sizeLimit="100000" allowTypes="/(\.|\/)(pdf)$/"
-                                    multiple="false" style="width: 600px;" invalidFileMessage="Apenas PDF" invalidSizeMessage="Tamanho máximo 100kb"
-                                    required="true" requiredMessage="É obrigatório anexar o arquivo." showButtons="false" label="Arquivo"/>
-                    Data do projeto pedagógico:<p:calendar value="#{controllerCurso.curso.data_projeto_pedagogico}" required="true"/>
-                    
-                    
-                    Finalidade:<p:editor value="#{controllerCurso.curso.finalidade}"/>
-                    
-                    <p:commandButton value="Cadastrar" actionListener="#{controllerCurso.salvar()}" ajax="true" update="@form"/>
+                    Formação profissional:<p:inputText value="#{controllerCurso.curso.formacao_profissional}"/>
+                    Formação acadêmica:<p:inputText value="#{controllerCurso.curso.formacao_academica}"/>
+                    EJA:<p:selectBooleanButton value="#{controllerCurso.curso.eja}" onLabel="Sim" offLabel="Não" />
+
                     
                 </h:panelGrid>
-                
             </p:panel>
+        </p:tab>
+
+        <p:tab id="instituicao" title="Instituição">
+            <p:panel header="Dados da Instituição">
+
+                <h:messages errorClass="error"/>
+
+                <h:panelGrid columns="2" columnClasses="label, value">
+
+                    Instituição:<p:inputText value="#{controllerCurso.curso.instituicao}" required="true"/>
+                    Unidade de ensino:<p:inputText value="#{controllerCurso.curso.unidade_ensino}" required="true"/>
+                    Unidade organizacional:<p:inputText value="#{controllerCurso.curso.unidade_organizacional}" required="true"/>
+                    
+                    
+     
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+
+
+        <p:tab id="projeto_pedagogico" title="Projeto Pedagógico">
+            <p:panel header="Projeto Pedagógico">
+
+                <h:messages errorClass="error"/>
+
+                <h:panelGrid columns="4" columnClasses="label, value">
+                                
+                    Projeto Pedagógico:
+                    <p:fileUpload fileUploadListener="#{controllerCurso.handleFileUpload}" mode="advanced" sizeLimit="100000" allowTypes="/(\.|\/)(pdf)$/"
+                                  multiple="false" style="width: 600px;" invalidFileMessage="Apenas PDF" invalidSizeMessage="Tamanho máximo 100kb"
+                                  required="true" requiredMessage="É obrigatório anexar o arquivo." showButtons="false" label="Arquivo"/>
+                    Data do projeto pedagógico:<p:calendar value="#{controllerCurso.curso.data_projeto_pedagogico}" required="true"/>
+
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+
+
+
+        
+        
+        <p:tab id="confirm" title="Confirmation">
+            <p:panel header="Confirmation">
+
+                <h:panelGrid id="confirmation" columns="6">
+
+                    Nome:<h:outputText value="#{controllerCurso.curso.nome}"  />
+                    Nome reduzido:<h:outputText value="#{controllerCurso.curso.nome_reduzido}" />
+                    Tipo ato de autorização:<h:outputText value="#{controllerCurso.curso.ato_autorizativo_tipo}" />
+                    Número ato autorizativo:<h:outputText value="#{controllerCurso.curso.ato_autorizativo_numero}" />
+                    Data expedição ato autorizativo:<p:calendar value="#{controllerCurso.curso.ato_autorizativo_data_expedicao}" />
+                    Data DOU ato autorizativo:<p:calendar value="#{controllerCurso.curso.ato_autorizacao_ato_dou}" />
+                    Periodicidade de ingresso:<h:outputText value="#{controllerCurso.curso.periodicidade_ingresso}" />
+                    Data início:<p:calendar value="#{controllerCurso.curso.data_inicio}" />
+                    Data fim:<p:calendar value="#{controllerCurso.curso.data_fim}" />
+                    Numero de períodos mínimo para integralização:<h:outputText value="#{controllerCurso.curso.periodo_minimo_numero_integralizacao}" />
+                    Numero de períodos máximo para integralização:<h:outputText value="#{controllerCurso.curso.periodo_maximo_numero_integralizacao}"/>
+                    Área de conhecimento:<h:outputText value="#{controllerCurso.curso.area_conhecimento}" />
+                    Regime de competência:<p:selectBooleanButton value="#{controllerCurso.curso.regime_competencia}" onLabel="Sim" offLabel="Não"/>
+                    Regime de matrícula:<h:outputText value="#{controllerCurso.curso.regime_matricula}" />
+                    Situação:<h:outputText value="#{controllerCurso.curso.situacao}" />
+                    Nível de ensino:<h:outputText value="#{controllerCurso.curso.nivel_ensino}"/>
+                    Etapa de ensino:<h:outputText value="#{controllerCurso.curso.etapa_ensino}"/>
+                    Modalidade de ensino:<h:outputText value="#{controllerCurso.curso.modalidade_ensino}"/>
+                    Tipo de ato reconhecimento:<h:outputText value="#{controllerCurso.curso.ato_reconhecimento_tipo}"/>
+                    Número do ato reconhecimento:<h:outputText value="#{controllerCurso.curso.ato_reconhecimento_numero}"/>
+                    Data de expedição reconhecimento:<p:calendar value="#{controllerCurso.curso.data_expedicao_reconhecimento}"/>
+                    Data DOU reconhecimento:<p:calendar value="#{controllerCurso.curso.data_dou_reconhecimento}"/>
+                    Formação profissional:<h:outputText value="#{controllerCurso.curso.formacao_profissional}"/>
+                    Formação acadêmica:<h:outputText value="#{controllerCurso.curso.formacao_academica}"/>
+                    EJA:<p:selectBooleanButton value="#{controllerCurso.curso.eja}" onLabel="Sim" offLabel="Não" />
+                    Instituição:<h:outputText value="#{controllerCurso.curso.instituicao}" />
+                    Unidade de ensino:<h:outputText value="#{controllerCurso.curso.unidade_ensino}" />
+                    Unidade organizacional:<h:outputText value="#{controllerCurso.curso.unidade_organizacional}" />
+                    Projeto Pedagógico:
+                    <p:fileUpload fileUploadListener="#{controllerCurso.handleFileUpload}" mode="advanced" sizeLimit="100000" allowTypes="/(\.|\/)(pdf)$/"
+                                  multiple="false" style="width: 600px;" invalidFileMessage="Apenas PDF" invalidSizeMessage="Tamanho máximo 100kb"
+                                  required="true" requiredMessage="É obrigatório anexar o arquivo." showButtons="false" label="Arquivo"/>
+                    Data do projeto pedagógico:<p:calendar value="#{controllerCurso.curso.data_projeto_pedagogico}" required="true"/>
+
+
+                </h:panelGrid>
+
+                <p:commandButton value="Cadastrar" update="growl" 
+                                 actionListener="#{controllerCurso.salvar()}"/>
+
+            </p:panel>
+        </p:tab>
+
+    </p:wizard>
 
         </h:form>
+
+
+
     </h:body>
 </html>
+

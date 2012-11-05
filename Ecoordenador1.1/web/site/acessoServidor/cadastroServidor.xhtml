@@ -7,21 +7,31 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"> 
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        
+
     </h:head>
+   
     <h:body>
         <h:form>
-            <p:panel header="Cadastro de Servidor">
-                <p:messages />
-                <h:panelGrid>
-                    
+
+    <p:growl id="growl" sticky="true" showDetail="true"/>
+
+    <p:wizard widgetVar="wiz"
+              flowListener="#{controllerServidor.onFlowProcess}">
+
+        <p:tab id="personal" title="Pessoal">
+
+            <p:panel header="Dados Gerais">
+
+                <h:messages errorClass="error"/>
+
+                <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
                     Nome:*<p:inputText value="#{controllerServidor.servidor.nome}" label="nome">
-                        </p:inputText>
-                    
-                    <h:outputLabel  value="Foto: " />   
-                    
+                    </p:inputText>
+
+                      
+
                     Etnia:<p:selectOneMenu value="#{controllerServidor.servidor.etnia}"    >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Branca" itemValue="branca" />
@@ -36,17 +46,17 @@ and open the template in the editor.
                         <f:selectItem itemLabel="Feminino" itemValue="F" />
                         <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />      
                     </p:selectOneMenu> 
-                    
+
                     Necessidade Especial: <h:selectOneRadio 
                         value="#{controllerServidor.servidor.necessidade_especial}">
                         <f:selectItem  itemLabel="Sim" itemValue="true" />
                         <f:selectItem  itemLabel="Não" itemValue="false" />
                     </h:selectOneRadio>
-                    
+
                     Data de Nascimento: *<p:calendar value="#{controllerServidor.servidor.data_nascimento}" />
-                    Naturalidade: <h:inputText value="#{controllerServidor.servidor.naturalidade}" />
-                    UF da Naturalidade: <h:inputText value="#{controllerServidor.servidor.uf_naturalidade}" />
-                    Nacionalidade: <h:inputText value="#{controllerServidor.servidor.nacionalidade}" />
+                    Naturalidade: <p:inputText value="#{controllerServidor.servidor.naturalidade}" />
+                    UF da Naturalidade: <p:inputText value="#{controllerServidor.servidor.uf_naturalidade}" />
+                    Nacionalidade: <p:inputText value="#{controllerServidor.servidor.nacionalidade}" />
                     Tipo Sanguineo: <p:selectOneMenu value="#{controllerServidor.servidor.tipo_sanguineo}" >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="A" itemValue="A" />
@@ -56,7 +66,7 @@ and open the template in the editor.
                         <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
 
                     </p:selectOneMenu>
-                     
+
                     Fator Rh: <p:selectOneMenu value="#{controllerServidor.servidor.fator_rh}" >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Positivo" itemValue="positivo" />
@@ -75,20 +85,23 @@ and open the template in the editor.
                         <f:selectItem itemLabel="Mestrado" itemValue="Mestrado" />
                         <f:selectItem itemLabel="Doutorado" itemValue="Doutorado" />
                     </p:selectOneMenu>
-                    E-mail: <h:inputText value="#{controllerServidor.servidor.email}" />
-                    
-                    Endereço Curriculo Lattes: <h:inputText value="#{controllerServidor.servidor.end_curriculo_lattes}" />
-                    DDD: <h:inputText value="#{controllerServidor.servidor.ddd}" />
-                    Numero do Telefone: <h:inputText value="#{controllerServidor.servidor.numero_telefone}" />
-                    Ramal: <h:inputText value="#{controllerServidor.servidor.ramal}" />
-                    Filiação: <p:selectOneMenu value="#{controllerServidor.servidor.filiacao}" >
-                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                        <f:selectItem itemLabel="Sim" itemValue="true" />
-                        <f:selectItem itemLabel="Não" itemValue="false" />
-                        
-                    </p:selectOneMenu>
-                    
-                    Estado Civil: <p:selectOneMenu value="#{controllerServidor.servidor.estado_civil}" >
+                    Endereço Curriculo Lattes: <p:inputText value="#{controllerServidor.servidor.end_curriculo_lattes}" />
+                    DDD: <p:inputText value="#{controllerServidor.servidor.ddd}" />
+                    Numero do Telefone: <p:inputText value="#{controllerServidor.servidor.numero_telefone}" />
+                    Ramal: <p:inputText value="#{controllerServidor.servidor.ramal}" />
+
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+
+        <p:tab id="geral" title="Geral">
+            <p:panel header="Dados Geral">
+
+                <h:messages errorClass="error"/>
+
+                <h:panelGrid columns="2" columnClasses="label, value">
+
+                   Estado Civil: <p:selectOneMenu value="#{controllerServidor.servidor.estado_civil}" >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Solteiro" itemValue="solteiro" />
                         <f:selectItem itemLabel="Casado" itemValue="casado" />
@@ -97,28 +110,29 @@ and open the template in the editor.
                         <f:selectItem itemLabel="Viúvo" itemValue="viúvo" />
                         <f:selectItem itemLabel="Não declarado" itemValue="N/D" />
                     </p:selectOneMenu>
-                    
-                    
-                    Nome da Mãe: <h:inputText value="#{controllerServidor.servidor.nome_mae}" />
-                    Nome do Pai: <h:inputText value="#{controllerServidor.servidor.nome_pai}" />
-                    Zona de Procedência: <p:selectOneMenu value="#{controllerServidor.servidor.zona_procedencia}" >
+
+                    Filiação: <p:selectOneMenu value="#{controllerServidor.servidor.filiacao}" >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                        <f:selectItem itemLabel="Urbana" itemValue="Ubarna" />
-                        <f:selectItem itemLabel="Rural" itemValue="Rural" />
+                        <f:selectItem itemLabel="Sim" itemValue="true" />
+                        <f:selectItem itemLabel="Não" itemValue="false" />
+                        
                     </p:selectOneMenu>
-                    CEP: <h:inputText value="#{controllerServidor.servidor.cep}" />
-                    Logradouro: <h:inputText value="#{controllerServidor.servidor.logradouro}" />
-                    Numero: <h:inputText value="#{controllerServidor.servidor.numero_lote}" />
-                    Complemento: <h:inputText value="#{controllerServidor.servidor.complemento}" />
-                    Bairro: <h:inputText value="#{controllerServidor.servidor.bairro}" />
-                    Cidade: <h:inputText value="#{controllerServidor.servidor.cidade}" />
-                    UF: <h:inputText value="#{controllerServidor.servidor.uf}" />
-                    CPF:*<p:inputText value="#{controllerServidor.servidor.cpf}">
-                        </p:inputText>
-                    RG: <h:inputText value="#{controllerServidor.servidor.rg_numero}" />
-                    Orgão Exepedidor: <h:inputText value="#{controllerServidor.servidor.rg_expedidor}" />
-                    Data da Expedição: <p:calendar value="#{controllerServidor.servidor.rg_data_expedicao}" />
+                    Nome da Mãe:* <p:inputText value="#{controllerServidor.servidor.nome_mae}" />
+                    Nome do Pai: <p:inputText value="#{controllerServidor.servidor.nome_pai}" />
                     
+     
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+
+
+        <p:tab id="servidor" title="Servidor">
+            <p:panel header="Dados do Servidor">
+
+                <h:messages errorClass="error"/>
+
+                <h:panelGrid columns="4" columnClasses="label, value">
+                   
                     Matricula Siape:<p:inputText value="#{controllerServidor.servidor.matricula_siape}">
                         </p:inputText>
                     
@@ -200,39 +214,297 @@ and open the template in the editor.
                     
                     Carga Horaria Semanal:<p:inputText value="#{controllerServidor.servidor.carga_horaria_semanal}">
                         </p:inputText>
-                    
-                    Cerdidão de Nascimento (Número): <h:inputText value="#{controllerServidor.servidor.cnasc_numero}" />
-                    Cerdidão de Nascimento (Livro/Folha): <h:inputText value="#{controllerServidor.servidor.cnasc_folha}" />
-                    Cerdidão de Nascimento (Cartório): <h:inputText value="#{controllerServidor.servidor.cnasc_cartorio}" />
-                    Cerdidão de Nascimento (Data da Expedição): <p:calendar value="#{controllerServidor.servidor.cnasc_data_expedicao}" />
-                    Carteira de Trabalho (Número): <h:inputText value="#{controllerServidor.servidor.ctps_numero}" />
-                    Carteira de Trabalho (Série): <h:inputText value="#{controllerServidor.servidor.ctps_serie}" />
-                    Carteira de Trabalho (PIS/PASEP): <h:inputText value="#{controllerServidor.servidor.pis_pasep}" />
-                    Carteira de Habilitação (Número): <h:inputText value="#{controllerServidor.servidor.chabilitacao_numero}" />
-                    Carteira de Habilitação (Data Expedeição): <p:calendar value="#{controllerServidor.servidor.chabilitacao_data_expedicao}" />
-                    Carteira de Habilitação (Data Validade): <p:calendar value="#{controllerServidor.servidor.chabilitacao_data_validade}" />
-                    Documento Militar (Tipo): <h:inputText value="#{controllerServidor.servidor.dmilitar_tipo}" />
-                    Documento Militar (Número): <h:inputText value="#{controllerServidor.servidor.dmilitar_numero}" />
-                    Documento Militar (Região Militar): <h:inputText value="#{controllerServidor.servidor.dmilitar_regiao}" />
-                    Título de Eleitor (Número): <h:inputText value="#{controllerServidor.servidor.teleitor_numero}" />
-                    Título de Eleitor (Zona/Seção): <h:inputText value="#{controllerServidor.servidor.teleitor_zona}" />
-                    Título de Eleitor (UF): <h:inputText value="#{controllerServidor.servidor.teleitor_uf}" />
-                    Título de Eleitor (Data Exp.): <p:calendar value="#{controllerServidor.servidor.teleitor_data_expedicao}" />
-                    
-                    
-                    <p:commandButton value="Salvar" actionListener="#{controllerServidor.salvar()}" ajax="true" update="@form"/>
-
-                    
-                      <p:ajaxStatus style="position:fixed;right:20px;top:20px">  
-                        <f:facet name="start">
-                            <h:graphicImage value="../resources/images/ajax-loader.gif" />
-                        </f:facet>
-                        <f:facet name="complete">
-                            <h:outputText value="" />
-                        </f:facet>
-                    </p:ajaxStatus>
+                   
                 </h:panelGrid>
             </p:panel>
+        </p:tab>
+
+
+
+        <p:tab id="endereco" title="Endereço">
+            <p:panel header="Dados de Endereço">
+
+
+                <h:panelGrid columns="2" columnClasses="label, value">
+
+                    <h:messages errorClass="error"/>
+
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                    
+                    Zona de Procedência:* <p:selectOneMenu value="#{controllerServidor.servidor.zona_procedencia}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Urbana" itemValue="Ubarna" />
+                        <f:selectItem itemLabel="Rural" itemValue="Rural" />
+                    </p:selectOneMenu>
+                    CEP:* <p:inputText value="#{controllerServidor.servidor.cep}" />
+                    Logradouro:* <p:inputText value="#{controllerServidor.servidor.logradouro}" />
+                    Numero:* <p:inputText value="#{controllerServidor.servidor.numero_lote}" />
+                    Complemento: <p:inputText value="#{controllerServidor.servidor.complemento}" />
+                    Bairro:* <p:inputText value="#{controllerServidor.servidor.bairro}" />
+                    Cidade:* <p:inputText value="#{controllerServidor.servidor.cidade}" />
+                    UF:* <p:inputText value="#{controllerServidor.servidor.uf}" />
+                    
+                    </h:panelGrid>    
+
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+
+        <p:tab id="documentacao" title="Documentação">
+            <p:panel header="Dados de Documentação">
+
+                <h:messages errorClass="error"/>
+
+                <h:panelGrid columns="4" columnClasses="label, value">
+
+                 CPF:*<p:inputText value="#{controllerServidor.servidor.cpf}">
+                        </p:inputText>
+                 
+                 RG: <p:inputText value="#{controllerServidor.servidor.rg_numero}" />
+                 Orgão Exepedidor: <p:inputText value="#{controllerServidor.servidor.rg_expedidor}" />
+                 Data da Expedição: <p:calendar value="#{controllerServidor.servidor.rg_data_expedicao}" />   
+                 Cerdidão de Nascimento (Número): <p:inputText value="#{controllerServidor.servidor.cnasc_numero}" />
+                 Cerdidão de Nascimento (Livro/Folha): <p:inputText value="#{controllerServidor.servidor.cnasc_folha}" />
+                 Cerdidão de Nascimento (Cartório): <p:inputText value="#{controllerServidor.servidor.cnasc_cartorio}" />
+                 Cerdidão de Nascimento (Data da Expedição): <p:calendar value="#{controllerServidor.servidor.cnasc_data_expedicao}" />
+                 Carteira de Trabalho (Número): <p:inputText value="#{controllerServidor.servidor.ctps_numero}" />
+                 Carteira de Trabalho (Série): <p:inputText value="#{controllerServidor.servidor.ctps_serie}" />
+                 Carteira de Trabalho (PIS/PASEP): <p:inputText value="#{controllerServidor.servidor.pis_pasep}" />
+                 Carteira de Habilitação (Número): <p:inputText value="#{controllerServidor.servidor.chabilitacao_numero}" />
+                 Carteira de Habilitação (Data Expedeição): <p:calendar value="#{controllerServidor.servidor.chabilitacao_data_expedicao}" />
+                 Carteira de Habilitação (Data Validade): <p:calendar value="#{controllerServidor.servidor.chabilitacao_data_validade}" />
+                 Documento Militar (Tipo): <p:inputText value="#{controllerServidor.servidor.dmilitar_tipo}" />
+                 Documento Militar (Número): <p:inputText value="#{controllerServidor.servidor.dmilitar_numero}" />
+                 Documento Militar (Região Militar): <p:inputText value="#{controllerServidor.servidor.dmilitar_regiao}" />
+                 Título de Eleitor (Número): <p:inputText value="#{controllerServidor.servidor.teleitor_numero}" />
+                 Título de Eleitor (Zona/Seção): <p:inputText value="#{controllerServidor.servidor.teleitor_zona}" />
+                 Título de Eleitor (UF): <p:inputText value="#{controllerServidor.servidor.teleitor_uf}" />
+                 Título de Eleitor (Data Exp.): <p:calendar value="#{controllerServidor.servidor.teleitor_data_expedicao}" />
+
+                    
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+
+        <p:tab id="confirm" title="Confirmation">
+            <p:panel header="Confirmation">
+
+                <h:panelGrid id="confirmation" columns="6">
+
+                    Nome:*<h:outputText value="#{controllerServidor.servidor.nome}" />
+
+
+
+
+                    Etnia:<p:selectOneMenu value="#{controllerServidor.servidor.etnia}"    >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Branca" itemValue="branca" />
+                        <f:selectItem itemLabel="Pardo" itemValue="pardo" />
+                        <f:selectItem itemLabel="Negra" itemValue="negra" />
+                        <f:selectItem itemLabel="Amarela" itemValue="amarelo" />
+                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
+                    </p:selectOneMenu>
+                    Genero: <p:selectOneMenu value="#{controllerServidor.servidor.genero}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Masculino" itemValue="M" />
+                        <f:selectItem itemLabel="Feminino" itemValue="F" />
+                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />      
+                    </p:selectOneMenu> 
+
+                    Necessidade Especial: <h:selectOneRadio 
+                        value="#{controllerServidor.servidor.necessidade_especial}">
+                        <f:selectItem  itemLabel="Sim" itemValue="true" />
+                        <f:selectItem  itemLabel="Não" itemValue="false" />
+                    </h:selectOneRadio>
+
+                    Data de Nascimento: *<p:calendar value="#{controllerServidor.servidor.data_nascimento}" />
+                    Naturalidade: <h:outputText value="#{controllerServidor.servidor.naturalidade}" />
+                    UF da Naturalidade: <h:outputText value="#{controllerServidor.servidor.uf_naturalidade}" />
+                    Nacionalidade: <h:outputText value="#{controllerServidor.servidor.nacionalidade}" />
+                    Tipo Sanguineo: <p:selectOneMenu value="#{controllerServidor.servidor.tipo_sanguineo}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="A" itemValue="A" />
+                        <f:selectItem itemLabel="B" itemValue="B" />
+                        <f:selectItem itemLabel="AB" itemValue="AB" /> 
+                        <f:selectItem itemLabel="O" itemValue="O" />
+                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
+
+                    </p:selectOneMenu>
+
+                    Fator Rh: <p:selectOneMenu value="#{controllerServidor.servidor.fator_rh}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Positivo" itemValue="positivo" />
+                        <f:selectItem itemLabel="Negativo" itemValue="negativo" />
+                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" /> 
+
+                    </p:selectOneMenu>
+                    Grau de Formação: <p:selectOneMenu value="#{controllerServidor.servidor.grau_formacao}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
+                        <f:selectItem itemLabel="Educação Infantil" itemValue="Educação Infantil" />
+                        <f:selectItem itemLabel="Ensino Fundamental" itemValue="Ensino Fundamental" />
+                        <f:selectItem itemLabel="Ensino Médio" itemValue="Ensino Médio" />
+                        <f:selectItem itemLabel="Graduação" itemValue="Graduação" />
+                        <f:selectItem itemLabel="Especialização" itemValue="Especialiazação" />
+                        <f:selectItem itemLabel="Mestrado" itemValue="Mestrado" />
+                        <f:selectItem itemLabel="Doutorado" itemValue="Doutorado" />
+                    </p:selectOneMenu>
+                    
+
+                    Endereço Curriculo Lattes: <h:outputText value="#{controllerServidor.servidor.end_curriculo_lattes}" />
+                    DDD: <h:outputText value="#{controllerServidor.servidor.ddd}" />
+                    Numero do Telefone: <h:outputText value="#{controllerServidor.servidor.numero_telefone}" />
+                    Ramal: <h:outputText value="#{controllerServidor.servidor.ramal}" />
+                    Estado Civil: <p:selectOneMenu value="#{controllerServidor.servidor.estado_civil}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Solteiro" itemValue="solteiro" />
+                        <f:selectItem itemLabel="Casado" itemValue="casado" />
+                        <f:selectItem itemLabel="Divociado" itemValue="divociado" />
+                        <f:selectItem itemLabel="Separado Judicialmente" itemValue="Separado Judicialmente" />
+                        <f:selectItem itemLabel="Viúvo" itemValue="viúvo" />
+                        <f:selectItem itemLabel="Não declarado" itemValue="N/D" />
+                    </p:selectOneMenu>
+
+                    Filiação: <p:selectOneMenu value="#{controllerServidor.servidor.filiacao}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sim" itemValue="true" />
+                        <f:selectItem itemLabel="Não" itemValue="false" />
+
+                    </p:selectOneMenu>
+                    Nome da Mãe:* <h:outputText value="#{controllerServidor.servidor.nome_mae}" />
+                    Nome do Pai: <h:outputText value="#{controllerServidor.servidor.nome_pai}" />
+                    Matricula Siape:<h:outputText value="#{controllerServidor.servidor.matricula_siape}"/>
+                    
+
+                    Cargo:*<h:outputText value="#{controllerServidor.servidor.cargo}"/>
+                    
+
+                    Mandato da Função:*<h:outputText value="#{controllerServidor.servidor.mandato_funcao}"/>
+                   
+
+                    Data de Inicio:*<p:calendar value="#{controllerServidor.servidor.data_inicio}">
+                    </p:calendar>
+
+                    Data de Terminio:<p:calendar value="#{controllerServidor.servidor.data_termino}">
+                    </p:calendar>
+
+                    Unidade de Ensino:*<h:outputText value="#{controllerServidor.servidor.unidade_ensino}"/>
+                  
+
+                    Regime Juridico:*<h:outputText value="#{controllerServidor.servidor.regime_juridico}"/>
+                    
+
+                    Situação:*<h:outputText value="#{controllerServidor.servidor.situacao}"/>
+                   
+
+                    Data de Admissão:<p:calendar value="#{controllerServidor.servidor.data_admissao}">
+                    </p:calendar>
+
+                    Banco:*<h:outputText value="#{controllerServidor.servidor.banco}"/>
+                    
+
+                    Agencia:*<h:outputText value="#{controllerServidor.servidor.agencia}"/>
+                    
+
+                    Conta:*<h:outputText value="#{controllerServidor.servidor.conta}"/>
+                    
+
+                    Classe:*<h:outputText value="#{controllerServidor.servidor.classe}"/>
+                   
+
+                    Nivel funcional:*<h:outputText value="#{controllerServidor.servidor.nivel_funcional}"/>
+                 
+
+                    Area de Conhecimento:<h:outputText value="#{controllerServidor.servidor.area_conhecimento}"/>
+                    
+                        
+                    Regime de Trabalho:<h:outputText value="#{controllerServidor.servidor.regime_trabalho}"/>
+                   
+
+                    Classificação:<h:outputText value="#{controllerServidor.servidor.classificacao}"/>
+                  
+
+                    Tipo do ato de autorização:<h:outputText value="#{controllerServidor.servidor.ato_autorizativo_tipo}"/>
+               
+
+                    Numero:<h:outputText value="#{controllerServidor.servidor.numero}"/>
+                
+
+                    Data de Expedição:<p:calendar value="#{controllerServidor.servidor.data_expedicao}">
+                    </p:calendar>
+
+                    Data do Diario Oficial:<p:calendar value="#{controllerServidor.servidor.data_diario_oficial}">
+                    </p:calendar>
+
+                    Orgao de origem da Matricula:<h:outputText value="#{controllerServidor.servidor.orgao_origem_matricula}"/>
+                    
+
+                    Orgão de Origem:<h:outputText value="#{controllerServidor.servidor.orgao_origem}"/>
+                    
+                        
+                    Orgão de origem do Cargo:<h:outputText value="#{controllerServidor.servidor.orgao_origem_cargo}"/>
+                    
+
+                    Servidor Rede:<p:selectOneMenu value="#{controllerServidor.servidor.servidor_rede}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sim" itemValue="true" />
+                        <f:selectItem itemLabel="Não" itemValue="false" />
+
+                    </p:selectOneMenu>
+
+                    Carga Horaria Semanal:<h:outputText value="#{controllerServidor.servidor.carga_horaria_semanal}"/>
+                    
+                    Zona de Procedência:* <p:selectOneMenu value="#{controllerServidor.servidor.zona_procedencia}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Urbana" itemValue="Ubarna" />
+                        <f:selectItem itemLabel="Rural" itemValue="Rural" />
+                    </p:selectOneMenu>
+                    CEP:* <h:outputText value="#{controllerServidor.servidor.cep}" />
+                    Logradouro:* <h:outputText value="#{controllerServidor.servidor.logradouro}" />
+                    Numero:* <h:outputText value="#{controllerServidor.servidor.numero_lote}" />
+                    Complemento: <h:outputText value="#{controllerServidor.servidor.complemento}" />
+                    Bairro:* <h:outputText value="#{controllerServidor.servidor.bairro}" />
+                    Cidade:* <h:outputText value="#{controllerServidor.servidor.cidade}" />
+                    UF:* <h:outputText value="#{controllerServidor.servidor.uf}" />
+                    CPF:*<h:outputText value="#{controllerServidor.servidor.cpf}"/>
+                    
+
+                    RG: <h:outputText value="#{controllerServidor.servidor.rg_numero}" />
+                    Orgão Exepedidor: <h:outputText value="#{controllerServidor.servidor.rg_expedidor}" />
+                    Data da Expedição: <p:calendar value="#{controllerServidor.servidor.rg_data_expedicao}" />   
+                    Cerdidão de Nascimento (Número): <h:outputText value="#{controllerServidor.servidor.cnasc_numero}" />
+                    Cerdidão de Nascimento (Livro/Folha): <h:outputText value="#{controllerServidor.servidor.cnasc_folha}" />
+                    Cerdidão de Nascimento (Cartório): <h:outputText value="#{controllerServidor.servidor.cnasc_cartorio}" />
+                    Cerdidão de Nascimento (Data da Expedição): <p:calendar value="#{controllerServidor.servidor.cnasc_data_expedicao}" />
+                    Carteira de Trabalho (Número): <h:outputText value="#{controllerServidor.servidor.ctps_numero}" />
+                    Carteira de Trabalho (Série): <h:outputText value="#{controllerServidor.servidor.ctps_serie}" />
+                    Carteira de Trabalho (PIS/PASEP): <h:outputText value="#{controllerServidor.servidor.pis_pasep}" />
+                    Carteira de Habilitação (Número): <h:outputText value="#{controllerServidor.servidor.chabilitacao_numero}" />
+                    Carteira de Habilitação (Data Expedeição): <p:calendar value="#{controllerServidor.servidor.chabilitacao_data_expedicao}" />
+                    Carteira de Habilitação (Data Validade): <p:calendar value="#{controllerServidor.servidor.chabilitacao_data_validade}" />
+                    Documento Militar (Tipo): <h:outputText value="#{controllerServidor.servidor.dmilitar_tipo}" />
+                    Documento Militar (Número): <h:outputText value="#{controllerServidor.servidor.dmilitar_numero}" />
+                    Documento Militar (Região Militar): <h:outputText value="#{controllerServidor.servidor.dmilitar_regiao}" />
+                    Título de Eleitor (Número): <h:outputText value="#{controllerServidor.servidor.teleitor_numero}" />
+                    Título de Eleitor (Zona/Seção): <h:outputText value="#{controllerServidor.servidor.teleitor_zona}" />
+                    Título de Eleitor (UF): <h:outputText value="#{controllerServidor.servidor.teleitor_uf}" />
+                    Título de Eleitor (Data Exp.): <p:calendar value="#{controllerServidor.servidor.teleitor_data_expedicao}" />
+
+
+                </h:panelGrid>
+
+                <p:commandButton value="Cadastrar" update="growl" 
+                                 actionListener="#{controllerServidor.salvar()}"/>
+
+            </p:panel>
+        </p:tab>
+
+    </p:wizard>
+
         </h:form>
+
+
+
     </h:body>
 </html>
+
