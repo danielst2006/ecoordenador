@@ -5,8 +5,15 @@
                 xmlns:p="http://primefaces.org/ui">
     <f:view contentType="text/html">
         <h:head>
+            <style type="text/css">
+                .ui-widget {
+                    font-size: 80%;
+                }
+                .ui-widget input {
+                    font-size: 120%;
+                }
+            </style>
             <title>
-                <ui:insert name="title">Repasse interno</ui:insert>
             </title>
             <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
         </h:head>
@@ -27,6 +34,8 @@
                                 <p:password id="j_password" size="18" style="width: 180px;"/>
                         </h:panelGrid>
                         
+                        <h:link value="Ainda não é cadastrado?" outcome="cadastro"/>
+                        <br/>
                         <h:commandButton value="Entrar" style="margin-top: 15px;"/>
                         <h:commandButton value="sair" onclick="self.close()"/>
                     </form>
