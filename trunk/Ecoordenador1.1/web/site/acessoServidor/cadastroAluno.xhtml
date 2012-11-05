@@ -64,7 +64,6 @@ and open the template in the editor.
                         <f:selectItem itemLabel="Não declarado" itemValue="N/D" />
                     </p:selectOneMenu>
                     Números de Filhos: <p:inputText value="#{controllerAluno.aluno.numero_filhos}" />
-                    E-mail: <p:inputText value="#{controllerAluno.aluno.email}" />
                     Endereço Curriculo Lattes: <p:inputText value="#{controllerAluno.aluno.end_curriculo_lattes}" />
                     DDD: <p:inputText value="#{controllerAluno.aluno.ddd}" />
                     Numero do Telefone: <p:inputText value="#{controllerAluno.aluno.numero_telefone}" />
@@ -116,7 +115,12 @@ and open the template in the editor.
                 <h:messages errorClass="error"/>
 
                 <h:panelGrid columns="2" columnClasses="label, value">
-                    
+
+                    Curso: <p:selectOneMenu value="#{controllerAluno.aluno.id_curso}" converter="#{CursoConverter}" style="width: 150px">
+                            <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                            <f:selectItems value="#{controllerCurso.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
+                    </p:selectOneMenu>
+                        
                     Grau de Formação:* <p:selectOneMenu value="#{controllerAluno.aluno.grau_formacao}" >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
@@ -193,7 +197,7 @@ and open the template in the editor.
 
                 <h:messages errorClass="error"/>
 
-                <h:panelGrid columns="2" columnClasses="label, value">
+                <h:panelGrid columns="4" columnClasses="label, value">
 
                     CPF: <p:inputText value="#{controllerAluno.aluno.cpf}"  />
                     RG: <p:inputText value="#{controllerAluno.aluno.rg_numero}" />
@@ -322,12 +326,6 @@ and open the template in the editor.
                     Local de Trabalho: <h:outputText value="#{controllerAluno.aluno.local_trabalho}" />
                     Telefone do Trabalho: <h:outputText value="#{controllerAluno.aluno.telefone_trabalho}" />
                     Profissão: <h:outputText value="#{controllerAluno.aluno.profissao}" />
-
-
-
-
-
-
 
                 </h:panelGrid>
 

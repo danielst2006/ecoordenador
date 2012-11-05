@@ -2,12 +2,14 @@ package mb;
 
 import beans.Curso;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.FlowEvent;
 import org.primefaces.model.StreamedContent;
 import rn.CursoRN;
 
@@ -26,6 +28,9 @@ public class controllerCurso {
     private DataModel listaDataModel;
     
     private StreamedContent file;
+
+    private static Logger logger = Logger.getLogger(Curso.class.getName());
+    private boolean skip;
     
     public void limpar() {
         setCurso(new Curso());
@@ -85,5 +90,30 @@ public class controllerCurso {
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
+    
+    
+    public boolean isSkip() {
+        return skip;
+    }
+
+    public void setSkip(boolean skip) {
+        this.skip = skip;
+    }
+    
+    
+        public String onFlowProcess(FlowEvent event) {
+		logger.info("Current wizard step:" + event.getOldStep());
+		logger.info("Next step:" + event.getNewStep());
+		
+		if(skip) {
+			skip = false;	//reset in case user goes back
+			return "confirm";
+		}
+		else {
+			return event.getNewStep();
+		}
+	}
+    
+    
 
 }

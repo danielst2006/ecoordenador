@@ -54,10 +54,7 @@ public abstract class Pessoa implements Serializable{
 	 
         @Column(name="numero_filhos")
 	private int numero_filhos;
-	 
-        @Column(name="email",length=40)
-	private String email;
-	 
+	        	 
         @Column(name="end_curriculo_lattes",length=50)
 	private String end_curriculo_lattes;
 	 
@@ -323,15 +320,8 @@ public abstract class Pessoa implements Serializable{
         this.dmilitar_tipo = dmilitar_tipo;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getEnd_curriculo_lattes() {
+    
+   public String getEnd_curriculo_lattes() {
         return end_curriculo_lattes;
     }
 
