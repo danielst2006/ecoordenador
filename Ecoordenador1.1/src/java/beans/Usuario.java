@@ -28,14 +28,14 @@ public class Usuario implements Serializable {
         @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="idgen")
         private Integer id;
     
-        @Column(name="login",length=20)
+        @Column(name="login",length=20,unique=true)
         private String login;
         
         @Column(name="senha",length=35)
         private String senha;
         
         @Column(name="ativo")
-        private Boolean ativo;
+        private Boolean ativo=false;
         
         @Column(name="email",length=65)
         private String email;
@@ -44,7 +44,7 @@ public class Usuario implements Serializable {
         private String apelido;
         
         @OneToMany(mappedBy="id_usuario",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+        @Cascade(org.hibernate.annotations.CascadeType.ALL)
         Set<UsuarioPermissao> usu_perm = new HashSet<UsuarioPermissao>();
         
         @OneToOne(mappedBy="usuario_id",fetch=FetchType.EAGER)

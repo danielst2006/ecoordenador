@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <title>
+                <ui:insert name="title">Repasse interno</ui:insert>
+            </title>
+            <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+        </h:head>
+        <h:body style="background-image:url(resources/images/wall.jpg);background-position: 50% 0%;background-repeat: no-repeat">    
+            
+            <p:dialog id="dialog" visible="true" closable="false" draggable="true" resizable="false" width="350" widgetVar="dlg"
+                      header="Ecoordenador - cadastro">
+                <center>
+                    <p:ajaxStatus style="position:fixed;right:5px;">  
+                        <f:facet name="start">
+                            <h:graphicImage value="/resources/images/ajax-loader.gif" />
+                        </f:facet>
+                        <f:facet name="complete">
+                            <h:outputText value="" />
+                        </f:facet>
+                    </p:ajaxStatus>
+                    <h:form>
+                        <h:panelGrid columns="2" cellpadding="3" style="font-weight: bold;">
+                                Usuário: *
+                                <p:inputText size="20" value="#{controllerUsuario.usuario.login}" style="width: 180px;"/>
+
+                                Senha: *
+                                <p:password size="18" value="#{controllerUsuario.usuario.senha}" style="width: 180px;"/>
+                                
+                                Email: *
+                                <p:inputText value="#{controllerUsuario.usuario.email}" style="width: 180px;"/>
+                                
+                        </h:panelGrid>
+                        <p:commandButton value="Cadastrar" actionListener="#{controllerUsuario.salvarUsuario()}" ajax="true" update="@form"
+                                         style="margin-top: 15px;"/>
+                        <p:commandButton value="voltar" onclick="history.back()"/>
+                    </h:form>
+                    
+                </center>
+            </p:dialog>
+ 
+        </h:body>
+    </f:view>
+</html>
