@@ -1,14 +1,18 @@
 package mb;
 
-import beans.Aluno;
 import beans.Usuario;
 import beans.UsuarioPermissao;
+import java.io.IOException;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.servlet.http.HttpServletRequest;
 import rn.AlunoRN;
 import rn.UsuarioPermissaoRN;
 import rn.UsuarioRN;
@@ -37,6 +41,8 @@ public class controllerUsuario {
     
     private String email;
     
+    private Integer id;
+    
     public void limpar() {
         setUsuario(new Usuario());
         setPermissao(new UsuarioPermissao());
@@ -64,6 +70,7 @@ public class controllerUsuario {
         rn.salvar(this.usuario);
         rn2.salvar(this.permissao);
         this.email = this.usuario.getEmail();
+        this.id = this.usuario.getId();
         limpar();
         enviarEmail();
         return "Salvo";
@@ -102,7 +109,35 @@ public class controllerUsuario {
     ////////////////////////////////////////////////////////////////////////////
     //
     public void enviarEmail() {
-        Email.enviaEmail("Ecoordenador", this.email,"Ecoordenador - Confirmação de cadastro", "Não responda.");
+        HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        StringBuffer html = request.getRequestURL();
+        String msg="Bem vindo, recebemos uma solicitação de cadastro vindo deste email, caso não seja você, desconsidere.\n"
+                + "Este email é enviado de forma automática, por favor não responda.\n"
+                + "Link de ativação: "+html+"?id="+this.id;
+        Email.enviaEmail("Ecoordenador", this.email,"Ecoordenador - Confirmação de cadastro", msg);
+    }
+    
+    public void ativarConta() throws IOException{
+        UsuarioRN rn = new UsuarioRN();
+        this.usuario = rn.carregar(this.usuario.getId());
+        this.usuario.setAtivo(Boolean.TRUE);
+        rn.atualizar(this.usuario);
+        limpar();
+        //redirecionando
+        FacesContext faces = FacesContext.getCurrentInstance();
+        ExternalContext exContext = faces.getExternalContext();
+        exContext.redirect("index.jsf");
+    }
+    
+    public Boolean ativado() {
+        UsuarioRN rn = new UsuarioRN();
+        this.usuario = rn.carregar(this.usuario.getId());
+        boolean valor = this.usuario.getAtivo();
+        if (valor==true) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
@@ -132,5 +167,13 @@ public class controllerUsuario {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
 }
