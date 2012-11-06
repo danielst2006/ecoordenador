@@ -143,11 +143,7 @@ public class controllerUsuario {
         UsuarioRN rn = new UsuarioRN();
         this.usuario = rn.carregar(this.usuario.getId());
         boolean valor = this.usuario.getAtivo();
-        if (valor==true) {
-            return true;
-        } else {
-            return false;
-        }
+        return valor;
     }
 
 

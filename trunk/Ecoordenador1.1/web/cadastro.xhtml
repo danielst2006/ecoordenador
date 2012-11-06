@@ -31,16 +31,20 @@
                     <h:form id="formCadastro">
                         <h:panelGrid columns="2" cellpadding="3" style="font-weight: bold;">
                                 Usuário: *
-                                <p:inputText size="20" value="#{controllerUsuario.usuario.login}" style="width: 180px;"/>
+                                <p:inputText size="20" value="#{controllerUsuario.usuario.login}" style="width: 180px;" required="true"
+                                             requiredMessage="campo usuário é obrigatório."/>
 
                                 Senha: *
-                                <p:password size="18" value="#{controllerUsuario.usuario.senha}" style="width: 180px;"/>
+                                <p:password size="18" value="#{controllerUsuario.usuario.senha}" style="width: 180px;" required="true"
+                                            requiredMessage="campo senha é obrigatório."/>
                                 
                                 Senha: *
-                                <p:password size="18" value="#{controllerUsuario.usuario.senha2}" style="width: 180px;"/>
+                                <p:password size="18" value="#{controllerUsuario.usuario.senha2}" style="width: 180px;" required="true"
+                                            requiredMessage="confirmação de senha obrigatório"/>
                                 
                                 Email: *
-                                <p:inputText value="#{controllerUsuario.usuario.email}" style="width: 180px;"/>
+                                <p:inputText value="#{controllerUsuario.usuario.email}" style="width: 180px;" required="true"
+                                             requiredMessage="campo email obrigatório."/>
                                 
                         </h:panelGrid>
                         <p:commandButton value="Cadastrar" actionListener="#{controllerUsuario.salvarUsuario()}" ajax="true" 
