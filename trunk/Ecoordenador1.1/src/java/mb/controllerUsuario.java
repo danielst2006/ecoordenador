@@ -3,6 +3,7 @@ package mb;
 import beans.Usuario;
 import beans.UsuarioPermissao;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -68,6 +69,7 @@ public class controllerUsuario {
         if (this.usuario.getSenha().equals(this.usuario.getSenha2())) {
             getPermissao().setId_usuario(this.usuario);
             getPermissao().setPermissao("ROLE_ALUNO");
+            getUsuario().setData_cadastro(new Date());
             rn.salvar(this.usuario);
             rn2.salvar(this.permissao);
             this.email = this.usuario.getEmail();
