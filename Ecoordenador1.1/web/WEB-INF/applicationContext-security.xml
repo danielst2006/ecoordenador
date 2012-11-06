@@ -11,9 +11,9 @@
         http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
 
     <http>
-        <intercept-url pattern="/site/**" access="ROLE_ADMINISTRADOR" />
-        <intercept-url pattern="/site/acessoServidor/**" access="ROLE_SERVIDOR" />
-        <intercept-url pattern="/site/acessoAluno/**" access="ROLE_ALUNO" />
+        <intercept-url pattern="/site/login/**" access="ROLE_ADMINISTRADOR,ROLE_ALUNO,ROLE_SERVIDOR" />
+        <intercept-url pattern="/site/acessoServidor/**" access="ROLE_SERVIDOR,ROLE_ADMINISTRADOR" />
+        <intercept-url pattern="/site/acessoAluno/**" access="ROLE_ALUNO,ROLE_ADMINISTRADOR" />
     
         <form-login login-page="/index.jsf" always-use-default-target="true" 
             default-target-url="/site/login/principal.jsf"
