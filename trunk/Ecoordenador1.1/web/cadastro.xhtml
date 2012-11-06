@@ -15,6 +15,7 @@
             <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
         </h:head>
         <h:body style="background-image:url(resources/images/wall.jpg);background-position: 50% 0%;background-repeat: no-repeat">
+            <p:growl id="growl" showDetail="true" life="6000"/>
             <p:ajaxStatus style="position:fixed;right:5px;">  
                 <f:facet name="start">
                     <h:graphicImage value="/resources/images/ajax-loader.gif" />
@@ -35,12 +36,15 @@
                                 Senha: *
                                 <p:password size="18" value="#{controllerUsuario.usuario.senha}" style="width: 180px;"/>
                                 
+                                Senha: *
+                                <p:password size="18" value="#{controllerUsuario.usuario.senha2}" style="width: 180px;"/>
+                                
                                 Email: *
                                 <p:inputText value="#{controllerUsuario.usuario.email}" style="width: 180px;"/>
                                 
                         </h:panelGrid>
-                        <p:commandButton value="Cadastrar" actionListener="#{controllerUsuario.salvarUsuario()}" ajax="true" update=":formCadastro"
-                                         style="margin-top: 15px;"/>
+                        <p:commandButton value="Cadastrar" actionListener="#{controllerUsuario.salvarUsuario()}" ajax="true" 
+                                         update=":formCadastro,:growl" style="margin-top: 15px;"/>
                         <p:commandButton value="voltar" onclick="history.back()"/>
                     </h:form>
                     

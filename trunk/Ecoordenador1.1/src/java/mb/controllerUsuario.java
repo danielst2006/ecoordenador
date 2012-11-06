@@ -65,15 +65,21 @@ public class controllerUsuario {
     public String salvarUsuario(){
         UsuarioRN rn = new UsuarioRN();
         UsuarioPermissaoRN rn2 = new UsuarioPermissaoRN();
-        getPermissao().setId_usuario(this.usuario);
-        getPermissao().setPermissao("ROLE_ALUNO");
-        rn.salvar(this.usuario);
-        rn2.salvar(this.permissao);
-        this.email = this.usuario.getEmail();
-        this.id = this.usuario.getId();
-        limpar();
-        enviarEmail();
-        return "Salvo";
+        if (this.usuario.getSenha().equals(this.usuario.getSenha2())) {
+            getPermissao().setId_usuario(this.usuario);
+            getPermissao().setPermissao("ROLE_ALUNO");
+            rn.salvar(this.usuario);
+            rn2.salvar(this.permissao);
+            this.email = this.usuario.getEmail();
+            this.id = this.usuario.getId();
+            limpar();
+            enviarEmail();
+            return "Salvo";
+        } else {
+            FacesContext context = FacesContext.getCurrentInstance();  
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"ERRO", "Senhas devem ser iguais."));
+            return "Erro";
+        }
     }
     
     public String removerUsuario(){
