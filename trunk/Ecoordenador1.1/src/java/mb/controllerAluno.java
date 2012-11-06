@@ -10,6 +10,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import org.primefaces.event.FlowEvent;
 import rn.AlunoRN;
+import util.CepWebService;
 
 
 @ManagedBean(name="controllerAluno")
@@ -33,6 +34,7 @@ public class controllerAluno {
         setAluno(new Aluno());
     }
 
+    private String logradouro_tipo;
 
     ////////////////////////////////////////////////////////////////////////////   
     
@@ -46,7 +48,7 @@ public class controllerAluno {
         AlunoRN rn = new AlunoRN();
         this.lista = rn.listar();
         return this.lista;
-    }    
+    }
        
     public String salvar(){
         AlunoRN rn = new AlunoRN();
@@ -75,6 +77,19 @@ public class controllerAluno {
         this.aluno = (Aluno)this.listaDataModel.getRowData();
     }
 
+    public void buscarCep(){
+        CepWebService cwc = new CepWebService(this.aluno.getCep().toString());
+        if (cwc.getResultado() == 1) {
+            setLogradouro_tipo(cwc.getTipoLogradouro());
+            this.aluno.setLogradouro(getLogradouro_tipo()+" "+cwc.getLogradouro());
+            this.aluno.setUf(cwc.getEstado());
+            this.aluno.setCidade(cwc.getCidade());
+            this.aluno.setBairro(cwc.getBairro());
+        } else {
+
+	}
+    }
+    
     ////////////////////////////////////////////////////////////////////////////
     //SETTERS E GETTERS
 
@@ -89,29 +104,34 @@ public class controllerAluno {
     }
     
     
-    	public boolean isSkip() {
-		return skip;
-	}
+    public boolean isSkip() {
+        return skip;
+    }
 
-	public void setSkip(boolean skip) {
-		this.skip = skip;
-	}
+    public String getLogradouro_tipo() {
+        return logradouro_tipo;
+    }
 
-    
-    
-    
+    public void setLogradouro_tipo(String logradouro_tipo) {
+        this.logradouro_tipo = logradouro_tipo;
+    }
+
+    public void setSkip(boolean skip) {
+        this.skip = skip;
+    }
+
     public String onFlowProcess(FlowEvent event) {
-		logger.info("Current wizard step:" + event.getOldStep());
-		logger.info("Next step:" + event.getNewStep());
-		
-		if(skip) {
-			skip = false;	//reset in case user goes back
-			return "confirm";
-		}
-		else {
-			return event.getNewStep();
-		}
-	}
+        logger.info("Current wizard step:" + event.getOldStep());
+        logger.info("Next step:" + event.getNewStep());
+
+        if(skip) {
+            skip = false;	//reset in case user goes back
+            return "confirm";
+        }
+        else {
+            return event.getNewStep();
+        }
+    }
     
     
     

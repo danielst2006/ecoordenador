@@ -31,7 +31,7 @@ public class Aluno extends Pessoa {
 	private Double renda_familiar;
 	 
         @Column(name="tamanho_familia")
-	private int tamanho_familia;
+	private Integer tamanho_familia;
 	 
         @Column(name="trabalha")
 	private Boolean trabalha=false;
@@ -40,7 +40,7 @@ public class Aluno extends Pessoa {
 	private String local_trabalho;
 	 
         @Column(name="telefone_trabalho")
-	private int telefone_trabalho;
+	private Integer telefone_trabalho;
 	 
         @Column(name="profissao",length=45)
 	private String profissao;
@@ -49,7 +49,7 @@ public class Aluno extends Pessoa {
 	private String escola_formacao_anterior;
 	 
         @Column(name="ano_formacao_anterior",nullable=false)
-	private int ano_formacao_anterior;
+	private Integer ano_formacao_anterior;
 	 
         @Column(name="tipo_escola_anterior",length=15)
 	private String tipo_escola_anterior;
@@ -99,11 +99,11 @@ public class Aluno extends Pessoa {
         this.ent_atv = ent_atv;
     }
 
-    public int getAno_formacao_anterior() {
+    public Integer getAno_formacao_anterior() {
         return ano_formacao_anterior;
     }
 
-    public void setAno_formacao_anterior(int ano_formacao_anterior) {
+    public void setAno_formacao_anterior(Integer ano_formacao_anterior) {
         this.ano_formacao_anterior = ano_formacao_anterior;
     }
 
@@ -187,19 +187,19 @@ public class Aluno extends Pessoa {
         this.renda_familiar = renda_familiar;
     }
 
-    public int getTamanho_familia() {
+    public Integer getTamanho_familia() {
         return tamanho_familia;
     }
 
-    public void setTamanho_familia(int tamanho_familia) {
+    public void setTamanho_familia(Integer tamanho_familia) {
         this.tamanho_familia = tamanho_familia;
     }
 
-    public int getTelefone_trabalho() {
+    public Integer getTelefone_trabalho() {
         return telefone_trabalho;
     }
 
-    public void setTelefone_trabalho(int telefone_trabalho) {
+    public void setTelefone_trabalho(Integer telefone_trabalho) {
         this.telefone_trabalho = telefone_trabalho;
     }
 

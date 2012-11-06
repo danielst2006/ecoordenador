@@ -76,7 +76,7 @@ public class Servidor extends Pessoa {
 	private String ato_autorizativo_tipo;
 	 
         @Column(name="numero", insertable=false, updatable=false)
-	private int numero;
+	private Integer numero;
 	 
         @Column(name="data_expedicao")
         @Temporal(javax.persistence.TemporalType.DATE)
@@ -99,7 +99,7 @@ public class Servidor extends Pessoa {
 	private Boolean servidor_rede=true;
 	 
         @Column(name="carga_horaria_semanal")
-	private int carga_horaria_semanal;
+	private Integer carga_horaria_semanal;
         
         @OneToOne
         @JoinColumn(name="usuario_id")
@@ -169,11 +169,11 @@ public class Servidor extends Pessoa {
         this.banco = banco;
     }
 
-    public int getCarga_horaria_semanal() {
+    public Integer getCarga_horaria_semanal() {
         return carga_horaria_semanal;
     }
 
-    public void setCarga_horaria_semanal(int carga_horaria_semanal) {
+    public void setCarga_horaria_semanal(Integer carga_horaria_semanal) {
         this.carga_horaria_semanal = carga_horaria_semanal;
     }
 
@@ -277,11 +277,11 @@ public class Servidor extends Pessoa {
         return orgao_origem;
     }
 
-    public int getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 

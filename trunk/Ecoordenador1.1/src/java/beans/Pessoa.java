@@ -53,19 +53,19 @@ public abstract class Pessoa implements Serializable{
 	private String estado_civil;
 	 
         @Column(name="numero_filhos")
-	private int numero_filhos;
+	private Integer numero_filhos;
 	        	 
         @Column(name="end_curriculo_lattes",length=50)
 	private String end_curriculo_lattes;
 	 
         @Column(name="ddd")
-	private int ddd;
+	private Integer ddd;
 	 
         @Column(name="numero_telefone")
-	private int numero_telefone;
+	private Integer numero_telefone;
 	 
         @Column(name="ramal")
-	private int ramal;
+	private Integer ramal;
 	 
         @Column(name="filiacao")
 	private Boolean filiacao=true;
@@ -80,13 +80,13 @@ public abstract class Pessoa implements Serializable{
 	private String zona_procedencia;
 	 
         @Column(name="cep",nullable=false)
-	private int cep;
+	private Integer cep;
 	 
         @Column(name="logradouro",length=40,nullable=false)
 	private String logradouro;
 	 
         @Column(name="numero",nullable=false)
-	private int numero_lote;
+	private Integer numero_lote;
 	 
         @Column(name="complemento",length=100)
 	private String complemento;
@@ -114,10 +114,10 @@ public abstract class Pessoa implements Serializable{
 	private Date rg_data_expedicao;
 	
         @Column(name="cnasc_numero")
-	private int cnasc_numero;
+	private Integer cnasc_numero;
 	 
         @Column(name="cnasc_folha")
-	private int cnasc_folha;
+	private Integer cnasc_folha;
 	 
         @Column(name="cnasc_cartorio",length=80)
 	private String cnasc_cartorio;
@@ -127,16 +127,16 @@ public abstract class Pessoa implements Serializable{
 	private Date cnasc_data_expedicao;
 	 
         @Column(name="ctps_numero")
-	private int ctps_numero;
+	private Integer ctps_numero;
 	 
         @Column(name="ctps_serie")
-	private int ctps_serie;
+	private Integer ctps_serie;
 	 
         @Column(name="pis_pasep")
-	private int pis_pasep;
+	private Integer pis_pasep;
 	 
         @Column(name="chabilitacao_numero")
-	private int chabilitacao_numero;
+	private Integer chabilitacao_numero;
 	 
         @Column(name="chabilitacao_data_expedicao")
         @Temporal(javax.persistence.TemporalType.DATE)
@@ -150,16 +150,16 @@ public abstract class Pessoa implements Serializable{
 	private String dmilitar_tipo;
 	 
         @Column(name="dmilitar_numero")
-	private int dmilitar_numero;
+	private Integer dmilitar_numero;
 	 
         @Column(name="dmilitar_regiao",length=20)
 	private String dmilitar_regiao;
 	 
         @Column(name="teleitor_numero")
-	private int teleitor_numero;
+	private Integer teleitor_numero;
 	 
         @Column(name="teleitor_zona")
-	private int teleitor_zona;
+	private Integer teleitor_zona;
 	 
         @Column(name="teleitor_uf",length=2)
 	private String teleitor_uf;
@@ -176,11 +176,11 @@ public abstract class Pessoa implements Serializable{
         this.bairro = bairro;
     }
 
-    public int getCep() {
+    public Integer getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(Integer cep) {
         this.cep = cep;
     }
 
@@ -200,11 +200,11 @@ public abstract class Pessoa implements Serializable{
         this.chabilitacao_data_validade = chabilitacao_data_validade;
     }
 
-    public int getChabilitacao_numero() {
+    public Integer getChabilitacao_numero() {
         return chabilitacao_numero;
     }
 
-    public void setChabilitacao_numero(int chabilitacao_numero) {
+    public void setChabilitacao_numero(Integer chabilitacao_numero) {
         this.chabilitacao_numero = chabilitacao_numero;
     }
 
@@ -232,19 +232,19 @@ public abstract class Pessoa implements Serializable{
         this.cnasc_data_expedicao = cnasc_data_expedicao;
     }
 
-    public int getCnasc_folha() {
+    public Integer getCnasc_folha() {
         return cnasc_folha;
     }
 
-    public void setCnasc_folha(int cnasc_folha) {
+    public void setCnasc_folha(Integer cnasc_folha) {
         this.cnasc_folha = cnasc_folha;
     }
 
-    public int getCnasc_numero() {
+    public Integer getCnasc_numero() {
         return cnasc_numero;
     }
 
-    public void setCnasc_numero(int cnasc_numero) {
+    public void setCnasc_numero(Integer cnasc_numero) {
         this.cnasc_numero = cnasc_numero;
     }
 
@@ -264,19 +264,19 @@ public abstract class Pessoa implements Serializable{
         this.cpf = cpf;
     }
 
-    public int getCtps_numero() {
+    public Integer getCtps_numero() {
         return ctps_numero;
     }
 
-    public void setCtps_numero(int ctps_numero) {
+    public void setCtps_numero(Integer ctps_numero) {
         this.ctps_numero = ctps_numero;
     }
 
-    public int getCtps_serie() {
+    public Integer getCtps_serie() {
         return ctps_serie;
     }
 
-    public void setCtps_serie(int ctps_serie) {
+    public void setCtps_serie(Integer ctps_serie) {
         this.ctps_serie = ctps_serie;
     }
 
@@ -288,19 +288,19 @@ public abstract class Pessoa implements Serializable{
         this.data_nascimento = data_nascimento;
     }
 
-    public int getDdd() {
+    public Integer getDdd() {
         return ddd;
     }
 
-    public void setDdd(int ddd) {
+    public void setDdd(Integer ddd) {
         this.ddd = ddd;
     }
 
-    public int getDmilitar_numero() {
+    public Integer getDmilitar_numero() {
         return dmilitar_numero;
     }
 
-    public void setDmilitar_numero(int dmilitar_numero) {
+    public void setDmilitar_numero(Integer dmilitar_numero) {
         this.dmilitar_numero = dmilitar_numero;
     }
 
@@ -449,43 +449,43 @@ public abstract class Pessoa implements Serializable{
         this.nome_pai = nome_pai;
     }
 
-    public int getNumero_lote() {
+    public Integer getNumero_lote() {
         return numero_lote;
     }
 
-    public void setNumero_lote(int numero_lote) {
+    public void setNumero_lote(Integer numero_lote) {
         this.numero_lote = numero_lote;
     }
 
-    public int getNumero_filhos() {
+    public Integer getNumero_filhos() {
         return numero_filhos;
     }
 
-    public void setNumero_filhos(int numero_filhos) {
+    public void setNumero_filhos(Integer numero_filhos) {
         this.numero_filhos = numero_filhos;
     }
 
-    public int getNumero_telefone() {
+    public Integer getNumero_telefone() {
         return numero_telefone;
     }
 
-    public void setNumero_telefone(int numero_telefone) {
+    public void setNumero_telefone(Integer numero_telefone) {
         this.numero_telefone = numero_telefone;
     }
 
-    public int getPis_pasep() {
+    public Integer getPis_pasep() {
         return pis_pasep;
     }
 
-    public void setPis_pasep(int pis_pasep) {
+    public void setPis_pasep(Integer pis_pasep) {
         this.pis_pasep = pis_pasep;
     }
 
-    public int getRamal() {
+    public Integer getRamal() {
         return ramal;
     }
 
-    public void setRamal(int ramal) {
+    public void setRamal(Integer ramal) {
         this.ramal = ramal;
     }
 
@@ -521,11 +521,11 @@ public abstract class Pessoa implements Serializable{
         this.teleitor_data_expedicao = teleitor_data_expedicao;
     }
 
-    public int getTeleitor_numero() {
+    public Integer getTeleitor_numero() {
         return teleitor_numero;
     }
 
-    public void setTeleitor_numero(int teleitor_numero) {
+    public void setTeleitor_numero(Integer teleitor_numero) {
         this.teleitor_numero = teleitor_numero;
     }
 
@@ -537,11 +537,11 @@ public abstract class Pessoa implements Serializable{
         this.teleitor_uf = teleitor_uf;
     }
 
-    public int getTeleitor_zona() {
+    public Integer getTeleitor_zona() {
         return teleitor_zona;
     }
 
-    public void setTeleitor_zona(int teleitor_zona) {
+    public void setTeleitor_zona(Integer teleitor_zona) {
         this.teleitor_zona = teleitor_zona;
     }
 
