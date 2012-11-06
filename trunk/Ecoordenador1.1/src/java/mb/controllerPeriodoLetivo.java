@@ -56,6 +56,17 @@ public class controllerPeriodoLetivo {
         limpar();
         return "Removido";
     }
+    
+        public String alterar() {
+        PeriodoLetivoRN rn = new PeriodoLetivoRN();
+        rn.atualizar(this.periodo);
+        limpar();
+        return "Alterado";
+    }
+    
+    public void prepararAlterar() {
+        this.periodo = (PeriodoLetivo)this.listaDataModel.getRowData();
+    }
   
 
     ////////////////////////////////////////////////////////////////////////////
