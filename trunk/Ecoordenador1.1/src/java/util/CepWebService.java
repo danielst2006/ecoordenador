@@ -50,9 +50,9 @@ public class CepWebService {
     }
 
     public Document getDocumento(URL url) throws DocumentException {
-            SAXReader reader = new SAXReader();
-            Document document = reader.read(url);
-            return document;
+        SAXReader reader = new SAXReader();
+        Document document = reader.read(url);
+        return document;
     }
 
     public String getBairro() {
