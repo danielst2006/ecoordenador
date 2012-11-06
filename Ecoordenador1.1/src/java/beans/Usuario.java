@@ -34,6 +34,9 @@ public class Usuario implements Serializable {
         @Column(name="senha",length=35)
         private String senha;
         
+        @Transient
+        private String senha2;
+        
         @Column(name="ativo")
         private Boolean ativo=false;
         
@@ -77,6 +80,14 @@ public class Usuario implements Serializable {
 
     public void setServidor(Servidor servidor) {
         this.servidor = servidor;
+    }
+
+    public String getSenha2() {
+        return senha2;
+    }
+
+    public void setSenha2(String senha2) {
+        this.senha2 = MD5(senha2);
     }
          
     public Aluno getAluno() {
