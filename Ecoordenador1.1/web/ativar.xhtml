@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <style type="text/css">
+                .ui-widget {
+                    font-size: 80%;
+                }
+            </style>
+            <title>
+            </title>
+            <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+        </h:head>
+        <h:body style="background-image:url(resources/images/wall.jpg);background-position: 50% 0%;background-repeat: no-repeat">
+            <p:ajaxStatus style="position:fixed;right:5px;">  
+                <f:facet name="start">
+                    <h:graphicImage value="/resources/images/ajax-loader.gif" />
+                </f:facet>
+                <f:facet name="complete">
+                    <h:outputText value="" />
+                </f:facet>
+            </p:ajaxStatus>
+            
+            <p:dialog id="dialog2" visible="true" closable="false" draggable="true" resizable="false" width="350" widgetVar="dlg2"
+                      header="Ecoordenador - ativação">
+                <center>
+                    <h:form id="formAtivar">
+                        <f:metadata>
+                            <f:viewParam name="id" value="#{controllerUsuario.usuario.id}" />
+                        </f:metadata>
+                        <h:outputText value="ID: #{controllerUsuario.usuario.id}" rendered="#{!controllerUsuario.ativado()}"/>
+                        <br/>
+                        <p:commandButton value="Ativar" actionListener="#{controllerUsuario.ativarConta()}" rendered="#{!controllerUsuario.ativado()}"
+                                         ajax="true" update=":formAtivar"/>
+                        <h:link value="Seu usuário já está ativado =)" outcome="index" rendered="#{controllerUsuario.ativado()}"/>
+                    </h:form>
+                </center>
+            </p:dialog>
+            
+
+ 
+        </h:body>
+    </f:view>
+</html>
