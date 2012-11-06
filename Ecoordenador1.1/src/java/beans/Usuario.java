@@ -5,6 +5,7 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
@@ -46,6 +47,10 @@ public class Usuario implements Serializable {
         @Column(name="apelido",length=20)
         private String apelido;
         
+        @Column(name="data_cadastro")
+        @Temporal(javax.persistence.TemporalType.DATE)
+        private Date data_cadastro;
+        
         @OneToMany(mappedBy="id_usuario",fetch=FetchType.LAZY)
         @Cascade(org.hibernate.annotations.CascadeType.ALL)
         Set<UsuarioPermissao> usu_perm = new HashSet<UsuarioPermissao>();
@@ -84,6 +89,14 @@ public class Usuario implements Serializable {
 
     public String getSenha2() {
         return senha2;
+    }
+
+    public Date getData_cadastro() {
+        return data_cadastro;
+    }
+
+    public void setData_cadastro(Date data_cadastro) {
+        this.data_cadastro = data_cadastro;
     }
 
     public void setSenha2(String senha2) {
