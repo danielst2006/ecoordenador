@@ -179,7 +179,9 @@ and open the template in the editor.
                             <f:selectItem itemLabel="Urbana" itemValue="Ubarna" />
                             <f:selectItem itemLabel="Rural" itemValue="Rural" />
                         </p:selectOneMenu>
-                        CEP:* <p:inputText value="#{controllerAluno.aluno.cep}" />
+                        <p:commandButton value="Buscar CEP" actionListener="#{controllerAluno.buscarCep()}" ajax="true" update="@form"/>
+                        <p:inputText value="#{controllerAluno.aluno.cep}" />
+                        
                         Logradouro:* <p:inputText value="#{controllerAluno.aluno.logradouro}" />
                         Numero:* <p:inputText value="#{controllerAluno.aluno.numero_lote}" />
                         Complemento: <p:inputText value="#{controllerAluno.aluno.complemento}" />
