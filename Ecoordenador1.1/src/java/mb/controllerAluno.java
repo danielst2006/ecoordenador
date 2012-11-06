@@ -86,7 +86,7 @@ public class controllerAluno {
             this.aluno.setCidade(cwc.getCidade());
             this.aluno.setBairro(cwc.getBairro());
         } else {
-
+            //erro
 	}
     }
     
