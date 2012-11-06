@@ -111,9 +111,11 @@ public class controllerUsuario {
     public void enviarEmail() {
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
         StringBuffer html = request.getRequestURL();
+        String url = html.toString();
+        url = url.replace("cadastro", "ativar");
         String msg="Bem vindo, recebemos uma solicitação de cadastro vindo deste email, caso não seja você, desconsidere.\n"
                 + "Este email é enviado de forma automática, por favor não responda.\n"
-                + "Link de ativação: "+html+"?id="+this.id;
+                + "Link de ativação: "+url+"?id="+this.id;
         Email.enviaEmail("Ecoordenador", this.email,"Ecoordenador - Confirmação de cadastro", msg);
     }
     
