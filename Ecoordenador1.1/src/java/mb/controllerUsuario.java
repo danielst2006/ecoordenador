@@ -14,6 +14,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import rn.AlunoRN;
 import rn.UsuarioPermissaoRN;
 import rn.UsuarioRN;
@@ -144,6 +146,18 @@ public class controllerUsuario {
         this.usuario = rn.carregar(this.usuario.getId());
         boolean valor = this.usuario.getAtivo();
         return valor;
+    }
+    
+    public String test1() {
+        ExternalContext fc = FacesContext.getCurrentInstance().getExternalContext();  
+        String login = fc.getRemoteUser();
+        
+        return login;
+    }
+    
+    public void test2(){
+        FacesContext context = FacesContext.getCurrentInstance();  
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Teste", test1()));
     }
 
 
