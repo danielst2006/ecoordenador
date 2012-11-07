@@ -49,12 +49,15 @@ public class controllerEntradaAtividade {
         return this.lista;
     }    
        
-    public String salvar(){
-        EntradaAtividadeRN rn = new EntradaAtividadeRN();
-        getEntradaAtv().setData_entrada(new Date());
-        rn.salvar(this.entradaAtv);
-        limpar();
-        return "Salvo";
+    public void salvar(){
+        try {
+            EntradaAtividadeRN rn = new EntradaAtividadeRN();
+            getEntradaAtv().setData_entrada(new Date());
+            rn.salvar(this.entradaAtv);
+            limpar();
+        } catch (Exception e) {
+            
+        }
     }
     
     public String remover(){
@@ -76,8 +79,7 @@ public class controllerEntradaAtividade {
         //intancia um novo objeto passando o id do antigo objeto
         EntradaAtividadeRN rn = new EntradaAtividadeRN();
         EntradaAtividade ent = rn.carregar(this.entradaAtv.getId());
-        //limpa o primeiro objeto, pois ele não pode contar dados, senão da pau hora de atulizar etc =)
-        //dae tem q fazer esse esquema bruto pro ajax o/
+        //limpa o primeiro objeto, pois ele não pode contar dados
         limpar();
         //faz o metodo de download
         this.file = new DefaultStreamedContent(new ByteArrayInputStream(ent.getAnexo()),"application/pdf","Certificado");

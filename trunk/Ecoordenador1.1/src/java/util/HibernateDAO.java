@@ -1,5 +1,8 @@
 package util;
+import beans.Aluno;
+import beans.Usuario;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -44,8 +47,17 @@ public class HibernateDAO<T> implements InterfaceHibernateDAO<T> {
     @Override
     public List<T> buscaPersonalizada(String atributo,String nomeBuscado) {
         return this.sessao.createCriteria(classe)
-                .add(Restrictions.like(atributo,nomeBuscado))
+                .add(Restrictions.eq(atributo,nomeBuscado))
                 .list();
+    }
+    
+    public List<T> buscaAluno(String atributo,String nomeBuscado) {
+        return this.sessao.createCriteria(Usuario.class)
+                    .add(Restrictions.eq(atributo, nomeBuscado))
+                        .createCriteria("aluno","a")
+                    .setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP)
+                .list();
+        
     }
 }
  
