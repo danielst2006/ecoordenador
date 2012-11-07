@@ -27,4 +27,7 @@ public class UsuarioRN {
     public Usuario carregar(Integer codigo){
         return this.usuarioDAO.carregar(codigo);
     }
+    public List<Usuario> buscaPersonalizada(String atributo,String nomeBuscado){
+        return this.usuarioDAO.buscaPersonalizada(atributo, nomeBuscado);
+    }
 }
