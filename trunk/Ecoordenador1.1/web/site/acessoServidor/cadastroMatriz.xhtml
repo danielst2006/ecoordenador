@@ -16,8 +16,8 @@
     <ui:define name="corpo">
         <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
             
-            <h:form>
-                <p:panel> 
+                <h:form id="formSalvar">
+                <p:panel  header="Cadastro de Periodo Letivo"> 
                     <p:messages id="msgs"/> 
                     <h:panelGrid >
                     
@@ -26,19 +26,45 @@
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItems value="#{controllerCurso.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
                     </p:selectOneMenu>
-                    Situação da Matriz: <p:inputText value="#{controllerMatriz.matriz.situacao_matriz}" />
-                    Forma de Avaliação: <p:inputText value="#{controllerMatriz.matriz.forma_avaliacao}" />
+                    Situação da Matriz: <p:selectOneMenu value="#{controllerMatriz.matriz.situacao_matriz}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Em Cadastro" itemValue="Em Cadastro" />
+                        <f:selectItem itemLabel="Vigente" itemValue="Vigente" />
+                        <f:selectItem itemLabel="Ativa" itemValue="Ativa" />
+                        <f:selectItem itemLabel="Desativada" itemValue="Desativada" />
+                    </p:selectOneMenu>
+                    Forma de Avaliação: <p:selectOneMenu value="#{controllerMatriz.matriz.forma_avaliacao}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Nota" itemValue="Nota" />
+                        <f:selectItem itemLabel="Conceito" itemValue="Conceito" />
+                        <f:selectItem itemLabel="Frequencia" itemValue="Frequencia" />
+                    </p:selectOneMenu>
+                    
                     Inicio da Vigência: <p:calendar value="#{controllerMatriz.matriz.inicio_vigencia}" />
                     Fim da Vigência: <p:calendar value="#{controllerMatriz.matriz.fim_vigencia}" />
-                    Tipo do Periodo da Matriz: <p:inputText value="#{controllerMatriz.matriz.tipo_periodo_matriz}" />
+                    Tipo do Periodo da Matriz: <p:selectOneMenu value="#{controllerMatriz.matriz.tipo_periodo_matriz}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Anual" itemValue="Anual" />
+                        <f:selectItem itemLabel="Semestral" itemValue="Semestral" />
+                        <f:selectItem itemLabel="Trimestral" itemValue="Trimestal" />
+                        <f:selectItem itemLabel="Bimestral" itemValue="Bimestral" />
+                        <f:selectItem itemLabel="Mensal" itemValue="Mensal" />
+                        <f:selectItem itemLabel="Quinzenal" itemValue="Quinzenal" />
+                    </p:selectOneMenu>
+                    
                     Número do Pedido: <p:inputText value="#{controllerMatriz.matriz.numero_pedido}" />
                     Número Máximo de Elementos: <p:inputText value="#{controllerMatriz.matriz.numero_max_elementos}" />
                     Período: <p:inputText value="#{controllerMatriz.matriz.periodo}" />
-                    Grupo Curricular: <p:inputText value="#{controllerMatriz.matriz.grupo_curricular}" />
+                    Grupo Curricular: <p:selectOneMenu value="#{controllerMatriz.matriz.grupo_curricular}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Grupo de Optativas" itemValue="Grupo de Optativas" />
+                        <f:selectItem itemLabel="Grupo de Eletivas" itemValue="Grupo de Eletivas" />
+                        <f:selectItem itemLabel="Grupo de Obrigatórias" itemValue="Grupo de Obrigatorias" />
+                    </p:selectOneMenu>
                     
                     <p:commandButton value="Salvar" ajax="true" update="@form" actionListener="#{controllerMatriz.salvar()}"/>
                          
-                     <p:ajaxStatus style="position:fixed;right:20px;top:20px">  
+                      <p:ajaxStatus style="position:fixed;right:20px;top:20px">  
                             <f:facet name="start">
                                 <h:graphicImage value="../resources/images/ajax-loader.gif" />
                             </f:facet>
@@ -47,11 +73,86 @@
                             </f:facet>
                      </p:ajaxStatus>
 
+                    
+                                    
+                    
                     </h:panelGrid>
                 </p:panel>
+
+
+                <p:dataTable id="tabela" var="p" value="#{controllerMatriz.listaDM}" emptyMessage="Nada encontrado...">
+                    <p:column>
+                        <h:outputText value="#{p.id}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{p.ident_curso.nome}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandLink value="alterar" actionListener="#{controllerMatriz.prepararAlterar()}" ajax="true" oncomplete="dialogAlterar.show();" update=":formAlterar"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandLink value="apagar" actionListener="#{controllerMatriz.remover()}" ajax="true" process="@this" update="@form"/>
+                    </p:column>
+                </p:dataTable>
+                
                  
 
             </h:form>
+            
+              <p:dialog widgetVar="dialogAlterar" resizable="false" closable="false" modal="true" showEffect="slide" hideEffect="slide">
+                <h:form id="formAlterar">
+                    <p:panel style="width: 320px;">
+                        <p:messages id="msgs"/> 
+                        <h:panelGrid columns="2">
+                                
+                            Curso: <p:selectOneMenu value="#{controllerMatriz.matriz.ident_curso}" converter="#{CursoConverter}" style="width: 150px">
+                                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                <f:selectItems value="#{controllerCurso.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
+                            </p:selectOneMenu>
+                            Situação da Matriz: <p:selectOneMenu value="#{controllerMatriz.matriz.situacao_matriz}" >
+                                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                <f:selectItem itemLabel="Em Cadastro" itemValue="Em Cadastro" />
+                                <f:selectItem itemLabel="Vigente" itemValue="Vigente" />
+                                <f:selectItem itemLabel="Ativa" itemValue="Ativa" />
+                                <f:selectItem itemLabel="Desativada" itemValue="Desativada" />
+                            </p:selectOneMenu>
+                            Forma de Avaliação: <p:selectOneMenu value="#{controllerMatriz.matriz.forma_avaliacao}" >
+                                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                <f:selectItem itemLabel="Nota" itemValue="Nota" />
+                                <f:selectItem itemLabel="Conceito" itemValue="Conceito" />
+                                <f:selectItem itemLabel="Frequencia" itemValue="Frequencia" />
+                            </p:selectOneMenu>
+
+                            Inicio da Vigência: <p:calendar value="#{controllerMatriz.matriz.inicio_vigencia}" />
+                            Fim da Vigência: <p:calendar value="#{controllerMatriz.matriz.fim_vigencia}" />
+                            Tipo do Periodo da Matriz: <p:selectOneMenu value="#{controllerMatriz.matriz.tipo_periodo_matriz}" >
+                                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                <f:selectItem itemLabel="Anual" itemValue="Anual" />
+                                <f:selectItem itemLabel="Semestral" itemValue="Semestral" />
+                                <f:selectItem itemLabel="Trimestral" itemValue="Trimestal" />
+                                <f:selectItem itemLabel="Bimestral" itemValue="Bimestral" />
+                                <f:selectItem itemLabel="Mensal" itemValue="Mensal" />
+                                <f:selectItem itemLabel="Quinzenal" itemValue="Quinzenal" />
+                            </p:selectOneMenu>
+
+                            Número do Pedido: <p:inputText value="#{controllerMatriz.matriz.numero_pedido}" />
+                            Número Máximo de Elementos: <p:inputText value="#{controllerMatriz.matriz.numero_max_elementos}" />
+                            Período: <p:inputText value="#{controllerMatriz.matriz.periodo}" />
+                            Grupo Curricular: <p:selectOneMenu value="#{controllerMatriz.matriz.grupo_curricular}" >
+                                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                <f:selectItem itemLabel="Grupo de Optativas" itemValue="Grupo de Optativas" />
+                                <f:selectItem itemLabel="Grupo de Eletivas" itemValue="Grupo de Eletivas" />
+                                <f:selectItem itemLabel="Grupo de Obrigatórias" itemValue="Grupo de Obrigatorias" />
+                            </p:selectOneMenu>
+                            <p:commandButton value="Alterar" actionListener="#{controllerMatriz.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
+                                                style="margin-top: 30px"/>
+                            <p:commandButton value="cancelar" actionListener="#{controllerMatriz.limpar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
+                                                style="margin-top: 30px;margin-left: 0px;"/>
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </p:dialog>
+            
             
         </sec:ifAnyGranted>
     </ui:define>

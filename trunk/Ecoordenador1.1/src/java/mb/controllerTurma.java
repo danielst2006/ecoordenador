@@ -58,6 +58,19 @@ public class controllerTurma {
     }
   
 
+    public String alterar() {
+        TurmaRN rn = new TurmaRN();
+        rn.atualizar(this.turma);
+        limpar();
+        return "Alterado";
+    }
+
+    public void prepararAlterar() {
+        this.turma = (Turma) this.listaDataModel.getRowData();
+    }
+
+    
+    
     ////////////////////////////////////////////////////////////////////////////
     //SETTERS E GETTERS
 

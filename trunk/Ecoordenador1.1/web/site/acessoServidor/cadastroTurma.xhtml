@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='iso-8859-1' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../../resources/templates/login.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:sec="http://www.springframework.org/security/facelets/tags" >
+
+    <ui:define name="menu_horizontal">
+        <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
+            <ui:include src="/site/acessoServidor/menu.xhtml" />
+        </sec:ifAnyGranted>
+    </ui:define>
+    
+    <ui:define name="corpo">
+        <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
+            
+            <h:form id="formSalvar">
+                <p:panel  header="Cadastro dos tipos de atividades complementares"> 
+                    <p:messages id="msgs"/> 
+                    <h:panelGrid >
+
+                        Periodo Letivo: 
+                        
+                        <p:selectOneMenu value="#{controllerTurma.turma.id_periodo_letido}" converter="#{PeriodoLetivoConverter}" style="width: 150px">
+                            <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                            <f:selectItems value="#{controllerPeriodoLetivo.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.ano}"/>
+                        </p:selectOneMenu>
+                       
+                        Matriz Curricular:
+                        <p:selectOneMenu value="#{controllerTurma.turma.matriz_id}" converter="#{MatrizCurricularConverter}" style="width: 150px">
+                            <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                            <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.ident_curso.nome}"/>
+                        </p:selectOneMenu>
+
+                        
+                        Turno: <p:selectOneMenu value="#{controllerTurma.turma.turno}"    >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Matutino" itemValue="Matutino" />
+                        <f:selectItem itemLabel="Vespetino" itemValue="Vespetino" />
+                        <f:selectItem itemLabel="Noturno" itemValue="Noturno" />
+                        
+                    </p:selectOneMenu>
+
+                        <p:commandButton value="Salvar" ajax="true" actionListener="#{controllerTurma.salvar()}" update="@form"/>
+         
+                  <p:ajaxStatus style="position:fixed;right:20px;top:20px">  
+                            <f:facet name="start">
+                                <h:graphicImage value="../resources/images/ajax-loader.gif" />
+                            </f:facet>
+                            <f:facet name="complete">
+                                <h:outputText value="" />
+                            </f:facet>
+                     </p:ajaxStatus>
+
+                    
+                                    
+                    
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:dataTable id="tabela" var="p" value="#{controllerTurma.listaDM}" emptyMessage="Nada encontrado...">
+                    <p:column>
+                        <h:outputText value="#{p.id}"/>
+                    </p:column>
+     
+                    <p:column>
+                        <p:commandLink value="alterar" actionListener="#{controllerTurma.prepararAlterar()}" ajax="true" oncomplete="dialogAlterar.show();" update=":formAlterar"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandLink value="apagar" actionListener="#{controllerTurma.remover()}" ajax="true" process="@this" update="@form"/>
+                    </p:column>
+                </p:dataTable>
+                
+                 
+
+            </h:form>
+            
+              <p:dialog widgetVar="dialogAlterar" resizable="false" closable="false" modal="true" showEffect="slide" hideEffect="slide">
+                <h:form id="formAlterar">
+                    <p:panel style="width: 320px;">
+                        <p:messages id="msgs"/> 
+                        <h:panelGrid columns="2">
+                                
+                 
+                        Periodo Letivo: 
+                        
+                        <p:selectOneMenu value="#{controllerTurma.turma.id_periodo_letido}" converter="#{PeriodoLetivoConverter}" style="width: 150px">
+                            <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                            <f:selectItems value="#{controllerPeriodoLetivo.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.ano}"/>
+                        </p:selectOneMenu>
+                       
+                        Matriz Curricular:
+                        <p:selectOneMenu value="#{controllerTurma.turma.matriz_id}" converter="#{MatrizCurricularConverter}" style="width: 150px">
+                            <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                            <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.ident_curso.nome}"/>
+                        </p:selectOneMenu>
+
+                        
+                        Turno: <p:selectOneMenu value="#{controllerTurma.turma.turno}"    >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Matutino" itemValue="Matutino" />
+                        <f:selectItem itemLabel="Vespetino" itemValue="Vespetino" />
+                        <f:selectItem itemLabel="Noturno" itemValue="Noturno" />
+                        
+                    </p:selectOneMenu>
+                        
+                        <p:commandButton value="Alterar" actionListener="#{controllerTurma.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
+                                                style="margin-top: 30px"/>
+                        <p:commandButton value="cancelar" actionListener="#{controllerTurma.impar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
+                                                style="margin-top: 30px;margin-left: 0px;"/>
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </p:dialog>
+            
+            
+        </sec:ifAnyGranted>
+    </ui:define>
+    
+</ui:composition>
