@@ -1,15 +1,19 @@
 package mb;
 
 import beans.Aluno;
+import beans.Usuario;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import org.primefaces.event.FlowEvent;
 import rn.AlunoRN;
+import rn.UsuarioRN;
 import util.CepWebService;
 
 
@@ -57,6 +61,21 @@ public class controllerAluno {
         return "Salvo";
     }
     
+    public String alunoSalvar(){
+        
+        AlunoRN rn = new AlunoRN();
+        
+        UsuarioRN rn2 = new UsuarioRN();
+        String login = pegarUser();
+        List<Usuario> userList = rn2.buscaPersonalizada("login", login);
+        
+        this.aluno.setUsuario_id(userList.get(0));
+        
+        rn.salvar(this.aluno);
+        limpar();
+        return "Salvo";
+    }
+    
     public String remover(){
         AlunoRN rn = new AlunoRN();
         this.aluno= (Aluno)this.listaDataModel.getRowData();
@@ -88,6 +107,12 @@ public class controllerAluno {
         } else {
             //erro
 	}
+    }
+    
+    public String pegarUser() {
+        ExternalContext fc = FacesContext.getCurrentInstance().getExternalContext();  
+        String login = fc.getRemoteUser();
+        return login;
     }
     
     ////////////////////////////////////////////////////////////////////////////
