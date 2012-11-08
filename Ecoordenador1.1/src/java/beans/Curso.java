@@ -137,14 +137,6 @@ public class Curso implements Serializable {
         @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
         Set<MatrizCurricular> matrizes = new HashSet<MatrizCurricular>();
 
-    public Set<MatrizCurricular> getMatrizes() {
-        return matrizes;
-    }
-
-    public void setMatrizes(Set<MatrizCurricular> matrizes) {
-        this.matrizes = matrizes;
-    }
-
     public Set<Aluno> getAlunos() {
         return alunos;
     }
@@ -207,6 +199,14 @@ public class Curso implements Serializable {
 
     public void setAto_reconhecimento_tipo(String ato_reconhecimento_tipo) {
         this.ato_reconhecimento_tipo = ato_reconhecimento_tipo;
+    }
+
+    public Set<Coordenador> getCoordenadores() {
+        return coordenadores;
+    }
+
+    public void setCoordenadores(Set<Coordenador> coordenadores) {
+        this.coordenadores = coordenadores;
     }
 
     public Date getData_dou_reconhecimento() {
@@ -303,6 +303,14 @@ public class Curso implements Serializable {
 
     public void setInstituicao(String instituicao) {
         this.instituicao = instituicao;
+    }
+
+    public Set<MatrizCurricular> getMatrizes() {
+        return matrizes;
+    }
+
+    public void setMatrizes(Set<MatrizCurricular> matrizes) {
+        this.matrizes = matrizes;
     }
 
     public String getModalidade_ensino() {

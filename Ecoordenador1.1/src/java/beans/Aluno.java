@@ -75,30 +75,6 @@ public class Aluno extends Pessoa {
         @JoinColumn(name="id_curso")
 	private Curso id_curso;
 
-    public Curso getId_curso() {
-        return id_curso;
-    }
-
-    public void setId_curso(Curso id_curso) {
-        this.id_curso = id_curso;
-    }
-
-    public Usuario getUsuario_id() {
-        return usuario_id;
-    }
-
-    public void setUsuario_id(Usuario usuario_id) {
-        this.usuario_id = usuario_id;
-    }
-    
-    public Set<EntradaAtividade> getEnt_atv() {
-        return ent_atv;
-    }
-
-    public void setEnt_atv(Set<EntradaAtividade> ent_atv) {
-        this.ent_atv = ent_atv;
-    }
-
     public Integer getAno_formacao_anterior() {
         return ano_formacao_anterior;
     }
@@ -123,6 +99,14 @@ public class Aluno extends Pessoa {
         this.cpf_responsavel = cpf_responsavel;
     }
 
+    public Set<EntradaAtividade> getEnt_atv() {
+        return ent_atv;
+    }
+
+    public void setEnt_atv(Set<EntradaAtividade> ent_atv) {
+        this.ent_atv = ent_atv;
+    }
+
     public String getEscola_formacao_anterior() {
         return escola_formacao_anterior;
     }
@@ -137,6 +121,14 @@ public class Aluno extends Pessoa {
 
     public void setEtapa_ensino_anterior(String etapa_ensino_anterior) {
         this.etapa_ensino_anterior = etapa_ensino_anterior;
+    }
+
+    public Curso getId_curso() {
+        return id_curso;
+    }
+
+    public void setId_curso(Curso id_curso) {
+        this.id_curso = id_curso;
     }
 
     public String getLocal_trabalho() {
@@ -225,6 +217,14 @@ public class Aluno extends Pessoa {
 
     public void setUf_instituicao_ensino(String uf_instituicao_ensino) {
         this.uf_instituicao_ensino = uf_instituicao_ensino;
+    }
+
+    public Usuario getUsuario_id() {
+        return usuario_id;
+    }
+
+    public void setUsuario_id(Usuario usuario_id) {
+        this.usuario_id = usuario_id;
     }
 
 }
