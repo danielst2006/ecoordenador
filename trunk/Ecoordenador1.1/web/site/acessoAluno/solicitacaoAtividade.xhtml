@@ -34,7 +34,7 @@
                             <f:selectItems value="#{controllerAtvComp.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.atividade}"/>
                         </p:selectOneMenu>
 
-                        <p:commandButton value="Solicitar" actionListener="#{controllerEntradaAtividade.salvar()}" ajax="true" update="@form"/>
+                        <p:commandButton value="Solicitar" actionListener="#{controllerEntradaAtividade.salvar()}" ajax="true" update="@form,:growl"/>
 
                     </h:panelGrid>
                 </p:panel>
