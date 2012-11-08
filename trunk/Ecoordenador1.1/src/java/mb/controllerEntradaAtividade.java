@@ -54,7 +54,7 @@ public class controllerEntradaAtividade {
         List<EntradaAtividade> atvs = getLista();
         //lista vazia
         List<EntradaAtividade> vazia = new ArrayList<EntradaAtividade>();
-        
+
         for(EntradaAtividade ent:atvs) {
             if(ent.getAluno().getId().equals(user.get(0).getId())){
                 vazia.add(ent);
