@@ -65,24 +65,29 @@ public class controllerUsuario {
         return this.listaUsuario;
     }    
        
-    public String salvarUsuario(){
-        UsuarioRN rn = new UsuarioRN();
-        UsuarioPermissaoRN rn2 = new UsuarioPermissaoRN();
-        if (this.usuario.getSenha().equals(this.usuario.getSenha2())) {
-            getPermissao().setUsuario(this.usuario);
-            getPermissao().setPermissao("ROLE_ALUNO");
-            getUsuario().setData_cadastro(new Date());
-            rn.salvar(this.usuario);
-            rn2.salvar(this.permissao);
-            this.email = this.usuario.getEmail();
-            this.id = this.usuario.getId();
-            limpar();
-            enviarEmail();
-            return "Salvo";
-        } else {
+    public void salvarUsuario(){
+        try{
+            UsuarioRN rn = new UsuarioRN();
+
+            UsuarioPermissaoRN rn2 = new UsuarioPermissaoRN();
+            if (this.usuario.getSenha().equals(this.usuario.getSenha2())) {
+                getPermissao().setUsuario(this.usuario);
+                getPermissao().setPermissao("ROLE_ALUNO");
+                getUsuario().setData_cadastro(new Date());
+                rn.salvar(this.usuario);
+                rn2.salvar(this.permissao);
+                this.email = this.usuario.getEmail();
+                this.id = this.usuario.getId();
+                limpar();
+                enviarEmail();
+            } else {
+                FacesContext context = FacesContext.getCurrentInstance();  
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Atenção", "Senhas devem ser iguais."));
+            }
+        } catch(Exception e) {
+            //precisa debugar
             FacesContext context = FacesContext.getCurrentInstance();  
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"ERRO", "Senhas devem ser iguais."));
-            return "Erro";
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"ERRO", "Usuário já cadastrado."));
         }
     }
     
