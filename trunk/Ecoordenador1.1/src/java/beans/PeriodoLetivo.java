@@ -6,12 +6,10 @@ package beans;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
-import org.hibernate.annotations.Cascade;
 
 @ManagedBean(name="periodo_letivo")
 @SessionScoped
@@ -40,9 +38,8 @@ public class PeriodoLetivo implements Serializable {
         @Temporal(javax.persistence.TemporalType.DATE)
         private Date data_fim;
         
-        @OneToMany(mappedBy="id_periodo_letido",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-        Set<Turma> turmas = new HashSet<Turma>();
+        @OneToMany(mappedBy="periodoletivo")
+        Set<Turma> turmas;
 
     public Set<Turma> getTurmas() {
         return turmas;

@@ -10,7 +10,6 @@ import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
-import org.hibernate.annotations.Cascade;
 
 @ManagedBean(name="disciplina")
 @SessionScoped
@@ -21,14 +20,10 @@ import org.hibernate.annotations.Cascade;
 public class Disciplina implements Serializable {
     
         @Id
-        @Column(name="id")
+        @Column(name="id_disciplina")
         @GeneratedValue(strategy=GenerationType.IDENTITY)
         @SequenceGenerator(name="disc_seq", sequenceName="disc_seq", allocationSize=1)
         private Integer id;
-
-        @ManyToOne
-        @JoinColumn(name="id_matriz")
-        private MatrizCurricular id_matriz;
 
         @Column(name="unidade_curricular")
         private String unidade_curricular;
@@ -69,52 +64,77 @@ public class Disciplina implements Serializable {
         @Column(name="referencia_bibliografica")
         private String referencia_bibliografica;
         
-        @OneToMany(mappedBy="id_disciplina",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-        Set<PreRequisito> requisitos = new HashSet<PreRequisito>();
+        @ManyToOne
+        @JoinColumn(name="matrizcurricular")
+        private MatrizCurricular matrizcurricular;
         
-        @OneToMany(mappedBy="id_disciplina_requisitada",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-        Set<PreRequisito> requisitos_requisitados = new HashSet<PreRequisito>();
-        
-        @OneToMany(mappedBy="disciplina_id",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-        Set<DisciplinaEquivalente> disciplinas = new HashSet<DisciplinaEquivalente>();
-        
-        @OneToMany(mappedBy="disciplina_equivalente_id",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-        Set<DisciplinaEquivalente> equivalentes = new HashSet<DisciplinaEquivalente>();
+        @ManyToMany(cascade={CascadeType.ALL})
+        @JoinTable(name="pre_requisito",
+            joinColumns={@JoinColumn(name="id_disciplina")},
+            inverseJoinColumns={@JoinColumn(name="id_disciplina_req")})
+        private Set<Disciplina> requisitos = new HashSet<Disciplina>();
 
-    public Set<DisciplinaEquivalente> getDisciplinas() {
-        return disciplinas;
+        @ManyToMany(mappedBy="requisitos")
+        private Set<Disciplina> pre_requisitos = new HashSet<Disciplina>();
+        
+        @ManyToMany(cascade={CascadeType.ALL})
+        @JoinTable(name="disciplina_equivalente",
+            joinColumns={@JoinColumn(name="id_disciplina")},
+            inverseJoinColumns={@JoinColumn(name="id_disciplina_eqv")})
+        private Set<Disciplina> equivalentes = new HashSet<Disciplina>();
+
+        @ManyToMany(mappedBy="equivalentes")
+        private Set<Disciplina> disc_eq = new HashSet<Disciplina>();
+        
+        @OneToMany(mappedBy="disciplina")
+        Set<Classe> classes;
+
+    public Set<Classe> getClasses() {
+        return classes;
     }
 
-    public void setDisciplinas(Set<DisciplinaEquivalente> disciplinas) {
-        this.disciplinas = disciplinas;
+    public void setClasses(Set<Classe> classes) {
+        this.classes = classes;
     }
 
-    public Set<DisciplinaEquivalente> getEquivalentes() {
+    public Set<Disciplina> getDisc_eq() {
+        return disc_eq;
+    }
+
+    public void setDisc_eq(Set<Disciplina> disc_eq) {
+        this.disc_eq = disc_eq;
+    }
+
+    public Set<Disciplina> getEquivalentes() {
         return equivalentes;
     }
 
-    public void setEquivalentes(Set<DisciplinaEquivalente> equivalentes) {
+    public void setEquivalentes(Set<Disciplina> equivalentes) {
         this.equivalentes = equivalentes;
-    } 
+    }
 
-    public Set<PreRequisito> getRequisitos() {
+    public Set<Disciplina> getPre_requisitos() {
+        return pre_requisitos;
+    }
+
+    public void setPre_requisitos(Set<Disciplina> pre_requisitos) {
+        this.pre_requisitos = pre_requisitos;
+    }
+
+    public Set<Disciplina> getRequisitos() {
         return requisitos;
     }
 
-    public void setRequisitos(Set<PreRequisito> requisitos) {
+    public void setRequisitos(Set<Disciplina> requisitos) {
         this.requisitos = requisitos;
     }
 
-    public Set<PreRequisito> getRequisitos_requisitados() {
-        return requisitos_requisitados;
+    public MatrizCurricular getMatrizcurricular() {
+        return matrizcurricular;
     }
 
-    public void setRequisitos_requisitados(Set<PreRequisito> requisitos_requisitados) {
-        this.requisitos_requisitados = requisitos_requisitados;
+    public void setMatrizcurricular(MatrizCurricular matrizcurricular) {
+        this.matrizcurricular = matrizcurricular;
     }
 
     public String getBase_cientifica() {
@@ -205,14 +225,6 @@ public class Disciplina implements Serializable {
         this.id = id;
     }
 
-    public MatrizCurricular getId_matriz() {
-        return id_matriz;
-    }
-
-    public void setId_matriz(MatrizCurricular id_matriz) {
-        this.id_matriz = id_matriz;
-    }
-
     public String getObjetivos() {
         return objetivos;
     }
@@ -236,5 +248,5 @@ public class Disciplina implements Serializable {
     public void setUnidade_curricular(String unidade_curricular) {
         this.unidade_curricular = unidade_curricular;
     }
-    
+
 }

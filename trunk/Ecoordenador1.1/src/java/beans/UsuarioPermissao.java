@@ -25,7 +25,7 @@ public class UsuarioPermissao implements Serializable {
     
         @ManyToOne
         @JoinColumn(name="id_usuario")
-        private Usuario id_usuario;
+        private Usuario usuario;
         
         @Column(name="permissao",length=45)
         private String permissao;
@@ -38,20 +38,20 @@ public class UsuarioPermissao implements Serializable {
         this.id = id;
     }
 
-    public Usuario getId_usuario() {
-        return id_usuario;
-    }
-
-    public void setId_usuario(Usuario id_usuario) {
-        this.id_usuario = id_usuario;
-    }
-
     public String getPermissao() {
         return permissao;
     }
 
     public void setPermissao(String permissao) {
         this.permissao = permissao;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     
 }

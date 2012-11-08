@@ -3,14 +3,26 @@ package beans;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
-@MappedSuperclass
+
+@Entity
+@Table(name="pessoa")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="discriminador",discriminatorType=DiscriminatorType.STRING)
+@DiscriminatorValue(value="P")
 public abstract class Pessoa implements Serializable{
  
         @Id
-        @Column(name="id")
-        @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="idgen")
-        private Integer id;
+        @Column(name="id_usuario", unique=true, nullable=false)
+        @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="gen")
+        @GenericGenerator(name="gen", strategy="foreign", parameters=@Parameter(name="property", value="usuario"))
+        private Integer id_usuario;
+        
+        @OneToOne
+        @PrimaryKeyJoinColumn
+        private Usuario usuario;
      
         @Column(name="nome",length=80,nullable=false)
 	private String nome;
@@ -167,7 +179,7 @@ public abstract class Pessoa implements Serializable{
         @Column(name="teleitor_data_expedicao")
         @Temporal(javax.persistence.TemporalType.DATE)
 	private Date teleitor_data_expedicao;
-            
+
     public String getBairro() {
         return bairro;
     }
@@ -320,8 +332,7 @@ public abstract class Pessoa implements Serializable{
         this.dmilitar_tipo = dmilitar_tipo;
     }
 
-    
-   public String getEnd_curriculo_lattes() {
+    public String getEnd_curriculo_lattes() {
         return end_curriculo_lattes;
     }
 
@@ -385,14 +396,6 @@ public abstract class Pessoa implements Serializable{
         this.grau_formacao = grau_formacao;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getLogradouro() {
         return logradouro;
     }
@@ -449,20 +452,20 @@ public abstract class Pessoa implements Serializable{
         this.nome_pai = nome_pai;
     }
 
-    public Integer getNumero_lote() {
-        return numero_lote;
-    }
-
-    public void setNumero_lote(Integer numero_lote) {
-        this.numero_lote = numero_lote;
-    }
-
     public Integer getNumero_filhos() {
         return numero_filhos;
     }
 
     public void setNumero_filhos(Integer numero_filhos) {
         this.numero_filhos = numero_filhos;
+    }
+
+    public Integer getNumero_lote() {
+        return numero_lote;
+    }
+
+    public void setNumero_lote(Integer numero_lote) {
+        this.numero_lote = numero_lote;
     }
 
     public Integer getNumero_telefone() {
@@ -569,6 +572,14 @@ public abstract class Pessoa implements Serializable{
         this.uf_naturalidade = uf_naturalidade;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public String getZona_procedencia() {
         return zona_procedencia;
     }
@@ -576,6 +587,14 @@ public abstract class Pessoa implements Serializable{
     public void setZona_procedencia(String zona_procedencia) {
         this.zona_procedencia = zona_procedencia;
     }
-	 
+
+    public Integer getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(Integer id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+             
 }
  

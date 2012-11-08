@@ -6,12 +6,10 @@ package beans;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
-import org.hibernate.annotations.Cascade;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 
@@ -25,9 +23,9 @@ import org.springframework.security.authentication.encoding.PasswordEncoder;
 public class Usuario implements Serializable {
     
         @Id
-        @Column(name="id")
-        @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="idgen")
-        private Integer id;
+        @Column(name="id_usuario")
+        @GeneratedValue(strategy=GenerationType.SEQUENCE)
+        private Integer id_usuario;
     
         @Column(name="login",length=20,unique=true)
         private String login;
@@ -51,17 +49,12 @@ public class Usuario implements Serializable {
         @Temporal(javax.persistence.TemporalType.DATE)
         private Date data_cadastro;
         
-        @OneToMany(mappedBy="id_usuario",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.ALL)
-        Set<UsuarioPermissao> usu_perm = new HashSet<UsuarioPermissao>();
+        @OneToMany(mappedBy="usuario")
+        Set<UsuarioPermissao> permissoes;
         
-        @OneToOne(mappedBy="usuario_id",fetch=FetchType.EAGER)
-        @Cascade(org.hibernate.annotations.CascadeType.ALL)
-        private Aluno aluno;
+        @OneToOne(mappedBy="usuario",cascade=CascadeType.ALL)
+        private Pessoa pessoa;
         
-        @OneToOne(mappedBy="usuario_id",fetch=FetchType.EAGER)
-        @Cascade(org.hibernate.annotations.CascadeType.ALL)
-        private Servidor servidor;
         
         ////////////////////////////////////////////////////////////////////////
         // para inserir no banco o MD5 use a sequinte query:
@@ -78,38 +71,6 @@ public class Usuario implements Serializable {
         }
         
         ////////////////////////////////////////////////////////////////////////
-        
-    public Servidor getServidor() {
-        return servidor;
-    }
-
-    public void setServidor(Servidor servidor) {
-        this.servidor = servidor;
-    }
-
-    public String getSenha2() {
-        return senha2;
-    }
-
-    public Date getData_cadastro() {
-        return data_cadastro;
-    }
-
-    public void setData_cadastro(Date data_cadastro) {
-        this.data_cadastro = data_cadastro;
-    }
-
-    public void setSenha2(String senha2) {
-        this.senha2 = MD5(senha2);
-    }
-         
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
 
     public String getApelido() {
         return apelido;
@@ -127,6 +88,14 @@ public class Usuario implements Serializable {
         this.ativo = ativo;
     }
 
+    public Date getData_cadastro() {
+        return data_cadastro;
+    }
+
+    public void setData_cadastro(Date data_cadastro) {
+        this.data_cadastro = data_cadastro;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -135,12 +104,12 @@ public class Usuario implements Serializable {
         this.email = email;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getId_usuario() {
+        return id_usuario;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId_usuario(Integer id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public String getLogin() {
@@ -151,20 +120,36 @@ public class Usuario implements Serializable {
         this.login = login;
     }
 
+    public Set<UsuarioPermissao> getPermissoes() {
+        return permissoes;
+    }
+
+    public void setPermissoes(Set<UsuarioPermissao> permissoes) {
+        this.permissoes = permissoes;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
     public String getSenha() {
         return senha;
     }
 
     public void setSenha(String senha) {
-        this.senha = MD5(senha);
+        this.senha = senha;
     }
 
-    public Set<UsuarioPermissao> getUsu_perm() {
-        return usu_perm;
+    public String getSenha2() {
+        return senha2;
     }
 
-    public void setUsu_perm(Set<UsuarioPermissao> usu_perm) {
-        this.usu_perm = usu_perm;
+    public void setSenha2(String senha2) {
+        this.senha2 = senha2;
     }
-    
+
 }

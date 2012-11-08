@@ -1,12 +1,10 @@
 package beans;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
-import org.hibernate.annotations.Cascade;
 
 @ManagedBean(name="atividade_complementar")
 @SessionScoped
@@ -16,14 +14,10 @@ import org.hibernate.annotations.Cascade;
 public class AtividadeComplementar implements Serializable {
  
         @Id
-        @Column(name="id")
+        @Column(name="id_atividade")
         @GeneratedValue(strategy=GenerationType.IDENTITY)
         @SequenceGenerator(name="atv_seq", sequenceName="atv_seq", allocationSize=1)
 	private Integer id;
- 
-        @ManyToOne
-        @JoinColumn(name="id_tipo_atividade")
-	private AtividadeComplementarTipo id_tipo_atividade;
 	 
         @Column(name="atividade",length=15)
 	private String atividade;
@@ -31,16 +25,27 @@ public class AtividadeComplementar implements Serializable {
         @Column(name="pontuacao")
 	private int pontuacao;
         
-        @OneToMany(mappedBy="id_atividade_complementar",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-        Set<EntradaAtividade> entrada_atividade = new HashSet<EntradaAtividade>();
+        @ManyToOne
+        @JoinColumn(name="id_tipo")
+        private AtividadeComplementarTipo atividadecomplementartipo;
+        
+        @OneToMany(mappedBy="atividadecomplementar")
+        private Set<EntradaAtividade> entradas;
 
-    public Set<EntradaAtividade> getEntrada_atividade() {
-        return entrada_atividade;
+    public Set<EntradaAtividade> getEntradas() {
+        return entradas;
     }
 
-    public void setEntrada_atividade(Set<EntradaAtividade> entrada_atividade) {
-        this.entrada_atividade = entrada_atividade;
+    public void setEntradas(Set<EntradaAtividade> entradas) {
+        this.entradas = entradas;
+    }
+
+    public AtividadeComplementarTipo getAtividadecomplementartipo() {
+        return atividadecomplementartipo;
+    }
+
+    public void setAtividadecomplementartipo(AtividadeComplementarTipo atividadecomplementartipo) {
+        this.atividadecomplementartipo = atividadecomplementartipo;
     }
 
     public String getAtividade() {
@@ -57,14 +62,6 @@ public class AtividadeComplementar implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public AtividadeComplementarTipo getId_tipo_atividade() {
-        return id_tipo_atividade;
-    }
-
-    public void setId_tipo_atividade(AtividadeComplementarTipo id_tipo_atividade) {
-        this.id_tipo_atividade = id_tipo_atividade;
     }
 
     public int getPontuacao() {

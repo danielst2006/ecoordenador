@@ -2,12 +2,10 @@ package beans;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
-import org.hibernate.annotations.Cascade;
 
 @ManagedBean(name="curso")
 @SessionScoped
@@ -18,7 +16,7 @@ import org.hibernate.annotations.Cascade;
 public class Curso implements Serializable {
  
         @Id
-        @Column(name="id")
+        @Column(name="id_curso")
         @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="idgen")
 	private Integer id;
 	 
@@ -125,17 +123,30 @@ public class Curso implements Serializable {
         @Temporal(javax.persistence.TemporalType.DATE)
 	private Date data_projeto_pedagogico;
         
-        @OneToMany(mappedBy="id_curso",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-        Set<Aluno> alunos = new HashSet<Aluno>();
+        @OneToMany(mappedBy="curso")
+        private Set<Aluno> alunos;
         
-        @OneToMany(mappedBy="curso_id",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-        Set<Coordenador> coordenadores = new HashSet<Coordenador>();
+        @OneToMany(mappedBy="curso")
+        private Set<Coordenador> coordenadores;
         
-        @OneToMany(mappedBy="ident_curso",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-        Set<MatrizCurricular> matrizes = new HashSet<MatrizCurricular>();
+        @OneToMany(mappedBy="curso")
+        private Set<MatrizCurricular> matrizes;
+
+    public Set<MatrizCurricular> getMatrizes() {
+        return matrizes;
+    }
+
+    public void setMatrizes(Set<MatrizCurricular> matrizes) {
+        this.matrizes = matrizes;
+    }
+
+    public Set<Coordenador> getCoordenadores() {
+        return coordenadores;
+    }
+
+    public void setCoordenadores(Set<Coordenador> coordenadores) {
+        this.coordenadores = coordenadores;
+    }
 
     public Set<Aluno> getAlunos() {
         return alunos;
@@ -199,14 +210,6 @@ public class Curso implements Serializable {
 
     public void setAto_reconhecimento_tipo(String ato_reconhecimento_tipo) {
         this.ato_reconhecimento_tipo = ato_reconhecimento_tipo;
-    }
-
-    public Set<Coordenador> getCoordenadores() {
-        return coordenadores;
-    }
-
-    public void setCoordenadores(Set<Coordenador> coordenadores) {
-        this.coordenadores = coordenadores;
     }
 
     public Date getData_dou_reconhecimento() {
@@ -303,14 +306,6 @@ public class Curso implements Serializable {
 
     public void setInstituicao(String instituicao) {
         this.instituicao = instituicao;
-    }
-
-    public Set<MatrizCurricular> getMatrizes() {
-        return matrizes;
-    }
-
-    public void setMatrizes(Set<MatrizCurricular> matrizes) {
-        this.matrizes = matrizes;
     }
 
     public String getModalidade_ensino() {

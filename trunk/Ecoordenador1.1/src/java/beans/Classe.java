@@ -8,7 +8,6 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
-import org.hibernate.annotations.Cascade;
 
 @ManagedBean(name="classe")
 @SessionScoped
@@ -19,21 +18,40 @@ import org.hibernate.annotations.Cascade;
 public class Classe implements Serializable {
     
         @Id
-        @Column(name="id")
+        @Column(name="id_classe")
         @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="idgen")
         private Integer id;
         
-        @OneToOne
-        @JoinColumn(name="id_turma")
-        private Turma id_turma;
+        @ManyToOne
+        @JoinColumn(name="disciplina")
+        private Disciplina disciplina;
+        
+        @OneToOne(mappedBy="classe",cascade=CascadeType.ALL)
+        private Horario horario;
         
         @ManyToOne
-        @JoinColumn(name="servidor_id")
-        private Servidor servidor_id;
+        @JoinColumn(name="turma")
+        private Turma turma;
         
-        @OneToOne(mappedBy="id_classe",fetch=FetchType.EAGER)
-        @Cascade(org.hibernate.annotations.CascadeType.ALL)
-        private Horario horario;
+        @ManyToOne
+        @JoinColumn(name="servidor")
+        private Servidor servidor;
+
+    public Servidor getServidor() {
+        return servidor;
+    }
+
+    public void setServidor(Servidor servidor) {
+        this.servidor = servidor;
+    }
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
 
     public Horario getHorario() {
         return horario;
@@ -43,28 +61,20 @@ public class Classe implements Serializable {
         this.horario = horario;
     }
 
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
+    }
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Turma getId_turma() {
-        return id_turma;
-    }
-
-    public void setId_turma(Turma id_turma) {
-        this.id_turma = id_turma;
-    }
-
-    public Servidor getServidor_id() {
-        return servidor_id;
-    }
-
-    public void setServidor_id(Servidor servidor_id) {
-        this.servidor_id = servidor_id;
     }
     
 }

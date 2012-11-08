@@ -69,18 +69,6 @@ public class DAOFactory {
         return dao;
     }
     
-    public static InterfaceHibernateDAO<PreRequisito> criarPreRequisitoDAO(){
-        HibernateDAO<PreRequisito> dao = new HibernateDAO<PreRequisito>(PreRequisito.class);
-        dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
-        return dao;
-    }
-    
-    public static InterfaceHibernateDAO<DisciplinaEquivalente> criarDisciplinaEquivalenteDAO(){
-        HibernateDAO<DisciplinaEquivalente> dao = new HibernateDAO<DisciplinaEquivalente>(DisciplinaEquivalente.class);
-        dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
-        return dao;
-    }
-    
     public static InterfaceHibernateDAO<PeriodoLetivo> criarPeriodoLetivoDAO(){
         HibernateDAO<PeriodoLetivo> dao = new HibernateDAO<PeriodoLetivo>(PeriodoLetivo.class);
         dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
