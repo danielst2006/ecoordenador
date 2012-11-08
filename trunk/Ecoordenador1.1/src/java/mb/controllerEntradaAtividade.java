@@ -47,16 +47,16 @@ public class controllerEntradaAtividade {
     
     public DataModel getListaDM() {
         //Buscando usuario
-        ExternalContext fc = FacesContext.getCurrentInstance().getExternalContext();  
-        String login = fc.getRemoteUser();
+        String login = pegarUser();
         UsuarioRN rnu = new UsuarioRN();
         List<Usuario> user = rnu.buscaPersonalizada("login", login);
+        //Buscando a lista de entradas
         List<EntradaAtividade> atvs = getLista();
         //lista vazia
         List<EntradaAtividade> vazia = new ArrayList<EntradaAtividade>();
         
         for(EntradaAtividade ent:atvs) {
-            if(ent.getAluno().getId()==user.get(0).getId()){
+            if(ent.getAluno().getId().equals(user.get(0).getId())){
                 vazia.add(ent);
             }
         }
@@ -118,6 +118,12 @@ public class controllerEntradaAtividade {
         //faz o metodo de download
         this.file = new DefaultStreamedContent(new ByteArrayInputStream(ent.getAnexo()),"application/pdf","Certificado");
         return this.file;
+    }
+    
+    public String pegarUser() {
+        ExternalContext fc = FacesContext.getCurrentInstance().getExternalContext();  
+        String login = fc.getRemoteUser();
+        return login;
     }
     
     ////////////////////////////////////////////////////////////////////////////
