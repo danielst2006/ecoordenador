@@ -69,7 +69,7 @@ public class controllerAluno {
         String login = pegarUser();
         List<Usuario> userList = rn2.buscaPersonalizada("login", login);
         
-        this.aluno.setUsuario_id(userList.get(0));
+        this.aluno.setUsuario(userList.get(0));
         
         rn.salvar(this.aluno);
         limpar();

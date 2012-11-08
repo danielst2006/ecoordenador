@@ -69,13 +69,13 @@ public class controllerUsuario {
         UsuarioRN rn = new UsuarioRN();
         UsuarioPermissaoRN rn2 = new UsuarioPermissaoRN();
         if (this.usuario.getSenha().equals(this.usuario.getSenha2())) {
-            getPermissao().setId_usuario(this.usuario);
+            getPermissao().setId(this.usuario.getId_usuario());
             getPermissao().setPermissao("ROLE_ALUNO");
             getUsuario().setData_cadastro(new Date());
             rn.salvar(this.usuario);
             rn2.salvar(this.permissao);
             this.email = this.usuario.getEmail();
-            this.id = this.usuario.getId();
+            this.id = this.usuario.getId_usuario();
             limpar();
             enviarEmail();
             return "Salvo";
@@ -131,7 +131,7 @@ public class controllerUsuario {
     
     public void ativarConta() throws IOException{
         UsuarioRN rn = new UsuarioRN();
-        this.usuario = rn.carregar(this.usuario.getId());
+        this.usuario = rn.carregar(this.usuario.getId_usuario());
         this.usuario.setAtivo(Boolean.TRUE);
         rn.atualizar(this.usuario);
         limpar();
@@ -143,7 +143,7 @@ public class controllerUsuario {
     
     public Boolean ativado() {
         UsuarioRN rn = new UsuarioRN();
-        this.usuario = rn.carregar(this.usuario.getId());
+        this.usuario = rn.carregar(this.usuario.getId_usuario());
         boolean valor = this.usuario.getAtivo();
         return valor;
     }
