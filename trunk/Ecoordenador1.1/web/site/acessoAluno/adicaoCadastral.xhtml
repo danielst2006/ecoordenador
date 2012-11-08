@@ -119,7 +119,7 @@
 
                             <h:panelGrid columns="2" columnClasses="label, value">
 
-                                Curso: <p:selectOneMenu value="#{controllerAluno.aluno.id_curso}" converter="#{CursoConverter}" style="width: 150px">
+                                Curso: <p:selectOneMenu value="#{controllerAluno.aluno.curso}" converter="#{CursoConverter}" style="width: 150px">
                                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                                         <f:selectItems value="#{controllerCurso.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
                                 </p:selectOneMenu>
@@ -277,7 +277,6 @@
                                 Nacionalidade:* <h:outputText value="#{controllerAluno.aluno.nacionalidade}" />
                                 Estado Civil:* <h:outputText value="#{controllerAluno.aluno.estado_civil}" />
                                 Números de Filhos: <h:outputText value="#{controllerAluno.aluno.numero_filhos}" />
-                                E-mail: <h:outputText value="#{controllerAluno.aluno.email}" />
                                 Endereço Curriculo Lattes: <h:outputText value="#{controllerAluno.aluno.end_curriculo_lattes}" />
                                 DDD: <h:outputText value="#{controllerAluno.aluno.ddd}" />
                                 Numero do Telefone: <h:outputText value="#{controllerAluno.aluno.numero_telefone}" />
