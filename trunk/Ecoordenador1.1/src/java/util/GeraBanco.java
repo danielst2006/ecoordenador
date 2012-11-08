@@ -17,7 +17,8 @@ public class GeraBanco {
         AnnotationConfiguration conf = new AnnotationConfiguration();
         conf.configure("database/hibernate.cfg.xml");
         SchemaExport se = new SchemaExport(conf);
-        se.create(true, false);
+        se.drop(true, true);
+        se.create(true, true);
     }
 
 }

@@ -15,10 +15,10 @@ import org.hibernate.annotations.Parameter;
 public abstract class Pessoa implements Serializable{
  
         @Id
-        @Column(name="id_usuario", unique=true, nullable=false)
+        @Column(name="id", unique=true, nullable=false)
         @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="gen")
         @GenericGenerator(name="gen", strategy="foreign", parameters=@Parameter(name="property", value="usuario"))
-        private Integer id_usuario;
+        private Integer id;
         
         @OneToOne
         @PrimaryKeyJoinColumn
@@ -588,12 +588,12 @@ public abstract class Pessoa implements Serializable{
         this.zona_procedencia = zona_procedencia;
     }
 
-    public Integer getId_usuario() {
-        return id_usuario;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId_usuario(Integer id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setId(Integer id) {
+        this.id = id;
     }
              
 }

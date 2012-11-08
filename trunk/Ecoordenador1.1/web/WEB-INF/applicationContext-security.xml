@@ -32,7 +32,7 @@
                 authorities-by-username-query=
                     "SELECT u.login, p.permissao
                      FROM usuario u, usuario_permissao p
-                     WHERE p.id_usuario = u.id_usuario
+                     WHERE p.id_usuario = u.id
                      AND login = ?" />
         </authentication-provider>
     </authentication-manager>

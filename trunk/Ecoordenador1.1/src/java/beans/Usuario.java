@@ -23,9 +23,9 @@ import org.springframework.security.authentication.encoding.PasswordEncoder;
 public class Usuario implements Serializable {
     
         @Id
-        @Column(name="id_usuario")
-        @GeneratedValue(strategy=GenerationType.SEQUENCE)
-        private Integer id_usuario;
+        @Column(name="id")
+        @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="idgen")
+        private Integer id;
     
         @Column(name="login",length=20,unique=true)
         private String login;
@@ -104,14 +104,14 @@ public class Usuario implements Serializable {
         this.email = email;
     }
 
-    public Integer getId_usuario() {
-        return id_usuario;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId_usuario(Integer id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setId(Integer id) {
+        this.id = id;
     }
-
+    
     public String getLogin() {
         return login;
     }
@@ -141,7 +141,7 @@ public class Usuario implements Serializable {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        this.senha = MD5(senha);
     }
 
     public String getSenha2() {
@@ -149,7 +149,7 @@ public class Usuario implements Serializable {
     }
 
     public void setSenha2(String senha2) {
-        this.senha2 = senha2;
+        this.senha2 = MD5(senha2);
     }
 
 }
