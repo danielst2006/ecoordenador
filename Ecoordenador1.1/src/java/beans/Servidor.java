@@ -1,12 +1,10 @@
 package beans;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
-import org.hibernate.annotations.Cascade;
 
 
 @ManagedBean(name="servidor")
@@ -14,8 +12,8 @@ import org.hibernate.annotations.Cascade;
 
 
 @Entity
-@SequenceGenerator(allocationSize= 1, name = "idgen", sequenceName = "servidor_seq")
-@Table(name = "servidor")
+@Table(name="pessoa")
+@DiscriminatorValue("S")
 public class Servidor extends Pessoa {
  
         @Column(name="matricula_siape",length=10)
@@ -101,25 +99,11 @@ public class Servidor extends Pessoa {
         @Column(name="carga_horaria_semanal")
 	private Integer carga_horaria_semanal;
         
-        @OneToOne
-        @JoinColumn(name="usuario_id")
-        private Usuario usuario_id;
-        
-        @OneToOne(mappedBy="id_servidor",fetch=FetchType.EAGER)
-        @Cascade(org.hibernate.annotations.CascadeType.ALL)
+        @OneToOne(mappedBy="servidor",cascade=CascadeType.ALL)
         private Coordenador coordenador;
         
-        @OneToMany(mappedBy="servidor_id",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-        Set<Classe> classes = new HashSet<Classe>();
-
-    public Set<Classe> getClasses() {
-        return classes;
-    }
-
-    public void setClasses(Set<Classe> classes) {
-        this.classes = classes;
-    }
+        @OneToMany(mappedBy="servidor")
+        Set<Classe> classes;
 
     public Coordenador getCoordenador() {
         return coordenador;
@@ -127,14 +111,6 @@ public class Servidor extends Pessoa {
 
     public void setCoordenador(Coordenador coordenador) {
         this.coordenador = coordenador;
-    }
-
-    public Usuario getUsuario_id() {
-        return usuario_id;
-    }
-
-    public void setUsuario_id(Usuario usuario_id) {
-        this.usuario_id = usuario_id;
     }
 
     public String getAgencia() {

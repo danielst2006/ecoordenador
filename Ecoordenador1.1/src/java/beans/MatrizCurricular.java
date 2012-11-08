@@ -6,12 +6,10 @@ package beans;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
-import org.hibernate.annotations.Cascade;
 
 @ManagedBean(name="matriz_curricular")
 @SessionScoped
@@ -26,10 +24,6 @@ public class MatrizCurricular implements Serializable {
         @GeneratedValue(strategy=GenerationType.IDENTITY)
         @SequenceGenerator(name="mtz_seq", sequenceName="mtz_seq", allocationSize=1)
         private Integer id;
-        
-        @ManyToOne
-        @JoinColumn(name="ident_curso")
-        private Curso ident_curso;
 
         @Column(name="situacao_matriz")
         private String situacao_matriz;
@@ -60,13 +54,23 @@ public class MatrizCurricular implements Serializable {
         @Column(name="grupo_curricular")
         private String grupo_curricular;
         
-        @OneToMany(mappedBy="id_matriz",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-        Set<Disciplina> disciplinas = new HashSet<Disciplina>();
+        @ManyToOne
+        @JoinColumn(name="curso")
+        private Curso curso;
         
-        @OneToMany(mappedBy="matriz_id",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-        Set<Turma> turmas = new HashSet<Turma>();
+        @OneToMany(mappedBy="matrizcurricular")
+        private Set<Disciplina> disciplinas;
+        
+        @OneToMany(mappedBy="matrizcurricular")
+        private Set<Turma> turmas;
+
+    public Set<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(Set<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
 
     public Set<Turma> getTurmas() {
         return turmas;
@@ -76,12 +80,12 @@ public class MatrizCurricular implements Serializable {
         this.turmas = turmas;
     }
 
-    public Set<Disciplina> getDisciplinas() {
-        return disciplinas;
+    public Curso getCurso() {
+        return curso;
     }
 
-    public void setDisciplinas(Set<Disciplina> disciplinas) {
-        this.disciplinas = disciplinas;
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 
     public Date getFim_vigencia() {
@@ -114,14 +118,6 @@ public class MatrizCurricular implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Curso getIdent_curso() {
-        return ident_curso;
-    }
-
-    public void setIdent_curso(Curso ident_curso) {
-        this.ident_curso = ident_curso;
     }
 
     public Date getInicio_vigencia() {

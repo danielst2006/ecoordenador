@@ -1,18 +1,16 @@
  package beans;
 
-import java.util.HashSet;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
-import org.hibernate.annotations.Cascade;
 
 @ManagedBean(name="aluno")
 @SessionScoped
  
 @Entity
-@SequenceGenerator(allocationSize= 1, name = "idgen", sequenceName = "aluno_seq")
-@Table(name = "aluno")
+@Table(name="pessoa")
+@DiscriminatorValue("A")
 public class Aluno extends Pessoa {
             
         @Column(name="nome_responsavel",length=80)
@@ -62,19 +60,30 @@ public class Aluno extends Pessoa {
 	 
         @Column(name="uf_instituicao_ensino",length=2)
 	private String uf_instituicao_ensino;
-        
-        @OneToMany(mappedBy="id_aluno",fetch=FetchType.LAZY)
-        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-        Set<EntradaAtividade> ent_atv = new HashSet<EntradaAtividade>();
-        
-        @OneToOne
-        @JoinColumn(name="usuario_id")
-        private Usuario usuario_id;
+
+        @OneToMany(mappedBy="aluno")
+        private Set<EntradaAtividade> entradas;
         
         @ManyToOne
         @JoinColumn(name="id_curso")
-	private Curso id_curso;
+        private Curso curso;
 
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    public Set<EntradaAtividade> getEntradas() {
+        return entradas;
+    }
+
+    public void setEntradas(Set<EntradaAtividade> entradas) {
+        this.entradas = entradas;
+    }
+        
     public Integer getAno_formacao_anterior() {
         return ano_formacao_anterior;
     }
@@ -99,14 +108,6 @@ public class Aluno extends Pessoa {
         this.cpf_responsavel = cpf_responsavel;
     }
 
-    public Set<EntradaAtividade> getEnt_atv() {
-        return ent_atv;
-    }
-
-    public void setEnt_atv(Set<EntradaAtividade> ent_atv) {
-        this.ent_atv = ent_atv;
-    }
-
     public String getEscola_formacao_anterior() {
         return escola_formacao_anterior;
     }
@@ -121,14 +122,6 @@ public class Aluno extends Pessoa {
 
     public void setEtapa_ensino_anterior(String etapa_ensino_anterior) {
         this.etapa_ensino_anterior = etapa_ensino_anterior;
-    }
-
-    public Curso getId_curso() {
-        return id_curso;
-    }
-
-    public void setId_curso(Curso id_curso) {
-        this.id_curso = id_curso;
     }
 
     public String getLocal_trabalho() {
@@ -217,14 +210,6 @@ public class Aluno extends Pessoa {
 
     public void setUf_instituicao_ensino(String uf_instituicao_ensino) {
         this.uf_instituicao_ensino = uf_instituicao_ensino;
-    }
-
-    public Usuario getUsuario_id() {
-        return usuario_id;
-    }
-
-    public void setUsuario_id(Usuario usuario_id) {
-        this.usuario_id = usuario_id;
     }
 
 }

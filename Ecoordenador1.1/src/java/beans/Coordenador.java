@@ -9,6 +9,7 @@ import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 @ManagedBean(name="coordenador")
 @SessionScoped
@@ -19,17 +20,14 @@ import javax.persistence.*;
 public class Coordenador implements Serializable {
     
         @Id
-        @Column(name="id")
-        @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="idgen")
-	private Integer id;
+        @Column(name="id_usuario", unique=true, nullable=false)
+        @GeneratedValue(generator="gen")
+        @GenericGenerator(name="gen", strategy="foreign", parameters=@org.hibernate.annotations.Parameter(name="property", value="servidor"))
+        private Integer id_usuario;
         
         @OneToOne
-        @JoinColumn(name="id_servidor")
-        private Servidor id_servidor;
-        
-        @ManyToOne
-        @JoinColumn(name="curso_id")
-        private Curso curso_id;
+        @PrimaryKeyJoinColumn
+        private Servidor servidor;
         
         @Column(name="data_inicio",nullable=false)
         @Temporal(javax.persistence.TemporalType.DATE)
@@ -40,6 +38,26 @@ public class Coordenador implements Serializable {
         private Date data_fim;
         
         private Boolean ativo;
+        
+        @ManyToOne
+        @JoinColumn(name="curso")
+        private Curso curso;
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    public Servidor getServidor() {
+        return servidor;
+    }
+
+    public void setServidor(Servidor servidor) {
+        this.servidor = servidor;
+    }
 
     public Boolean getAtivo() {
         return ativo;
@@ -47,14 +65,6 @@ public class Coordenador implements Serializable {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
-    }
-
-    public Curso getCurso_id() {
-        return curso_id;
-    }
-
-    public void setCurso_id(Curso curso_id) {
-        this.curso_id = curso_id;
     }
 
     public Date getData_fim() {
@@ -73,20 +83,12 @@ public class Coordenador implements Serializable {
         this.data_inicio = data_inicio;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getId_usuario() {
+        return id_usuario;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId_usuario(Integer id_usuario) {
+        this.id_usuario = id_usuario;
     }
-
-    public Servidor getId_servidor() {
-        return id_servidor;
-    }
-
-    public void setId_servidor(Servidor id_servidor) {
-        this.id_servidor = id_servidor;
-    }
-    
+        
 }

@@ -8,6 +8,7 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 @ManagedBean(name="horario")
 @SessionScoped
@@ -18,13 +19,14 @@ import javax.persistence.*;
 public class Horario implements Serializable {
     
         @Id
-        @Column(name="id")
-        @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="idgen")
-        private Integer id;
+        @Column(name="id_classe", unique=true, nullable=false)
+        @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="gen")
+        @GenericGenerator(name="gen", strategy="foreign", parameters=@org.hibernate.annotations.Parameter(name="property", value="classe"))
+        private Integer id_classe;
         
         @OneToOne
-        @JoinColumn(name="id_classe",nullable=false)
-        private Classe id_classe;
+        @PrimaryKeyJoinColumn
+        private Classe classe;
         
         @Column(name="horario_inicio",length=6,nullable=false)
         private String horario_inicio;
@@ -35,6 +37,14 @@ public class Horario implements Serializable {
         @Column(name="dia_semana",length=8,nullable=false)
         private String dia_semana;
 
+    public Classe getClasse() {
+        return classe;
+    }
+
+    public void setClasse(Classe classe) {
+        this.classe = classe;
+    }
+        
     public String getDia_semana() {
         return dia_semana;
     }
@@ -59,20 +69,12 @@ public class Horario implements Serializable {
         this.horario_inicio = horario_inicio;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Classe getId_clase() {
+    public Integer getId_classe() {
         return id_classe;
     }
 
-    public void setId_clase(Classe id_classe) {
+    public void setId_classe(Integer id_classe) {
         this.id_classe = id_classe;
     }
-    
+
 }

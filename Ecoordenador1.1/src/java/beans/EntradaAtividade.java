@@ -19,14 +19,6 @@ public class EntradaAtividade implements Serializable {
         @SequenceGenerator(name="entrada_seq", sequenceName="entrada_seq", allocationSize=1)
 	private Integer id;
 	 
-        @ManyToOne
-        @JoinColumn(name="id_aluno")
-	private Aluno id_aluno;
-	 
-        @ManyToOne
-        @JoinColumn(name="id_atividade_complementar")
-	private AtividadeComplementar id_atividade_complementar;
-	 
 	@Column(name="anexo",nullable=false)
         private byte[] anexo;
 	 
@@ -36,6 +28,30 @@ public class EntradaAtividade implements Serializable {
 	 
         @Column(name="aprovado")
 	private Boolean aprovado = false;
+        
+        @ManyToOne
+        @JoinColumn(name="id_atividade")
+        private AtividadeComplementar atividadecomplementar;
+        
+        @ManyToOne
+        @JoinColumn(name="aluno")
+        private Aluno aluno;
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public AtividadeComplementar getAtividadecomplementar() {
+        return atividadecomplementar;
+    }
+
+    public void setAtividadecomplementar(AtividadeComplementar atividadecomplementar) {
+        this.atividadecomplementar = atividadecomplementar;
+    }
 
     public byte[] getAnexo() {
         return anexo;
@@ -69,21 +85,5 @@ public class EntradaAtividade implements Serializable {
         this.id = id;
     }
 
-    public Aluno getId_aluno() {
-        return id_aluno;
-    }
-
-    public void setId_aluno(Aluno id_aluno) {
-        this.id_aluno = id_aluno;
-    }
-
-    public AtividadeComplementar getId_atividade_complementar() {
-        return id_atividade_complementar;
-    }
-
-    public void setId_atividade_complementar(AtividadeComplementar id_atividade_complementar) {
-        this.id_atividade_complementar = id_atividade_complementar;
-    }
-	 
 }
  
