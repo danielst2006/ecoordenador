@@ -25,7 +25,7 @@
 
                         Tipo da atividade:
                         <!-- POPULANDO COM OBJETO -->
-                        <p:selectOneMenu value="#{controllerAtvComp.atvComp.id_tipo_atividade}" converter="#{AtividadeComplementarTipoConverter}" style="width: 150px">
+                        <p:selectOneMenu value="#{controllerAtvComp.atvComp.atividadecomplementartipo}" converter="#{AtividadeComplementarTipoConverter}" style="width: 150px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItems value="#{controllerAtvCompTipo.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.tipo_atividade}"/>
                         </p:selectOneMenu>
@@ -53,7 +53,7 @@
 
                 <p:dataTable id="tabela" var="p" value="#{controllerAtvComp.listaDM}" emptyMessage="Nada encontrado...">
                     <p:column>
-                        <h:outputText value="#{p.id_tipo_atividade.tipo_atividade}"/>
+                        <h:outputText value="#{p.atividadecomplementartipo.tipo_atividade}"/>
                     </p:column>
                     <p:column>
                         <h:outputText value="#{p.atividade}"/>
