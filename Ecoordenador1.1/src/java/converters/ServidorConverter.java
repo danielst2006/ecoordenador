@@ -35,7 +35,7 @@ public class ServidorConverter implements Converter{
         
         if(value != null){
             Servidor bean = (Servidor)value;
-            return bean.getId_usuario().toString();
+            return bean.getId().toString();
         }
         return "";
     }

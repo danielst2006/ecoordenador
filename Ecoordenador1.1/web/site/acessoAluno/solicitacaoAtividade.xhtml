@@ -29,7 +29,7 @@
 
                     Atividade Requerida:
                         <!-- POPULANDO COM OBJETO -->
-                        <p:selectOneMenu value="#{controllerEntradaAtividade.entradaAtv.id_atividade_complementar}" converter="#{AtividadeComplementarConverter}" style="width: 150px">
+                        <p:selectOneMenu value="#{controllerEntradaAtividade.entradaAtv.atividadecomplementar}" converter="#{AtividadeComplementarConverter}" style="width: 150px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItems value="#{controllerAtvComp.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.atividade}"/>
                         </p:selectOneMenu>
@@ -41,13 +41,13 @@
 
                 <p:dataTable id="tabela" var="p" value="#{controllerEntradaAtividade.listaDM}" emptyMessage="Nada encontrado...">
                     <p:column>
-                        <h:outputText value="#{p.id_aluno.nome}"/>
+                        <h:outputText value="#{p.aluno.nome}"/>
                     </p:column>
                     <p:column>
-                        <h:outputText value="#{p.id_atividade_complementar.id_tipo_atividade.tipo_atividade}"/>
+                        <h:outputText value="#{p.atividadecomplementar.atividade.atividadecomplementartipo.nome}"/>
                     </p:column>
                     <p:column>
-                        <h:outputText value="#{p.id_atividade_complementar.atividade}"/>
+                        <h:outputText value="#{p.atividadecomplementar.atividade}"/>
                     </p:column>
                     <p:column>
                         <h:outputText value="#{p.data_entrada}">
