@@ -1,18 +1,22 @@
 package mb;
 
 import beans.EntradaAtividade;
+import beans.Usuario;
 import java.io.ByteArrayInputStream;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import rn.EntradaAtividadeRN;
+import rn.UsuarioRN;
 
 
 @ManagedBean(name="controllerEntradaAtividade")
@@ -50,11 +54,18 @@ public class controllerEntradaAtividade {
     }    
        
     public void salvar(){
+        /*ExternalContext fc = FacesContext.getCurrentInstance().getExternalContext();  
+        String login = fc.getRemoteUser();
+        UsuarioRN rnu = new UsuarioRN();
+        List<Usuario> user = rnu.buscaPersonalizada("login", login);*/
         try {
-            EntradaAtividadeRN rn = new EntradaAtividadeRN();
-            getEntradaAtv().setData_entrada(new Date());
-            rn.salvar(this.entradaAtv);
-            limpar();
+            /*if(user.get(0).getPessoa().getId()!=null) {*/
+                EntradaAtividadeRN rn = new EntradaAtividadeRN();
+
+                this.entradaAtv.setData_entrada(new Date());
+                rn.salvar(this.entradaAtv);
+                limpar();
+            /*}*/
         } catch (Exception e) {
             
         }
