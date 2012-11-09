@@ -22,7 +22,7 @@ public class Aluno extends Pessoa {
         @Column(name="parentesco",length=20)
 	private String parentesco;
 	 
-        @Column(name="renda",nullable=false)
+        @Column(name="renda" )
 	private Boolean renda=false;
 	 
         @Column(name="renda_familiar")
@@ -43,10 +43,10 @@ public class Aluno extends Pessoa {
         @Column(name="profissao",length=45)
 	private String profissao;
 	 
-        @Column(name="escola_formacao_anterior",length=100,nullable=false)
+        @Column(name="escola_formacao_anterior",length=100 )
 	private String escola_formacao_anterior;
 	 
-        @Column(name="ano_formacao_anterior",nullable=false)
+        @Column(name="ano_formacao_anterior" )
 	private Integer ano_formacao_anterior;
 	 
         @Column(name="tipo_escola_anterior",length=15)

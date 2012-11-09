@@ -19,13 +19,13 @@ public class Servidor extends Pessoa {
         @Column(name="matricula_siape",length=10)
 	private String matricula_siape;
 	 
-        @Column(name="cargo",length=30,nullable=false)
+        @Column(name="cargo",length=30 )
 	private String cargo;
 	 
-        @Column(name="mandato_funcao",length=30,nullable=false)
+        @Column(name="mandato_funcao",length=30 )
 	private String mandato_funcao;
 	 
-        @Column(name="data_inicio",nullable=false)
+        @Column(name="data_inicio" )
         @Temporal(javax.persistence.TemporalType.DATE)
 	private Date data_inicio;
 	 
@@ -33,32 +33,32 @@ public class Servidor extends Pessoa {
         @Temporal(javax.persistence.TemporalType.DATE)
 	private Date data_termino;
 	 
-        @Column(name="unidade_ensino",length=30,nullable=false)
+        @Column(name="unidade_ensino",length=30 )
 	private String unidade_ensino;
 	 
-        @Column(name="regime_juridico",length=30,nullable=false)
+        @Column(name="regime_juridico",length=30 )
 	private String regime_juridico;
 	 
-        @Column(name="situacao",length=30,nullable=false)
+        @Column(name="situacao",length=30 )
 	private String situacao;
 	 
-        @Column(name="data_admissao",nullable=false)
+        @Column(name="data_admissao" )
         @Temporal(javax.persistence.TemporalType.DATE)
 	private Date data_admissao;
 	 
-        @Column(name="banco",length=45,nullable=false)
+        @Column(name="banco",length=45 )
 	private String banco;
 	 
-        @Column(name="agencia",length=10,nullable=false)
+        @Column(name="agencia",length=10 )
 	private String agencia;
 	 
-        @Column(name="conta",length=20,nullable=false)
+        @Column(name="conta",length=20 )
 	private String conta;
 	 
-        @Column(name="classe",length=30,nullable=false)
+        @Column(name="classe",length=30 )
 	private String classe;
 	 
-        @Column(name="nivel_funcional",length=30,nullable=false)
+        @Column(name="nivel_funcional",length=30 )
 	private String nivel_funcional;
         
         @Column(name="area_conhecimento",length=30)

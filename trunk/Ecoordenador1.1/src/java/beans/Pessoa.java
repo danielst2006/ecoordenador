@@ -24,7 +24,7 @@ public abstract class Pessoa implements Serializable{
         @PrimaryKeyJoinColumn
         private Usuario usuario;
      
-        @Column(name="nome",length=80,nullable=false)
+        @Column(name="nome",length=80  )
 	private String nome;
 	 
 	@Column(name="foto")
@@ -39,17 +39,17 @@ public abstract class Pessoa implements Serializable{
         @Column(name="necessidade_especial")
 	private Boolean necessidade_especial;
 	 
-        @Column(name="data_nascimento",nullable=false)
+        @Column(name="data_nascimento"  )
         @Temporal(javax.persistence.TemporalType.DATE)
 	private Date data_nascimento;
 	 
-        @Column(name="naturalidade",length=20,nullable=false)
+        @Column(name="naturalidade",length=20  )
 	private String naturalidade;
 	 
-        @Column(name="uf_naturalidade",length=2,nullable=false)
+        @Column(name="uf_naturalidade",length=2  )
 	private String uf_naturalidade;
 	 
-        @Column(name="nacionalidade",length=20,nullable=false)
+        @Column(name="nacionalidade",length=20  )
 	private String nacionalidade;
 	 
         @Column(name="tipo_sanguineo")
@@ -58,10 +58,10 @@ public abstract class Pessoa implements Serializable{
         @Column(name="fator_rh")
 	private String fator_rh;
 	 
-        @Column(name="grau_formacao",length=30,nullable=false)
+        @Column(name="grau_formacao",length=30  )
 	private String grau_formacao;
 	 
-        @Column(name="estado_civil",length=25,nullable=false)
+        @Column(name="estado_civil",length=25  )
 	private String estado_civil;
 	 
         @Column(name="numero_filhos")
@@ -82,34 +82,34 @@ public abstract class Pessoa implements Serializable{
         @Column(name="filiacao")
 	private Boolean filiacao=true;
 	 
-        @Column(name="nome_mae",length=80,nullable=false)
+        @Column(name="nome_mae",length=80  )
 	private String nome_mae;
 	 
         @Column(name="nome_pai",length=80)
 	private String nome_pai;
 	 
-        @Column(name="zona_procedencia",length=20,nullable=false)
+        @Column(name="zona_procedencia",length=20  )
 	private String zona_procedencia;
 	 
-        @Column(name="cep",nullable=false)
+        @Column(name="cep"  )
 	private Integer cep;
 	 
-        @Column(name="logradouro",length=40,nullable=false)
+        @Column(name="logradouro",length=40  )
 	private String logradouro;
 	 
-        @Column(name="numero",nullable=false)
+        @Column(name="numero"  )
 	private Integer numero_lote;
 	 
         @Column(name="complemento",length=100)
 	private String complemento;
 	 
-        @Column(name="bairro",length=50,nullable=false)
+        @Column(name="bairro",length=50  )
 	private String bairro;
 	 
-        @Column(name="cidade",length=40,nullable=false)
+        @Column(name="cidade",length=40  )
 	private String cidade;
 	 
-        @Column(name="uf",length=2,nullable=false)
+        @Column(name="uf",length=2  )
 	private String uf;
 	 
         @Column(name="cpf",length=12)
