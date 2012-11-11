@@ -116,11 +116,10 @@ and open the template in the editor.
 
                 <h:panelGrid columns="2" columnClasses="label, value">
 
-                    Curso: <p:selectOneMenu value="#{controllerAluno.aluno.id_curso}" converter="#{CursoConverter}" style="width: 150px">
+                    Curso: <p:selectOneMenu value="#{controllerAluno.aluno.curso}" converter="#{CursoConverter}" style="width: 150px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItems value="#{controllerCurso.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
-                    </p:selectOneMenu>
-                        
+                    </p:selectOneMenu>                        
                     Grau de Formação:* <p:selectOneMenu value="#{controllerAluno.aluno.grau_formacao}" >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
@@ -206,10 +205,10 @@ and open the template in the editor.
                     RG: <p:inputText value="#{controllerAluno.aluno.rg_numero}" />
                     Orgão Exepedidor: <p:inputText value="#{controllerAluno.aluno.rg_expedidor}" />
                     Data da Expedição: <p:calendar value="#{controllerAluno.aluno.rg_data_expedicao}" />
-                    Cerdidão de Nascimento (Número): <p:inputText value="#{controllerAluno.aluno.cnasc_numero}" />
-                    Cerdidão de Nascimento (Livro/Folha): <p:inputText value="#{controllerAluno.aluno.cnasc_folha}" />
-                    Cerdidão de Nascimento (Cartório): <p:inputText value="#{controllerAluno.aluno.cnasc_cartorio}" />
-                    Cerdidão de Nascimento (Data da Expedição): <p:calendar value="#{controllerAluno.aluno.cnasc_data_expedicao}" />
+                    Certidão de Nascimento (Número): <p:inputText value="#{controllerAluno.aluno.cnasc_numero}" />
+                    Certidão de Nascimento (Livro/Folha): <p:inputText value="#{controllerAluno.aluno.cnasc_folha}" />
+                    Certidão de Nascimento (Cartório): <p:inputText value="#{controllerAluno.aluno.cnasc_cartorio}" />
+                    Certidão de Nascimento (Data da Expedição): <p:calendar value="#{controllerAluno.aluno.cnasc_data_expedicao}" />
                     Carteira de Trabalho (Número): <p:inputText value="#{controllerAluno.aluno.ctps_numero}" />
                     Carteira de Trabalho (Série): <p:inputText value="#{controllerAluno.aluno.ctps_serie}" />
                     Carteira de Trabalho (PIS/PASEP): <p:inputText value="#{controllerAluno.aluno.pis_pasep}" />
@@ -268,13 +267,15 @@ and open the template in the editor.
                    
                     Necessidade Espeial: <h:outputText value="#{controllerAluno.aluno.necessidade_especial}" />
                         
-                    Data de Nascimento:* <p:calendar value="#{controllerAluno.aluno.data_nascimento}" />
+                    Data de Nascimento:* <h:outputText value="#{controllerAluno.aluno.data_nascimento}">
+                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                         </h:outputText>
+                    
                     Naturalidade: <h:outputText value="#{controllerAluno.aluno.naturalidade}" />
                     UF da Naturalidade: <h:outputText value="#{controllerAluno.aluno.uf_naturalidade}" />
                     Nacionalidade:* <h:outputText value="#{controllerAluno.aluno.nacionalidade}" />
                     Estado Civil:* <h:outputText value="#{controllerAluno.aluno.estado_civil}" />
                     Números de Filhos: <h:outputText value="#{controllerAluno.aluno.numero_filhos}" />
-                    E-mail: <h:outputText value="#{controllerAluno.aluno.email}" />
                     Endereço Curriculo Lattes: <h:outputText value="#{controllerAluno.aluno.end_curriculo_lattes}" />
                     DDD: <h:outputText value="#{controllerAluno.aluno.ddd}" />
                     Numero do Telefone: <h:outputText value="#{controllerAluno.aluno.numero_telefone}" />
@@ -307,25 +308,37 @@ and open the template in the editor.
                     CPF: <h:outputText value="#{controllerAluno.aluno.cpf}"  />
                     RG: <h:outputText value="#{controllerAluno.aluno.rg_numero}" />
                     Orgão Exepedidor: <h:outputText value="#{controllerAluno.aluno.rg_expedidor}" />
-                    Data da Expedição: <p:calendar value="#{controllerAluno.aluno.rg_data_expedicao}" />
+                    Data da Expedição: <h:outputText value="#{controllerAluno.aluno.rg_data_expedicao}">
+                                       <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                       </h:outputText>  
                     Cerdidão de Nascimento (Número): <h:outputText value="#{controllerAluno.aluno.cnasc_numero}" />
                     Cerdidão de Nascimento (Livro/Folha): <h:outputText value="#{controllerAluno.aluno.cnasc_folha}" />
                     Cerdidão de Nascimento (Cartório): <h:outputText value="#{controllerAluno.aluno.cnasc_cartorio}" />
-                    Cerdidão de Nascimento (Data da Expedição): <p:calendar value="#{controllerAluno.aluno.cnasc_data_expedicao}" />
+                    Cerdidão de Nascimento (Data da Expedição): <h:outputText value="#{controllerAluno.aluno.cnasc_data_expedicao}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>  
+                    
                     Carteira de Trabalho (Número): <h:outputText value="#{controllerAluno.aluno.ctps_numero}" />
                     Carteira de Trabalho (Série): <h:outputText value="#{controllerAluno.aluno.ctps_serie}" />
                     Carteira de Trabalho (PIS/PASEP): <h:outputText value="#{controllerAluno.aluno.pis_pasep}" />
                     Carteira de Habilitação (Número): <h:outputText value="#{controllerAluno.aluno.chabilitacao_numero}" />
-                    Carteira de Habilitação (Data Expedeição): <p:calendar value="#{controllerAluno.aluno.chabilitacao_data_expedicao}" />
-                    Carteira de Habilitação (Data Validade): <p:calendar value="#{controllerAluno.aluno.chabilitacao_data_validade}" />
+                    Carteira de Habilitação (Data Expedeição): <h:outputText value="#{controllerAluno.aluno.chabilitacao_data_expedicao}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>                              
+                    Carteira de Habilitação (Data Validade): <h:outputText value="#{controllerAluno.aluno.chabilitacao_data_validade}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                             </h:outputText> 
+                    
                     Documento Militar (Tipo): <h:outputText value="#{controllerAluno.aluno.dmilitar_tipo}" />
                     Documento Militar (Número): <h:outputText value="#{controllerAluno.aluno.dmilitar_numero}" />
                     Documento Militar (Região Militar): <h:outputText value="#{controllerAluno.aluno.dmilitar_regiao}" />
                     Título de Eleitor (Número): <h:outputText value="#{controllerAluno.aluno.teleitor_numero}" />
                     Título de Eleitor (Zona/Seção): <h:outputText value="#{controllerAluno.aluno.teleitor_zona}" />
                     Título de Eleitor (UF): <h:outputText value="#{controllerAluno.aluno.teleitor_uf}" />
-                    Título de Eleitor (Data Exp.): <p:calendar value="#{controllerAluno.aluno.teleitor_data_expedicao}" />
-                    Trabalha:* <h:outputText  value="#{controllerAluno.aluno.trabalha}"/>    
+                    Título de Eleitor (Data Exp.): <h:outputText value="#{controllerAluno.aluno.teleitor_data_expedicao}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>  
+                    Tabalha:* <h:outputText  value="#{controllerAluno.aluno.trabalha}"/>    
                     Local de Trabalho: <h:outputText value="#{controllerAluno.aluno.local_trabalho}" />
                     Telefone do Trabalho: <h:outputText value="#{controllerAluno.aluno.telefone_trabalho}" />
                     Profissão: <h:outputText value="#{controllerAluno.aluno.profissao}" />
@@ -339,7 +352,7 @@ and open the template in the editor.
         </p:tab>
 
     </p:wizard>
-
+    
         </h:form>
 
 

@@ -263,10 +263,10 @@ and open the template in the editor.
                  RG: <p:inputText value="#{controllerServidor.servidor.rg_numero}" />
                  Orgão Exepedidor: <p:inputText value="#{controllerServidor.servidor.rg_expedidor}" />
                  Data da Expedição: <p:calendar value="#{controllerServidor.servidor.rg_data_expedicao}" />   
-                 Cerdidão de Nascimento (Número): <p:inputText value="#{controllerServidor.servidor.cnasc_numero}" />
-                 Cerdidão de Nascimento (Livro/Folha): <p:inputText value="#{controllerServidor.servidor.cnasc_folha}" />
-                 Cerdidão de Nascimento (Cartório): <p:inputText value="#{controllerServidor.servidor.cnasc_cartorio}" />
-                 Cerdidão de Nascimento (Data da Expedição): <p:calendar value="#{controllerServidor.servidor.cnasc_data_expedicao}" />
+                 Certidão de Nascimento (Número): <p:inputText value="#{controllerServidor.servidor.cnasc_numero}" />
+                 Certidão de Nascimento (Livro/Folha): <p:inputText value="#{controllerServidor.servidor.cnasc_folha}" />
+                 Certidão de Nascimento (Cartório): <p:inputText value="#{controllerServidor.servidor.cnasc_cartorio}" />
+                 Certidão de Nascimento (Data da Expedição): <p:calendar value="#{controllerServidor.servidor.cnasc_data_expedicao}" />
                  Carteira de Trabalho (Número): <p:inputText value="#{controllerServidor.servidor.ctps_numero}" />
                  Carteira de Trabalho (Série): <p:inputText value="#{controllerServidor.servidor.ctps_serie}" />
                  Carteira de Trabalho (PIS/PASEP): <p:inputText value="#{controllerServidor.servidor.pis_pasep}" />
@@ -317,7 +317,10 @@ and open the template in the editor.
                         <f:selectItem  itemLabel="Não" itemValue="false" />
                     </h:selectOneRadio>
 
-                    Data de Nascimento: *<p:calendar value="#{controllerServidor.servidor.data_nascimento}" />
+                    Data de Nascimento:* <h:outputText value="#{controllerServidor.servidor.data_nascimento}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>  
+                    
                     Naturalidade: <h:outputText value="#{controllerServidor.servidor.naturalidade}" />
                     UF da Naturalidade: <h:outputText value="#{controllerServidor.servidor.uf_naturalidade}" />
                     Nacionalidade: <h:outputText value="#{controllerServidor.servidor.nacionalidade}" />
@@ -382,12 +385,16 @@ and open the template in the editor.
                     Mandato da Função:*<h:outputText value="#{controllerServidor.servidor.mandato_funcao}"/>
                    
 
-                    Data de Inicio:*<p:calendar value="#{controllerServidor.servidor.data_inicio}">
-                    </p:calendar>
+                    Data de Inicio:* <h:outputText value="#{controllerServidor.servidor.data_inicio}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>  
+                  
 
-                    Data de Terminio:<p:calendar value="#{controllerServidor.servidor.data_termino}">
-                    </p:calendar>
-
+                    Data de Terminio: <h:outputText value="#{controllerServidor.servidor.data_termino}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>  
+                    
+   
                     Unidade de Ensino:*<h:outputText value="#{controllerServidor.servidor.unidade_ensino}"/>
                   
 
@@ -397,8 +404,11 @@ and open the template in the editor.
                     Situação:*<h:outputText value="#{controllerServidor.servidor.situacao}"/>
                    
 
-                    Data de Admissão:<p:calendar value="#{controllerServidor.servidor.data_admissao}">
-                    </p:calendar>
+                    Data de Admissão: <h:outputText value="#{controllerServidor.servidor.data_admissao}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>
+                    
+               
 
                     Banco:*<h:outputText value="#{controllerServidor.servidor.banco}"/>
                     
@@ -430,11 +440,14 @@ and open the template in the editor.
                     Numero:<h:outputText value="#{controllerServidor.servidor.numero}"/>
                 
 
-                    Data de Expedição:<p:calendar value="#{controllerServidor.servidor.data_expedicao}">
-                    </p:calendar>
-
-                    Data do Diario Oficial:<p:calendar value="#{controllerServidor.servidor.data_diario_oficial}">
-                    </p:calendar>
+                    Data de Expedição: <h:outputText value="#{controllerServidor.servidor.data_expedicao}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>
+                    
+                    Data do Diario Oficial: <h:outputText value="#{controllerServidor.servidor.data_diario_oficial}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>
+                    
 
                     Orgao de origem da Matricula:<h:outputText value="#{controllerServidor.servidor.orgao_origem_matricula}"/>
                     
@@ -471,26 +484,39 @@ and open the template in the editor.
 
                     RG: <h:outputText value="#{controllerServidor.servidor.rg_numero}" />
                     Orgão Exepedidor: <h:outputText value="#{controllerServidor.servidor.rg_expedidor}" />
-                    Data da Expedição: <p:calendar value="#{controllerServidor.servidor.rg_data_expedicao}" />   
+                    Data da Expedição: <h:outputText value="#{controllerServidor.servidor.rg_data_expedicao}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>                       
                     Cerdidão de Nascimento (Número): <h:outputText value="#{controllerServidor.servidor.cnasc_numero}" />
                     Cerdidão de Nascimento (Livro/Folha): <h:outputText value="#{controllerServidor.servidor.cnasc_folha}" />
                     Cerdidão de Nascimento (Cartório): <h:outputText value="#{controllerServidor.servidor.cnasc_cartorio}" />
-                    Cerdidão de Nascimento (Data da Expedição): <p:calendar value="#{controllerServidor.servidor.cnasc_data_expedicao}" />
+                    Cerdidão de Nascimento (Data da Expedição): <h:outputText value="#{controllerServidor.servidor.cnasc_data_expedicao}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>      
+                    
+                   
                     Carteira de Trabalho (Número): <h:outputText value="#{controllerServidor.servidor.ctps_numero}" />
                     Carteira de Trabalho (Série): <h:outputText value="#{controllerServidor.servidor.ctps_serie}" />
                     Carteira de Trabalho (PIS/PASEP): <h:outputText value="#{controllerServidor.servidor.pis_pasep}" />
                     Carteira de Habilitação (Número): <h:outputText value="#{controllerServidor.servidor.chabilitacao_numero}" />
-                    Carteira de Habilitação (Data Expedeição): <p:calendar value="#{controllerServidor.servidor.chabilitacao_data_expedicao}" />
-                    Carteira de Habilitação (Data Validade): <p:calendar value="#{controllerServidor.servidor.chabilitacao_data_validade}" />
+                    Carteira de Habilitação (Data Expedeição): <h:outputText value="#{controllerServidor.servidor.chabilitacao_data_expedicao}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>
+                    Carteira de Habilitação (Data Validade): <h:outputText value="#{controllerServidor.servidor.chabilitacao_data_validade}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>
+                    
+                    
                     Documento Militar (Tipo): <h:outputText value="#{controllerServidor.servidor.dmilitar_tipo}" />
                     Documento Militar (Número): <h:outputText value="#{controllerServidor.servidor.dmilitar_numero}" />
                     Documento Militar (Região Militar): <h:outputText value="#{controllerServidor.servidor.dmilitar_regiao}" />
                     Título de Eleitor (Número): <h:outputText value="#{controllerServidor.servidor.teleitor_numero}" />
                     Título de Eleitor (Zona/Seção): <h:outputText value="#{controllerServidor.servidor.teleitor_zona}" />
                     Título de Eleitor (UF): <h:outputText value="#{controllerServidor.servidor.teleitor_uf}" />
-                    Título de Eleitor (Data Exp.): <p:calendar value="#{controllerServidor.servidor.teleitor_data_expedicao}" />
-
-
+                    Título de Eleitor (Data Exp.): <h:outputText value="#{controllerServidor.servidor.teleitor_data_expedicao}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText> 
+         
                 </h:panelGrid>
 
                 <p:commandButton value="Cadastrar" update="growl" 
