@@ -35,7 +35,7 @@
                         <p:commandLink value="alterar" actionListener="#{controllerAtvCompTipo.prepararAlterar()}" ajax="true" oncomplete="dialogAlterar.show();" update=":formAlterar"/>
                     </p:column>
                     <p:column>
-                        <p:commandLink value="apagar" actionListener="#{controllerAtvCompTipo.remover()}" ajax="true" process="@this" update="@form"/>
+                        <p:commandLink value="apagar" actionListener="#{controllerAtvComp.remover()}" ajax="true" process="@this" update="@form"/>
                     </p:column>
                 </p:dataTable>
 

@@ -22,7 +22,7 @@
                     <p:messages id="msgs"/> 
                     <h:panelGrid >
 
-                        Certificado escaneado:
+                    Certificado escaneado:
                         <p:fileUpload fileUploadListener="#{controllerEntradaAtividade.handleFileUpload}" mode="advanced" sizeLimit="300000" allowTypes="/(\.|\/)(pdf)$/"
                                     multiple="false" style="width: 600px;" invalidFileMessage="Apenas PDF" invalidSizeMessage="Tamanho máximo 300kb"
                                     required="true" requiredMessage="É obrigatório anexar o arquivo." showButtons="false" label="Arquivo"/>
@@ -41,7 +41,7 @@
 
                 <p:dataTable id="tabela" var="p" value="#{controllerEntradaAtividade.listaDM}" emptyMessage="Nada encontrado...">
                     <p:column>
-                        <h:outputText value="#{p.aluno.nome}"/>
+                        <h:outputText value="#{request.userPrincipal.name}"/>
                     </p:column>
                     <p:column>
                         <h:outputText value="#{p.atividadecomplementar.atividadecomplementartipo.tipo_atividade}"/>
