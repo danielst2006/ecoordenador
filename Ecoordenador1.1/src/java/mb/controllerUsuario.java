@@ -14,8 +14,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import rn.AlunoRN;
 import rn.UsuarioPermissaoRN;
 import rn.UsuarioRN;
