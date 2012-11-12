@@ -55,6 +55,34 @@ public class controllerDisciplina {
         return "Removido";
     }
 
+    public String alterar() {
+        DisciplinaRN rn = new DisciplinaRN();
+        rn.atualizar(this.disciplina);
+        limparDisc();
+        return "Alterado";
+    }
+    
+    public void prepararAlterar() {
+        this.disciplina = (Disciplina)this.listaDataModelDisc.getRowData();
+    }
+    
+       
+    
+    public void prepararIncluirEnquivalencia() {
+        this.disciplina = (Disciplina)this.listaDataModelDisc.getRowData();
+    }
+    
+      public String IncluirEquivalencia() {
+        DisciplinaRN rn = new DisciplinaRN();
+        
+        disciplina.getEquivalentes().add(disciplina);
+        rn.salvar(disciplina);
+        limparDisc();
+        return "Alterado";
+    }
+    
+    
+    
     ////////////////////////////////////////////////////////////////////////////
     //SETTERS E GETTERS
 
