@@ -38,6 +38,7 @@ public class controllerClasse {
     
     public void limparHorario() {
         setHorario(new Horario());
+        
     }
 
 
@@ -55,10 +56,14 @@ public class controllerClasse {
         return this.listaClasse;
     }    
        
-    public String salvarClasse(){
+    public String salvarClasseH(){
         ClasseRN rn = new ClasseRN();
+        HorarioRN rn1 = new HorarioRN(); 
+        getHorario().setClasse(this.classe);
         rn.salvar(this.classe);
+        rn1.salvar(this.horario);
         limparClasse();
+        limparHorario();
         return "Salvo";
     }
     
