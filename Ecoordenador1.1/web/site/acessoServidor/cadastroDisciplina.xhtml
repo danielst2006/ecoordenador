@@ -17,7 +17,7 @@
         <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
             
                 <h:form id="formSalvar">
-                <p:panel  header="Cadastro de Periodo Letivo"> 
+                <p:panel  header="Cadastro de Disciplinas"> 
                     <p:messages id="msgs"/> 
                     <h:panelGrid >
                     
@@ -43,17 +43,8 @@
                    
            
                     
-                    <p:commandButton value="Salvar" ajax="true" update="@form" actionListener="#{controllerMatriz.salvar()}"/>
+                    <p:commandButton value="Salvar" ajax="true" update="@form" actionListener="#{controllerDisciplina.salvarDisc()}"/>
                          
-                      <p:ajaxStatus style="position:fixed;right:20px;top:20px">  
-                            <f:facet name="start">
-                                <h:graphicImage value="../resources/images/ajax-loader.gif" />
-                            </f:facet>
-                            <f:facet name="complete">
-                                <h:outputText value="" />
-                            </f:facet>
-                     </p:ajaxStatus>
-
                     
                                     
                     
@@ -66,7 +57,7 @@
                         <h:outputText value="#{p.id}"/>
                     </p:column>
                     <p:column>
-                        <h:outputText value="#{p.unidade_curricular}"/>
+                        <h:outputText value="#{p.codigo}"/>
                     </p:column>
                     <p:column>
                         <p:commandLink value="IncluirEnquivalencia" actionListener="#{controllerDisciplina.prepararIncluirEnquivalencia()}" ajax="true" oncomplete="dialogIncluirEquivalencia.show();" update=":formIncluirEquivalencia"/>
@@ -76,7 +67,7 @@
                         <p:commandLink value="alterar" actionListener="#{controllerDisciplina.prepararAlterar()}" ajax="true" oncomplete="dialogAlterar.show();" update=":formAlterar"/>
                     </p:column>
                     <p:column>
-                        <p:commandLink value="apagar" actionListener="#{controllerDisciplina.remover()}" ajax="true" process="@this" update="@form"/>
+                        <p:commandLink value="apagar" actionListener="#{controllerDisciplina.removerDisc()}" ajax="true" process="@this" update="@form"/>
                     </p:column>
                 </p:dataTable>
                 
@@ -128,14 +119,18 @@
                         <p:messages id="msgs"/> 
                         <h:panelGrid columns="2">
                             
-                            Incluir Equivalência: <p:inputText value="#{controllerDisciplina.disciplina.equivalentes}" />
+                            Incluir Equivalência:
+                            <p:selectOneMenu value="#{controllerDisciplina.disciplinaEq.equivalentes}" converter="#{DisciplinaConverter}" style="width: 150px">
+                                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                <f:selectItems value="#{controllerDisciplina.listaDisc}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.codigo}"/>
+                            </p:selectOneMenu>
                     
                                            
                             
                             
-                            <p:commandButton value="Alterar" actionListener="#{controllerDisciplina.incluirEquivalencia}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
+                            <p:commandButton value="Adicionar" actionListener="#{controllerDisciplina.incluirEquivalencia}" oncomplete="dialogIncluirEquivalencia.hide()" update=":formSalvar" 
                                                 style="margin-top: 30px"/>
-                    <p:commandButton value="cancelar" actionListener="#{controllerDisciplina.limparDisc()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
+                    <p:commandButton value="cancelar" actionListener="#{controllerDisciplina.limparDisc()}" oncomplete="dialogIncluirEquivalencia.hide()" update=":formSalvar" 
                                                 style="margin-top: 30px;margin-left: 0px;"/>
                         </h:panelGrid>
                     </p:panel>
@@ -144,20 +139,7 @@
      
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
             
             
         </sec:ifAnyGranted>
