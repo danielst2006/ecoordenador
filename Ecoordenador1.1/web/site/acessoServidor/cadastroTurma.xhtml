@@ -23,16 +23,16 @@
 
                         Periodo Letivo: 
                         
-                        <p:selectOneMenu value="#{controllerTurma.turma.id_periodo_letido}" converter="#{PeriodoLetivoConverter}" style="width: 150px">
+                        <p:selectOneMenu value="#{controllerTurma.turma.periodoletivo}" converter="#{PeriodoLetivoConverter}" style="width: 150px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                            <f:selectItems value="#{controllerPeriodoLetivo.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.ano}"/>
-                        </p:selectOneMenu>
+                            <f:selectItems value="#{controllerPeriodoLetivo.lista}" var="tipo" itemValue="#{tipo}" itemLabel= "#{tipo.ano}/#{tipo.semestre}"/>
+                        </p:selectOneMenu>                               
                        
                         Matriz Curricular:
-                        <p:selectOneMenu value="#{controllerTurma.turma.matriz_id}" converter="#{MatrizCurricularConverter}" style="width: 150px">
+                        <p:selectOneMenu value="#{controllerTurma.turma.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 150px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                            <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.ident_curso.nome}"/>
-                        </p:selectOneMenu>
+                            <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}"/>
+                        </p:selectOneMenu>     
 
                         
                         Turno: <p:selectOneMenu value="#{controllerTurma.turma.turno}"    >
@@ -61,10 +61,22 @@
                 </p:panel>
 
                 <p:dataTable id="tabela" var="p" value="#{controllerTurma.listaDM}" emptyMessage="Nada encontrado...">
-                    <p:column>
+                    <p:column  headerText="Cod">
                         <h:outputText value="#{p.id}"/>
                     </p:column>
      
+                    <p:column headerText="Ano">
+                         <h:outputText value="#{p.periodoletivo.ano}/#{p.periodoletivo.semestre}"/>
+                    </p:column>
+                    
+                     <p:column headerText="Matriz Curricular">
+                         <h:outputText value="#{p.matrizcurricular.curso.nome}"/>
+                    </p:column>
+     
+                    <p:column headerText="Turno">
+                         <h:outputText value="#{p.turno}"/>
+                    </p:column>
+                    
                     <p:column>
                         <p:commandLink value="alterar" actionListener="#{controllerTurma.prepararAlterar()}" ajax="true" oncomplete="dialogAlterar.show();" update=":formAlterar"/>
                     </p:column>
@@ -86,15 +98,15 @@
                  
                         Periodo Letivo: 
                         
-                        <p:selectOneMenu value="#{controllerTurma.turma.id_periodo_letido}" converter="#{PeriodoLetivoConverter}" style="width: 150px">
+                        <p:selectOneMenu value="#{controllerTurma.turma.periodoletivo}" converter="#{PeriodoLetivoConverter}" style="width: 150px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                            <f:selectItems value="#{controllerPeriodoLetivo.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.ano}"/>
+                            <f:selectItems value="#{controllerPeriodoLetivo.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.ano}/#{tipo.semestre}"/>
                         </p:selectOneMenu>
                        
                         Matriz Curricular:
-                        <p:selectOneMenu value="#{controllerTurma.turma.matriz_id}" converter="#{MatrizCurricularConverter}" style="width: 150px">
+                        <p:selectOneMenu value="#{controllerTurma.turma.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 150px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                            <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.ident_curso.nome}"/>
+                            <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}"/>
                         </p:selectOneMenu>
 
                         
@@ -108,7 +120,7 @@
                         
                         <p:commandButton value="Alterar" actionListener="#{controllerTurma.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
                                                 style="margin-top: 30px"/>
-                        <p:commandButton value="cancelar" actionListener="#{controllerTurma.impar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
+                        <p:commandButton value="cancelar" actionListener="#{controllerTurma.limpar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
                                                 style="margin-top: 30px;margin-left: 0px;"/>
                         </h:panelGrid>
                     </p:panel>
