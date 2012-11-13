@@ -8,10 +8,7 @@ import javax.faces.convert.FacesConverter;
 import beans.AtividadeComplementarTipo;
 import rn.AtividadeComplementarTipoRN;
 
-/**
- *
- * @author wkn
- */
+
 @FacesConverter(forClass = AtividadeComplementarTipo.class)
 public class AtividadeComplementarTipoConverter implements Converter{
     

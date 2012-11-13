@@ -8,10 +8,7 @@ import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 import rn.PeriodoLetivoRN;
 
-/**
- *
- * @author wkn
- */
+
 @FacesConverter(forClass = PeriodoLetivo.class)
 public class PeriodoLetivoConverter implements Converter{
     

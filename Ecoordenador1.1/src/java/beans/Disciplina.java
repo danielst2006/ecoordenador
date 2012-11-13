@@ -68,7 +68,7 @@ public class Disciplina implements Serializable {
         @JoinColumn(name="matrizcurricular")
         private MatrizCurricular matrizcurricular;
         
-        @ManyToMany(cascade={CascadeType.ALL})
+        @ManyToMany(cascade={CascadeType.MERGE},fetch= FetchType.LAZY)
         @JoinTable(name="pre_requisito",
             joinColumns={@JoinColumn(name="id_disciplina")},
             inverseJoinColumns={@JoinColumn(name="id_disciplina_req")})
@@ -77,18 +77,40 @@ public class Disciplina implements Serializable {
         @ManyToMany(mappedBy="requisitos")
         private Set<Disciplina> pre_requisitos = new HashSet<Disciplina>();
         
-        @ManyToMany(cascade={CascadeType.ALL})
+        /*@ManyToMany(cascade={CascadeType.MERGE},fetch=FetchType.LAZY)
         @JoinTable(name="disciplina_equivalente",
             joinColumns={@JoinColumn(name="id_disciplina")},
             inverseJoinColumns={@JoinColumn(name="id_disciplina_eqv")})
         private Set<Disciplina> equivalentes = new HashSet<Disciplina>();
 
         @ManyToMany(mappedBy="equivalentes")
-        private Set<Disciplina> disc_eq = new HashSet<Disciplina>();
+        private Set<Disciplina> disc_eq = new HashSet<Disciplina>();*/
+        
+        @OneToMany(mappedBy="disciplina_pk")
+        Set<DisciplinaEquivalente> disciplina_pk;
+        
+        @OneToMany(mappedBy="disciplina_eq")
+        Set<DisciplinaEquivalente> disciplina_eq;
         
         @OneToMany(mappedBy="disciplina")
         Set<Classe> classes;
 
+    public Set<DisciplinaEquivalente> getDisciplina_eq() {
+        return disciplina_eq;
+    }
+
+    public void setDisciplina_eq(Set<DisciplinaEquivalente> disciplina_eq) {
+        this.disciplina_eq = disciplina_eq;
+    }
+
+    public Set<DisciplinaEquivalente> getDisciplina_pk() {
+        return disciplina_pk;
+    }
+
+    public void setDisciplina_pk(Set<DisciplinaEquivalente> disciplina_pk) {
+        this.disciplina_pk = disciplina_pk;
+    }
+        
     public Set<Classe> getClasses() {
         return classes;
     }
@@ -97,7 +119,7 @@ public class Disciplina implements Serializable {
         this.classes = classes;
     }
 
-    public Set<Disciplina> getDisc_eq() {
+    /*public Set<Disciplina> getDisc_eq() {
         return disc_eq;
     }
 
@@ -111,7 +133,7 @@ public class Disciplina implements Serializable {
 
     public void setEquivalentes(Set<Disciplina> equivalentes) {
         this.equivalentes = equivalentes;
-    }
+    }*/
 
     public Set<Disciplina> getPre_requisitos() {
         return pre_requisitos;
@@ -247,6 +269,28 @@ public class Disciplina implements Serializable {
 
     public void setUnidade_curricular(String unidade_curricular) {
         this.unidade_curricular = unidade_curricular;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Disciplina other = (Disciplina) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + (this.id != null ? this.id.hashCode() : 0);
+        return hash;
     }
 
 }

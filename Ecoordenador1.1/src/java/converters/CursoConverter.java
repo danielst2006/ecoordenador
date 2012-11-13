@@ -8,10 +8,7 @@ import javax.faces.convert.FacesConverter;
 import beans.Curso;
 import rn.CursoRN;
 
-/**
- *
- * @author wkn
- */
+
 @FacesConverter(forClass = Curso.class)
 public class CursoConverter implements Converter{
     

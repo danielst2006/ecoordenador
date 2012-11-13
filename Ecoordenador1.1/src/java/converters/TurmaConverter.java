@@ -12,10 +12,7 @@ import rn.MatrizCurricularRN;
 import rn.ServidorRN;
 import rn.TurmaRN;
 
-/**
- *
- * @author wkn
- */
+
 @FacesConverter(forClass = Turma.class)
 public class TurmaConverter implements Converter{
     

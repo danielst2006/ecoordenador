@@ -120,17 +120,16 @@
                         <h:panelGrid columns="2">
                             
                             Incluir Equivalência:
-                            <p:selectOneMenu value="#{controllerDisciplina.disciplinaEq.equivalentes}" converter="#{DisciplinaConverter}" style="width: 150px">
-                                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                            <p:selectManyCheckbox value="#{controllerDisciplina.discSelecionadas}" converter="#{DisciplinaConverter}" layout="pageDirection">  
                                 <f:selectItems value="#{controllerDisciplina.listaDisc}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.codigo}"/>
-                            </p:selectOneMenu>
+                            </p:selectManyCheckbox>
                     
                                            
                             
                             
-                            <p:commandButton value="Adicionar" actionListener="#{controllerDisciplina.incluirEquivalencia}" oncomplete="dialogIncluirEquivalencia.hide()" update=":formSalvar" 
+                            <p:commandButton value="Adicionar" actionListener="#{controllerDisciplina.salvarEqv()}" oncomplete="dialogIncluirEquivalencia.hide()" update=":formSalvar,:growl" 
                                                 style="margin-top: 30px"/>
-                    <p:commandButton value="cancelar" actionListener="#{controllerDisciplina.limparDisc()}" oncomplete="dialogIncluirEquivalencia.hide()" update=":formSalvar" 
+                            <p:commandButton value="cancelar" actionListener="#{controllerDisciplina.limparDisc()}" oncomplete="dialogIncluirEquivalencia.hide()" update=":formSalvar" 
                                                 style="margin-top: 30px;margin-left: 0px;"/>
                         </h:panelGrid>
                     </p:panel>

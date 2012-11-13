@@ -10,10 +10,7 @@ import javax.faces.convert.FacesConverter;
 import rn.MatrizCurricularRN;
 import rn.ServidorRN;
 
-/**
- *
- * @author wkn
- */
+
 @FacesConverter(forClass = MatrizCurricular.class)
 public class MatrizCurricularConverter implements Converter{
     
