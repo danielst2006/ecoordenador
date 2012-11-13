@@ -19,7 +19,6 @@ public class ConexaoHibernateFilter implements Filter {
             this.sf.getCurrentSession().beginTransaction();
             chain.doFilter(servletRequest, servletResponse);
             this.sf.getCurrentSession().getTransaction().commit();
-            this.sf.getCurrentSession().close();
         } catch (Throwable ex) {
             try {
                 if (this.sf.getCurrentSession().getTransaction().isActive()) {
@@ -29,6 +28,8 @@ public class ConexaoHibernateFilter implements Filter {
                 System.out.println("ERRO: " + t.getMessage());
             }
             throw new ServletException(ex);
+        } finally {
+            this.sf.getCurrentSession().close();
         }
     }
 }

@@ -28,6 +28,7 @@
     <mapping class="beans.Coordenador"/>
     <mapping class="beans.MatrizCurricular"/>
     <mapping class="beans.Disciplina"/>
+    <mapping class="beans.DisciplinaEquivalente"/>
     <mapping class="beans.PeriodoLetivo"/>
     <mapping class="beans.Turma"/>
     <mapping class="beans.Classe"/>

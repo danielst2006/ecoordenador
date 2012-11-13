@@ -1,11 +1,15 @@
 package mb;
 import beans.Disciplina;
+import beans.DisciplinaEquivalente;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import rn.DisciplinaEquivalenteRN;
 import rn.DisciplinaRN;
 
 
@@ -18,18 +22,18 @@ public class controllerDisciplina {
     @ManagedProperty(value="#{disciplina}")
     private Disciplina disciplina;
     
-    @ManagedProperty(value="#{disciplina}")
-    private Disciplina disciplinaEq;
+    @ManagedProperty(value="#{disciplina_equivalente}")
+    private DisciplinaEquivalente disciplinaEquivalente;
 
     private List<Disciplina> listaDisc;
 
     private DataModel listaDataModelDisc;
     
-    private Integer flag;
+    private List<Disciplina> discSelecionadas;
     
     public void limparDisc() {
         setDisciplina(new Disciplina());
-        setDisciplinaEq(new Disciplina());
+        setDisciplinaEquivalente(new DisciplinaEquivalente());
     }
 
     ////////////////////////////////////////////////////////////////////////////   
@@ -78,18 +82,17 @@ public class controllerDisciplina {
         this.disciplina = (Disciplina)this.listaDataModelDisc.getRowData();
     }
     
-      public String IncluirEquivalencia() {
-        DisciplinaRN rn = new DisciplinaRN();
-        this.disciplina.getEquivalentes().add(this.disciplinaEq);
-        
-        rn.salvar(this.disciplina);
-        
+    public String salvarEqv(){
+        DisciplinaEquivalenteRN rn = new DisciplinaEquivalenteRN();
+        for(Disciplina disc:discSelecionadas) {
+            //this.disciplinaEquivalente.setDisciplina_eq(disc);
+            //this.disciplinaEquivalente.setDisciplina_pk(this.disciplina);
+            //rn.salvar(this.disciplinaEquivalente);
+        }
         limparDisc();
-        return "Alterado";
+        return "Salvo";
     }
-    
-    
-    
+
     ////////////////////////////////////////////////////////////////////////////
     //SETTERS E GETTERS
 
@@ -101,20 +104,20 @@ public class controllerDisciplina {
         this.disciplina = disciplina;
     }
 
-    public Disciplina getDisciplinaEq() {
-        return disciplinaEq;
+    public DisciplinaEquivalente getDisciplinaEquivalente() {
+        return disciplinaEquivalente;
     }
 
-    public void setDisciplinaEq(Disciplina disciplinaEq) {
-        this.disciplinaEq = disciplinaEq;
+    public void setDisciplinaEquivalente(DisciplinaEquivalente disciplinaEquivalente) {
+        this.disciplinaEquivalente = disciplinaEquivalente;
     }
 
-    public Integer getFlag() {
-        return flag;
+    public List<Disciplina> getDiscSelecionadas() {
+        return discSelecionadas;
     }
 
-    public void setFlag(Integer flag) {
-        this.flag = flag;
+    public void setDiscSelecionadas(List<Disciplina> discSelecionadas) {
+        this.discSelecionadas = discSelecionadas;
     }
-
+    
 }

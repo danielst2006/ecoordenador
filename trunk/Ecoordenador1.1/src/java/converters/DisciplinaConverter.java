@@ -1,19 +1,14 @@
 package converters;
 
 import beans.Disciplina;
-import beans.MatrizCurricular;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 import rn.DisciplinaRN;
-import rn.MatrizCurricularRN;
 
-/**
- *
- * @author wkn
- */
+
 @FacesConverter(forClass = Disciplina.class)
 public class DisciplinaConverter implements Converter{
     

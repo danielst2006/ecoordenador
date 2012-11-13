@@ -8,10 +8,7 @@ import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 import rn.ServidorRN;
 
-/**
- *
- * @author wkn
- */
+
 @FacesConverter(forClass = Servidor.class)
 public class ServidorConverter implements Converter{
     
