@@ -22,7 +22,13 @@
                     <h:panelGrid >
                     
                     Ano: <p:inputText value="#{controllerPeriodoLetivo.periodo.ano}" />
-                    Semestre: <p:inputText value="#{controllerPeriodoLetivo.periodo.semestre}" />
+                    Semestre: <p:selectOneMenu value="#{controllerPeriodoLetivo.periodo.semestre}"    >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="1" itemValue="1" />
+                        <f:selectItem itemLabel="2" itemValue="2" />
+                                               
+                    </p:selectOneMenu> 
+                    
                     Data Inicio: <p:calendar value="#{controllerPeriodoLetivo.periodo.data_inicio}" />
                     Data Fim : <p:calendar value="#{controllerPeriodoLetivo.periodo.data_fim}" />
                     
@@ -45,9 +51,27 @@
 
 
                 <p:dataTable id="tabela" var="p" value="#{controllerPeriodoLetivo.listaDM}" emptyMessage="Nada encontrado...">
-                    <p:column>
+                    <p:column headerText="Cod">
+                        <h:outputText value="#{p.id}"/>
+                    </p:column>
+                    <p:column headerText="Ano">
                         <h:outputText value="#{p.ano}"/>
                     </p:column>
+                    <p:column headerText="Semestre">
+                        <h:outputText value="#{p.semestre}"/>
+                    </p:column>
+                    <p:column headerText="Data Inicio">
+                        <h:outputText value="#{p.data_inicio}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Data Fim">
+                        <h:outputText value="#{p.data_fim}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                      
+                    </p:column>
+                    
                     <p:column>
                         <p:commandLink value="alterar" actionListener="#{controllerPeriodoLetivo.prepararAlterar()}" ajax="true" oncomplete="dialogAlterar.show();" update=":formAlterar"/>
                     </p:column>
@@ -67,7 +91,12 @@
                         <h:panelGrid columns="2">
                                 
                             Ano: <p:inputText value="#{controllerPeriodoLetivo.periodo.ano}" />
-                            Semestre: <p:inputText value="#{controllerPeriodoLetivo.periodo.semestre}" />
+                            Semestre: <p:selectOneMenu value="#{controllerPeriodoLetivo.periodo.semestre}"    >
+                                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                <f:selectItem itemLabel="1" itemValue="1" />
+                                <f:selectItem itemLabel="2" itemValue="2" />
+
+                            </p:selectOneMenu> 
                             Data Inicio: <p:calendar value="#{controllerPeriodoLetivo.periodo.data_inicio}" />
                             Data Fim : <p:calendar value="#{controllerPeriodoLetivo.periodo.data_fim}" />
                             <p:commandButton value="Alterar" actionListener="#{controllerPeriodoLetivo.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
