@@ -28,7 +28,10 @@
                 </p:panel>
 
                 <p:dataTable id="tabela" var="p" value="#{controllerAtvCompTipo.listaDM}" emptyMessage="Nada encontrado...">
-                    <p:column>
+                     <p:column headerText="Cod">
+                        <h:outputText value="#{p.id}"/>
+                    </p:column>
+                    <p:column headerText="Tipo de Atividade">
                         <h:outputText value="#{p.tipo_atividade}"/>
                     </p:column>
                     <p:column>

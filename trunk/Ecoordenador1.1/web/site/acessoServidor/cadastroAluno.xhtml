@@ -23,14 +23,60 @@
     <p:wizard widgetVar="wiz"
               flowListener="#{controllerAluno.onFlowProcess}">
 
-        <p:tab id="personal" title="Pessoal">
+
+        
+        <p:tab id="Usuario" title="Usuario">
+            <p:panel header="Dados de Usuário">
+
+                <h:messages errorClass="error"/>
+
+                <h:panelGrid columns="2" columnClasses="label, value">
+
+                                Usuário: *
+                                <p:inputText size="20" value="#{controllerAluno.usuario.login}" style="width: 180px;" required="true"
+                                             requiredMessage="campo usuário é obrigatório."/>
+
+                                Senha: *
+                                <p:password size="18" value="#{controllerAluno.usuario.senha}" style="width: 180px;" required="true"
+                                            requiredMessage="campo senha é obrigatório."/>
+                                
+                                Senha: *
+                                <p:password size="18" value="#{controllerAluno.usuario.senha2}" style="width: 180px;" required="true"
+                                            requiredMessage="confirmação de senha obrigatório"/>
+                                
+                                Email: *
+                                <p:inputText value="#{controllerAluno.usuario.email}" style="width: 180px;" required="true"
+                                             requiredMessage="campo email obrigatório."/>
+
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>        
+        
+      <p:tab id="personal" title="Pessoal">
 
             <p:panel header="Dados Gerais">
 
                 <h:messages errorClass="error"/>
 
-                <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
+                <h:panelGrid columns="4" columnClasses="label, value" styleClass="grid">
                     Nome:*<p:inputText  value="#{controllerAluno.aluno.nome}" label="Nome"  />
+                    
+                    Zona de Procedência:* <p:selectOneMenu value="#{controllerAluno.aluno.zona_procedencia}" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Urbana" itemValue="Ubarna" />
+                        <f:selectItem itemLabel="Rural" itemValue="Rural" />
+                    </p:selectOneMenu>
+
+                    <p:commandButton value="Buscar CEP" actionListener="#{controllerAluno.buscarCep()}" ajax="true" update="@form"/>
+                    <p:inputText value="#{controllerAluno.aluno.cep}" />
+
+                    Logradouro:* <p:inputText value="#{controllerAluno.aluno.logradouro}" />
+                    Numero:*<p:inputText value="#{controllerAluno.aluno.numero_lote}" />
+                    Complemento: <p:inputText value="#{controllerAluno.aluno.complemento}" />
+                    Bairro:* <p:inputText value="#{controllerAluno.aluno.bairro}" />
+                    Cidade:* <p:inputText value="#{controllerAluno.aluno.cidade}" />
+                    UF:* <p:inputText value="#{controllerAluno.aluno.uf}" />
+                    
                     Etnia:<p:selectOneMenu value="#{controllerAluno.aluno.etnia}"    >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Branca" itemValue="branca" />
@@ -167,35 +213,6 @@
 
 
 
-        <p:tab id="endereco" title="Endereço">
-            <p:panel header="Dados de Endereço">
-
-
-                <h:panelGrid columns="2" columnClasses="label, value">
-
-                    <h:messages errorClass="error"/>
-
-                    <h:panelGrid columns="2" columnClasses="label, value">
-                        Zona de Procedência:* <p:selectOneMenu value="#{controllerAluno.aluno.zona_procedencia}" >
-                            <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                            <f:selectItem itemLabel="Urbana" itemValue="Ubarna" />
-                            <f:selectItem itemLabel="Rural" itemValue="Rural" />
-                        </p:selectOneMenu>
-                        
-                        <p:commandButton value="Buscar CEP" actionListener="#{controllerAluno.buscarCep()}" ajax="true" update="@form"/>
-                        <p:inputText value="#{controllerAluno.aluno.cep}" />
-                        
-                        Logradouro:* <p:inputText value="#{controllerAluno.aluno.logradouro}" />
-                        Numero:* <p:inputText value="#{controllerAluno.aluno.numero_lote}" />
-                        Complemento: <p:inputText value="#{controllerAluno.aluno.complemento}" />
-                        Bairro:* <p:inputText value="#{controllerAluno.aluno.bairro}" />
-                        Cidade:* <p:inputText value="#{controllerAluno.aluno.cidade}" />
-                        UF:* <p:inputText value="#{controllerAluno.aluno.uf}" />
-                    </h:panelGrid>    
-
-                </h:panelGrid>
-            </p:panel>
-        </p:tab>
 
         <p:tab id="documentacao" title="Documentação">
             <p:panel header="Dados de Documentação">
@@ -261,9 +278,25 @@
             <p:panel header="Confirmação">
 
                 <h:panelGrid id="confirmation" columns="6">
+                    
+                
+                    Usuário: *
+                    <h:outputText value="#{controllerAluno.usuario.login}" />
 
-                    Nome:*<h:outputText  value="#{controllerAluno.aluno.nome}"/>
-                    Etnia:<h:outputText value="#{controllerAluno.aluno.etnia}"    />
+                    Senha: *
+                    <h:outputText value="#{controllerAluno.usuario.senha}" />
+
+                    Senha: *
+                    <h:outputText value="#{controllerAluno.usuario.senha2}" />
+
+                    Email: *
+                    <h:outputText value="#{controllerAluno.usuario.email}" />
+                    
+                    
+                    
+                    
+                    Nome:* <h:outputText  value="#{controllerAluno.aluno.nome} "/>
+                    Etnia: <h:outputText value="#{controllerAluno.aluno.etnia}"/>
                     
 
                     Genero: <h:outputText value="#{controllerAluno.aluno.genero}" />
