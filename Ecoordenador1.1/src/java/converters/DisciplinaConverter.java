@@ -15,7 +15,9 @@ public class DisciplinaConverter implements Converter{
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         
-        if(value != null && value.trim().length() > 0){
+        if(value.equals("null") || value.equals("")){
+            return null;
+        } else {
             Integer codigo = Integer.valueOf(value);
             try {
                 DisciplinaRN rn = new DisciplinaRN();
@@ -24,7 +26,7 @@ public class DisciplinaConverter implements Converter{
                 throw new ConverterException("Codigo: " + value + " nao encontrado." + e.getMessage());
             }
         }
-        return null;
+        
     }
 
     @Override
