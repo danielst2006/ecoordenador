@@ -2,8 +2,11 @@ package mb;
 
 import beans.Aluno;
 import beans.Usuario;
+import beans.UsuarioPermissao;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -13,6 +16,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import org.primefaces.event.FlowEvent;
 import rn.AlunoRN;
+import rn.UsuarioPermissaoRN;
 import rn.UsuarioRN;
 import util.CepWebService;
 
@@ -25,9 +29,11 @@ public class controllerAluno {
     
     @ManagedProperty(value="#{aluno}")
     private Aluno aluno;
-
+    @ManagedProperty(value="#{usuario_permissao}")
+    private UsuarioPermissao permissao;
     private List<Aluno> lista;
-    
+    @ManagedProperty(value="#{usuario}")
+    private Usuario usuario;
     private DataModel listaDataModel;
 
     private static Logger logger = Logger.getLogger(Aluno.class.getName());
@@ -54,14 +60,41 @@ public class controllerAluno {
         return this.lista;
     }
        
-    public String salvar(){
+    public void salvar(){
+        
+        UsuarioPermissaoRN rn3 = new UsuarioPermissaoRN();
+        
+        try{
+        
+        if (this.usuario.getSenha().equals(this.usuario.getSenha2())) {
         AlunoRN rn = new AlunoRN();
+        UsuarioRN rn2 = new UsuarioRN();
+        getPermissao().setUsuario(this.getUsuario());
+        getPermissao().setPermissao("ROLE_ALUNO");
+        getUsuario().setData_cadastro(new Date());        
+        getUsuario().setAtivo(true);
+        rn2.salvar(this.usuario);
+        rn3.salvar(this.permissao);
+        
+        this.aluno.setUsuario(this.usuario);
+        
+             
         rn.salvar(this.aluno);
         limpar();
-        return "Salvo";
+        } else {
+                FacesContext context = FacesContext.getCurrentInstance();  
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Atenção", "Senhas devem ser iguais."));
+            }
+        } catch(Exception e) {
+            //precisa debugar
+            FacesContext context = FacesContext.getCurrentInstance();  
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"ERRO", "Usuário já cadastrado."));
+        }
     }
+        
+        
     
-    public String alunoSalvar(){
+   public String alunoSalvar(){
         
         AlunoRN rn = new AlunoRN();
         
@@ -156,6 +189,34 @@ public class controllerAluno {
         else {
             return event.getNewStep();
         }
+    }
+
+    /**
+     * @return the permissao
+     */
+    public UsuarioPermissao getPermissao() {
+        return permissao;
+    }
+
+    /**
+     * @param permissao the permissao to set
+     */
+    public void setPermissao(UsuarioPermissao permissao) {
+        this.permissao = permissao;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     
     

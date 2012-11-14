@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../../resources/templates/login.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:sec="http://www.springframework.org/security/facelets/tags" >
 
-    </h:head>
-   
-    <h:body>
-        <h:form>
-
-    <p:growl id="growl" sticky="true" showDetail="true"/>
+    <ui:define name="menu_horizontal">
+        <sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
+            <ui:include src="/site/acessoServidor/menu.xhtml" />
+        </sec:ifAnyGranted>
+    </ui:define>
+    
+    <ui:define name="corpo">
+        
+        <sec:ifAnyGranted roles="ROLE_ALUNO,ROLE_ADMINISTRADOR">
+            <h:form>
+                
+                 <p:growl id="growl" sticky="true" showDetail="true"/>
 
     <p:wizard widgetVar="wiz"
               flowListener="#{controllerServidor.onFlowProcess}">
@@ -107,11 +110,23 @@ and open the template in the editor.
                     Nome reduzido:<h:outputText value="#{controllerCurso.curso.nome_reduzido}" />
                     Tipo ato de autorização:<h:outputText value="#{controllerCurso.curso.ato_autorizativo_tipo}" />
                     Número ato autorizativo:<h:outputText value="#{controllerCurso.curso.ato_autorizativo_numero}" />
-                    Data expedição ato autorizativo:<p:calendar value="#{controllerCurso.curso.ato_autorizativo_data_expedicao}" />
-                    Data DOU ato autorizativo:<p:calendar value="#{controllerCurso.curso.ato_autorizacao_ato_dou}" />
+                    Data expedição ato autorizativo: <h:outputText value="#{controllerCurso.curso.ato_autorizativo_data_expedicao}">
+                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                         </h:outputText>
+                    
+                    Data DOU ato autorizativo: <h:outputText value="#{controllerCurso.curso.ato_autorizacao_ato_dou}">
+                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                         </h:outputText>
+                
                     Periodicidade de ingresso:<h:outputText value="#{controllerCurso.curso.periodicidade_ingresso}" />
-                    Data início:<p:calendar value="#{controllerCurso.curso.data_inicio}" />
-                    Data fim:<p:calendar value="#{controllerCurso.curso.data_fim}" />
+                    Data início:<h:outputText value="#{controllerCurso.curso.data_inicio}">
+                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                         </h:outputText>
+                    
+                    Data fim: <h:outputText value="#{controllerCurso.curso.data_fim}">
+                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                         </h:outputText>
+                                        
                     Numero de períodos mínimo para integralização:<h:outputText value="#{controllerCurso.curso.periodo_minimo_numero_integralizacao}" />
                     Numero de períodos máximo para integralização:<h:outputText value="#{controllerCurso.curso.periodo_maximo_numero_integralizacao}"/>
                     Área de conhecimento:<h:outputText value="#{controllerCurso.curso.area_conhecimento}" />
@@ -123,8 +138,14 @@ and open the template in the editor.
                     Modalidade de ensino:<h:outputText value="#{controllerCurso.curso.modalidade_ensino}"/>
                     Tipo de ato reconhecimento:<h:outputText value="#{controllerCurso.curso.ato_reconhecimento_tipo}"/>
                     Número do ato reconhecimento:<h:outputText value="#{controllerCurso.curso.ato_reconhecimento_numero}"/>
-                    Data de expedição reconhecimento:<p:calendar value="#{controllerCurso.curso.data_expedicao_reconhecimento}"/>
-                    Data DOU reconhecimento:<p:calendar value="#{controllerCurso.curso.data_dou_reconhecimento}"/>
+                    Data de expedição reconhecimento: <h:outputText value="#{controllerCurso.curso.data_expedicao_reconhecimento}">
+                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                         </h:outputText>                  
+                    
+                    Data DOU reconhecimento: <h:outputText value="#{controllerCurso.curso.data_dou_reconhecimento}">
+                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                         </h:outputText>
+                    
                     Formação profissional:<h:outputText value="#{controllerCurso.curso.formacao_profissional}"/>
                     Formação acadêmica:<h:outputText value="#{controllerCurso.curso.formacao_academica}"/>
                     EJA:<p:selectBooleanButton value="#{controllerCurso.curso.eja}" onLabel="Sim" offLabel="Não" />
@@ -135,23 +156,26 @@ and open the template in the editor.
                     <p:fileUpload fileUploadListener="#{controllerCurso.handleFileUpload}" mode="advanced" sizeLimit="100000" allowTypes="/(\.|\/)(pdf)$/"
                                   multiple="false" style="width: 600px;" invalidFileMessage="Apenas PDF" invalidSizeMessage="Tamanho máximo 100kb"
                                   required="true" requiredMessage="É obrigatório anexar o arquivo." showButtons="false" label="Arquivo"/>
-                    Data do projeto pedagógico:<p:calendar value="#{controllerCurso.curso.data_projeto_pedagogico}" required="true"/>
+                    Data do projeto pedagógico:<h:outputText value="#{controllerCurso.curso.data_projeto_pedagogico}">
+                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                         </h:outputText>
+                    
 
 
                 </h:panelGrid>
+                
+                              </p:panel>
+                    </p:tab>
+
+  </p:wizard>
 
                 <p:commandButton value="Cadastrar" update="growl" 
                                  actionListener="#{controllerCurso.salvar()}"/>
 
-            </p:panel>
-        </p:tab>
-
-    </p:wizard>
-
-        </h:form>
-
-
-
-    </h:body>
-</html>
-
+              </h:form>
+            
+        </sec:ifAnyGranted>
+        
+    </ui:define>
+    
+</ui:composition>

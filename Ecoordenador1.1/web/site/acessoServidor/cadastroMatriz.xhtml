@@ -81,23 +81,28 @@
 
 
                 <p:dataTable id="tabela" var="p" value="#{controllerMatriz.listaDM}" emptyMessage="Nada encontrado...">
-                    <p:column>
+                    <p:column headerText="Cod">
                         <h:outputText value="#{p.id}"/>
                     </p:column>
-                    <p:column>
+                    <p:column headerText="Curso">
                         <h:outputText value="#{p.curso.nome}"/>
                     </p:column>
-                     <p:column>
+                     <p:column headerText="Matriz">
                         <h:outputText value="#{p.situacao_matriz}"/>
                     </p:column>
-                     <p:column>
-                        <h:outputText value="#{p.forma_avaliacao}"/>
+                     <p:column headerText="Inicio da Vigencia">
+                        <h:outputText value="#{p.inicio_vigencia}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
                     </p:column>
-                     <p:column>
-                        <h:outputText value="#{p.inicio_vigencia}"/>
+                     <p:column headerText="Fim da Vigencia">
+                        <h:outputText value="#{p.fim_vigencia}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
                     </p:column>
+                    
                     <p:column>
-                        <p:commandLink value="alterar" actionListener="#{controllerMatriz.prepararAlterar()}" ajax="true" oncomplete="dialogAlterar.show();" update=":formAlterar"/>
+                        <p:commandLink value="alterar" actionListener="#{controllerMatriz.prepararAlterar()}"  oncomplete="dialogAlterar.show();" update=":formAlterar"/>
                     </p:column>
                     <p:column>
                         <p:commandLink value="apagar" actionListener="#{controllerMatriz.remover()}" ajax="true" process="@this" update="@form"/>
