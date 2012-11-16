@@ -121,9 +121,9 @@
                         <h:panelGrid columns="2">
                             
                             Incluir Equivalência:
-                            <p:selectManyCheckbox value="#{controllerDisciplina.discSelecionadas}" converter="#{DisciplinaConverter}" layout="pageDirection">  
+                            <p:selectOneMenu value="#{controllerDisciplina.disciplinaEquivalente.disciplina_eq}" converter="#{DisciplinaConverter}">  
                                 <f:selectItems value="#{controllerDisciplina.listaDisc}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.codigo}"/>
-                            </p:selectManyCheckbox>
+                            </p:selectOneMenu>
                     
                                            
                             

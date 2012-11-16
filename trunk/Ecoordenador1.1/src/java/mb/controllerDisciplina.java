@@ -84,16 +84,17 @@ public class controllerDisciplina {
     
     public String salvarEqv(){
         DisciplinaEquivalenteRN rn = new DisciplinaEquivalenteRN();
-        for(Integer x=0;x<discSelecionadas.size();x++) {
+//        for(Integer x=0;x<discSelecionadas.size();x++) {
 //            this.disciplinaEquivalente.setDisciplina_eq(disc);
 //            this.disciplinaEquivalente.setDisciplina_pk(this.disciplina);
 //            rn.salvar(this.disciplinaEquivalente);
 //            FacesContext context = FacesContext.getCurrentInstance();  
 //            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"TESTE", ""+disc));
-            Disciplina disc = discSelecionadas.get(x);
-            this.disciplinaEquivalente.setDisciplina_eq(disc);
+//            Disciplina disc = discSelecionadas.get(x);
+//            this.disciplinaEquivalente.setDisciplina_eq(this.);
             this.disciplinaEquivalente.setDisciplina_pk(this.disciplina);
-        }
+            rn.salvar(this.disciplinaEquivalente);
+//        }
         limparDisc();
         return "Salvo";
     }
