@@ -68,14 +68,14 @@ public class Disciplina implements Serializable {
         @JoinColumn(name="matrizcurricular")
         private MatrizCurricular matrizcurricular;
         
-        @ManyToMany(cascade={CascadeType.MERGE},fetch= FetchType.LAZY)
+        /*@ManyToMany(cascade={CascadeType.MERGE},fetch= FetchType.LAZY)
         @JoinTable(name="pre_requisito",
             joinColumns={@JoinColumn(name="id_disciplina")},
             inverseJoinColumns={@JoinColumn(name="id_disciplina_req")})
         private Set<Disciplina> requisitos = new HashSet<Disciplina>();
 
         @ManyToMany(mappedBy="requisitos")
-        private Set<Disciplina> pre_requisitos = new HashSet<Disciplina>();
+        private Set<Disciplina> pre_requisitos = new HashSet<Disciplina>();*/
         
         /*@ManyToMany(cascade={CascadeType.MERGE},fetch=FetchType.LAZY)
         @JoinTable(name="disciplina_equivalente",
@@ -92,8 +92,30 @@ public class Disciplina implements Serializable {
         @OneToMany(mappedBy="disciplina_eq")
         Set<DisciplinaEquivalente> disciplina_eq;
         
+        @OneToMany(mappedBy="disc_pk")
+        Set<PreRequisito> disc_pk;
+        
+        @OneToMany(mappedBy="disc_eq")
+        Set<PreRequisito> disc_eq;
+        
         @OneToMany(mappedBy="disciplina")
         Set<Classe> classes;
+
+    public Set<PreRequisito> getDisc_eq() {
+        return disc_eq;
+    }
+
+    public void setDisc_eq(Set<PreRequisito> disc_eq) {
+        this.disc_eq = disc_eq;
+    }
+
+    public Set<PreRequisito> getDisc_pk() {
+        return disc_pk;
+    }
+
+    public void setDisc_pk(Set<PreRequisito> disc_pk) {
+        this.disc_pk = disc_pk;
+    }
 
     public Set<DisciplinaEquivalente> getDisciplina_eq() {
         return disciplina_eq;
@@ -135,7 +157,7 @@ public class Disciplina implements Serializable {
         this.equivalentes = equivalentes;
     }*/
 
-    public Set<Disciplina> getPre_requisitos() {
+    /*public Set<Disciplina> getPre_requisitos() {
         return pre_requisitos;
     }
 
@@ -149,7 +171,7 @@ public class Disciplina implements Serializable {
 
     public void setRequisitos(Set<Disciplina> requisitos) {
         this.requisitos = requisitos;
-    }
+    }*/
 
     public MatrizCurricular getMatrizcurricular() {
         return matrizcurricular;

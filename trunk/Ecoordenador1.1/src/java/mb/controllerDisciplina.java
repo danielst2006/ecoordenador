@@ -1,12 +1,11 @@
 package mb;
 import beans.Disciplina;
 import beans.DisciplinaEquivalente;
+import beans.PreRequisito;
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import rn.DisciplinaEquivalenteRN;
@@ -24,16 +23,20 @@ public class controllerDisciplina {
     
     @ManagedProperty(value="#{disciplina_equivalente}")
     private DisciplinaEquivalente disciplinaEquivalente;
+    
+    @ManagedProperty(value="#{pre_requisito}")
+    private PreRequisito pre_requisito;
 
     private List<Disciplina> listaDisc;
 
     private DataModel listaDataModelDisc;
     
-    private List<Disciplina> discSelecionadas;
+    //private List<Disciplina> discSelecionadas;
     
     public void limparDisc() {
         setDisciplina(new Disciplina());
         setDisciplinaEquivalente(new DisciplinaEquivalente());
+        setPre_requisito(new PreRequisito());
     }
 
     ////////////////////////////////////////////////////////////////////////////   
@@ -118,12 +121,20 @@ public class controllerDisciplina {
         this.disciplinaEquivalente = disciplinaEquivalente;
     }
 
-    public List<Disciplina> getDiscSelecionadas() {
+    /*public List<Disciplina> getDiscSelecionadas() {
         return discSelecionadas;
     }
 
     public void setDiscSelecionadas(List<Disciplina> discSelecionadas) {
         this.discSelecionadas = discSelecionadas;
+    }*/
+
+    public PreRequisito getPre_requisito() {
+        return pre_requisito;
+    }
+
+    public void setPre_requisito(PreRequisito pre_requisito) {
+        this.pre_requisito = pre_requisito;
     }
     
 }
