@@ -1,16 +1,26 @@
 package mb;
+import beans.Aluno;
 import beans.Servidor;
+import beans.Usuario;
+import beans.UsuarioPermissao;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import org.primefaces.event.FlowEvent;
+import rn.AlunoRN;
 import rn.ServidorRN;
+import rn.UsuarioPermissaoRN;
+import rn.UsuarioRN;
 
 
+    
 @ManagedBean(name="controllerServidor")
 @SessionScoped
 public class controllerServidor {
@@ -19,7 +29,11 @@ public class controllerServidor {
     
     @ManagedProperty(value="#{servidor}")
     private Servidor servidor;
-
+    @ManagedProperty(value="#{usuario_permissao}")
+    private UsuarioPermissao permissao;
+    @ManagedProperty(value="#{usuario}")
+    private Usuario usuario;
+    
     private List<Servidor> lista;
     
     private DataModel listaDataModel;
@@ -45,13 +59,44 @@ public class controllerServidor {
         return this.lista;
     }    
        
-    public String salvar(){
-        ServidorRN rn = new ServidorRN();
-        rn.salvar(this.servidor);
+    public void salvar(){
+        
+
+       
+        
+        
+        try{
+            
+        UsuarioPermissaoRN rn3 = new UsuarioPermissaoRN();
+        ServidorRN rn = new ServidorRN();        
+        if (this.getUsuario().getSenha().equals(this.getUsuario().getSenha2())) {
+        UsuarioRN rn2 = new UsuarioRN();
+        getPermissao().setUsuario(this.getUsuario());
+        getPermissao().setPermissao("ROLE_ADMINISTRADOR");
+        getUsuario().setData_cadastro(new Date());        
+        getUsuario().setAtivo(true);
+        rn2.salvar(this.getUsuario());
+        rn3.salvar(this.getPermissao());      
+        
+        
+        this.servidor.setUsuario(this.getUsuario());
+        
+             
+        rn.salvar(this.getServidor());
         limpar();
-        return "Salvo";
+        } else {
+                FacesContext context = FacesContext.getCurrentInstance();  
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Atenção", "Senhas devem ser iguais."));
+            }
+        } catch(Exception e) {
+            //precisa debugar
+            FacesContext context = FacesContext.getCurrentInstance();  
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"ERRO", "Usuário já cadastrado."));
+        }
     }
     
+        
+ 
     public String remover(){
         ServidorRN rn = new ServidorRN();
         this.servidor= (Servidor)this.listaDataModel.getRowData();
@@ -72,7 +117,7 @@ public class controllerServidor {
         this.servidor = servidor;
     }
     
-        	public boolean isSkip() {
+      public boolean isSkip() {
 		return skip;
 	}
 
@@ -92,8 +137,35 @@ public class controllerServidor {
 			return event.getNewStep();
 		}
 	}
-    
-    
-    
+
+    /**
+     * @return the permissao
+     */
+    public UsuarioPermissao getPermissao() {
+        return permissao;
+    }
+
+    /**
+     * @param permissao the permissao to set
+     */
+    public void setPermissao(UsuarioPermissao permissao) {
+        this.permissao = permissao;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
     
 }
+    
+ 

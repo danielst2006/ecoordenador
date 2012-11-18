@@ -13,6 +13,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
 import rn.AlunoRN;
 import rn.UsuarioPermissaoRN;
@@ -150,6 +151,10 @@ public class controllerUsuario {
         boolean valor = this.usuario.getAtivo();
         return valor;
     }
+    
+    
+    
+
     
     public String test1() {
         ExternalContext fc = FacesContext.getCurrentInstance().getExternalContext();  

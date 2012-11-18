@@ -40,22 +40,30 @@
                 </p:panel>
 
                 <p:dataTable id="tabela" var="p" value="#{controllerEntradaAtividade.listaDM}" emptyMessage="Nada encontrado...">
-                    <p:column>
-                        <h:outputText value="#{request.userPrincipal.name}"/>
+                   
+                     <p:column headerText="Cod">
+                        <h:outputText value="#{p.id}"/>
                     </p:column>
-                    <p:column>
+                    <p:column headerText="Solicitante">
+                        <h:outputText value="#{p.aluno.nome}"/>
+                    </p:column>
+                    <p:column headerText="Área">
                         <h:outputText value="#{p.atividadecomplementar.atividadecomplementartipo.tipo_atividade}"/>
                     </p:column>
-                    <p:column>
+                    <p:column headerText="Atividade">
                         <h:outputText value="#{p.atividadecomplementar.atividade}"/>
                     </p:column>
-                    <p:column>
+                   
+                    <p:column headerText="Data">
                         <h:outputText value="#{p.data_entrada}">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                         </h:outputText>
                     </p:column>
+                     <p:column>
+                        <h:outputText  value="#{p.aprovado}"/>
+                    </p:column>
                     <p:column>
-                        <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)" icon="ui-icon-arrowthichk-s">  
+                            <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)" icon="ui-icon-arrowthichk-s">  
                             <p:fileDownload value="#{controllerEntradaAtividade.fileDownloadAction()}"/>
                         </p:commandButton>
                     </p:column>
