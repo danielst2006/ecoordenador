@@ -1,5 +1,9 @@
 package util;
 import beans.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import org.hibernate.HibernateException;
+import org.hibernate.cfg.AnnotationConfiguration;
 
 public class DAOFactory {
     
@@ -103,6 +107,10 @@ public class DAOFactory {
         HibernateDAO<Horario> dao = new HibernateDAO<Horario>(Horario.class);
         dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
         return dao;
+    }
+    
+    public static Connection getConnection() throws SQLException,HibernateException{
+        return new AnnotationConfiguration().configure("database/hibernate.cfg.xml").buildSettings().getConnectionProvider().getConnection();
     }
     
 }
