@@ -19,6 +19,34 @@ and open the template in the editor.
 
     <p:wizard widgetVar="wiz"
               flowListener="#{controllerServidor.onFlowProcess}">
+        
+                <p:tab id="Usuario" title="Usuario">
+            <p:panel header="Dados de Usuário">
+
+                <h:messages errorClass="error"/>
+
+                <h:panelGrid columns="2" columnClasses="label, value">
+
+                                Usuário: *
+                                <p:inputText size="20" value="#{controllerServidor.usuario.login}" style="width: 180px;" required="true"
+                                             requiredMessage="campo usuário é obrigatório."/>
+
+                                Senha: *
+                                <p:password size="18" value="#{controllerServidor.usuario.senha}" style="width: 180px;" required="true"
+                                            requiredMessage="campo senha é obrigatório."/>
+                                
+                                Senha: *
+                                <p:password size="18" value="#{controllerServidor.usuario.senha2}" style="width: 180px;" required="true"
+                                            requiredMessage="confirmação de senha obrigatório"/>
+                                
+                                Email: *
+                                <p:inputText value="#{controllerServidor.usuario.email}" style="width: 180px;" required="true"
+                                             requiredMessage="campo email obrigatório."/>
+
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+        
 
         <p:tab id="personal" title="Pessoal">
 
@@ -277,6 +305,20 @@ and open the template in the editor.
             <p:panel header="Confirmation">
 
                 <h:panelGrid id="confirmation" columns="6">
+                    
+                    Usuário: *
+                    <h:outputText value="#{controllerAluno.usuario.login}" />
+
+                    Senha: *
+                    <h:outputText value="#{controllerAluno.usuario.senha}" />
+
+                    Senha: *
+                    <h:outputText value="#{controllerAluno.usuario.senha2}" />
+
+                    Email: *
+                    <h:outputText value="#{controllerAluno.usuario.email}" />
+
+                    
 
                     Nome:*<h:outputText value="#{controllerServidor.servidor.nome}" />
 

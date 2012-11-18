@@ -15,6 +15,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.faces.model.SelectItem;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -63,6 +64,28 @@ public class controllerEntradaAtividade {
         this.listaDataModel = new ListDataModel(vazia);
         return this.listaDataModel;
     }
+    
+        public DataModel getListaDMAutorizar() {
+          //Buscando usuario
+              
+        //Buscando a lista de entradas
+        List<EntradaAtividade> atvs = getLista();
+        //lista vazia
+        List<EntradaAtividade> vazia = new ArrayList<EntradaAtividade>();
+
+        for(EntradaAtividade ent:atvs) {
+            if(ent.getAprovado().equals(false)) {
+                vazia.add(ent);
+            }
+        }
+        this.listaDataModel = new ListDataModel(vazia);
+        return this.listaDataModel;
+    }
+    
+        
+    
+    
+    
     
     public List<EntradaAtividade> getLista() {
         EntradaAtividadeRN rn = new EntradaAtividadeRN();
@@ -125,6 +148,32 @@ public class controllerEntradaAtividade {
         String login = fc.getRemoteUser();
         return login;
     }
+    
+      public String alterar() {
+        EntradaAtividadeRN rn = new EntradaAtividadeRN();
+        rn.atualizar(this.entradaAtv);
+        limpar();
+        return "Alterado";
+    }
+    
+    public void prepararAlterar() {
+        this.entradaAtv = (EntradaAtividade)this.listaDataModel.getRowData();
+    }
+    
+private Character ativo;
+
+// getters and setters
+
+public void setAtivoBool( boolean ativo ) {
+  this.ativo = (ativo) ? 'S' : 'N';
+}
+
+public boolean isAtivoBool() {
+  if( ativo == null )
+    return false;
+   
+  return ativo.equals( 'S' );
+}
     
     ////////////////////////////////////////////////////////////////////////////
     //SETTERS E GETTERS
