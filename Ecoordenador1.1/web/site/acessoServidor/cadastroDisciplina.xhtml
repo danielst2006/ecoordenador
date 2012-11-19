@@ -52,7 +52,9 @@
                 </p:panel>
 
 
-                    <p:dataTable id="tabela" var="p" value="#{controllerDisciplina.listaDMdisc}" emptyMessage="Nada encontrado...">
+                    <p:dataTable id="tabela" var="p" value="#{controllerDisciplina.listaDMdisc}" emptyMessage="Nada encontrado..."
+                                 paginator="true" rows="10"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                     rowsPerPageTemplate="5,10,15"   >
                     <p:column>
                         <h:outputText value="#{p.id}"/>
                     </p:column>
