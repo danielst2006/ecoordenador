@@ -19,20 +19,18 @@ import util.DAOFactory;
 @ManagedBean(name="controllerRelatorio")
 @SessionScoped
 public class controllerRelatorio {
+    
     JasperPrint impressao;
-
+    HashMap parametro;
     
-       String login;
-    
-       HashMap parametro;
-       
-       
-       public void gerarPDF() throws JRException, SQLException, IOException {
+    String curso;
+           
+    public void gerarPDF() throws JRException, SQLException, IOException {
            parametro = new HashMap();
-           parametro.put("login", login);
+           parametro.put("curso", curso);
            FacesContext context = FacesContext.getCurrentInstance();
            ServletContext servContext = (ServletContext)context.getExternalContext().getContext();
-           String caminho = servContext.getRealPath("/resources/relatorios/teste.jasper");
+           String caminho = servContext.getRealPath("/resources/relatorios/grade.jasper");
            impressao = JasperFillManager.fillReport(caminho, this.parametro,DAOFactory.getConnection());
            
            HttpServletResponse response = (HttpServletResponse)FacesContext.getCurrentInstance().getExternalContext().getResponse();
@@ -41,15 +39,16 @@ public class controllerRelatorio {
            
            context.getApplication().getStateManager().saveView(context);
            context.responseComplete();
-       }
-
-    public String getLogin() {
-        return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public String getCurso() {
+        return curso;
     }
-    
-    
+
+    public void setCurso(String curso) {
+        this.curso = curso;
+    }
+
+
+
 }
