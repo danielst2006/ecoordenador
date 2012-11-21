@@ -1,5 +1,4 @@
 package util;
-import beans.Aluno;
 import beans.Usuario;
 import java.util.List;
 import org.hibernate.Criteria;

@@ -104,14 +104,9 @@ public class Servidor extends Pessoa {
         
         @OneToMany(mappedBy="servidor")
         Set<Classe> classes;
-
-    public Coordenador getCoordenador() {
-        return coordenador;
-    }
-
-    public void setCoordenador(Coordenador coordenador) {
-        this.coordenador = coordenador;
-    }
+        
+        @OneToMany(mappedBy="id_servidor")
+        Set<Ponto> pontos;
 
     public String getAgencia() {
         return agencia;
@@ -169,6 +164,14 @@ public class Servidor extends Pessoa {
         this.classe = classe;
     }
 
+    public Set<Classe> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(Set<Classe> classes) {
+        this.classes = classes;
+    }
+
     public String getClassificacao() {
         return classificacao;
     }
@@ -183,6 +186,14 @@ public class Servidor extends Pessoa {
 
     public void setConta(String conta) {
         this.conta = conta;
+    }
+
+    public Coordenador getCoordenador() {
+        return coordenador;
+    }
+
+    public void setCoordenador(Coordenador coordenador) {
+        this.coordenador = coordenador;
     }
 
     public Date getData_admissao() {
@@ -249,16 +260,16 @@ public class Servidor extends Pessoa {
         this.nivel_funcional = nivel_funcional;
     }
 
-    public String getOrgao_origem() {
-        return orgao_origem;
-    }
-
     public Integer getNumero() {
         return numero;
     }
 
     public void setNumero(Integer numero) {
         this.numero = numero;
+    }
+
+    public String getOrgao_origem() {
+        return orgao_origem;
     }
 
     public void setOrgao_origem(String orgao_origem) {
@@ -279,6 +290,14 @@ public class Servidor extends Pessoa {
 
     public void setOrgao_origem_matricula(String orgao_origem_matricula) {
         this.orgao_origem_matricula = orgao_origem_matricula;
+    }
+
+    public Set<Ponto> getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(Set<Ponto> pontos) {
+        this.pontos = pontos;
     }
 
     public String getRegime_juridico() {
@@ -319,7 +338,7 @@ public class Servidor extends Pessoa {
 
     public void setUnidade_ensino(String unidade_ensino) {
         this.unidade_ensino = unidade_ensino;
-    } 
-	 
+    }
+
 }
  

@@ -109,6 +109,12 @@ public class DAOFactory {
         return dao;
     }
     
+    public static InterfaceHibernateDAO<Ponto> criarPontoDAO(){
+        HibernateDAO<Ponto> dao = new HibernateDAO<Ponto>(Ponto.class);
+        dao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+        return dao;
+    }
+    
     public static Connection getConnection() throws SQLException,HibernateException{
         return new AnnotationConfiguration().configure("database/hibernate.cfg.xml").buildSettings().getConnectionProvider().getConnection();
     }
