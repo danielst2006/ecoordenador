@@ -44,7 +44,7 @@
                     </p:selectOneMenu>                    
                                
                     
-                    <p:commandButton value="Salvar"  update=":formSalvar" actionListener="#{controllerClasse.salvarClasseH()}"/>
+                    <p:commandButton value="Salvar" process="@this"  update=":formSalvar" actionListener="#{controllerClasse.salvarClasseH()}"/>
                          
                     
                     

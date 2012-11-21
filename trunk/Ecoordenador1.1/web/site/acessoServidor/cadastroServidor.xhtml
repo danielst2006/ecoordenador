@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../../resources/templates/login.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:sec="http://www.springframework.org/security/facelets/tags" >
 
-    </h:head>
-   
-    <h:body>
-        <h:form>
-
-    <p:growl id="growl" sticky="true" showDetail="true"/>
-
-    <p:wizard widgetVar="wiz"
-              flowListener="#{controllerServidor.onFlowProcess}">
+    <ui:define name="menu_horizontal">
+        <sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
+            <ui:include src="/site/acessoServidor/menu.xhtml" />
+        </sec:ifAnyGranted>
+    </ui:define>
+    
+    <ui:define name="corpo">
         
-                <p:tab id="Usuario" title="Usuario">
-            <p:panel header="Dados de Usuário">
+        <sec:ifAnyGranted roles="ROLE_ALUNO,ROLE_ADMINISTRADOR">
+            <h:form>
+                
+                 <p:growl id="growl" sticky="true" showDetail="true"/>
+                 <p:growl id="growl2" showDetail="true" sticky="true" /> 
+    <p:wizard widgetVar="wiz"
+              flowListener="#{controllerAluno.onFlowProcess}">
 
+
+        
+        <p:tab id="Usuario" title="Usuario">
+            <p:panel header="Dados de Servidor">
+            
                 <h:messages errorClass="error"/>
 
                 <h:panelGrid columns="2" columnClasses="label, value">
@@ -54,20 +59,20 @@ and open the template in the editor.
 
                 <h:messages errorClass="error"/>
 
-                <h:panelGrid columns="4" columnClasses="label, value" styleClass="grid">
-                    Nome:*<p:inputText value="#{controllerServidor.servidor.nome}" label="nome">
+                <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid" >
+                    Nome:*<p:inputText value="#{controllerServidor.servidor.nome}" label="nome" style="width: 230px;">
                     </p:inputText>
                
                  
-                    CEP:* <p:inputText value="#{controllerServidor.servidor.cep}" />
-                    Logradouro:* <p:inputText value="#{controllerServidor.servidor.logradouro}" />
-                    Numero:* <p:inputText value="#{controllerServidor.servidor.numero_lote}" />
-                    Complemento: <p:inputText value="#{controllerServidor.servidor.complemento}" />
-                    Bairro:* <p:inputText value="#{controllerServidor.servidor.bairro}" />
-                    Cidade:* <p:inputText value="#{controllerServidor.servidor.cidade}" />
-                    UF:* <p:inputText value="#{controllerServidor.servidor.uf}" />
+                    CEP:* <p:inputText value="#{controllerServidor.servidor.cep}" style="width: 230px;"/>
+                    Logradouro:* <p:inputText value="#{controllerServidor.servidor.logradouro}" style="width: 230px;"/>
+                    Numero:* <p:inputText value="#{controllerServidor.servidor.numero_lote}" style="width: 230px;"/>
+                    Complemento: <p:inputText value="#{controllerServidor.servidor.complemento}" style="width: 230px;"/>
+                    Bairro:* <p:inputText value="#{controllerServidor.servidor.bairro}" style="width: 230px;"/>
+                    Cidade:* <p:inputText value="#{controllerServidor.servidor.cidade}" style="width: 230px;"/>
+                    UF:* <p:inputText value="#{controllerServidor.servidor.uf}" style="width: 230px;"/>
 
-                    Zona de Procedência:* <p:selectOneMenu value="#{controllerServidor.servidor.zona_procedencia}" >
+                    Zona de Procedência:* <p:selectOneMenu value="#{controllerServidor.servidor.zona_procedencia}" style="width: 230px;">
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Urbana" itemValue="Ubarna" />
                         <f:selectItem itemLabel="Rural" itemValue="Rural" />
@@ -75,7 +80,7 @@ and open the template in the editor.
                     
                     
 
-                    Etnia:<p:selectOneMenu value="#{controllerServidor.servidor.etnia}"    >
+                    Etnia:<p:selectOneMenu value="#{controllerServidor.servidor.etnia}" style="width: 230px;"   >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Branca" itemValue="branca" />
                         <f:selectItem itemLabel="Pardo" itemValue="pardo" />
@@ -83,7 +88,7 @@ and open the template in the editor.
                         <f:selectItem itemLabel="Amarela" itemValue="amarelo" />
                         <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
                     </p:selectOneMenu>
-                    Genero: <p:selectOneMenu value="#{controllerServidor.servidor.genero}" >
+                    Genero: <p:selectOneMenu value="#{controllerServidor.servidor.genero}" style="width: 230px;" >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Masculino" itemValue="M" />
                         <f:selectItem itemLabel="Feminino" itemValue="F" />
@@ -545,21 +550,23 @@ and open the template in the editor.
                     Título de Eleitor (Data Exp.): <h:outputText value="#{controllerServidor.servidor.teleitor_data_expedicao}">
                                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
                                                                 </h:outputText> 
-         
                 </h:panelGrid>
+                
+                
+                        </p:panel>
+                    </p:tab>
+
+  </p:wizard>
 
                 <p:commandButton value="Cadastrar" update="growl" 
                                  actionListener="#{controllerServidor.salvar()}"/>
 
-            </p:panel>
-        </p:tab>
-
-    </p:wizard>
-
-        </h:form>
-
-
-
-    </h:body>
-</html>
+       
+              </h:form>
+            
+        </sec:ifAnyGranted>
+        
+    </ui:define>
+    
+</ui:composition>
 

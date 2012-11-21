@@ -7,12 +7,20 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui">
     <p:menubar>
-        <p:menuitem value="Home" url="/site/login/principal.jsf" icon="ui-icon-home"/>
+        <p:menuitem value="Home" url="/site/login/principal.jsf" icon="ui-icon-home" />
+                    
+        <p:submenu label="Cadastro" icon="ui-icon-bookmark">
+            <p:menuitem value="Manter Aluno" url="/site/acessoServidor/cadastroAluno.jsf"/>
+            <p:menuitem value="Manter Servidor" url="/site/acessoServidor/cadastroServidor.jsf"/>
+            
+            
+        </p:submenu>            
         <p:submenu label="Atividades Complementares" icon="ui-icon-bookmark">
-            <p:menuitem value="CRUD Tipos" url="/site/acessoServidor/cadastroTipoAtividade.jsf"/>
-            <p:menuitem value="CRUD Atividades" url="/site/acessoServidor/cadastroAtividade.jsf"/>
-            <p:menuitem value="CRUD Aluno" url="/site/acessoServidor/cadastroAluno.jsf"/>
-            <p:menuitem value="CRUD Servidor" url="/site/acessoServidor/cadastroServidor.jsf"/>
+            <p:menuitem value="Manter Tipos" url="/site/acessoServidor/cadastroTipoAtividade.jsf"/>
+            <p:menuitem value="Manter Atividades" url="/site/acessoServidor/cadastroAtividade.jsf"/>
+            <p:menuitem value="Manter Aluno" url="/site/acessoServidor/cadastroAluno.jsf"/>
+            <p:menuitem value="Manter Servidor" url="/site/acessoServidor/cadastroServidor.jsf"/>
+            <p:menuitem value="Aprovar Atividade" url="/site/acessoServidor/aprovarAtividade.jsf"/>
             
             
         </p:submenu>
