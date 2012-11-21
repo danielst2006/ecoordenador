@@ -2,9 +2,11 @@ package mb;
 
 import beans.MatrizCurricular;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import rn.MatrizCurricularRN;
@@ -42,20 +44,41 @@ public class controllerMatriz {
         return this.lista;
     }    
        
-    public String salvar(){
+    public void salvar(){
         MatrizCurricularRN rn = new MatrizCurricularRN();
         rn.salvar(this.matriz);
+        FacesContext context = FacesContext.getCurrentInstance();            
+        context.addMessage(null, new FacesMessage("Cadastrado Com Sucesso"));  
         limpar();
-        return "Salvo";
+        
     }
     
-    public String remover(){
+    public void remover(){
         MatrizCurricularRN rn = new MatrizCurricularRN();
         this.matriz= (MatrizCurricular)this.listaDataModel.getRowData();
         rn.excluir(this.matriz);
+        FacesContext context = FacesContext.getCurrentInstance();            
+        context.addMessage(null, new FacesMessage("Excluido com Sucesso"));        
         limpar();
-        return "Removido";
+        
     }
+    
+    
+    
+      public void alterar() {
+        MatrizCurricularRN rn = new MatrizCurricularRN();
+        rn.atualizar(this.matriz);
+        FacesContext context = FacesContext.getCurrentInstance();            
+        context.addMessage(null, new FacesMessage("Alterado com Sucesso"));
+        limpar();
+        
+    }
+    
+    public void prepararAlterar() {
+        this.matriz = (MatrizCurricular)this.listaDataModel.getRowData();
+    }
+  
+    
   
 
     ////////////////////////////////////////////////////////////////////////////

@@ -17,9 +17,9 @@
         <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
 
             <h:form id="formSalvar">
-                <p:panel  header="Cadastro dos tipos de atividades complementares"> 
+                <p:panel  header="Manter de Truma"> 
                     <p:messages id="msgs"/> 
-                    <h:panelGrid >
+                    <h:panelGrid columns="2" >
 
                         Periodo Letivo: 
 
@@ -35,7 +35,8 @@
                         </p:selectOneMenu>     
 
 
-                        Turno: <p:selectOneMenu value="#{controllerTurma.turma.turno}"    >
+                        Turno:* 
+                        <p:selectOneMenu value="#{controllerTurma.turma.turno}"    >
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItem itemLabel="Matutino" itemValue="Matutino" />
                             <f:selectItem itemLabel="Vespetino" itemValue="Vespetino" />
@@ -45,19 +46,7 @@
 
                         <p:commandButton value="Salvar" ajax="true" actionListener="#{controllerTurma.salvar()}" update="@form"/>
 
-                        <p:ajaxStatus style="position:fixed;right:20px;top:20px">  
-                            <f:facet name="start">
-                                <h:graphicImage value="../resources/images/ajax-loader.gif" />
-                            </f:facet>
-                            <f:facet name="complete">
-                                <h:outputText value="" />
-                            </f:facet>
-                        </p:ajaxStatus>
-
-
-
-
-                    </h:panelGrid>
+                        </h:panelGrid>
                 </p:panel>
 
                 <p:dataTable id="tabela" var="p" value="#{controllerTurma.listaDM}" emptyMessage="Nada encontrado..."
@@ -80,10 +69,13 @@
                     </p:column>
 
                     <p:column>
-                        <p:commandLink value="alterar" actionListener="#{controllerTurma.prepararAlterar()}" ajax="true" oncomplete="dialogAlterar.show();" update=":formAlterar"/>
-                    </p:column>
-                    <p:column>
-                        <p:commandLink value="apagar" actionListener="#{controllerTurma.remover()}" ajax="true" process="@this" update="@form"/>
+                        <p:commandLink actionListener="#{controllerTurma.prepararAlterar()}" oncomplete="dialogAlterar.show();" update=":formAlterar">
+                        <p:graphicImage  value="/resources/images/edit.png" />  
+                        </p:commandLink>    
+               
+                        <p:commandLink actionListener="#{controllerTurma.remover()}" process="@this" update="@form">
+                        <p:graphicImage  value="/resources/images/delete.png" />
+                        </p:commandLink>
                     </p:column>
                 </p:dataTable>
 
@@ -101,19 +93,19 @@
                             Periodo Letivo: 
 
                             <p:selectOneMenu value="#{controllerTurma.turma.periodoletivo}" converter="#{PeriodoLetivoConverter}" style="width: 150px">
-                                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                
                                 <f:selectItems value="#{controllerPeriodoLetivo.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.ano}/#{tipo.semestre}"/>
                             </p:selectOneMenu>
 
                             Matriz Curricular:
                             <p:selectOneMenu value="#{controllerTurma.turma.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 150px">
-                                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                
                                 <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}"/>
                             </p:selectOneMenu>
 
 
                             Turno: <p:selectOneMenu value="#{controllerTurma.turma.turno}"    >
-                                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                
                                 <f:selectItem itemLabel="Matutino" itemValue="Matutino" />
                                 <f:selectItem itemLabel="Vespetino" itemValue="Vespetino" />
                                 <f:selectItem itemLabel="Noturno" itemValue="Noturno" />

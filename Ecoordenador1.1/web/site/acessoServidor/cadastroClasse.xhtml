@@ -17,9 +17,9 @@
         <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
             
                 <h:form id="formSalvar">
-                <p:panel  header="Cadastro de Periodo Letivo"> 
+                <p:panel  header="Manter Classe"> 
                     <p:messages id="msgs"/> 
-                    <h:panelGrid >
+                    <h:panelGrid columns="2" >
                         
                     Turma:<p:selectOneMenu value="#{controllerClasse.classe.turma}" converter="#{TurmaConverter}" style="width: 150px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
@@ -44,7 +44,7 @@
                     </p:selectOneMenu>                    
                                
                     
-                    <p:commandButton value="Salvar"  update="@form" actionListener="#{controllerClasse.salvarClasseH()}"/>
+                    <p:commandButton value="Salvar"  update=":formSalvar" actionListener="#{controllerClasse.salvarClasseH()}"/>
                          
                     
                     
@@ -52,11 +52,80 @@
                     
                     </h:panelGrid>
                 </p:panel>
+                    
+                    <p:dataTable id="tabela" var="p" value="#{controllerClasse.listaDMClasse}" emptyMessage="Nada encontrado..."
+                     paginator="true" rows="5" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                     rowsPerPageTemplate="5,10,15"   >
+                    <p:column headerText="Cod">
+                        <h:outputText value="#{p.id}"/>
+                    </p:column>
+                    <p:column headerText="Disciplina">
+                        <h:outputText value="#{p.disciplina.unidade_curricular}"/>
+                    </p:column>
+                    <p:column headerText="Horario de Inicio">
+                        <h:outputText value="#{p.horario.horario_inicio}"/>
+                    </p:column>
+               
+                  
+                    <p:column headerText="Professor">
+                        <h:outputText value="#{p.servidor.nome}"/>                  
+
+                    </p:column>
+                    
+                    <p:column>
+                        <p:commandLink  actionListener="#{controllerClasse.prepararAlterar()}" ajax="true" process="@this" oncomplete="dialogAlterar.show();" update=":formAlterar">
+                        <p:graphicImage  value="/resources/images/edit.png" />
+                        </p:commandLink>
+                      
+                        <p:commandLink  actionListener="#{controllerClasse.removerClasse()}" ajax="true" process="@this" update="@form">
+                        <p:graphicImage  value="/resources/images/delete.png" />                      
+                        </p:commandLink>
+                     </p:column>     
+                    
+                </p:dataTable>
+                
 
 
              
              </h:form>
-            
+
+                <p:dialog widgetVar="dialogAlterar" resizable="false" closable="false" modal="true" showEffect="slide" hideEffect="slide">
+                <h:form id="formAlterar">
+                    <p:panel style="width: 320px;">
+                        <p:messages id="msgs"/> 
+                        <h:panelGrid columns="2">
+                                
+                           Turma:<p:selectOneMenu value="#{controllerClasse.classe.turma}" converter="#{TurmaConverter}" style="width: 150px">
+                            <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                            <f:selectItems value="#{controllerTurma.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.periodoletivo.ano}"/>
+                    </p:selectOneMenu>
+                  
+                    Horário Início: <p:inputText value="#{controllerClasse.horario.horario_inicio}" />
+                    Horário Fim: <p:inputText value="#{controllerClasse.horario.horario_fim}" />
+                    
+                    Dia da Semana: <p:inputText value="#{controllerClasse.horario.dia_semana}" />
+                    
+                    Disciplina: <p:selectOneMenu value="#{controllerClasse.classe.disciplina}" converter="#{DisciplinaConverter}" style="width: 150px">
+                            <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                            <f:selectItems value="#{controllerDisciplina.listaDisc}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.unidade_curricular}"/>
+                    </p:selectOneMenu>
+                  
+                    
+                    
+                    Professor:  <p:selectOneMenu value="#{controllerClasse.classe.servidor}" converter="#{ServidorConverter}" style="width: 150px">
+                            <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                            <f:selectItems value="#{controllerServidor.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
+                    </p:selectOneMenu>                    
+                            
+                            
+                    <p:commandButton value="Alterar" actionListener="#{controllerClasse.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
+                                                style="margin-top: 30px"/>
+                    <p:commandButton value="cancelar" actionListener="#{controllerCurso.limpar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
+                                                style="margin-top: 30px;margin-left: 0px;"/>
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </p:dialog>
             
         </sec:ifAnyGranted>
     </ui:define>

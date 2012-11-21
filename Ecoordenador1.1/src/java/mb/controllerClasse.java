@@ -3,9 +3,11 @@ package mb;
 import beans.Classe;
 import beans.Horario;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import rn.ClasseRN;
@@ -103,6 +105,27 @@ public class controllerClasse {
         limparClasse();
         return "Removido";
     }
+    
+    
+        
+      public void alterar() {
+        ClasseRN rn = new ClasseRN();
+        HorarioRN rn1 = new HorarioRN();
+        getHorario().setClasse(this.classe);
+        rn.salvar(this.classe);
+        rn1.salvar(this.horario);
+        FacesContext context = FacesContext.getCurrentInstance();            
+        context.addMessage(null, new FacesMessage("Alterado com Sucesso"));
+        limparClasse();
+        limparHorario();
+        
+    }
+    
+    public void prepararAlterar() {
+        this.classe = (Classe)this.listaDataModelClasse.getRowData();
+        this.horario = (Horario)this.listaDataModelHor.getRowData();
+    }
+  
     
     
 

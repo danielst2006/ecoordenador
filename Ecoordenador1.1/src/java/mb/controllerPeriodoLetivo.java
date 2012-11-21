@@ -1,10 +1,13 @@
 package mb;
 
 import beans.PeriodoLetivo;
+import java.awt.event.ActionEvent;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import rn.PeriodoLetivoRN;
@@ -18,6 +21,7 @@ public class controllerPeriodoLetivo {
     
     @ManagedProperty(value="#{periodo_letivo}")
     private PeriodoLetivo periodo;
+     private String text; 
 
     private List<PeriodoLetivo> lista;
     
@@ -42,26 +46,34 @@ public class controllerPeriodoLetivo {
         return this.lista;
     }    
        
-    public String salvar(){
+    public void salvar(){
         PeriodoLetivoRN rn = new PeriodoLetivoRN();
-        rn.salvar(this.periodo);
+        rn.salvar(this.periodo);        
+        FacesContext context = FacesContext.getCurrentInstance();           
+        context.addMessage(null, new FacesMessage("Cadastrado com Sucesso"));   
+        
         limpar();
-        return "Salvo";
+        
+       
     }
     
-    public String remover(){
+    public void remover(){
         PeriodoLetivoRN rn = new PeriodoLetivoRN();
         this.periodo= (PeriodoLetivo)this.listaDataModel.getRowData();
         rn.excluir(this.periodo);
+        FacesContext context = FacesContext.getCurrentInstance();  
+        context.addMessage(null, new FacesMessage("Alterado com Sucesso"));  
         limpar();
-        return "Removido";
+        
     }
     
-        public String alterar() {
+        public void alterar() {
         PeriodoLetivoRN rn = new PeriodoLetivoRN();
         rn.atualizar(this.periodo);
+        FacesContext context = FacesContext.getCurrentInstance();  
+        context.addMessage(null, new FacesMessage("Alterado com Sucesso"));  
         limpar();
-        return "Alterado";
+        
     }
     
     public void prepararAlterar() {
@@ -78,6 +90,20 @@ public class controllerPeriodoLetivo {
 
     public void setPeriodo(PeriodoLetivo periodo) {
         this.periodo = periodo;
+    }
+
+    /**
+     * @return the text
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * @param text the text to set
+     */
+    public void setText(String text) {
+        this.text = text;
     }
 
 }

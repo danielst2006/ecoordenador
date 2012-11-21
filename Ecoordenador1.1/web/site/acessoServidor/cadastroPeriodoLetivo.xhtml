@@ -17,33 +17,26 @@
         <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
             
                 <h:form id="formSalvar">
-                <p:panel  header="Cadastro de Periodo Letivo"> 
+                <p:growl id="growl" showDetail="true" sticky="true" /> 
+                <p:panel   header="Cadastro de Periodo Letivo" > 
                     <p:messages id="msgs"/> 
-                    <h:panelGrid >
+                    <h:panelGrid columns="2" >
+                        
+                    Ano:* <p:inputText value="#{controllerPeriodoLetivo.periodo.ano}" required="true" requiredMessage="Campo Ano é Obrigatório."  />
                     
-                    Ano: <p:inputText value="#{controllerPeriodoLetivo.periodo.ano}" />
-                    Semestre: <p:selectOneMenu value="#{controllerPeriodoLetivo.periodo.semestre}"    >
-                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                    Semestre:* <p:selectOneMenu value="#{controllerPeriodoLetivo.periodo.semestre}" style="width:160px;" required="true"  requiredMessage="Campo Semestre é obrigatório."   >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
                         <f:selectItem itemLabel="1" itemValue="1" />
                         <f:selectItem itemLabel="2" itemValue="2" />
                                                
                     </p:selectOneMenu> 
                     
-                    Data Inicio: <p:calendar value="#{controllerPeriodoLetivo.periodo.data_inicio}" />
-                    Data Fim : <p:calendar value="#{controllerPeriodoLetivo.periodo.data_fim}" />
+                    Data Inicio:* <p:calendar value="#{controllerPeriodoLetivo.periodo.data_inicio}" required="true" requiredMessage="Campo Data Inicio é obrigatório."  />
+                    Data Fim:* <p:calendar value="#{controllerPeriodoLetivo.periodo.data_fim}" required="true" requiredMessage="Campo Data de Fim é obrigatório."  />
                     
-                    <p:commandButton value="Salvar" ajax="true" update="@form" actionListener="#{controllerPeriodoLetivo.salvar()}"/>
+                    <p:commandButton value="Salvar" update="@form" actionListener="#{controllerPeriodoLetivo.salvar()}"/>
                          
-                     <p:ajaxStatus style="position:fixed;right:20px;top:20px">  
-                            <f:facet name="start">
-                                <h:graphicImage value="../resources/images/ajax-loader.gif" />
-                            </f:facet>
-                            <f:facet name="complete">
-                                <h:outputText value="" />
-                            </f:facet>
-                     </p:ajaxStatus>
-
-                    
+                             
                                     
                     
                     </h:panelGrid>
@@ -75,11 +68,15 @@
                     </p:column>
                     
                     <p:column>
-                        <p:commandLink value="alterar" actionListener="#{controllerPeriodoLetivo.prepararAlterar()}" ajax="true" oncomplete="dialogAlterar.show();" update=":formAlterar"/>
-                    </p:column>
-                    <p:column>
-                        <p:commandLink value="apagar" actionListener="#{controllerPeriodoLetivo.remover()}" ajax="true" process="@this" update="@form"/>
-                    </p:column>
+                        <p:commandLink  actionListener="#{controllerPeriodoLetivo.prepararAlterar()}" ajax="true" process="@this" oncomplete="dialogAlterar.show();" update=":formAlterar">
+                        <p:graphicImage  value="/resources/images/edit.png" />
+                        </p:commandLink>
+                      
+                        <p:commandLink  actionListener="#{controllerPeriodoLetivo.remover()}" ajax="true" process="@this" update="@form">
+                        <p:graphicImage  value="/resources/images/delete.png" />                      
+                        </p:commandLink>
+                     </p:column>     
+                    
                 </p:dataTable>
                 
                  
@@ -93,7 +90,7 @@
                         <h:panelGrid columns="2">
                                 
                             Ano: <p:inputText value="#{controllerPeriodoLetivo.periodo.ano}" />
-                            Semestre: <p:selectOneMenu value="#{controllerPeriodoLetivo.periodo.semestre}"    >
+                            Semestre: <p:selectOneMenu value="#{controllerPeriodoLetivo.periodo.semestre}"  style="width:160px;"   >
                                 <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                                 <f:selectItem itemLabel="1" itemValue="1" />
                                 <f:selectItem itemLabel="2" itemValue="2" />
@@ -101,6 +98,8 @@
                             </p:selectOneMenu> 
                             Data Inicio: <p:calendar value="#{controllerPeriodoLetivo.periodo.data_inicio}" />
                             Data Fim : <p:calendar value="#{controllerPeriodoLetivo.periodo.data_fim}" />
+                            
+                            
                             <p:commandButton value="Alterar" actionListener="#{controllerPeriodoLetivo.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
                                                 style="margin-top: 30px"/>
                                 <p:commandButton value="cancelar" actionListener="#{controllerPeriodoLetivo.limpar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
