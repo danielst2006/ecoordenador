@@ -2,9 +2,11 @@ package mb;
 
 import beans.Turma;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import rn.TurmaRN;
@@ -42,27 +44,33 @@ public class controllerTurma {
         return this.lista;
     }    
        
-    public String salvar(){
+    public void salvar(){
         TurmaRN rn = new TurmaRN();
         rn.salvar(this.turma);
+        FacesContext context = FacesContext.getCurrentInstance();            
+        context.addMessage(null, new FacesMessage("Cadastrado com Sucesso"));
         limpar();
-        return "Salvo";
+       
     }
     
-    public String remover(){
+    public void remover(){
         TurmaRN rn = new TurmaRN();
         this.turma= (Turma)this.listaDataModel.getRowData();
         rn.excluir(this.turma);
+        FacesContext context = FacesContext.getCurrentInstance();            
+        context.addMessage(null, new FacesMessage("Excluído com Sucesso"));
         limpar();
-        return "Removido";
+        
     }
   
 
-    public String alterar() {
+    public void alterar() {
         TurmaRN rn = new TurmaRN();
         rn.atualizar(this.turma);
+        FacesContext context = FacesContext.getCurrentInstance();            
+        context.addMessage(null, new FacesMessage("Alterado com Sucesso"));
         limpar();
-        return "Alterado";
+        
     }
 
     public void prepararAlterar() {

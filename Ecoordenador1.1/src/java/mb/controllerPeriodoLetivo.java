@@ -62,7 +62,7 @@ public class controllerPeriodoLetivo {
         this.periodo= (PeriodoLetivo)this.listaDataModel.getRowData();
         rn.excluir(this.periodo);
         FacesContext context = FacesContext.getCurrentInstance();  
-        context.addMessage(null, new FacesMessage("Alterado com Sucesso"));  
+        context.addMessage(null, new FacesMessage("Excluído com Sucesso"));  
         limpar();
         
     }
