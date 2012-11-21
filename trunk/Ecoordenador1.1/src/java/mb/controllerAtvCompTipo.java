@@ -2,9 +2,11 @@ package mb;
 
 import beans.AtividadeComplementarTipo;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import rn.AtividadeComplementarTipoRN;
@@ -42,26 +44,32 @@ public class controllerAtvCompTipo {
         return this.lista;
     }    
        
-    public String salvar(){
+    public void salvar(){
         AtividadeComplementarTipoRN rn = new AtividadeComplementarTipoRN();
         rn.salvar(this.atvCompTipo);
+        FacesContext context = FacesContext.getCurrentInstance();  
+        context.addMessage(null, new FacesMessage("Cadastrado com Sucesso")); 
         limpar();
-        return "Salvo";
+        
     }
     
-    public String remover(){
+    public void remover(){
         AtividadeComplementarTipoRN rn = new AtividadeComplementarTipoRN();
         this.atvCompTipo = (AtividadeComplementarTipo)this.listaDataModel.getRowData();
         rn.excluir(this.atvCompTipo);
+        FacesContext context = FacesContext.getCurrentInstance();  
+        context.addMessage(null, new FacesMessage("Excluído com Sucesso")); 
         limpar();
-        return "Removido";
+        
     }
     
-    public String alterar() {
+    public void alterar() {
         AtividadeComplementarTipoRN rn = new AtividadeComplementarTipoRN();
         rn.atualizar(this.atvCompTipo);
+        FacesContext context = FacesContext.getCurrentInstance();  
+        context.addMessage(null, new FacesMessage("Alterado com Sucesso")); 
         limpar();
-        return "Alterado";
+        
     }
     
     public void prepararAlterar() {
