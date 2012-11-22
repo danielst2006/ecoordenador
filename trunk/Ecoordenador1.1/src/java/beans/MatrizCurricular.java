@@ -48,8 +48,7 @@ public class MatrizCurricular implements Serializable {
         @Column(name="numero_max_elementos")
         private Integer numero_max_elementos;
 
-        @Column(name="periodo")
-        private Integer periodo;
+        
 
         @Column(name="grupo_curricular")
         private String grupo_curricular;
@@ -144,13 +143,7 @@ public class MatrizCurricular implements Serializable {
         this.numero_pedido = numero_pedido;
     }
 
-    public Integer getPeriodo() {
-        return periodo;
-    }
 
-    public void setPeriodo(Integer periodo) {
-        this.periodo = periodo;
-    }
 
     public String getSituacao_matriz() {
         return situacao_matriz;
