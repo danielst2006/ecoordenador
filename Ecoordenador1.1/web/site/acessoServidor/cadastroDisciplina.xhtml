@@ -27,6 +27,7 @@
                     Objetivos: <p:inputText value="#{controllerDisciplina.disciplina.objetivos}" />
                     Carga Horario: <p:inputText value="#{controllerDisciplina.disciplina.carga_horaria}" />
                     Emenda: <p:inputText value="#{controllerDisciplina.disciplina.ementa}" />
+                    Período:* <p:inputText value="#{controllerDisciplina.disciplina.periodo}" required="true" requiredMessage="Campo Período é Obrigatório."/>
                     Competencias: <p:inputText value="#{controllerDisciplina.disciplina.competencias}" />
                     Habilidades: <p:inputText value="#{controllerDisciplina.disciplina.habilidades}" />
                     Base Tecnologica: <p:inputText value="#{controllerDisciplina.disciplina.base_tecnologica}" />
@@ -37,7 +38,8 @@
                     Matriz Curricular:
                     <p:selectOneMenu value="#{controllerDisciplina.disciplina.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 150px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                            <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}"/>
+                            <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}/#{tipo.inicio_vigencia}"/>
+                        
                         </p:selectOneMenu>
                     
                    
@@ -89,6 +91,7 @@
                     Objetivos: <p:inputText value="#{controllerDisciplina.disciplina.objetivos}" />
                     Carga Horario: <p:inputText value="#{controllerDisciplina.disciplina.carga_horaria}" />
                     Emenda: <p:inputText value="#{controllerDisciplina.disciplina.ementa}" />
+                    Período:* <p:inputText value="#{controllerDisciplina.disciplina.periodo}" />
                     Competencias: <p:inputText value="#{controllerDisciplina.disciplina.competencias}" />
                     Habilidades: <p:inputText value="#{controllerDisciplina.disciplina.habilidades}" />
                     Base Tecnologica: <p:inputText value="#{controllerDisciplina.disciplina.base_tecnologica}" />

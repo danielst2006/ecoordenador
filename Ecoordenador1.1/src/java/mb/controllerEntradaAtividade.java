@@ -109,6 +109,8 @@ public class controllerEntradaAtividade {
                 this.entradaAtv.setAluno(aluno);
                 this.entradaAtv.setData_entrada(new Date());
                 rn.salvar(this.entradaAtv);
+                FacesContext context = FacesContext.getCurrentInstance();            
+                context.addMessage(null, new FacesMessage("Cadastrado com Sucesso")); 
                 limpar();
             }
         } catch (Exception e) {
@@ -117,12 +119,15 @@ public class controllerEntradaAtividade {
         }
     }
     
-    public String remover(){
+    public void remover(){
         EntradaAtividadeRN rn = new EntradaAtividadeRN();
         this.entradaAtv = (EntradaAtividade)this.listaDataModel.getRowData();
         rn.excluir(this.entradaAtv);
+        FacesContext context = FacesContext.getCurrentInstance();            
+        context.addMessage(null, new FacesMessage("Excluído com Sucesso"));
         limpar();
-        return "Removido";
+        
+        
     }
     
     public void handleFileUpload(FileUploadEvent event) throws Exception {         

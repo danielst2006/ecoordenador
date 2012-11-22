@@ -36,6 +36,9 @@ public class Disciplina implements Serializable {
 
         @Column(name="objetivos")
         private String objetivos;
+        
+        @Column(name="periodo")
+        private Integer periodo;
 
         @Column(name="carga_horaria")
         private Integer carga_horaria;
@@ -291,6 +294,13 @@ public class Disciplina implements Serializable {
 
     public void setUnidade_curricular(String unidade_curricular) {
         this.unidade_curricular = unidade_curricular;
+    }
+        public Integer getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(Integer periodo) {
+        this.periodo = periodo;
     }
     
     @Override
