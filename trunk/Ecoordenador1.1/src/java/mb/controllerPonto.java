@@ -83,12 +83,9 @@ public final class controllerPonto {
         Servidor servidor = rns.carregar(user.get(0).getId());
         try{
             if(servidor.getId()!=null){
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy – hh:mm:ss");
-                String dataString = dateFormat.format(new Date());
-                Date data = dateFormat.parse(dataString);
                 PontoRN rn = new PontoRN();
                 this.ponto.setId_servidor(servidor);
-                this.ponto.setEntrada(data);
+                this.ponto.setEntrada(new Date());
                 rn.salvar(this.ponto);
                 limpar();
             }
@@ -99,7 +96,11 @@ public final class controllerPonto {
     }
     
     public void saida() {
-        
+        PontoRN rn = new PontoRN();
+        this.ponto=(Ponto)this.listaDataModel.getRowData();
+        this.ponto.setSaida(new Date());
+        rn.atualizar(this.ponto);
+        limpar();
     }
     
     public String remover(){

@@ -21,18 +21,20 @@
                 
                 <p:panel>
                     <p:commandButton value="ENTRADA" actionListener="#{controllerPonto.salvar()}" update="@form" rendered="#{empty controllerPonto.verificaData()}"/>
-                    <p:commandButton value="SAÍDA" actionListener="#{controllerPonto.saida()}" update="@form"/>
                 </p:panel>
                 <p:dataTable id="tabela" var="p" value="#{controllerPonto.listaDM}" emptyMessage="Não há resultados para hoje.">
                     <p:column headerText="Entrada">
                         <h:outputText value="#{p.entrada}">
-                            <f:convertDateTime pattern="dd/MM/yyyy – hh:mm:ss"/>
+                            <f:convertDateTime pattern="dd/MM/yyyy – HH:mm:ss" timeZone="GMT-03:00"/>
                         </h:outputText>
                     </p:column>
-                    <p:column headerText="Saida">
+                    <p:column headerText="Saida" rendered="#{p.saida != null}">
                         <h:outputText value="#{p.saida}">
-                            <f:convertDateTime pattern="dd/MM/yyyy – hh:mm:ss"/>
+                            <f:convertDateTime pattern="dd/MM/yyyy – HH:mm:ss" timeZone="GMT-03:00"/>
                         </h:outputText>
+                    </p:column>
+                    <p:column headerText="Saida" rendered="#{p.saida == null}">
+                        <p:commandButton value="SAÍDA" actionListener="#{controllerPonto.saida()}" update="@form"/>
                     </p:column>
                     <p:column headerText="Extra" >
                         <h:outputText value="#{p.extra}">
