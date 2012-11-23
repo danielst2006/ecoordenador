@@ -96,9 +96,26 @@ public final class controllerPonto {
     }
     
     public void saida() {
+        String login = pegarUser();
+        UsuarioRN rnu = new UsuarioRN();
+        List<Usuario> user = rnu.buscaPersonalizada("login", login);
+        ServidorRN rns = new ServidorRN();
+        Servidor servidor = rns.carregar(user.get(0).getId());
+        String regime_trabalho = servidor.getRegime_trabalho();
+        
         PontoRN rn = new PontoRN();
         this.ponto=(Ponto)this.listaDataModel.getRowData();
-        this.ponto.setSaida(new Date());
+        
+        List<Ponto> ps = rn.calculaHorarioDiario(servidor.getId());
+        
+        Date data = new Date();
+        if (regime_trabalho.equals("20h")) {
+            
+        } else if (regime_trabalho.equals("40h")){
+            
+        }
+
+        this.ponto.setSaida(data);
         rn.atualizar(this.ponto);
         limpar();
     }
