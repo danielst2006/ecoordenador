@@ -52,7 +52,7 @@ public class HibernateDAO<T> implements InterfaceHibernateDAO<T> {
     
     @Override
     public List<T> calculaHorarioDiario(Integer codigo) {
-        return this.sessao.createSQLQuery("select p.entrada from ponto p where id_servidor="+codigo+" and (select date(p.entrada))=(select date(current_timestamp));").list();
+        return this.sessao.createSQLQuery("select p.entrada,p.saida from ponto p where id_servidor="+codigo+" and (select date(p.entrada))=(select date(current_timestamp));").list();
                 
     }
     
