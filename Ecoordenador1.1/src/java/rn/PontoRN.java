@@ -27,8 +27,8 @@ public class PontoRN {
     public Ponto carregar(Integer codigo){
         return this.pontoDao.carregar(codigo);
     }
-    public List<Ponto> calculaHorarioDiario(Integer codigo){
-        return this.pontoDao.calculaHorarioDiario(codigo);
+    public List<Ponto> pegarUltimaInsercao(Integer codigo){
+        return this.pontoDao.pegarUltimaInsercao(codigo);
     }
 
 }
