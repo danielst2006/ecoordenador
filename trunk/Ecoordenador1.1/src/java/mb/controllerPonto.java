@@ -58,7 +58,7 @@ public final class controllerPonto {
         
         //criando lista apenas do dia e do usuario
         for (Ponto pt: pontos){
-            String formatedPT = formatISO.format(pt.getEntrada());
+            String formatedPT = formatISO.format(pt.getDia());
             if(formatedPT.equals(formatedDate)){
                 if(pt.getId_servidor().getId().equals(user.get(0).getId())) {
                     vazia.add(pt);
@@ -75,7 +75,7 @@ public final class controllerPonto {
         return this.lista;
     }    
        
-    public void salvar() throws ParseException{
+    public void entrada() throws ParseException{
         String login = pegarUser();
         UsuarioRN rnu = new UsuarioRN();
         List<Usuario> user = rnu.buscaPersonalizada("login", login);
@@ -85,7 +85,7 @@ public final class controllerPonto {
             if(servidor.getId()!=null){
                 PontoRN rn = new PontoRN();
                 this.ponto.setId_servidor(servidor);
-                this.ponto.setEntrada(new Date());
+                this.ponto.setDia(new Date());
                 rn.salvar(this.ponto);
                 limpar();
             }
@@ -95,27 +95,45 @@ public final class controllerPonto {
         }
     }
     
-    public void saida() {
-        String login = pegarUser();
-        UsuarioRN rnu = new UsuarioRN();
-        List<Usuario> user = rnu.buscaPersonalizada("login", login);
-        ServidorRN rns = new ServidorRN();
-        Servidor servidor = rns.carregar(user.get(0).getId());
-        String regime_trabalho = servidor.getRegime_trabalho();
-        
+    public void entradaMatutina(){
         PontoRN rn = new PontoRN();
         this.ponto=(Ponto)this.listaDataModel.getRowData();
-        
-        List<Ponto> ps = rn.calculaHorarioDiario(servidor.getId());
-        
-        Date data = new Date();
-        if (regime_trabalho.equals("20h")) {
-            
-        } else if (regime_trabalho.equals("40h")){
-            
-        }
-
-        this.ponto.setSaida(data);
+        this.ponto.setEntrada_matutina(new Date());
+        rn.atualizar(this.ponto);
+        limpar();
+    }
+    public void saidaMatutina(){
+        PontoRN rn = new PontoRN();
+        this.ponto=(Ponto)this.listaDataModel.getRowData();
+        this.ponto.setSaida_matutina(new Date());
+        rn.atualizar(this.ponto);
+        limpar();
+    }
+    public void entradaVespertina(){
+        PontoRN rn = new PontoRN();
+        this.ponto=(Ponto)this.listaDataModel.getRowData();
+        this.ponto.setEntrada_vespertina(new Date());
+        rn.atualizar(this.ponto);
+        limpar();
+    }
+    public void saidaVespertina(){
+        PontoRN rn = new PontoRN();
+        this.ponto=(Ponto)this.listaDataModel.getRowData();
+        this.ponto.setSaida_vespertina(new Date());
+        rn.atualizar(this.ponto);
+        limpar();
+    }
+    public void entradaNoturna(){
+        PontoRN rn = new PontoRN();
+        this.ponto=(Ponto)this.listaDataModel.getRowData();
+        this.ponto.setEntrada_noturna(new Date());
+        rn.atualizar(this.ponto);
+        limpar();
+    }
+    public void saidaNoturna(){
+        PontoRN rn = new PontoRN();
+        this.ponto=(Ponto)this.listaDataModel.getRowData();
+        this.ponto.setSaida_noturna(new Date());
         rn.atualizar(this.ponto);
         limpar();
     }
@@ -141,7 +159,7 @@ public final class controllerPonto {
         List<Ponto> pontos = getLista();
         List<Ponto> vazia = new ArrayList<Ponto>();
         for(Ponto pt:pontos){
-            String formatedPT = formatISO.format(pt.getEntrada());
+            String formatedPT = formatISO.format(pt.getDia());
             if(formatedDate.equals(formatedPT)){
                 vazia.add(pt);
             }

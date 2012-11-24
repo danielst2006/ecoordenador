@@ -20,26 +20,62 @@
             <h:form>
                 
                 <p:panel>
-                    <p:commandButton value="ENTRADA" actionListener="#{controllerPonto.salvar()}" update="@form" rendered="#{empty controllerPonto.verificaData()}"/>
+                    <p:commandButton value="NOVA ENTRADA" actionListener="#{controllerPonto.entrada()}" update="@form" rendered="#{empty controllerPonto.verificaData()}"/>
                 </p:panel>
                 <p:dataTable id="tabela" var="p" value="#{controllerPonto.listaDM}" emptyMessage="Não há resultados para hoje.">
-                    <p:column headerText="Entrada">
-                        <h:outputText value="#{p.entrada}">
-                            <f:convertDateTime pattern="dd/MM/yyyy – HH:mm:ss" timeZone="GMT-02:00"/>
+                    <!-- ENTRADA MATUTINA  -->
+                    <p:column headerText="Entrada Matutina" rendered="#{p.entrada_matutina != null}">
+                        <h:outputText value="#{p.entrada_matutina}">
+                            <f:convertDateTime pattern="HH:mm:ss" timeZone="GMT-02:00"/>
                         </h:outputText>
                     </p:column>
-                    <p:column headerText="Saída" rendered="#{p.saida != null}">
-                        <h:outputText value="#{p.saida}">
-                            <f:convertDateTime pattern="dd/MM/yyyy – HH:mm:ss" timeZone="GMT-02:00"/>
+                    <p:column headerText="Entrada Matutina" rendered="#{p.entrada_matutina == null}">
+                        <p:commandButton value="ENTRADA MATUTINA" actionListener="#{controllerPonto.entradaMatutina()}" update="@form"/>
+                    </p:column>
+                    <!-- SAIDA MATUTINA  -->
+                    <p:column headerText="Saída Matutina" rendered="#{p.saida_matutina != null}">
+                        <h:outputText value="#{p.saida_matutina}">
+                            <f:convertDateTime pattern="HH:mm:ss" timeZone="GMT-02:00"/>
                         </h:outputText>
                     </p:column>
-                    <p:column headerText="Saída" rendered="#{p.saida == null}">
-                        <p:commandButton value="SAÍDA" actionListener="#{controllerPonto.saida()}" update="@form"/>
+                    <p:column headerText="Saída Matutina" rendered="#{p.saida_matutina == null}">
+                        <p:commandButton value="SAÍDA MATUTINA" actionListener="#{controllerPonto.saidaMatutina()}" update="@form"/>
                     </p:column>
-                    <p:column headerText="Extra" >
-                        <h:outputText value="#{p.extra}">
-                            <f:convertDateTime pattern="dd/MM/yyyy – hh:mm:ss"/>
+                    <!-- ENTRADA VESPERTINA  -->
+                    <p:column headerText="Entrada Vespertina" rendered="#{p.entrada_vespertina != null}">
+                        <h:outputText value="#{p.entrada_vespertina}">
+                            <f:convertDateTime pattern="HH:mm:ss" timeZone="GMT-02:00"/>
                         </h:outputText>
+                    </p:column>
+                    <p:column headerText="Entrada Vespertina" rendered="#{p.entrada_vespertina == null}">
+                        <p:commandButton value="ENTRADA VESPERTINA" actionListener="#{controllerPonto.entradaVespertina()}" update="@form"/>
+                    </p:column>
+                    <!-- SAIDA VESPERTINA  -->
+                    <p:column headerText="Saída Vespertina" rendered="#{p.saida_vespertina != null}">
+                        <h:outputText value="#{p.saida_vespertina}">
+                            <f:convertDateTime pattern="HH:mm:ss" timeZone="GMT-02:00"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Saída Vespertina" rendered="#{p.saida_vespertina == null}">
+                        <p:commandButton value="ENTRADA VESPERTINA" actionListener="#{controllerPonto.saidaVespertina()}" update="@form"/>
+                    </p:column>
+                    <!-- ENTRADA NOTURNA  -->
+                    <p:column headerText="Entrada Noturna" rendered="#{p.entrada_noturna != null}">
+                        <h:outputText value="#{p.entrada_noturna}">
+                            <f:convertDateTime pattern="HH:mm:ss" timeZone="GMT-02:00"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Entrada Noturna" rendered="#{p.entrada_noturna == null}">
+                        <p:commandButton value="ENTRADA NOTURNA" actionListener="#{controllerPonto.entradaNoturna()}" update="@form"/>
+                    </p:column>
+                    <!-- SAIDA NOTURNA  -->
+                    <p:column headerText="Saída Noturna" rendered="#{p.saida_noturna != null}">
+                        <h:outputText value="#{p.saida_noturna}">
+                            <f:convertDateTime pattern="HH:mm:ss" timeZone="GMT-02:00"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Saída Noturna" rendered="#{p.saida_noturna == null}">
+                        <p:commandButton value="SAÍDA NOTURNA" actionListener="#{controllerPonto.saidaNoturna()}" update="@form"/>
                     </p:column>
                 </p:dataTable>
 

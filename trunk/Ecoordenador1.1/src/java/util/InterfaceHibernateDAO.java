@@ -9,6 +9,6 @@ public interface InterfaceHibernateDAO<T> {
     public T carregar(Integer codigo);
     public List<T> listar();
     public List<T> buscaPersonalizada(String atributo,String nomeBuscado);
-    public List<T> calculaHorarioDiario(Integer codigo);
+    public List<T> pegarUltimaInsercao(Integer codigo);
 }
 

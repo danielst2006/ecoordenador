@@ -28,29 +28,58 @@ public class Ponto implements Serializable {
         @JoinColumn(name="id_servidor")
         private Servidor id_servidor;
         
-        @Temporal(TemporalType.TIMESTAMP)
-        private Date entrada;
+        @Column(name="dia",nullable=false)
+        @Temporal(javax.persistence.TemporalType.DATE)
+	private Date dia;
         
         @Temporal(TemporalType.TIMESTAMP)
-        private Date saida;
+        private Date entrada_matutina;
         
         @Temporal(TemporalType.TIMESTAMP)
-        private Date extra;
+        private Date saida_matutina;
+        
+        @Temporal(TemporalType.TIMESTAMP)
+        private Date entrada_vespertina;
+        
+        @Temporal(TemporalType.TIMESTAMP)
+        private Date saida_vespertina;
+        
+        @Temporal(TemporalType.TIMESTAMP)
+        private Date entrada_noturna;
+        
+        @Temporal(TemporalType.TIMESTAMP)
+        private Date saida_noturna;
 
-    public Date getEntrada() {
-        return entrada;
+    public Date getDia() {
+        return dia;
     }
 
-    public void setEntrada(Date entrada) {
-        this.entrada = entrada;
+    public void setDia(Date dia) {
+        this.dia = dia;
     }
 
-    public Date getExtra() {
-        return extra;
+    public Date getEntrada_matutina() {
+        return entrada_matutina;
     }
 
-    public void setExtra(Date extra) {
-        this.extra = extra;
+    public void setEntrada_matutina(Date entrada_matutina) {
+        this.entrada_matutina = entrada_matutina;
+    }
+
+    public Date getEntrada_noturna() {
+        return entrada_noturna;
+    }
+
+    public void setEntrada_noturna(Date entrada_noturna) {
+        this.entrada_noturna = entrada_noturna;
+    }
+
+    public Date getEntrada_vespertina() {
+        return entrada_vespertina;
+    }
+
+    public void setEntrada_vespertina(Date entrada_vespertina) {
+        this.entrada_vespertina = entrada_vespertina;
     }
 
     public Integer getId() {
@@ -61,20 +90,36 @@ public class Ponto implements Serializable {
         this.id = id;
     }
 
-    public Date getSaida() {
-        return saida;
-    }
-
-    public void setSaida(Date saida) {
-        this.saida = saida;
-    }
-
     public Servidor getId_servidor() {
         return id_servidor;
     }
 
     public void setId_servidor(Servidor id_servidor) {
         this.id_servidor = id_servidor;
+    }
+
+    public Date getSaida_matutina() {
+        return saida_matutina;
+    }
+
+    public void setSaida_matutina(Date saida_matutina) {
+        this.saida_matutina = saida_matutina;
+    }
+
+    public Date getSaida_noturna() {
+        return saida_noturna;
+    }
+
+    public void setSaida_noturna(Date saida_noturna) {
+        this.saida_noturna = saida_noturna;
+    }
+
+    public Date getSaida_vespertina() {
+        return saida_vespertina;
+    }
+
+    public void setSaida_vespertina(Date saida_vespertina) {
+        this.saida_vespertina = saida_vespertina;
     }
 
 }
