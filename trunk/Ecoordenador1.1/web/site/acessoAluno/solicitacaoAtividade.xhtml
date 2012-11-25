@@ -22,21 +22,28 @@
                     <p:messages id="msgs"/> 
                     <h:panelGrid >
 
-                    Certificado escaneado:
+                    Certificado Digitlizado:
                         <p:fileUpload fileUploadListener="#{controllerEntradaAtividade.handleFileUpload}" mode="advanced" sizeLimit="300000" allowTypes="/(\.|\/)(pdf)$/"
                                     multiple="false" style="width: 600px;" invalidFileMessage="Apenas PDF" invalidSizeMessage="Tamanho máximo 300kb"
                                     required="true" requiredMessage="É obrigatório anexar o arquivo." showButtons="false" label="Arquivo"/>
 
-                    Atividade Requerida:
-                        <!-- POPULANDO COM OBJETO -->
-                        <p:selectOneMenu value="#{controllerEntradaAtividade.entradaAtv.atividadecomplementar}" converter="#{AtividadeComplementarConverter}" style="width: 150px">
-                            <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                            <f:selectItems value="#{controllerAtvComp.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.atividade}"/>
-                        </p:selectOneMenu>
+                        <h:panelGrid columns="3"> 
+                            
+                            Atividade Requerida:
+                            <!-- POPULANDO COM OBJETO -->
+                            <p:selectOneMenu value="#{controllerEntradaAtividade.entradaAtv.atividadecomplementar}" converter="#{AtividadeComplementarConverter}" style="width: 450px">
+                                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                <f:selectItems value="#{controllerAtvComp.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.atividade}"/>
+                            </p:selectOneMenu>
+                                
+                            <p:commandLink   ajax="true" process="@this" oncomplete="dialogCad.show();" update=":formCad">
+                                <p:graphicImage value="/resources/images/add.png" />
+                            </p:commandLink>
+                                
+                        </h:panelGrid>
+
                         
-                        <p:commandLink   ajax="true" process="@this" oncomplete="dialogCad.show();" update=":formCad">
-                        <p:graphicImage  value="/resources/images/edit.png" />
-                        </p:commandLink>
+                        Observação:   <p:editor id="editor" value="#{controllerEntradaAtividade.entradaAtv.observacao}" width="600"/> 
                         
 
                         <p:commandButton value="Solicitar" actionListener="#{controllerEntradaAtividade.salvar()}" ajax="true" update="@form,:growl"/>
@@ -98,17 +105,17 @@
                         <!-- POPULANDO COM OBJETO -->
                         <p:selectOneMenu value="#{controllerAtvComp.atvComp.atividadecomplementartipo}" converter="#{AtividadeComplementarTipoConverter}"  style="width: 160px">
                             
-                            <f:selectItems value="#{controllerAtvCompTipo.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.tipo_atividade}"/>
+                        <f:selectItems value="#{controllerAtvCompTipo.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.tipo_atividade}"/>
                         </p:selectOneMenu>
 
                         Nome da atividade:* <p:inputText value="#{controllerAtvComp.atvComp.atividade}"  />
 
-                        Pontuação:* <p:inputText value="#{controllerAtvComp.atvComp.pontuacao}"  />
+                        Carga Horária:* <p:inputText value="#{controllerAtvComp.atvComp.ch_horaria}"  />
                                              
  
-                        <p:commandButton value="Alterar" actionListener="#{controllerAtvComp.salvar()}" oncomplete="dialogCad.hide()" update=":formSalvar" 
+                        <p:commandButton value="Salvar" actionListener="#{controllerAtvComp.salvar()}" oncomplete="dialogCad.hide()" update=":formSalvar" 
                                                 style="margin-top: 30px"/>
-                        <p:commandButton value="cancelar" actionListener="#{controllerAtvComp.limpar()}" oncomplete="dialogCad.hide()" update=":formSalvar" 
+                        <p:commandButton value="Cancelar" actionListener="#{controllerAtvComp.limpar()}" oncomplete="dialogCad.hide()" update=":formSalvar" 
                                                 style="margin-top: 30px;margin-left: 0px;"/>
                         </h:panelGrid>
                     </p:panel>

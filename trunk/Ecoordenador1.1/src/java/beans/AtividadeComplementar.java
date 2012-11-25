@@ -22,8 +22,8 @@ public class AtividadeComplementar implements Serializable {
         @Column(name="atividade",length=15)
 	private String atividade;
 	 
-        @Column(name="pontuacao")
-	private int pontuacao;
+        @Column(name="ch_horaria")
+	private int ch_horaria;
         
         @ManyToOne
         @JoinColumn(name="id_tipo")
@@ -64,13 +64,20 @@ public class AtividadeComplementar implements Serializable {
         this.id = id;
     }
 
-    public int getPontuacao() {
-        return pontuacao;
+    /**
+     * @return the ch_horaria
+     */
+    public int getCh_horaria() {
+        return ch_horaria;
     }
 
-    public void setPontuacao(int pontuacao) {
-        this.pontuacao = pontuacao;
+    /**
+     * @param ch_horaria the ch_horaria to set
+     */
+    public void setCh_horaria(int ch_horaria) {
+        this.ch_horaria = ch_horaria;
     }
-	 
+
+   	 
 }
  
