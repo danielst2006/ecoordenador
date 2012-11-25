@@ -21,7 +21,13 @@ public class EntradaAtividade implements Serializable {
 	 
 	@Column(name="anexo",nullable=false)
         private byte[] anexo;
-	 
+	
+        @Column(name="pontuacao")
+        private int pontuacao;
+        
+        @Column(name="observacao")
+        private String observacao; 
+        
         @Column(name="data_entrada",nullable=false)
         @Temporal(javax.persistence.TemporalType.DATE)
 	private Date data_entrada;
@@ -32,7 +38,7 @@ public class EntradaAtividade implements Serializable {
         @ManyToOne
         @JoinColumn(name="id_atividade")
         private AtividadeComplementar atividadecomplementar;
-        
+               
         @ManyToOne
         @JoinColumn(name="aluno")
         private Aluno aluno;
@@ -83,6 +89,34 @@ public class EntradaAtividade implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    /**
+     * @return the pontuacao
+     */
+    public int getPontuacao() {
+        return pontuacao;
+    }
+
+    /**
+     * @param pontuacao the pontuacao to set
+     */
+    public void setPontuacao(int pontuacao) {
+        this.pontuacao = pontuacao;
+    }
+
+    /**
+     * @return the observacao
+     */
+    public String getObservacao() {
+        return observacao;
+    }
+
+    /**
+     * @param observacao the observacao to set
+     */
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
 }

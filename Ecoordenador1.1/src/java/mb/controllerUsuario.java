@@ -77,8 +77,10 @@ public class controllerUsuario {
                 rn2.salvar(this.permissao);
                 this.email = this.usuario.getEmail();
                 this.id = this.usuario.getId();
-                limpar();
                 enviarEmail();
+                FacesContext context = FacesContext.getCurrentInstance();            
+                context.addMessage(null, new FacesMessage("A confirmação foi enviada para o e-mail: "+getUsuario().getEmail()));
+                limpar();
             } else {
                 FacesContext context = FacesContext.getCurrentInstance();  
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Atenção", "Senhas devem ser iguais."));
@@ -142,6 +144,7 @@ public class controllerUsuario {
         //redirecionando
         FacesContext faces = FacesContext.getCurrentInstance();
         ExternalContext exContext = faces.getExternalContext();
+        
         exContext.redirect("index.jsf");
     }
     
@@ -149,6 +152,8 @@ public class controllerUsuario {
         UsuarioRN rn = new UsuarioRN();
         this.usuario = rn.carregar(this.usuario.getId());
         boolean valor = this.usuario.getAtivo();
+        FacesContext context = FacesContext.getCurrentInstance();            
+        context.addMessage(null, new FacesMessage("Ativado com sucesso"));
         return valor;
     }
     

@@ -33,7 +33,7 @@
 
                         Nome da atividade:* <p:inputText value="#{controllerAtvComp.atvComp.atividade}" required="true" requiredMessage="Campo Nome da Atividade Obrigatório." />
 
-                        Pontuação:* <p:inputText value="#{controllerAtvComp.atvComp.pontuacao}" required="true" requiredMessage="Campo Pontuação Obrigatório." />
+                        Carga Horária:* <p:inputText value="#{controllerAtvComp.atvComp.ch_horaria}" required="true" requiredMessage="Campo Pontuação Obrigatório." />
                         
 
                         <p:commandButton value="Salvar" actionListener="#{controllerAtvComp.salvar()}"  update="@form"/>
@@ -51,7 +51,7 @@
                         <h:outputText value="#{p.atividade}"/>
                     </p:column>
                     <p:column>
-                        <h:outputText value="#{p.pontuacao}"/>
+                        <h:outputText value="#{p.ch_horaria}}"/>
                     </p:column>
                     <p:column>                        
                         <p:commandLink  actionListener="#{controllerAtvComp.prepararAlterar()}"  process="@this" oncomplete="dialogAlterar.show();" update=":formAlterar">
@@ -83,7 +83,7 @@
 
                         Nome da atividade:* <p:inputText value="#{controllerAtvComp.atvComp.atividade}"  />
 
-                        Pontuação:* <p:inputText value="#{controllerAtvComp.atvComp.pontuacao}"  />
+                        Carga Horária:* <p:inputText value="#{controllerAtvComp.atvComp.ch_horaria}}"  />
                                              
  
                         <p:commandButton value="Alterar" actionListener="#{controllerAtvComp.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 

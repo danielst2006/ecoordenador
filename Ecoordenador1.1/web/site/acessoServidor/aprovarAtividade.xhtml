@@ -74,7 +74,7 @@
                     
                     <h:outputText value="#{controllerEntradaAtividade.entradaAtv.aluno.nome}" />
                             
-                    Certificado escaneado:
+                    Certificado Digitalizado:
                         <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)" icon="ui-icon-arrowthichk-s">  
                             <p:fileDownload  value="#{controllerEntradaAtividade.fileDownloadAction()}"/>
                         </p:commandButton>               
@@ -82,16 +82,28 @@
                     Atividade Requerida:
                         <!-- POPULANDO COM OBJETO -->
                         <h:outputText value="#{controllerEntradaAtividade.entradaAtv.atividadecomplementar.atividade}" />
-                        
+                    Carga Horária: <h:outputText value="#{controllerEntradaAtividade.entradaAtv.atividadecomplementar.ch_horaria} hs" />  
                     Data de Entrada:                     
                     <h:outputText value="#{controllerEntradaAtividade.entradaAtv.data_entrada}">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                     </h:outputText>
-                    Status:        
-                    <p:selectBooleanButton   value="#{controllerEntradaAtividade.entradaAtv.aprovado}" onLabel="Aprovada" offLabel="Não Aprovada" onIcon="ui-icon-check" offIcon="ui-icon-close">  
-                        <p:ajax update=":pr" listener="#{controllerEntradaAtividade.alterar()}" oncomplete="dialogAlterar.hide()"/>  
-                    </p:selectBooleanButton>  
                     
+                 
+                        
+                        <h:outputText value="Pontuação: " />  
+                        <p:selectOneRadio id="options" value="#{controllerEntradaAtividade.entradaAtv.pontuacao}">  
+                            <f:selectItem itemLabel="5" itemValue="5" />  
+                            <f:selectItem itemLabel="10" itemValue="10" />
+                            <f:selectItem itemLabel="15" itemValue="15" />
+                            <f:selectItem itemLabel="20" itemValue="20" />  
+                        </p:selectOneRadio>  
+                 
+                    
+                    Status:        
+                    <p:selectBooleanButton   value="#{controllerEntradaAtividade.entradaAtv.aprovado}" onLabel="Aprovada" offLabel="Não Aprovada" onIcon="ui-icon-check" offIcon="ui-icon-close"/>  
+                        
+                  
+                    <p:commandButton value="salvar" actionListener="#{controllerEntradaAtividade.alterar()}"  oncomplete="dialogAlterar.hide()" update=":pr" style="margin-top: 30px"/>
                     <p:commandButton value="cancelar" actionListener="#{controllerEntradaAtividade.limpar()}" oncomplete="dialogAlterar.hide()" update=":pr" 
                                                 style="margin-top: 30px;margin-left: 0px;"/>
                            
