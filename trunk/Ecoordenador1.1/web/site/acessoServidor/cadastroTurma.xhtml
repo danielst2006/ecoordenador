@@ -17,7 +17,7 @@
         <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
 
             <h:form id="formSalvar">
-                <p:panel  header="Manter de Turma"> 
+                <p:panel  header="Manter de Truma"> 
                     <p:growl id="growl" showDetail="true" sticky="true" /> 
                     <p:messages id="msgs"/> 
                     <h:panelGrid columns="2" >
@@ -30,11 +30,10 @@
                         </p:selectOneMenu>                               
 
                         Matriz Curricular:
-                        <p:selectOneMenu value="#{controllerDisciplina.disciplina.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 150px">
+                        <p:selectOneMenu value="#{controllerTurma.turma.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 160px" required="true"  requiredMessage="Campo Matriz Currícular é obrigatório.">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                            <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}/#{tipo.inicio_vigencia}"/>
-                        
-                        </p:selectOneMenu>    
+                            <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}"/>
+                        </p:selectOneMenu>     
 
 
                         Turno:* 
@@ -63,7 +62,7 @@
                     </p:column>
 
                     <p:column headerText="Matriz Curricular">
-                        <h:outputText value="#{p.matrizcurricular.curso.nome}/#{p.matrizcurricular.inicio_vigencia}"/>
+                        <h:outputText value="#{p.matrizcurricular.curso.nome}"/>
                     </p:column>
 
                     <p:column headerText="Turno">
@@ -100,11 +99,10 @@
                             </p:selectOneMenu>
 
                             Matriz Curricular:
-                        <p:selectOneMenu value="#{controllerDisciplina.disciplina.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 150px">
-                            <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                            <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}/#{tipo.inicio_vigencia}"/>
-                        
-                        </p:selectOneMenu>  
+                            <p:selectOneMenu value="#{controllerTurma.turma.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 150px">
+                                
+                                <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}"/>
+                            </p:selectOneMenu>
 
 
                             Turno: <p:selectOneMenu value="#{controllerTurma.turma.turno}"    >
