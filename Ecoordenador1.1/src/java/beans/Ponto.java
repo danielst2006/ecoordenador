@@ -32,22 +32,22 @@ public class Ponto implements Serializable {
         @Temporal(javax.persistence.TemporalType.DATE)
 	private Date dia;
         
-        @Temporal(TemporalType.TIME)
+        @Temporal(TemporalType.TIMESTAMP)
         private Date entrada_matutina;
         
-        @Temporal(TemporalType.TIME)
+        @Temporal(TemporalType.TIMESTAMP)
         private Date saida_matutina;
         
-        @Temporal(TemporalType.TIME)
+        @Temporal(TemporalType.TIMESTAMP)
         private Date entrada_vespertina;
         
-        @Temporal(TemporalType.TIME)
+        @Temporal(TemporalType.TIMESTAMP)
         private Date saida_vespertina;
         
-        @Temporal(TemporalType.TIME)
+        @Temporal(TemporalType.TIMESTAMP)
         private Date entrada_noturna;
         
-        @Temporal(TemporalType.TIME)
+        @Temporal(TemporalType.TIMESTAMP)
         private Date saida_noturna;
 
     public Date getDia() {

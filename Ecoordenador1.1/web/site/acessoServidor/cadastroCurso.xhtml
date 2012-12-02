@@ -29,23 +29,23 @@
 
                 <h:messages errorClass="error"/>
 
-                <h:panelGrid columns="4" columnClasses="label, value" styleClass="grid">
+                <h:panelGrid columns="1" columnClasses="label, value" styleClass="grid">
                     
-                    Nome:<p:inputText value="#{controllerCurso.curso.nome}"  maxlength="50" required="true"/>
-                    Nome reduzido:<p:inputText value="#{controllerCurso.curso.nome_reduzido}" maxlength="10" required="true"/>
-                    Tipo ato de autorização:<p:inputText value="#{controllerCurso.curso.ato_autorizativo_tipo}" required="true"/>
-                    Número ato autorizativo:<p:inputText value="#{controllerCurso.curso.ato_autorizativo_numero}" required="true"/>
-                    Data expedição ato autorizativo:<p:calendar value="#{controllerCurso.curso.ato_autorizativo_data_expedicao}" required="true"/>
-                    Data DOU ato autorizativo:<p:calendar value="#{controllerCurso.curso.ato_autorizacao_ato_dou}" required="true"/>
-                    Periodicidade de ingresso:<p:inputText value="#{controllerCurso.curso.periodicidade_ingresso}" required="true"/>
-                    Data início:<p:calendar value="#{controllerCurso.curso.data_inicio}" required="true"/>
-                    Data fim:<p:calendar value="#{controllerCurso.curso.data_fim}" required="true"/>
-                    Numero de períodos mínimo para integralização:<p:inputText value="#{controllerCurso.curso.periodo_minimo_numero_integralizacao}" required="true"/>
+                    Nome:<p:inputText value="#{controllerCurso.curso.nome}"  maxlength="50" required="true" requiredMessage="Campo Nome Obrigatorio."/>
+                    Nome reduzido:<p:inputText value="#{controllerCurso.curso.nome_reduzido}" maxlength="10" required="true" requiredMessage="Campo Nome Reduzido Obrigatorio."/>
+                    Tipo ato de autorização:<p:inputText value="#{controllerCurso.curso.ato_autorizativo_tipo}" required="true" requiredMessage="Campo Tipo de Ato de autorização Obrigatorio."/>
+                    Número ato autorizativo:<p:inputText value="#{controllerCurso.curso.ato_autorizativo_numero}" required="true" requiredMessage="Campo Numero autorizativo Obrigatorio."/>
+                    Data expedição ato autorizativo:<p:calendar value="#{controllerCurso.curso.ato_autorizativo_data_expedicao}" required="true" requiredMessage="Campo Data expedição ato autorizativo Obrigatorio."/>
+                    Data DOU ato autorizativo:<p:calendar value="#{controllerCurso.curso.ato_autorizacao_ato_dou}" required="true" requiredMessage="Campo Data DOU ato autorizativo Obrigatorio."/>
+                    Periodicidade de ingresso:<p:inputText value="#{controllerCurso.curso.periodicidade_ingresso}" required="true" requiredMessage="Campo  Periodicidade de ingresso Obrigatorio."/>
+                    Data início:<p:calendar value="#{controllerCurso.curso.data_inicio}" required="true" requiredMessage="Campo  Data início Obrigatorio."/>
+                    Data fim:<p:calendar value="#{controllerCurso.curso.data_fim}" required="true" requiredMessage="Campo  Data fim Obrigatorio." />
+                    Numero de períodos mínimo para integralização:<p:inputText value="#{controllerCurso.curso.periodo_minimo_numero_integralizacao}" required="true" requiredMessage="Campo Numero de períodos mínimo para integralização Obrigatorio." />
                     Numero de períodos máximo para integralização:<p:inputText value="#{controllerCurso.curso.periodo_maximo_numero_integralizacao}"/>
-                    Área de conhecimento:<p:inputText value="#{controllerCurso.curso.area_conhecimento}" required="true"/>
+                    Área de conhecimento:<p:inputText value="#{controllerCurso.curso.area_conhecimento}" required="true" requiredMessage="Campo Área de conhecimento Obrigatorio."/>
                     Regime de competência:<p:selectBooleanButton value="#{controllerCurso.curso.regime_competencia}" onLabel="Sim" offLabel="Não"/>
-                    Regime de matrícula:<p:inputText value="#{controllerCurso.curso.regime_matricula}" required="true"/>
-                    Situação:<p:inputText value="#{controllerCurso.curso.situacao}" required="true"/>
+                    Regime de matrícula:<p:inputText value="#{controllerCurso.curso.regime_matricula}" required="true" requiredMessage="Campo Regime de matrícula Obrigatorio."/>
+                    Situação:<p:inputText value="#{controllerCurso.curso.situacao}" required="true" requiredMessage="Campo Situação Obrigatorio."/>
                     Nível de ensino:<p:inputText value="#{controllerCurso.curso.nivel_ensino}"/>
                     Etapa de ensino:<p:inputText value="#{controllerCurso.curso.etapa_ensino}"/>
                     Modalidade de ensino:<p:inputText value="#{controllerCurso.curso.modalidade_ensino}"/>

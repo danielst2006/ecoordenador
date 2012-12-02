@@ -8,6 +8,7 @@
                 xmlns:sec="http://www.springframework.org/security/facelets/tags" >
 
     <ui:define name="menu_horizontal">
+    <title>eCoordenador</title>
         <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
             <ui:include src="/site/acessoServidor/menu.xhtml" />
         </sec:ifAnyGranted>
@@ -44,16 +45,24 @@
                 </p:panel>
 
                 <p:dataTable id="tabela" var="p" value="#{controllerAtvComp.listaDM}" emptyMessage="Nada encontrado...">
-                    <p:column>
+                    
+                    <p:column headerText="Cod">
+                        <h:outputText value="#{p.id}"/>
+                    </p:column>
+                    <p:column headerText="Nome da Atividade">
                         <h:outputText value="#{p.atividadecomplementartipo.tipo_atividade}"/>
                     </p:column>
-                    <p:column>
+                    <p:column headerText="Nome da Atividade">
                         <h:outputText value="#{p.atividade}"/>
                     </p:column>
-                    <p:column>
-                        <h:outputText value="#{p.ch_horaria}}"/>
+                    <p:column headerText="Carga Horária">
+                        <h:outputText value="#{p.ch_horaria}h"/>
                     </p:column>
-                    <p:column>                        
+                    <p:column>
+                       <p:commandLink  actionListener="#{controllerAtvComp.prepararAlterar()}"  process="@this" oncomplete="dialogVizualizar.show();" update=":formVizualizar">
+                        <p:graphicImage  value="/resources/images/lupa.png" />
+                       </p:commandLink>
+
                         <p:commandLink  actionListener="#{controllerAtvComp.prepararAlterar()}"  process="@this" oncomplete="dialogAlterar.show();" update=":formAlterar">
                         <p:graphicImage  value="/resources/images/edit.png" />
                         </p:commandLink>
@@ -83,12 +92,37 @@
 
                         Nome da atividade:* <p:inputText value="#{controllerAtvComp.atvComp.atividade}"  />
 
-                        Carga Horária:* <p:inputText value="#{controllerAtvComp.atvComp.ch_horaria}}"  />
+                        Carga Horária:* <p:inputText value="#{controllerAtvComp.atvComp.ch_horaria}"  />
                                              
  
                         <p:commandButton value="Alterar" actionListener="#{controllerAtvComp.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
                                                 style="margin-top: 30px"/>
                         <p:commandButton value="cancelar" actionListener="#{controllerAtvComp.limpar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
+                                                style="margin-top: 30px;margin-left: 0px;"/>
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </p:dialog>
+            
+            
+            
+           <p:dialog widgetVar="dialogVizualizar" resizable="false" closable="false" modal="true" showEffect="slide" hideEffect="slide">
+                <h:form id="formVizualizar">
+                    <p:panel style="width: 320px;">
+                        <p:messages id="msgs"/> 
+                        <h:panelGrid columns="2">
+                                
+                        Cod: <h:outputText value="#{controllerAtvComp.atvComp.id}"  />              
+                        Tipo da atividade:
+                        <!-- POPULANDO COM OBJETO -->
+                        <h:outputText value="#{controllerAtvComp.atvComp.atividadecomplementartipo.tipo_atividade}"/> 
+                       
+                        Nome da atividade: <h:outputText value="#{controllerAtvComp.atvComp.atividade}"  />
+
+                        Carga Horária: <h:outputText value="#{controllerAtvComp.atvComp.ch_horaria}"  />
+                                             
+ 
+                        <p:commandButton value="cancelar" actionListener="#{controllerAtvComp.limpar()}" oncomplete="dialogVizualizar.hide()" update=":formSalvar" 
                                                 style="margin-top: 30px;margin-left: 0px;"/>
                         </h:panelGrid>
                     </p:panel>

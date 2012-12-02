@@ -68,6 +68,11 @@
                     </p:column>
                     
                     <p:column>
+                        
+                        <p:commandLink  actionListener="#{controllerPeriodoLetivo.prepararAlterar()}"  process="@this" oncomplete="dialogVizualizar.show();" update=":formVizualizar">
+                        <p:graphicImage  value="/resources/images/lupa.png" />
+                       </p:commandLink>                        
+                        
                         <p:commandLink  actionListener="#{controllerPeriodoLetivo.prepararAlterar()}" ajax="true" process="@this" oncomplete="dialogAlterar.show();" update=":formAlterar">
                         <p:graphicImage  value="/resources/images/edit.png" />
                         </p:commandLink>
@@ -75,6 +80,7 @@
                         <p:commandLink  actionListener="#{controllerPeriodoLetivo.remover()}" ajax="true" process="@this" update="@form">
                         <p:graphicImage  value="/resources/images/delete.png" />                      
                         </p:commandLink>
+                        
                      </p:column>     
                     
                 </p:dataTable>
@@ -108,6 +114,31 @@
                     </p:panel>
                 </h:form>
             </p:dialog>
+            
+         <p:dialog widgetVar="dialogVizualizar" resizable="false" closable="false" modal="true" showEffect="slide" hideEffect="slide">
+                <h:form id="formVizualizar">
+                    <p:panel style="width: 320px;">
+                        <p:messages id="msgs"/> 
+                        <h:panelGrid columns="2">
+                            
+                       Cod: <h:outputText value="#{controllerPeriodoLetivo.periodo.id}" />         
+                       Ano: <h:outputText value="#{controllerPeriodoLetivo.periodo.ano}" />
+                       Semestre: <h:outputText value="#{controllerPeriodoLetivo.periodo.semestre}"/>
+                       
+                       Data Inicio: <h:outputText value="#{controllerPeriodoLetivo.periodo.data_inicio}" > 
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                       </h:outputText>
+                        Data Fim : <h:outputText value="#{controllerPeriodoLetivo.periodo.data_fim}" > 
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                       </h:outputText>
+ 
+                        <p:commandButton value="cancelar" actionListener="#{controllerAtvComp.limpar()}" oncomplete="dialogVizualizar.hide()" update=":formSalvar" 
+                                                style="margin-top: 30px;margin-left: 0px;"/>
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </p:dialog>
+            
            
         </sec:ifAnyGranted>
     </ui:define>
