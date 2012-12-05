@@ -12,6 +12,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import rn.ClasseRN;
 import rn.HorarioRN;
+import rn.UsuarioRN;
 
 
 @ManagedBean(name="controllerClasse")
@@ -134,10 +135,8 @@ public class controllerClasse {
     }
     
     public void prepararAlterarHorario() {
-        
-        
-        this.horario = (Horario)this.listaDataModelHor.getRowData();
-     
+        HorarioRN rn = new HorarioRN();
+        this.horario = rn.carregar(this.horario.getId_classe());
     }
   
     

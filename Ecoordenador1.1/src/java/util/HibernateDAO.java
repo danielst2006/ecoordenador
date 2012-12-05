@@ -55,6 +55,9 @@ public class HibernateDAO<T> implements InterfaceHibernateDAO<T> {
         return this.sessao.createSQLQuery("select * from ponto where id_servidor = "+codigo+" ORDER BY id DESC LIMIT 1").list();
     }
     
+
+     
+    
     public List<T> buscaAluno(String atributo,String nomeBuscado) {
         return this.sessao.createCriteria(Usuario.class)
                     .add(Restrictions.eq(atributo, nomeBuscado))
