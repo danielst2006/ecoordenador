@@ -48,7 +48,7 @@ public class controllerRelGeral {
         
         FacesContext context = FacesContext.getCurrentInstance();
         ServletContext servContext = (ServletContext)context.getExternalContext().getContext();
-        String caminho = servContext.getRealPath("/resources/relatorios/horarioAD.jasper");
+        String caminho = servContext.getRealPath("/resources/relatorios/horario.jasper");
         
         impressao = JasperFillManager.fillReport(caminho, this.parametro,DAOFactory.getConnection());
         
