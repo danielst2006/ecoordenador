@@ -64,8 +64,11 @@ public class Servidor extends Pessoa {
         @Column(name="area_conhecimento",length=30)
 	private String area_conhecimento;
 	 
-        @Column(name="regime_trabalho",length=30)
+        @Column(name="regime_trabalho",length=4)
 	private String regime_trabalho;
+        
+        @Column(name="dedicacao_exclusiva")
+        private Boolean dedicacao_exclusiva;
 	 
         @Column(name="classificacao",length=30)
 	private String classificacao;
@@ -95,9 +98,6 @@ public class Servidor extends Pessoa {
 	 
         @Column(name="servidor_rede")
 	private Boolean servidor_rede=true;
-	 
-        @Column(name="carga_horaria_semanal")
-	private Integer carga_horaria_semanal;
         
         @OneToOne(mappedBy="servidor",cascade=CascadeType.ALL)
         private Coordenador coordenador;
@@ -107,6 +107,14 @@ public class Servidor extends Pessoa {
         
         @OneToMany(mappedBy="id_servidor")
         Set<Ponto> pontos;
+
+    public Boolean getDedicacao_exclusiva() {
+        return dedicacao_exclusiva;
+    }
+
+    public void setDedicacao_exclusiva(Boolean dedicacao_exclusiva) {
+        this.dedicacao_exclusiva = dedicacao_exclusiva;
+    }
 
     public String getAgencia() {
         return agencia;
@@ -138,14 +146,6 @@ public class Servidor extends Pessoa {
 
     public void setBanco(String banco) {
         this.banco = banco;
-    }
-
-    public Integer getCarga_horaria_semanal() {
-        return carga_horaria_semanal;
-    }
-
-    public void setCarga_horaria_semanal(Integer carga_horaria_semanal) {
-        this.carga_horaria_semanal = carga_horaria_semanal;
     }
 
     public String getCargo() {
