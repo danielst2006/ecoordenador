@@ -82,16 +82,24 @@ public class controllerEntradaAtividade {
         return this.listaDataModel;
     }
     
-        
-    
-    
-    
-    
+
     public List<EntradaAtividade> getLista() {
         EntradaAtividadeRN rn = new EntradaAtividadeRN();
         this.lista = rn.listar();
         return this.lista;
-    }    
+    } 
+    
+    public List<EntradaAtividade> getAcompanhemanto(){
+       
+        EntradaAtividadeRN rn = new EntradaAtividadeRN();
+        this.lista = rn.listar();
+        return this.lista;
+        
+        
+        
+    }
+    
+    
        
     public void salvar(){
         //peguei o login

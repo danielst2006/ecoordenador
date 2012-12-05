@@ -16,6 +16,9 @@ public class Testes {
     public static void main(String args []) {
         //SimpleDateFormat formatISO = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         
+        
+        
+        
         DateTime dataInicial = new DateTime(2012, 11, 24, 16, 0, 0, 0);
         System.out.println("Data inicial: "+dataInicial.toString());
         

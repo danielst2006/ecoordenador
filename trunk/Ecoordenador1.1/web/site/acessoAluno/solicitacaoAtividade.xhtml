@@ -25,7 +25,7 @@
                     Certificado Digitlizado:
                         <p:fileUpload fileUploadListener="#{controllerEntradaAtividade.handleFileUpload}" mode="advanced" sizeLimit="300000" allowTypes="/(\.|\/)(pdf)$/"
                                     multiple="false" style="width: 600px;" invalidFileMessage="Apenas PDF" invalidSizeMessage="Tamanho máximo 300kb"
-                                    required="true" requiredMessage="É obrigatório anexar o arquivo." showButtons="false" label="Arquivo"/>
+                                    required="true" requiredMessage="É obrigatório anexar o arquivo." showButtons="false" label="Arquivo"/> *(Arquivo formato PDF, tamanho máx. 100kb)
 
                         <h:panelGrid columns="3"> 
                             
@@ -43,7 +43,7 @@
                         </h:panelGrid>
 
                         
-                        Observação:   <p:editor id="editor" value="#{controllerEntradaAtividade.entradaAtv.observacao}" width="600"/> 
+                        Observação:   <p:editor id="editor" value="#{controllerEntradaAtividade.entradaAtv.observacao}" width="600" style="right:600px;" /> 
                         
 
                         <p:commandButton value="Solicitar" actionListener="#{controllerEntradaAtividade.salvar()}" ajax="true" update="@form,:growl"/>

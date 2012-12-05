@@ -128,6 +128,8 @@ public class controllerAluno {
     public void prepararAlterar() {
         this.aluno = (Aluno)this.listaDataModel.getRowData();
     }
+    
+    
 
     public void buscarCep(){
         CepWebService cwc = new CepWebService(this.aluno.getCep().toString());
