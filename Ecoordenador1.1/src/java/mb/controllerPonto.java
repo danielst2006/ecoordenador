@@ -167,6 +167,19 @@ public final class controllerPonto {
         return vazia;
     }
     
+    public void salvar() {
+        String login = pegarUser();
+        UsuarioRN rnu = new UsuarioRN();
+        List<Usuario> user = rnu.buscaPersonalizada("login", login);
+        ServidorRN rns = new ServidorRN();
+        Servidor servidor = rns.carregar(user.get(0).getId());
+        
+        PontoRN rn = new PontoRN();
+        this.ponto.setId_servidor(servidor);
+        rn.salvar(this.ponto);
+        limpar();
+    }
+    
     ////////////////////////////////////////////////////////////////////////////
     //SETTERS E GETTERS
 
