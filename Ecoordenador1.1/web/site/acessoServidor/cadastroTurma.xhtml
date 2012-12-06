@@ -17,7 +17,7 @@
         <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
 
             <h:form id="formSalvar">
-                <p:panel  header="Manter de Truma"> 
+                <p:panel  header="Manter de Turma"> 
                     <p:growl id="growl" showDetail="true" sticky="true" /> 
                     <p:messages id="msgs"/> 
                     <h:panelGrid columns="2" >
@@ -32,7 +32,7 @@
                         Matriz Curricular:
                         <p:selectOneMenu value="#{controllerTurma.turma.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 160px" required="true"  requiredMessage="Campo Matriz Currícular é obrigatório.">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                            <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}"/>
+                            <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}/#{tipo.inicio_vigencia}"/>
                         </p:selectOneMenu>     
 
 
@@ -40,7 +40,7 @@
                         <p:selectOneMenu value="#{controllerTurma.turma.turno}" style="width: 160px" required="true"  requiredMessage="Campo Turno é obrigatório." >
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItem itemLabel="Matutino" itemValue="Matutino" />
-                            <f:selectItem itemLabel="Vespetino" itemValue="Vespetino" />
+                            <f:selectItem itemLabel="Vespertino" itemValue="Vespertino" />
                             <f:selectItem itemLabel="Noturno" itemValue="Noturno" />
 
                         </p:selectOneMenu>
