@@ -151,12 +151,21 @@
                     <p:panel style="width: 320px;">
                         <p:messages id="msgs"/> 
                         <h:panelGrid columns="2">
+                            
+                            Dia da Semana:<p:selectOneMenu value="#{controllerClasse.horario.dia_semana}" style="width: 150px">
+                                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                <f:selectItem itemLabel="Segunda-feira" itemValue="segunda" />
+                                <f:selectItem itemLabel="Terça-feira" itemValue="terca" />
+                                <f:selectItem itemLabel="Quarta-feira" itemValue="quarta" />
+                                <f:selectItem itemLabel="Quinta-feira" itemValue="quinta" />
+                                <f:selectItem itemLabel="Sexta-feira" itemValue="sexta" />
+                                <f:selectItem itemLabel="Sábado" itemValue="sabado" />
+                            </p:selectOneMenu>
 
 
-                            Horário Início: <p:inputText value="#{controllerClasse.horario.horario_inicio}" />
-                            Horário Fim: <p:inputText value="#{controllerClasse.horario.horario_fim}" />
-
-                            Dia da Semana: <p:inputText value="#{controllerClasse.horario.dia_semana}" />
+                            Horário Início: <p:calendar value="#{controllerClasse.horario.horario_inicio}" pattern="HH:mm" timeOnly="true"/>
+                            Horário Fim: <p:calendar value="#{controllerClasse.horario.horario_fim}" pattern="HH:mm" timeOnly="true"/>
+                            
 
 
 
