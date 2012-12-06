@@ -135,8 +135,9 @@ public class controllerClasse {
     }
     
     public void prepararAlterarHorario() {
+        this.classe = (Classe)this.listaDataModelClasse.getRowData();
         HorarioRN rn = new HorarioRN();
-        this.horario = rn.carregar(this.horario.getId_classe());
+        this.horario = rn.carregar(this.classe.getId());
     }
   
     
