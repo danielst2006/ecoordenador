@@ -5,12 +5,7 @@
 package util;
 
 import java.util.Properties;
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -26,7 +21,7 @@ public class Email {
             @Override
             public PasswordAuthentication getPasswordAuthentication() {
                 //Preencha com seu email e com sua senha
-                return new PasswordAuthentication("ifto.tcc.teste@gmail.com", "2rasec12");
+                return new PasswordAuthentication("ifto.tcc.teste@gmail.com", "007roro123");
             }
         };
         return autenticacao;
