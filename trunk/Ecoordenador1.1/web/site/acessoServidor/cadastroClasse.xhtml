@@ -23,19 +23,27 @@
 
                         Turma:<p:selectOneMenu value="#{controllerClasse.classe.turma}" converter="#{TurmaConverter}" style="width: 150px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                            <f:selectItems value="#{controllerTurma.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.periodoletivo.ano}"/>
+                            <f:selectItems value="#{controllerTurma.lista}" var="tipo" itemValue="#{tipo}" 
+                            itemLabel="#{tipo.periodoletivo.ano}/#{tipo.periodoletivo.semestre} - #{tipo.matrizcurricular.curso.nome}"/>
+                        </p:selectOneMenu>
+                        
+                        Dia da Semana:<p:selectOneMenu value="#{controllerClasse.horario.dia_semana}" style="width: 150px">
+                            <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="Segunda-feira" itemValue="segunda" />
+                            <f:selectItem itemLabel="Terça-feira" itemValue="terca" />
+                            <f:selectItem itemLabel="Quarta-feira" itemValue="quarta" />
+                            <f:selectItem itemLabel="Quinta-feira" itemValue="quinta" />
+                            <f:selectItem itemLabel="Sexta-feira" itemValue="sexta" />
+                            <f:selectItem itemLabel="Sábado" itemValue="sabado" />
                         </p:selectOneMenu>
 
-                        Horário Início: <p:inputText value="#{controllerClasse.horario.horario_inicio}" />
-                        Horário Fim: <p:inputText value="#{controllerClasse.horario.horario_fim}"  />
-                        Dia da Semana: <p:inputText value="#{controllerClasse.horario.dia_semana}" />
+                        Horário Início: <p:calendar value="#{controllerClasse.horario.horario_inicio}" pattern="HH:mm" timeOnly="true"/>
+                        Horário Fim: <p:calendar value="#{controllerClasse.horario.horario_fim}" pattern="HH:mm" timeOnly="true"/>
 
                         Disciplina: <p:selectOneMenu value="#{controllerClasse.classe.disciplina}" converter="#{DisciplinaConverter}" style="width: 150px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                            <f:selectItems value="#{controllerDisciplina.listaDisc}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.unidade_curricular}"/>
+                            <f:selectItems value="#{controllerDisciplina.listaDisc}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.codigo}"/>
                         </p:selectOneMenu>
-
-
 
                         Professor:  <p:selectOneMenu value="#{controllerClasse.classe.servidor}" converter="#{ServidorConverter}" style="width: 150px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
@@ -59,10 +67,20 @@
                         <h:outputText value="#{p.id}"/>
                     </p:column>
                     <p:column headerText="Disciplina">
-                        <h:outputText value="#{p.disciplina.unidade_curricular}"/>
+                        <h:outputText value="#{p.disciplina.unidade_curricular} (#{p.disciplina.codigo})"/>
+                    </p:column>
+                    <p:column headerText="Dia da semana">
+                        <h:outputText value="#{p.horario.dia_semana}"/>
                     </p:column>
                     <p:column headerText="Horario de Inicio">
-                        <h:outputText value="#{p.horario.horario_inicio}"/>
+                        <h:outputText value="#{p.horario.horario_inicio}">
+                            <f:convertDateTime pattern="HH:mm:ss" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Horario de Fim">
+                        <h:outputText value="#{p.horario.horario_fim}">
+                            <f:convertDateTime pattern="HH:mm:ss" timeZone="GMT-03:00"/>
+                        </h:outputText>
                     </p:column>
 
 
