@@ -133,9 +133,9 @@
                                            
                             
                             
-                            <p:commandButton value="Adicionar" actionListener="#{controllerDisciplina.salvarEqv()}" oncomplete="dialogIncluirEquivalencia.hide()" update=":formSalvar,:growl" 
-                                                style="margin-top: 30px"/>
-                            <p:commandButton value="cancelar" actionListener="#{controllerDisciplina.limparDisc()}" oncomplete="dialogIncluirEquivalencia.hide()" update=":formSalvar" 
+                            <p:commandButton value="Adicionar" actionListener="#{controllerDisciplina.salvarEqv()}" oncomplete="dialogIncluirEquivalencia.hide()" update=":formIncluirEquivalencia,:growl" 
+                                             style="margin-top: 30px" process="@this"/>
+                            <p:commandButton value="cancelar" actionListener="#{controllerDisciplina.limparDisc()}" oncomplete="dialogIncluirEquivalencia.hide()" update=":formIncluirEquivalencia" 
                                                 style="margin-top: 30px;margin-left: 0px;"/>
                         </h:panelGrid>
                     </p:panel>
