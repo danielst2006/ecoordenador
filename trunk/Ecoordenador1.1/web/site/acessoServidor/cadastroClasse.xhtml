@@ -138,7 +138,7 @@
 
                             <p:commandButton value="Alterar" actionListener="#{controllerClasse.alterarClasse()}" oncomplete="dialogAlterarClasse.hide()" update=":formSalvar" 
                                              style="margin-top: 30px"/>
-                            <p:commandButton value="cancelar" actionListener="#{controllerCurso.limpar()}" oncomplete="dialogAlterarClasse.hide()" update=":formSalvar" 
+                            <p:commandButton value="cancelar" actionListener="#{controllerClasse.limparClasse()}" oncomplete="dialogAlterarClasse.hide()" update=":formSalvar" 
                                              style="margin-top: 30px;margin-left: 0px;"/>
                         </h:panelGrid>
                     </p:panel>
@@ -171,7 +171,7 @@
 
                             <p:commandButton value="Alterar" actionListener="#{controllerClasse.alterarHorario()}" oncomplete="dialogAlterarHorario.hide()" update=":formSalvar" 
                                              style="margin-top: 30px"/>
-                            <p:commandButton value="cancelar" actionListener="#{controllerCurso.limpar()}" oncomplete="dialogAlterarHorario.hide()" update=":formSalvar" 
+                            <p:commandButton value="cancelar" actionListener="#{controllerClasse.limparHorario()}" oncomplete="dialogAlterarHorario.hide()" update=":formSalvar" 
                                              style="margin-top: 30px;margin-left: 0px;"/>
                         </h:panelGrid>
                     </p:panel>
