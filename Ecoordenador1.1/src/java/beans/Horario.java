@@ -5,6 +5,7 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
@@ -28,13 +29,13 @@ public class Horario implements Serializable {
         @PrimaryKeyJoinColumn
         private Classe classe;
         
-        @Column(name="horario_inicio",length=6,nullable=false)
-        private String horario_inicio;
+        @Temporal(TemporalType.TIME)
+        private Date horario_inicio;
         
-        @Column(name="horario_fim",length=6,nullable=false)
-        private String horario_fim;
+        @Temporal(TemporalType.TIME)
+        private Date horario_fim;
         
-        @Column(name="dia_semana",length=8,nullable=false)
+        @Column(name="dia_semana",length=15)
         private String dia_semana;
 
     public Classe getClasse() {
@@ -53,19 +54,19 @@ public class Horario implements Serializable {
         this.dia_semana = dia_semana;
     }
 
-    public String getHorario_fim() {
+    public Date getHorario_fim() {
         return horario_fim;
     }
 
-    public void setHorario_fim(String horario_fim) {
+    public void setHorario_fim(Date horario_fim) {
         this.horario_fim = horario_fim;
     }
 
-    public String getHorario_inicio() {
+    public Date getHorario_inicio() {
         return horario_inicio;
     }
 
-    public void setHorario_inicio(String horario_inicio) {
+    public void setHorario_inicio(Date horario_inicio) {
         this.horario_inicio = horario_inicio;
     }
 
