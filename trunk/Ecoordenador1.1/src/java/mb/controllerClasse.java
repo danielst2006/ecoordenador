@@ -119,19 +119,19 @@ public class controllerClasse {
                
     }
       
-      public void alterarHorario() {
-        
-        HorarioRN rn1 = new HorarioRN();
-        rn1.salvar(this.horario);
+    public void alterarHorario() {
+        ClasseRN rn0 = new ClasseRN();
+        HorarioRN rn = new HorarioRN();
+        rn0.atualizar(this.classe);
+        rn.atualizar(this.horario);
+        limparClasse();
+        limparHorario();
         FacesContext context = FacesContext.getCurrentInstance();            
         context.addMessage(null, new FacesMessage("Alterado com Sucesso"));
-        limparHorario();
-        
     }
     
     public void prepararAlterarClasse() {
         this.classe = (Classe)this.listaDataModelClasse.getRowData();
-     
     }
     
     public void prepararAlterarHorario() {
