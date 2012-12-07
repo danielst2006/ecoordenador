@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="teste" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1b4c4177-6dc6-4c4c-8bd3-2df133723de3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#4E6F4E">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#CFE6CF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F8F3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="nome" class="java.lang.String"/>
+	<parameter name="ano" class="java.lang.Integer"/>
+	<parameter name="semestre" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select p.nome, d.unidade_curricular, d.codigo, d.periodo, h.dia_semana, h.horario_inicio, h.horario_fim,pl.ano,pl.semestre
+from classe c, pessoa p, disciplina d, horario h, turma t, periodo_letivo pl
+where p.discriminador='S' and p.id=c.servidor and c.id_classe=h.id_classe and c.turma=t.id and t.periodoletivo=pl.id
+and c.disciplina=d.id_disciplina
+and p.nome=$P{nome} and pl.ano=$P{ano} and pl.semestre=$P{semestre}]]>
+	</queryString>
+	<field name="nome" class="java.lang.String"/>
+	<field name="unidade_curricular" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="periodo" class="java.lang.Integer"/>
+	<field name="dia_semana" class="java.lang.String"/>
+	<field name="horario_inicio" class="java.sql.Time"/>
+	<field name="horario_fim" class="java.sql.Time"/>
+	<field name="ano" class="java.lang.Integer"/>
+	<field name="semestre" class="java.lang.Integer"/>
+	<variable name="Zebra" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA["1"]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="86" splitType="Stretch">
+			<image>
+				<reportElement uuid="3eddbb67-2d10-47ed-976d-d8f5ecb590e6" x="0" y="0" width="343" height="85"/>
+				<imageExpression><![CDATA["C:\\Users\\Caio\\Documents\\NetBeansProjects\\TCC\\trunk\\Ecoordenador1.1\\web\\resources\\images\\topo_ifto.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="c05918aa-bcbd-48e5-8fcc-427b51ef3606" x="613" y="32" width="189" height="23"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SEMESTRE "+$F{ano}+"/"+$F{semestre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="10" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="011f8540-72f3-48ad-b81e-53f7a8bf983f" x="0" y="0" width="802" height="10" forecolor="#009933" backcolor="#009933"/>
+			</rectangle>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="1192d143-b2a3-489f-abed-80ea830e6a2c" x="0" y="0" width="200" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SERVIDOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bc78b4b1-e4d4-41ac-8de4-74ea486f409a" x="260" y="0" width="250" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MATÉRIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b03d54df-8621-4800-924c-e919550a2a0a" x="510" y="0" width="120" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a53bf8d7-455d-4748-8e3c-6484883809cd" x="630" y="0" width="60" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INÍCIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45566cc7-484f-4176-b22b-792ea0b6a393" x="690" y="0" width="60" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FIM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e80d80dd-8048-4a24-896f-acec6ba8b57b" x="200" y="0" width="60" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Período]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="be967e78-d7ba-4de8-9494-eb888676f445" x="0" y="0" width="802" height="20" forecolor="#CCFFCC" backcolor="#CCFFCC">
+					<printWhenExpression><![CDATA[new Boolean(new Integer(($V{Zebra}.intValue())%2).equals(new Integer("0")) )]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField>
+				<reportElement uuid="022fd314-373e-4674-be89-8eaf36ad3317" x="0" y="0" width="200" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b06e7b46-4138-4a4f-a31b-60667adc34a1" x="260" y="0" width="250" height="20"/>
+				<box leftPadding="3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{unidade_curricular}+" ("+$F{codigo}+")"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cba4f60a-e6cb-4903-8335-544ef205c0bd" x="510" y="0" width="120" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dia_semana}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm">
+				<reportElement uuid="55c3d0c9-3029-45e2-ba35-c99945777519" x="630" y="0" width="60" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{horario_inicio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm">
+				<reportElement uuid="c640173c-165b-44e1-8afa-b13b2d8aa13c" x="690" y="0" width="60" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{horario_fim}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f71cd2a9-3a2f-4846-8b7f-6b56bb0edab9" x="200" y="0" width="60" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{periodo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="011f8540-72f3-48ad-b81e-53f7a8bf983f" x="0" y="0" width="802" height="10" forecolor="#009933" backcolor="#009933"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="26efd95a-31db-4cdf-8bfc-a0617c9b1608" x="168" y="13" width="466" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Instituto Federal de Educação Ciência e Tecnologia do Tocantins]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="462fa3a7-2af4-413a-b52c-028e6ea2e22d" x="274" y="34" width="255" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Contatos: (63) XXXX-XXXX | (63) XXXX-XXXX]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

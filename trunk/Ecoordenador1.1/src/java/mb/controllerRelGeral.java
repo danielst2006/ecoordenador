@@ -27,14 +27,88 @@ import util.DAOFactory;
 @ManagedBean(name="controllerRelGeral")
 @SessionScoped
 public class controllerRelGeral {
-    JasperPrint impressao;
-    HashMap parametro;
+    private JasperPrint impressao;
+    private HashMap parametro;
+    
+    ////////////////////////////////////////////////////////////////////////////
+    //Relatório Aulas por Professor
+    private String nome;
+    private Integer ano;
+    private Integer semestre;
+    
+    public void relatorioAulaProfessor() throws JRException, SQLException, IOException{
+        parametro = new HashMap();
+        parametro.put("nome", this.nome);
+        parametro.put("ano", this.ano);
+        parametro.put("semestre", this.semestre);
+        FacesContext context = FacesContext.getCurrentInstance();
+        ServletContext servContext = (ServletContext)context.getExternalContext().getContext();
+        String caminho = servContext.getRealPath("/resources/relatorios/professor.jasper");
+        impressao = JasperFillManager.fillReport(caminho, this.parametro,DAOFactory.getConnection());
+        HttpServletResponse response = (HttpServletResponse)FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        ServletOutputStream outStream= response.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(this.impressao, outStream);
+        context.getApplication().getStateManager().saveView(context);
+        context.responseComplete();
+    }
+
+    public Integer getAno() {
+        return ano;
+    }
+
+    public void setAno(Integer ano) {
+        this.ano = ano;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Integer getSemestre() {
+        return semestre;
+    }
+
+    public void setSemestre(Integer semestre) {
+        this.semestre = semestre;
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////
+    //Relatório de Grade
+    private String curso;
+    
+    public void relatorioGrade() throws JRException, SQLException, IOException{
+        parametro = new HashMap();
+        parametro.put("curso", this.curso);
+        FacesContext context = FacesContext.getCurrentInstance();
+        ServletContext servContext = (ServletContext)context.getExternalContext().getContext();
+        String caminho = servContext.getRealPath("/resources/relatorios/grade.jasper");
+        impressao = JasperFillManager.fillReport(caminho, this.parametro,DAOFactory.getConnection());
+        
+        HttpServletResponse response = (HttpServletResponse)FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        ServletOutputStream outStream= response.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(this.impressao, outStream);
+        
+        context.getApplication().getStateManager().saveView(context);
+        context.responseComplete();
+    }
+
+    public String getCurso() {
+        return curso;
+    }
+
+    public void setCurso(String curso) {
+        this.curso = curso;
+    }
     
     ////////////////////////////////////////////////////////////////////////////
     //Relatório de Horario
-    Date dia1;
-    Date dia2;
-    List<Usuario> user;
+    private Date dia1;
+    private Date dia2;
+    private List<Usuario> user;
     
     public void relatorioPonto() throws JRException, SQLException, IOException{
         String login = pegarUser();
