@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../../resources/templates/login.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:sec="http://www.springframework.org/security/facelets/tags" >
+
+    <ui:define name="menu_horizontal">
+        <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
+            <ui:include src="/site/acessoServidor/menu.xhtml" />
+        </sec:ifAnyGranted>
+    </ui:define>
+    
+    <ui:define name="corpo">
+
+        <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
+            
+            <h:form>
+                <br/>
+                Nome:
+                <p:inputText value="#{controllerRelGeral.nome}"/>
+                Ano:
+                <p:inputText value="#{controllerRelGeral.ano}"/>
+                Semestre:
+                <p:inputText value="#{controllerRelGeral.semestre}"/>
+
+                <p:commandButton ajax="false" value="Buscar" actionListener="#{controllerRelGeral.relatorioAulaProfessor()}" style="margin-left: 25px"/>
+                              
+            </h:form>
+            
+        </sec:ifAnyGranted>
+        
+    </ui:define>
+    
+</ui:composition>
