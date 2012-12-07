@@ -19,12 +19,15 @@
             
             <h:form>
                 <br/>
-                Nome:
-                <p:inputText value="#{controllerRelGeral.nome}"/>
-                Ano:
-                <p:inputText value="#{controllerRelGeral.ano}"/>
-                Semestre:
-                <p:inputText value="#{controllerRelGeral.semestre}"/>
+                Nome:<br/>
+                <p:selectOneMenu value="#{controllerRelGeral.nome}" style="width: 200px">
+                    <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                    <f:selectItems value="#{controllerServidor.lista}" var="tipo" itemValue="#{tipo.nome}" itemLabel="#{tipo.nome}"/>
+                </p:selectOneMenu><br/>
+                Ano:<br/>
+                <p:inputText value="#{controllerRelGeral.ano}"/><br/>
+                Semestre:<br/>
+                <p:inputText value="#{controllerRelGeral.semestre}"/><br/><br/>
 
                 <p:commandButton ajax="false" value="Buscar" actionListener="#{controllerRelGeral.relatorioAulaProfessor()}" style="margin-left: 25px"/>
                               
