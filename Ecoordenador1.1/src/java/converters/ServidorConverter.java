@@ -9,7 +9,7 @@ import javax.faces.convert.FacesConverter;
 import rn.ServidorRN;
 
 
-@FacesConverter(forClass = Servidor.class)
+@FacesConverter(value="ServidorConverter",forClass = Servidor.class)
 public class ServidorConverter implements Converter{
     
     @Override
