@@ -41,14 +41,9 @@
                             <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}/#{tipo.inicio_vigencia}"/>
                         
                         </p:selectOneMenu>
-                    
-                   
-           
-                    
+
                     <p:commandButton value="Salvar" ajax="true" update="@form" actionListener="#{controllerDisciplina.salvarDisc()}"/>
-                         
-                    
-                                    
+               
                     
                     </h:panelGrid>
                 </p:panel>
@@ -110,9 +105,9 @@
                             
                             
                     <p:commandButton value="Alterar" actionListener="#{controllerDisciplina.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
-                                                style="margin-top: 30px"/>
+                                     style="margin-top: 30px" process="@this"/>
                     <p:commandButton value="cancelar" actionListener="#{controllerDisciplina.limparDisc()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
-                                                style="margin-top: 30px;margin-left: 0px;"/>
+                                     style="margin-top: 30px;margin-left: 0px;" process="@this"/>
                         </h:panelGrid>
                     </p:panel>
                 </h:form>
