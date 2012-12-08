@@ -37,7 +37,7 @@
                             <f:selectItem itemLabel="Sábado" itemValue="Sábado" />
                         </p:selectOneMenu>
 
-                        Horário Início: <p:calendar value="#{controllerClasse.horario.horario_inicio}" pattern="HH:mm" timeOnly="true"/>
+                        Horário Início: <p:calendar value="#{controllerClasse.horario.horario_inicio}" pattern="HH:mm" timeOnly="true" locale="pt_BR"/>
                         Horário Fim: <p:calendar value="#{controllerClasse.horario.horario_fim}" pattern="HH:mm" timeOnly="true"/>
 
                         Disciplina: <p:selectOneMenu value="#{controllerClasse.classe.disciplina}" converter="#{DisciplinaConverter}" style="width: 150px">
