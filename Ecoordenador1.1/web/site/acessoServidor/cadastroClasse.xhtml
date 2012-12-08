@@ -24,7 +24,7 @@
                         Turma:<p:selectOneMenu value="#{controllerClasse.classe.turma}" converter="#{TurmaConverter}" style="width: 150px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItems value="#{controllerTurma.lista}" var="tipo" itemValue="#{tipo}" 
-                            itemLabel="#{tipo.periodoletivo.ano}/#{tipo.periodoletivo.semestre} - #{tipo.matrizcurricular.curso.nome}"/>
+                                           itemLabel="#{tipo.periodoletivo.ano}/#{tipo.periodoletivo.semestre} - #{tipo.matrizcurricular.curso.nome} T#{tipo.matrizcurricular.id}"/>
                         </p:selectOneMenu>
                         
                         Dia da Semana:<p:selectOneMenu value="#{controllerClasse.horario.dia_semana}" style="width: 150px">
@@ -89,7 +89,7 @@
 
                     </p:column>
 
-                    <p:column>
+                    <p:column width="75">
                         <p:commandLink  actionListener="#{controllerClasse.prepararAlterarClasse()}" ajax="true" process="@this" oncomplete="dialogAlterarClasse.show();" update=":formAlterarClasse">
                             <p:graphicImage  value="/resources/images/editC.png" />
                         </p:commandLink>
@@ -153,14 +153,13 @@
                         <h:panelGrid columns="2">
                             
                             Dia da Semana:<p:selectOneMenu value="#{controllerClasse.horario.dia_semana}" style="width: 150px">
-                                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                                <f:selectItem itemLabel="Segunda-feira" itemValue="Segunda" />
-                                <f:selectItem itemLabel="Terça-feira" itemValue="Terça" />
-                                <f:selectItem itemLabel="Quarta-feira" itemValue="Quarta" />
-                                <f:selectItem itemLabel="Quinta-feira" itemValue="Quinta" />
-                                <f:selectItem itemLabel="Sexta-feira" itemValue="Sexta" />
-                                <f:selectItem itemLabel="Sábado" itemValue="Sábado" />
-                            </p:selectOneMenu>
+                            <f:selectItem itemLabel="Segunda-feira" itemValue="Segunda" />
+                            <f:selectItem itemLabel="Terça-feira" itemValue="Terça" />
+                            <f:selectItem itemLabel="Quarta-feira" itemValue="Quarta" />
+                            <f:selectItem itemLabel="Quinta-feira" itemValue="Quinta" />
+                            <f:selectItem itemLabel="Sexta-feira" itemValue="Sexta" />
+                            <f:selectItem itemLabel="Sábado" itemValue="Sábado" />
+                        </p:selectOneMenu>
 
 
                             Horário Início: <p:calendar value="#{controllerClasse.horario.horario_inicio}" pattern="HH:mm" timeOnly="true"/>
