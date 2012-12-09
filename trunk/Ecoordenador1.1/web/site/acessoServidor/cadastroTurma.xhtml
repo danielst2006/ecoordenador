@@ -24,20 +24,23 @@
 
                         Período Letivo: 
 
-                        <p:selectOneMenu value="#{controllerTurma.turma.periodoletivo}" converter="#{PeriodoLetivoConverter}" style="width: 160px" required="true"  requiredMessage="Campo Período Letivo é obrigatório.">
+                        <p:selectOneMenu value="#{controllerTurma.turma.periodoletivo}" converter="#{PeriodoLetivoConverter}" style="width: 200px" required="true"  requiredMessage="Campo Período Letivo é obrigatório.">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItems value="#{controllerPeriodoLetivo.lista}" var="tipo" itemValue="#{tipo}" itemLabel= "#{tipo.ano}/#{tipo.semestre}"/>
                         </p:selectOneMenu>                               
 
                         Matriz Curricular:
-                        <p:selectOneMenu value="#{controllerTurma.turma.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 160px" required="true"  requiredMessage="Campo Matriz Currícular é obrigatório.">
+                        <p:selectOneMenu value="#{controllerTurma.turma.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 200px" required="true"  requiredMessage="Campo Matriz Currícular é obrigatório.">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}/#{tipo.inicio_vigencia}"/>
-                        </p:selectOneMenu>     
+                        </p:selectOneMenu>
+                        
+                        Número da Turma:
+                        <p:spinner value="#{controllerTurma.turma.numero_turma}"  style="width: 200px"/>
 
 
                         Turno:* 
-                        <p:selectOneMenu value="#{controllerTurma.turma.turno}" style="width: 160px" required="true"  requiredMessage="Campo Turno é obrigatório." >
+                        <p:selectOneMenu value="#{controllerTurma.turma.turno}" style="width: 200px" required="true"  requiredMessage="Campo Turno é obrigatório." >
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItem itemLabel="Matutino" itemValue="Matutino" />
                             <f:selectItem itemLabel="Vespertino" itemValue="Vespertino" />
@@ -53,23 +56,23 @@
                 <p:dataTable id="tabela" var="p" value="#{controllerTurma.listaDM}" emptyMessage="Nada encontrado..."
                              paginator="true" rows="5" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
                              rowsPerPageTemplate="5,10,15" >
-                    <p:column  headerText="Cod">
-                        <h:outputText value="#{p.id}"/>
+                    <p:column  headerText="Turma">
+                        <h:outputText value="#{p.numero_turma}"/>
                     </p:column>
 
-                    <p:column headerText="Ano">
+                    <p:column headerText="Ano" filterBy="#{p.periodoletivo.ano}/#{p.periodoletivo.semestre}">
                         <h:outputText value="#{p.periodoletivo.ano}/#{p.periodoletivo.semestre}"/>
                     </p:column>
 
-                    <p:column headerText="Matriz Curricular">
-                        <h:outputText value="#{p.matrizcurricular.curso.nome}"/>
+                    <p:column headerText="Matriz Curricular" filterBy="#{p.matrizcurricular.curso.nome}/#{p.matrizcurricular.inicio_vigencia}">
+                        <h:outputText value="#{p.matrizcurricular.curso.nome}/#{p.matrizcurricular.inicio_vigencia}"/>
                     </p:column>
 
-                    <p:column headerText="Turno">
+                    <p:column headerText="Turno" filterBy="#{p.turno}">
                         <h:outputText value="#{p.turno}"/>
                     </p:column>
 
-                    <p:column>
+                    <p:column width="55">
                         <p:commandLink actionListener="#{controllerTurma.prepararAlterar()}" process="@this" oncomplete="dialogAlterar.show();" update=":formAlterar">
                         <p:graphicImage  value="/resources/images/edit.png" />  
                         </p:commandLink>    
@@ -93,19 +96,22 @@
 
                             Periodo Letivo: 
 
-                            <p:selectOneMenu value="#{controllerTurma.turma.periodoletivo}" converter="#{PeriodoLetivoConverter}" style="width: 150px">
+                            <p:selectOneMenu value="#{controllerTurma.turma.periodoletivo}" converter="#{PeriodoLetivoConverter}" style="width: 200px">
                                 
                                 <f:selectItems value="#{controllerPeriodoLetivo.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.ano}/#{tipo.semestre}"/>
                             </p:selectOneMenu>
 
                             Matriz Curricular:
-                            <p:selectOneMenu value="#{controllerTurma.turma.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 150px">
+                            <p:selectOneMenu value="#{controllerTurma.turma.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 200px">
                                 
                                 <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}"/>
                             </p:selectOneMenu>
+                            
+                            Número da Turma:
+                            <p:spinner value="#{controllerTurma.turma.numero_turma}"  style="width: 200px"/>
 
 
-                            Turno: <p:selectOneMenu value="#{controllerTurma.turma.turno}"    >
+                            Turno: <p:selectOneMenu value="#{controllerTurma.turma.turno}"  style="width: 200px">
                                 
                                 <f:selectItem itemLabel="Matutino" itemValue="Matutino" />
                                 <f:selectItem itemLabel="Vespetino" itemValue="Vespetino" />

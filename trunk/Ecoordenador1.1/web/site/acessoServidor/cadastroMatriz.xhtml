@@ -23,29 +23,29 @@
                     <h:panelGrid columns="2" >
                     
                     
-                        Curso:* <p:selectOneMenu value="#{controllerMatriz.matriz.curso}" converter="#{CursoConverter}" style="width:160px;" required="true" requiredMessage="Campo Curso é Obrigatório.">
+                        Curso:* <p:selectOneMenu value="#{controllerMatriz.matriz.curso}" converter="#{CursoConverter}" style="width:200px;" required="true" requiredMessage="Campo Curso é Obrigatório.">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItems value="#{controllerCurso.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
                         </p:selectOneMenu>
-                        Situação da Matriz:* <p:selectOneMenu value="#{controllerMatriz.matriz.situacao_matriz}" style="width:160px;" required="true" requiredMessage="Campo Situação da Matriz é Obrigatório." >
+                        Situação da Matriz:* <p:selectOneMenu value="#{controllerMatriz.matriz.situacao_matriz}" style="width:200px;" required="true" requiredMessage="Campo Situação da Matriz é Obrigatório." >
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItem itemLabel="Em Cadastro" itemValue="Em Cadastro" />
                             <f:selectItem itemLabel="Vigente" itemValue="Vigente" />
                             <f:selectItem itemLabel="Ativa" itemValue="Ativa" />
                             <f:selectItem itemLabel="Desativada" itemValue="Desativada" />
                         </p:selectOneMenu>
-                        Forma de Avaliação:* <p:selectOneMenu value="#{controllerMatriz.matriz.forma_avaliacao}" style="width:160px;"  required="true" requiredMessage="Campo Forma de Avaliação é Obrigatório.">
+                        Forma de Avaliação:* <p:selectOneMenu value="#{controllerMatriz.matriz.forma_avaliacao}" style="width:200px;"  required="true" requiredMessage="Campo Forma de Avaliação é Obrigatório.">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItem itemLabel="Nota" itemValue="Nota" />
                             <f:selectItem itemLabel="Conceito" itemValue="Conceito" />
                             <f:selectItem itemLabel="Frequencia" itemValue="Frequencia" />
                         </p:selectOneMenu>
 
-                        Inicio da Vigência:* <p:calendar pattern="dd/MM/yyyy" locale="pt" value="#{controllerMatriz.matriz.inicio_vigencia}" showButtonPanel="true" navigator="true" id="ptCal" required="true" requiredMessage="Campo Dt da Vigência é Obrigatório."/>  
+                        Inicio da Vigência:* <p:calendar pattern="dd/MM/yyyy" locale="pt" value="#{controllerMatriz.matriz.inicio_vigencia}" showButtonPanel="true" navigator="true" id="ptCal" required="true" requiredMessage="Campo Dt da Vigência é Obrigatório." style="width: 200px"/>  
                              
                         
-                        Fim da Vigência: <p:calendar pattern="dd/MM/yyyy" locale="pt" value="#{controllerMatriz.matriz.fim_vigencia}" showButtonPanel="true" navigator="true" id="ptCal2"/>  
-                        Tipo do Periodo da Matriz:* <p:selectOneMenu value="#{controllerMatriz.matriz.tipo_periodo_matriz}" style="width:160px;" required="true" requiredMessage="Campo Tipo Período da Matriz é Obrigatório." >
+                        Fim da Vigência: <p:calendar pattern="dd/MM/yyyy" locale="pt" value="#{controllerMatriz.matriz.fim_vigencia}" showButtonPanel="true" navigator="true" id="ptCal2" style="width: 200px"/>  
+                        Tipo do Periodo da Matriz:* <p:selectOneMenu value="#{controllerMatriz.matriz.tipo_periodo_matriz}" style="width: 200px" required="true" requiredMessage="Campo Tipo Período da Matriz é Obrigatório." >
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItem itemLabel="Anual" itemValue="Anual" />
                             <f:selectItem itemLabel="Semestral" itemValue="Semestral" />
@@ -55,9 +55,9 @@
                             <f:selectItem itemLabel="Quinzenal" itemValue="Quinzenal" />
                         </p:selectOneMenu>
 
-                        Número do Pedido:* <p:inputText value="#{controllerMatriz.matriz.numero_pedido}" required="true" requiredMessage="Campo Número do Pedido é Obrigatório."/>
-                        Número Máximo de Elementos: <p:inputText value="#{controllerMatriz.matriz.numero_max_elementos}" />
-                        Grupo Curricular:* <p:selectOneMenu value="#{controllerMatriz.matriz.grupo_curricular}" style="width:160px;" required="true" requiredMessage="Campo Grupo Curricular é Obrigatório." >
+                        Número do Pedido:* <p:inputText value="#{controllerMatriz.matriz.numero_pedido}" required="true" requiredMessage="Campo Número do Pedido é Obrigatório." style="width: 170px"/>
+                        Número Máximo de Elementos: <p:inputText value="#{controllerMatriz.matriz.numero_max_elementos}" style="width: 170px"/>
+                        Grupo Curricular:* <p:selectOneMenu value="#{controllerMatriz.matriz.grupo_curricular}" style="width: 200px" required="true" requiredMessage="Campo Grupo Curricular é Obrigatório." >
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItem itemLabel="Grupo de Optativas" itemValue="Grupo de Optativas" />
                             <f:selectItem itemLabel="Grupo de Eletivas" itemValue="Grupo de Eletivas" />
@@ -77,13 +77,10 @@
                 <p:dataTable id="tabela" var="p" value="#{controllerMatriz.listaDM}" emptyMessage="Nada encontrado..."
                              paginator="true" rows="10" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
                      rowsPerPageTemplate="5,10,15"   >
-                    <p:column headerText="Cod">
-                        <h:outputText value="#{p.id}"/>
-                    </p:column>
-                    <p:column headerText="Curso">
+                    <p:column headerText="Curso" filterBy="#{p.curso.nome}">
                         <h:outputText value="#{p.curso.nome}"/>
                     </p:column>
-                     <p:column headerText="Matriz">
+                    <p:column headerText="Matriz" filterBy="#{p.situacao_matriz}">
                         <h:outputText value="#{p.situacao_matriz}"/>
                     </p:column>
                      <p:column headerText="Inicio da Vigencia">
@@ -117,27 +114,27 @@
                         <p:messages id="msgs"/> 
                         <h:panelGrid columns="2">
                                 
-                            Curso: <p:selectOneMenu value="#{controllerMatriz.matriz.curso}" converter="#{CursoConverter}" style="width:160px;" >
+                            Curso: <p:selectOneMenu value="#{controllerMatriz.matriz.curso}" converter="#{CursoConverter}" style="width:200px;" >
                                 
                                 <f:selectItems value="#{controllerCurso.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
                             </p:selectOneMenu>
-                            Situação da Matriz: <p:selectOneMenu value="#{controllerMatriz.matriz.situacao_matriz}" style="width:160px;" >
+                            Situação da Matriz: <p:selectOneMenu value="#{controllerMatriz.matriz.situacao_matriz}" style="width:200px;" >
                                
                                 <f:selectItem itemLabel="Em Cadastro" itemValue="Em Cadastro" />
                                 <f:selectItem itemLabel="Vigente" itemValue="Vigente" />
                                 <f:selectItem itemLabel="Ativa" itemValue="Ativa" />
                                 <f:selectItem itemLabel="Desativada" itemValue="Desativada" />
                             </p:selectOneMenu>
-                            Forma de Avaliação: <p:selectOneMenu value="#{controllerMatriz.matriz.forma_avaliacao}" style="width:160px;" >
+                            Forma de Avaliação: <p:selectOneMenu value="#{controllerMatriz.matriz.forma_avaliacao}" style="width:200px;" >
                              
                                 <f:selectItem itemLabel="Nota" itemValue="Nota" />
                                 <f:selectItem itemLabel="Conceito" itemValue="Conceito" />
                                 <f:selectItem itemLabel="Frequencia" itemValue="Frequencia" />
                             </p:selectOneMenu>
 
-                            Inicio da Vigência: <p:calendar value="#{controllerMatriz.matriz.inicio_vigencia}" />
-                            Fim da Vigência: <p:calendar value="#{controllerMatriz.matriz.fim_vigencia}" />
-                            Tipo do Periodo da Matriz: <p:selectOneMenu value="#{controllerMatriz.matriz.tipo_periodo_matriz}" style="width:160px;">
+                            Inicio da Vigência: <p:calendar value="#{controllerMatriz.matriz.inicio_vigencia}" style="width: 200px"/>
+                            Fim da Vigência: <p:calendar value="#{controllerMatriz.matriz.fim_vigencia}"  style="width: 200px"/>
+                            Tipo do Periodo da Matriz: <p:selectOneMenu value="#{controllerMatriz.matriz.tipo_periodo_matriz}"  style="width: 200px">
                                 
                                 <f:selectItem itemLabel="Anual" itemValue="Anual" />
                                 <f:selectItem itemLabel="Semestral" itemValue="Semestral" />
@@ -147,10 +144,10 @@
                                 <f:selectItem itemLabel="Quinzenal" itemValue="Quinzenal" />
                             </p:selectOneMenu>
 
-                            Número do Pedido: <p:inputText value="#{controllerMatriz.matriz.numero_pedido}" />
-                            Número Máximo de Elementos: <p:inputText value="#{controllerMatriz.matriz.numero_max_elementos}" />
+                            Número do Pedido: <p:inputText value="#{controllerMatriz.matriz.numero_pedido}"  style="width: 170px"/>
+                            Número Máximo de Elementos: <p:inputText value="#{controllerMatriz.matriz.numero_max_elementos}"  style="width: 170px"/>
                             
-                            Grupo Curricular: <p:selectOneMenu value="#{controllerMatriz.matriz.grupo_curricular}" style="width:160px;">
+                            Grupo Curricular: <p:selectOneMenu value="#{controllerMatriz.matriz.grupo_curricular}" style="width:200px;">
                                
                                 <f:selectItem itemLabel="Grupo de Optativas" itemValue="Grupo de Optativas" />
                                 <f:selectItem itemLabel="Grupo de Eletivas" itemValue="Grupo de Eletivas" />

@@ -23,7 +23,7 @@
                     <p:messages id="msgs"/> 
                     <h:panelGrid columns="2" >
 
-                        Tipo de atividade: *<p:inputText  value="#{controllerAtvCompTipo.atvCompTipo.tipo_atividade}" maxlength="20" required="true" requiredMessage="Campo Tipo de Atividade Obrigatorio."/>
+                        Tipo de atividade: *<p:inputText  value="#{controllerAtvCompTipo.atvCompTipo.tipo_atividade}" maxlength="20" required="true" requiredMessage="Campo Tipo de Atividade Obrigatorio." style="width: 200px"/>
                         <p:commandButton  value="Salvar" actionListener="#{controllerAtvCompTipo.salvar()}" ajax="true" update="@form"/>
 
                     </h:panelGrid>

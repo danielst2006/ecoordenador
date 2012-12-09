@@ -19,30 +19,30 @@
                 <h:form id="formSalvar">
                 <p:panel  header="Cadastro de Disciplinas"> 
                     <p:messages id="msgs"/> 
-                    <h:panelGrid >
+                    <h:panelGrid columns="2">
                     
-                    Unidade Curricular: <p:inputText value="#{controllerDisciplina.disciplina.unidade_curricular}" />
-                    Codigo: <p:inputText value="#{controllerDisciplina.disciplina.codigo}" />
-                    Descrição: <p:inputText value="#{controllerDisciplina.disciplina.descricao}" />
-                    Objetivos: <p:inputText value="#{controllerDisciplina.disciplina.objetivos}" />
-                    Carga Horario: <p:inputText value="#{controllerDisciplina.disciplina.carga_horaria}" />
-                    Emenda: <p:inputText value="#{controllerDisciplina.disciplina.ementa}" />
-                    Período:* <p:inputText value="#{controllerDisciplina.disciplina.periodo}"/>
-                    Competencias: <p:inputText value="#{controllerDisciplina.disciplina.competencias}" />
-                    Habilidades: <p:inputText value="#{controllerDisciplina.disciplina.habilidades}" />
-                    Base Tecnologica: <p:inputText value="#{controllerDisciplina.disciplina.base_tecnologica}" />
-                    Base Cientifica: <p:inputText value="#{controllerDisciplina.disciplina.base_cientifica}" />
-                    Base Instrumental: <p:inputText value="#{controllerDisciplina.disciplina.base_instrumental}" />
-                    Conteúdo: <p:inputText value="#{controllerDisciplina.disciplina.conteudo}" />
-                    Referência Bibliografica: <p:inputText value="#{controllerDisciplina.disciplina.referencia_bibliografica}" />
+                    Unidade Curricular: <p:inputText value="#{controllerDisciplina.disciplina.unidade_curricular}" style="width: 200px"/>
+                    Codigo: <p:inputText value="#{controllerDisciplina.disciplina.codigo}" style="width: 200px"/>
+                    Descrição: <p:inputText value="#{controllerDisciplina.disciplina.descricao}" style="width: 200px"/>
+                    Objetivos: <p:inputText value="#{controllerDisciplina.disciplina.objetivos}" style="width: 200px"/>
+                    Carga Horario: <p:inputText value="#{controllerDisciplina.disciplina.carga_horaria}" style="width: 200px"/>
+                    Emenda: <p:inputText value="#{controllerDisciplina.disciplina.ementa}" style="width: 200px"/>
+                    Período:* <p:inputText value="#{controllerDisciplina.disciplina.periodo}" style="width: 200px"/>
+                    Competencias: <p:inputText value="#{controllerDisciplina.disciplina.competencias}" style="width: 200px"/>
+                    Habilidades: <p:inputText value="#{controllerDisciplina.disciplina.habilidades}" style="width: 200px"/>
+                    Base Tecnologica: <p:inputText value="#{controllerDisciplina.disciplina.base_tecnologica}" style="width: 200px"/>
+                    Base Cientifica: <p:inputText value="#{controllerDisciplina.disciplina.base_cientifica}" style="width: 200px"/>
+                    Base Instrumental: <p:inputText value="#{controllerDisciplina.disciplina.base_instrumental}" style="width: 200px"/>
+                    Conteúdo: <p:inputText value="#{controllerDisciplina.disciplina.conteudo}" style="width: 200px"/>
+                    Referência Bibliografica: <p:inputText value="#{controllerDisciplina.disciplina.referencia_bibliografica}" style="width: 200px"/>
                     Matriz Curricular:
-                    <p:selectOneMenu value="#{controllerDisciplina.disciplina.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 150px">
+                    <p:selectOneMenu value="#{controllerDisciplina.disciplina.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 230px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}/#{tipo.inicio_vigencia}"/>
                         
                         </p:selectOneMenu>
 
-                    <p:commandButton value="Salvar" ajax="true" update="@form" actionListener="#{controllerDisciplina.salvarDisc()}"/>
+                    <p:commandButton value="Salvar" ajax="true" update="@form" actionListener="#{controllerDisciplina.salvarDisc()}" />
                
                     
                     </h:panelGrid>
@@ -52,24 +52,30 @@
                     <p:dataTable id="tabela" var="p" value="#{controllerDisciplina.listaDMdisc}" emptyMessage="Nada encontrado..."
                                  paginator="true" rows="10"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
                      rowsPerPageTemplate="5,10,15"   >
-                    <p:column>
-                        <h:outputText value="#{p.id}"/>
+                    <p:column headerText="Matéria" filterBy="#{p.unidade_curricular}" >
+                        <h:outputText value="#{p.unidade_curricular}"/>
                     </p:column>
-                    <p:column>
+                    <p:column headerText="Código">
                         <h:outputText value="#{p.codigo}"/>
                     </p:column>
-                    <p:column>
-                        <p:commandLink value="IncluirEnquivalencia" process="@this" actionListener="#{controllerDisciplina.prepararAlterar()}" ajax="true" oncomplete="dialogIncluirEquivalencia.show();" update=":formIncluirEquivalencia"/>
+                    <p:column headerText="Equivalência" width="70">
+                        <p:commandLink process="@this" actionListener="#{controllerDisciplina.prepararAlterar()}" ajax="true" oncomplete="dialogIncluirEquivalencia.show();" update=":formIncluirEquivalencia" style="margin-left: 45px">
+                            <p:graphicImage value="/resources/images/doc1.png" height="25" width="25" />
+                        </p:commandLink>
                     </p:column>
-                     <p:column>
-                         <p:commandLink value="IncluirPreRequisito" process="@this" actionListener="#{controllerDisciplina.prepararAlterar()}" ajax="true" oncomplete="dialogIncluirPre.show();" update=":formIncluirPre"/>
+                    <p:column headerText="Pré Requisito" width="75">
+                        <p:commandLink process="@this" actionListener="#{controllerDisciplina.prepararAlterar()}" ajax="true" oncomplete="dialogIncluirPre.show();" update=":formIncluirPre" style="margin-left: 50px">
+                            <p:graphicImage value="/resources/images/doc2.png" height="25" width="25"/>
+                        </p:commandLink>
                      </p:column>
      
-                    <p:column>
-                        <p:commandLink value="alterar" actionListener="#{controllerDisciplina.prepararAlterar()}" ajax="true" oncomplete="dialogAlterar.show();" update=":formAlterar"/>
-                    </p:column>
-                    <p:column>
-                        <p:commandLink value="apagar" actionListener="#{controllerDisciplina.removerDisc()}" ajax="true" process="@this" update="@form"/>
+                    <p:column width="50">
+                        <p:commandLink actionListener="#{controllerDisciplina.prepararAlterar()}" ajax="true" oncomplete="dialogAlterar.show();" update=":formAlterar">
+                            <p:graphicImage value="/resources/images/edit.png"/>
+                        </p:commandLink>                        
+                        <p:commandLink actionListener="#{controllerDisciplina.removerDisc()}" ajax="true" process="@this" update="@form">
+                            <p:graphicImage value="/resources/images/delete.png"/>
+                        </p:commandLink>
                     </p:column>
                 </p:dataTable>
                 
@@ -83,24 +89,25 @@
                         <p:messages id="msgs"/> 
                         <h:panelGrid columns="2">
                             
-                    Unidade Curricular: <p:inputText value="#{controllerDisciplina.disciplina.unidade_curricular}" />
-                    Codigo: <p:inputText value="#{controllerDisciplina.disciplina.codigo}" />
-                    Descrição: <p:inputText value="#{controllerDisciplina.disciplina.descricao}" />
-                    Objetivos: <p:inputText value="#{controllerDisciplina.disciplina.objetivos}" />
-                    Carga Horario: <p:inputText value="#{controllerDisciplina.disciplina.carga_horaria}" />
-                    Emenda: <p:inputText value="#{controllerDisciplina.disciplina.ementa}" />
-                    Período:* <p:inputText value="#{controllerDisciplina.disciplina.periodo}" />
-                    Competencias: <p:inputText value="#{controllerDisciplina.disciplina.competencias}" />
-                    Habilidades: <p:inputText value="#{controllerDisciplina.disciplina.habilidades}" />
-                    Base Tecnologica: <p:inputText value="#{controllerDisciplina.disciplina.base_tecnologica}" />
-                    Base Cientifica: <p:inputText value="#{controllerDisciplina.disciplina.base_cientifica}" />
-                    Base Instrumental: <p:inputText value="#{controllerDisciplina.disciplina.base_instrumental}" />
-                    Conteúdo: <p:inputText value="#{controllerDisciplina.disciplina.conteudo}" />
-                    Referência Bibliografica: <p:inputText value="#{controllerDisciplina.disciplina.referencia_bibliografica}" />
+                    Unidade Curricular: <p:inputText value="#{controllerDisciplina.disciplina.unidade_curricular}" style="width: 200px"/>
+                    Codigo: <p:inputText value="#{controllerDisciplina.disciplina.codigo}"  style="width: 200px"/>
+                    Descrição: <p:inputText value="#{controllerDisciplina.disciplina.descricao}" style="width: 200px" />
+                    Objetivos: <p:inputText value="#{controllerDisciplina.disciplina.objetivos}" style="width: 200px" />
+                    Carga Horario: <p:inputText value="#{controllerDisciplina.disciplina.carga_horaria}"  style="width: 200px"/>
+                    Emenda: <p:inputText value="#{controllerDisciplina.disciplina.ementa}"  style="width: 200px"/>
+                    Período:* <p:inputText value="#{controllerDisciplina.disciplina.periodo}"  style="width: 200px"/>
+                    Competencias: <p:inputText value="#{controllerDisciplina.disciplina.competencias}" style="width: 200px" />
+                    Habilidades: <p:inputText value="#{controllerDisciplina.disciplina.habilidades}"  style="width: 200px"/>
+                    Base Tecnologica: <p:inputText value="#{controllerDisciplina.disciplina.base_tecnologica}" style="width: 200px" />
+                    Base Cientifica: <p:inputText value="#{controllerDisciplina.disciplina.base_cientifica}" style="width: 200px" />
+                    Base Instrumental: <p:inputText value="#{controllerDisciplina.disciplina.base_instrumental}"  style="width: 200px"/>
+                    Conteúdo: <p:inputText value="#{controllerDisciplina.disciplina.conteudo}"  style="width: 200px"/>
+                    Referência Bibliografica: <p:inputText value="#{controllerDisciplina.disciplina.referencia_bibliografica}"  style="width: 200px"/>
                     Matriz Curricular:
-                    <p:selectOneMenu value="#{controllerDisciplina.disciplina.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 150px">
+                     <p:selectOneMenu value="#{controllerDisciplina.disciplina.matrizcurricular}" converter="#{MatrizCurricularConverter}" style="width: 230px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                            <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}"/>
+                            <f:selectItems value="#{controllerMatriz.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.curso.nome}/#{tipo.inicio_vigencia}"/>
+                        
                         </p:selectOneMenu>
               
           
@@ -117,9 +124,9 @@
             </p:dialog>
      
             
-          <p:dialog widgetVar="dialogIncluirEquivalencia" resizable="false" closable="false" modal="true" showEffect="slide" hideEffect="slide">
+            <p:dialog widgetVar="dialogIncluirEquivalencia" resizable="false" closable="false" modal="true" showEffect="slide" hideEffect="slide">
                 <h:form id="formIncluirEquivalencia">
-                    <p:panel style="width: 320px;">
+                    <p:panel>
                         <p:messages id="msgs"/> 
                         <h:panelGrid columns="2">
                             

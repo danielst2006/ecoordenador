@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../../resources/templates/login.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:sec="http://www.springframework.org/security/facelets/tags" >
+
+    <ui:define name="menu_horizontal">
+        <sec:ifAnyGranted roles="ROLE_ALUNO,ROLE_ADMINISTRADOR">
+            <ui:include src="/site/acessoAluno/menu.xhtml" />
+        </sec:ifAnyGranted>
+    </ui:define>
+    
+    <ui:define name="corpo">
+        
+        <sec:ifAnyGranted roles="ROLE_ALUNO,ROLE_ADMINISTRADOR">
+            <h:form id="formSalvar" enctype="multipart/form-data">
+
+                <p:dataTable id="tabela" var="p" value="#{controllerEntradaAtividade.listaDM}" emptyMessage="Nada encontrado...">
+                   
+                    <p:column headerText="Solicitante">
+                        <h:outputText value="#{p.aluno.nome}"/>
+                    </p:column>
+                    <p:column headerText="Área">
+                        <h:outputText value="#{p.atividadecomplementar.atividadecomplementartipo.tipo_atividade}"/>
+                    </p:column>
+                    <p:column headerText="Atividade">
+                        <h:outputText value="#{p.atividadecomplementar.atividade}"/>
+                    </p:column>
+                   
+                    <p:column headerText="Data">
+                        <h:outputText value="#{p.data_entrada}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+                     <p:column>
+                        <h:outputText  value="#{p.aprovado}"/>
+                    </p:column>
+                </p:dataTable>
+
+            </h:form>
+            
+           
+            
+        </sec:ifAnyGranted>
+        
+    </ui:define>
+    
+</ui:composition>

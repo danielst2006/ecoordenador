@@ -14,27 +14,67 @@
     </ui:define>
     
     <ui:define name="corpo">
-
         <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
             
-            <h:form>
-                <p:panel>
+            <h:form id="formSalvar">
+                <p:growl id="growl" showDetail="true" sticky="true" /> 
+                <p:panel  header="Manter Matriz Curricular"> 
                     <p:messages id="msgs"/> 
-                    <p:panelGrid columns="2" style="border: 0">
-                        Data desejada:<p:calendar value="#{controllerPonto.ponto.dia}" required="true" requiredMessage="Data obrigatória."/>
-                        Entrada matutina:<p:calendar value="#{controllerPonto.ponto.entrada_matutina}" pattern="HH:mm" timeOnly="true"/>
-                        Saída matutina:<p:calendar value="#{controllerPonto.ponto.saida_matutina}" pattern="HH:mm" timeOnly="true"/>
-                        Entrada vespertina:<p:calendar value="#{controllerPonto.ponto.entrada_vespertina}" pattern="HH:mm" timeOnly="true"/>
-                        Saída vespertina:<p:calendar value="#{controllerPonto.ponto.saida_vespertina}" pattern="HH:mm" timeOnly="true"/>
-                        Entrada noturna<p:calendar value="#{controllerPonto.ponto.entrada_noturna}" pattern="HH:mm" timeOnly="true"/>
-                        Saída noturna<p:calendar value="#{controllerPonto.ponto.saida_noturna}" pattern="HH:mm" timeOnly="true"/>
+                    <h:panelGrid columns="2" >
+
+                        Data desejada:<p:calendar value="#{controllerPonto.ponto.dia}" required="true" requiredMessage="Data obrigatória." style="width: 200px"/>
+                        Entrada matutina:<p:calendar value="#{controllerPonto.ponto.entrada_matutina}" pattern="HH:mm" timeOnly="true" style="width: 200px"/>
+                        Saída matutina:<p:calendar value="#{controllerPonto.ponto.saida_matutina}" pattern="HH:mm" timeOnly="true" style="width: 200px"/>
+                        Entrada vespertina:<p:calendar value="#{controllerPonto.ponto.entrada_vespertina}" pattern="HH:mm" timeOnly="true" style="width: 200px"/>
+                        Saída vespertina:<p:calendar value="#{controllerPonto.ponto.saida_vespertina}" pattern="HH:mm" timeOnly="true" style="width: 200px"/>
+                        Entrada noturna<p:calendar value="#{controllerPonto.ponto.entrada_noturna}" pattern="HH:mm" timeOnly="true" style="width: 200px"/>
+                        Saída noturna<p:calendar value="#{controllerPonto.ponto.saida_noturna}" pattern="HH:mm" timeOnly="true" style="width: 200px"/>
                         <p:commandButton value="Inserir" actionListener="#{controllerPonto.salvar()}" update="@form" ajax="true"/>
-                    </p:panelGrid>
-                </p:panel>   
+
+                    </h:panelGrid>
+                </p:panel>
+                <p:dataTable id="tabela" var="p" value="#{controllerPonto.listaDM}" emptyMessage="Não há resultados para hoje.">
+                    <p:column headerText="Data" filterBy="#{p.dia}">
+                        <h:outputText value="#{p.dia}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Entrada Matutina">
+                        <h:outputText value="#{p.entrada_matutina}">
+                            <f:convertDateTime pattern="HH:mm:ss" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Saída Matutina">
+                        <h:outputText value="#{p.saida_matutina}">
+                            <f:convertDateTime pattern="HH:mm:ss" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Entrada Vespertina">
+                        <h:outputText value="#{p.entrada_vespertina}">
+                            <f:convertDateTime pattern="HH:mm:ss" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Saída Vespertina">
+                        <h:outputText value="#{p.saida_vespertina}">
+                            <f:convertDateTime pattern="HH:mm:ss" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Entrada Noturna">
+                        <h:outputText value="#{p.entrada_noturna}">
+                            <f:convertDateTime pattern="HH:mm:ss" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Saída Noturna">
+                        <h:outputText value="#{p.saida_noturna}">
+                            <f:convertDateTime pattern="HH:mm:ss" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                    </p:column>
+                    
+                </p:dataTable>
             </h:form>
             
+            
         </sec:ifAnyGranted>
-        
     </ui:define>
     
 </ui:composition>

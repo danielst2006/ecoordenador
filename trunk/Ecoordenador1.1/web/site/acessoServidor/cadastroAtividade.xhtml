@@ -27,14 +27,14 @@
 
                         Tipo da atividade:*
                         <!-- POPULANDO COM OBJETO -->
-                        <p:selectOneMenu value="#{controllerAtvComp.atvComp.atividadecomplementartipo}" converter="#{AtividadeComplementarTipoConverter}" required="true" requiredMessage="Campo Tipo de Atividade Obrigatório." style="width: 160px">
+                        <p:selectOneMenu value="#{controllerAtvComp.atvComp.atividadecomplementartipo}" converter="#{AtividadeComplementarTipoConverter}" required="true" requiredMessage="Campo Tipo de Atividade Obrigatório." style="width: 200px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItems value="#{controllerAtvCompTipo.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.tipo_atividade}"/>
                         </p:selectOneMenu>
 
-                        Nome da atividade:* <p:inputText value="#{controllerAtvComp.atvComp.atividade}" required="true" requiredMessage="Campo Nome da Atividade Obrigatório." />
+                        Nome da atividade:* <p:inputText value="#{controllerAtvComp.atvComp.atividade}" required="true" requiredMessage="Campo Nome da Atividade Obrigatório." style="width: 170px"/>
 
-                        Carga Horária:* <p:inputText value="#{controllerAtvComp.atvComp.ch_horaria}" required="true" requiredMessage="Campo Pontuação Obrigatório." />
+                        Carga Horária:* <p:inputText value="#{controllerAtvComp.atvComp.ch_horaria}" required="true" requiredMessage="Campo Pontuação Obrigatório." style="width: 170px"/>
                         
 
                         <p:commandButton value="Salvar" actionListener="#{controllerAtvComp.salvar()}"  update="@form"/>

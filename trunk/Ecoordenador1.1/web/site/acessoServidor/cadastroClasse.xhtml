@@ -21,13 +21,13 @@
                     <p:messages id="msgs"/> 
                     <h:panelGrid columns="2" >
 
-                        Turma:<p:selectOneMenu value="#{controllerClasse.classe.turma}" converter="#{TurmaConverter}" style="width: 150px">
+                        Turma:<p:selectOneMenu value="#{controllerClasse.classe.turma}" converter="#{TurmaConverter}" style="width: 350px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItems value="#{controllerTurma.lista}" var="tipo" itemValue="#{tipo}" 
-                                           itemLabel="#{tipo.periodoletivo.ano}/#{tipo.periodoletivo.semestre} - #{tipo.matrizcurricular.curso.nome} T#{tipo.matrizcurricular.id}"/>
+                                           itemLabel="#{tipo.periodoletivo.ano}/#{tipo.periodoletivo.semestre} - #{tipo.matrizcurricular.curso.nome} T#{tipo.numero_turma} - #{tipo.turno}"/>
                         </p:selectOneMenu>
                         
-                        Dia da Semana:<p:selectOneMenu value="#{controllerClasse.horario.dia_semana}" style="width: 150px">
+                        Dia da Semana:<p:selectOneMenu value="#{controllerClasse.horario.dia_semana}" style="width: 200px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItem itemLabel="Segunda-feira" itemValue="Segunda" />
                             <f:selectItem itemLabel="Terça-feira" itemValue="Terça" />
@@ -37,15 +37,15 @@
                             <f:selectItem itemLabel="Sábado" itemValue="Sábado" />
                         </p:selectOneMenu>
 
-                        Horário Início: <p:calendar value="#{controllerClasse.horario.horario_inicio}" pattern="HH:mm" timeOnly="true" locale="pt_BR"/>
+                        Horário Início: <p:calendar value="#{controllerClasse.horario.horario_inicio}" pattern="HH:mm" timeOnly="true" locale="pt_BR"  style="width: 200px"/>
                         Horário Fim: <p:calendar value="#{controllerClasse.horario.horario_fim}" pattern="HH:mm" timeOnly="true"/>
 
-                        Disciplina: <p:selectOneMenu value="#{controllerClasse.classe.disciplina}" converter="#{DisciplinaConverter}" style="width: 150px">
+                        Disciplina: <p:selectOneMenu value="#{controllerClasse.classe.disciplina}" converter="#{DisciplinaConverter}" style="width: 200px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItems value="#{controllerDisciplina.listaDisc}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.codigo}"/>
                         </p:selectOneMenu>
 
-                        Professor:  <p:selectOneMenu value="#{controllerClasse.classe.servidor}" converter="#{ServidorConverter}" style="width: 150px">
+                        Professor:  <p:selectOneMenu value="#{controllerClasse.classe.servidor}" converter="#{ServidorConverter}" style="width: 200px">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                             <f:selectItems value="#{controllerServidor.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
                         </p:selectOneMenu>                    
@@ -63,13 +63,10 @@
                 <p:dataTable id="tabela" var="p" value="#{controllerClasse.listaDMClasse}" emptyMessage="Nada encontrado..."
                              paginator="true" rows="5" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
                              rowsPerPageTemplate="5,10,15"   >
-                    <p:column headerText="Cod">
-                        <h:outputText value="#{p.id}"/>
-                    </p:column>
-                    <p:column headerText="Disciplina">
+                    <p:column headerText="Disciplina" filterBy="#{p.disciplina.unidade_curricular}">
                         <h:outputText value="#{p.disciplina.unidade_curricular} (#{p.disciplina.codigo})"/>
                     </p:column>
-                    <p:column headerText="Dia da semana">
+                    <p:column headerText="Dia da semana" filterBy="#{p.horario.dia_semana}">
                         <h:outputText value="#{p.horario.dia_semana}"/>
                     </p:column>
                     <p:column headerText="Horario de Inicio">
@@ -84,8 +81,8 @@
                     </p:column>
 
 
-                    <p:column headerText="Professor">
-                        <h:outputText value="#{p.servidor.nome}"/>                  
+                    <p:column headerText="Professor" filterBy="#{p.servidor.nome}">
+                        <h:outputText value="#{p.servidor.nome}"/>
 
                     </p:column>
 
@@ -113,24 +110,25 @@
 
             <p:dialog widgetVar="dialogAlterarClasse" resizable="false" closable="false" modal="true" showEffect="slide" hideEffect="slide">
                 <h:form id="formAlterarClasse">
-                    <p:panel style="width: 320px;">
+                    <p:panel style="width: 500px;">
                         <p:messages id="msgs"/> 
                         <h:panelGrid columns="2">
 
-                            Turma:<p:selectOneMenu value="#{controllerClasse.classe.turma}" converter="#{TurmaConverter}" style="width: 150px">
+                            Turma:<p:selectOneMenu value="#{controllerClasse.classe.turma}" converter="#{TurmaConverter}" style="width: 350px">
+                            <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                            <f:selectItems value="#{controllerTurma.lista}" var="tipo" itemValue="#{tipo}" 
+                                           itemLabel="#{tipo.periodoletivo.ano}/#{tipo.periodoletivo.semestre} - #{tipo.matrizcurricular.curso.nome} T#{tipo.numero_turma} - #{tipo.turno}"/>
+                        </p:selectOneMenu>
 
-                                <f:selectItems value="#{controllerTurma.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.periodoletivo.ano}"/>
-                            </p:selectOneMenu>
 
-
-                            Disciplina: <p:selectOneMenu value="#{controllerClasse.classe.disciplina}" converter="#{DisciplinaConverter}" style="width: 150px">
+                            Disciplina: <p:selectOneMenu value="#{controllerClasse.classe.disciplina}" converter="#{DisciplinaConverter}" style="width: 200px">
 
                                 <f:selectItems value="#{controllerDisciplina.listaDisc}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.unidade_curricular}"/>
                             </p:selectOneMenu>
 
 
 
-                            Professor:  <p:selectOneMenu value="#{controllerClasse.classe.servidor}" converter="#{ServidorConverter}" style="width: 150px">
+                            Professor:  <p:selectOneMenu value="#{controllerClasse.classe.servidor}" converter="#{ServidorConverter}" style="width: 200px">
 
                                 <f:selectItems value="#{controllerServidor.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
                             </p:selectOneMenu>                    
@@ -152,7 +150,7 @@
                         <p:messages id="msgs"/> 
                         <h:panelGrid columns="2">
                             
-                            Dia da Semana:<p:selectOneMenu value="#{controllerClasse.horario.dia_semana}" style="width: 150px">
+                            Dia da Semana:<p:selectOneMenu value="#{controllerClasse.horario.dia_semana}" style="width: 200px">
                             <f:selectItem itemLabel="Segunda-feira" itemValue="Segunda" />
                             <f:selectItem itemLabel="Terça-feira" itemValue="Terça" />
                             <f:selectItem itemLabel="Quarta-feira" itemValue="Quarta" />
@@ -162,8 +160,8 @@
                         </p:selectOneMenu>
 
 
-                            Horário Início: <p:calendar value="#{controllerClasse.horario.horario_inicio}" pattern="HH:mm" timeOnly="true"/>
-                            Horário Fim: <p:calendar value="#{controllerClasse.horario.horario_fim}" pattern="HH:mm" timeOnly="true"/>
+                            Horário Início: <p:calendar value="#{controllerClasse.horario.horario_inicio}" pattern="HH:mm" timeOnly="true" style="width: 200px"/>
+                            Horário Fim: <p:calendar value="#{controllerClasse.horario.horario_fim}" pattern="HH:mm" timeOnly="true" style="width: 200px"/>
                             
 
 
