@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="teste" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1b4c4177-6dc6-4c4c-8bd3-2df133723de3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#4E6F4E">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#CFE6CF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F8F3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="id" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select e.data_entrada,t.tipo_atividade,c.atividade,e.pontuacao, c.ch_horaria
+
+from atividade_complementar_tipo t, atividade_complementar c,
+entrada_atividade e, pessoa p
+where t.id_tipo=c.id_tipo and c.id_atividade=e.id_atividade
+
+and p.discriminador='A' and p.id=1
+
+order by e.data_entrada]]>
+	</queryString>
+	<field name="data_entrada" class="java.sql.Date"/>
+	<field name="tipo_atividade" class="java.lang.String"/>
+	<field name="atividade" class="java.lang.String"/>
+	<field name="pontuacao" class="java.lang.Integer"/>
+	<field name="ch_horaria" class="java.lang.Integer"/>
+	<variable name="Zebra" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA["1"]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="86" splitType="Stretch">
+			<image>
+				<reportElement uuid="305a8e66-4d9b-43a7-b1e5-e920aaefcc30" x="0" y="1" width="343" height="85"/>
+				<imageExpression><![CDATA["/home/cesar/NetBeansProjects/TCC/trunk/Ecoordenador1.1/web/resources/images/topo_ifto.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="10" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="011f8540-72f3-48ad-b81e-53f7a8bf983f" x="0" y="0" width="802" height="10" forecolor="#009933" backcolor="#009933"/>
+			</rectangle>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="744b54f8-38ac-4a69-af9d-3c79552af061" x="0" y="15" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d87520da-f488-4917-9c9e-dda89e7be7a4" x="100" y="15" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo Atv.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c0eaf841-3b29-4d20-b373-a9281c57b8d6" x="200" y="15" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Atividade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="81bd531f-de29-430f-8f3f-91de7ffeaa1a" x="300" y="15" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pontuação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1c436dd2-28e8-4e90-94c6-b24ae29c6c22" x="400" y="15" width="112" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carga Horária]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="be967e78-d7ba-4de8-9494-eb888676f445" x="0" y="0" width="802" height="20" forecolor="#CCFFCC" backcolor="#CCFFCC">
+					<printWhenExpression><![CDATA[new Boolean(new Integer(($V{Zebra}.intValue())%2).equals(new Integer("0")) )]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField>
+				<reportElement uuid="2aa0e088-627a-4674-b968-06fe82ee1ad6" x="0" y="0" width="100" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_entrada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="58be2d17-1b79-4ae0-b7e6-446a35165f08" x="100" y="0" width="100" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_atividade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="205f694b-065a-4107-9067-1d9218833cf5" x="200" y="0" width="100" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{atividade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bcf80641-1159-430e-bed4-c3a984b4b085" x="300" y="0" width="100" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pontuacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3bf90281-24d6-42ca-bb7b-d87fbd039f24" x="400" y="0" width="112" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ch_horaria}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="011f8540-72f3-48ad-b81e-53f7a8bf983f" x="0" y="0" width="802" height="10" forecolor="#009933" backcolor="#009933"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="26efd95a-31db-4cdf-8bfc-a0617c9b1608" x="168" y="13" width="466" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Instituto Federal de Educação Ciência e Tecnologia do Tocantins]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="462fa3a7-2af4-413a-b52c-028e6ea2e22d" x="274" y="34" width="255" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Contatos: (63) XXXX-XXXX | (63) XXXX-XXXX]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
