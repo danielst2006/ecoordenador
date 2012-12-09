@@ -27,7 +27,7 @@
                     Objetivos: <p:inputText value="#{controllerDisciplina.disciplina.objetivos}" />
                     Carga Horario: <p:inputText value="#{controllerDisciplina.disciplina.carga_horaria}" />
                     Emenda: <p:inputText value="#{controllerDisciplina.disciplina.ementa}" />
-                    Período:* <p:inputText value="#{controllerDisciplina.disciplina.periodo}" required="true" requiredMessage="Campo Período é Obrigatório."/>
+                    Período:* <p:inputText value="#{controllerDisciplina.disciplina.periodo}"/>
                     Competencias: <p:inputText value="#{controllerDisciplina.disciplina.competencias}" />
                     Habilidades: <p:inputText value="#{controllerDisciplina.disciplina.habilidades}" />
                     Base Tecnologica: <p:inputText value="#{controllerDisciplina.disciplina.base_tecnologica}" />
@@ -108,9 +108,9 @@
                             
                             
                     <p:commandButton value="Alterar" actionListener="#{controllerDisciplina.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
-                                     style="margin-top: 30px" process="@this"/>
+                                     style="margin-top: 30px"/>
                     <p:commandButton value="cancelar" actionListener="#{controllerDisciplina.limparDisc()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
-                                     style="margin-top: 30px;margin-left: 0px;" process="@this"/>
+                                     style="margin-top: 30px;margin-left: 0px;"/>
                         </h:panelGrid>
                     </p:panel>
                 </h:form>
