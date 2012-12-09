@@ -16,27 +16,352 @@
     <ui:define name="corpo">
         
         <sec:ifAnyGranted roles="ROLE_ALUNO,ROLE_ADMINISTRADOR">
-            
+            <h:form>
                 
-                <f:view> 
-                    <p:dataTable   var="p" value="#{controllerEntradaAtividade.lista}" emptyMessage="Nada encontrado...">
+                <p:growl id="growl" sticky="true" showDetail="true"/>
+
+                <p:wizard widgetVar="wiz"
+                        flowListener="#{controllerAluno.onFlowProcess}">
+
+                    <p:tab id="personal" title="Pessoal">
+
+                        <p:panel header="Dados Gerais">
+
+                            <h:messages errorClass="error"/>
+
+                            <h:panelGrid columns="4" columnClasses="label, value" styleClass="grid">
+                                Nome:*<p:inputText  value="#{controllerAluno.aluno.nome}" label="Nome"  />
+                                
+                                Zona de Procedência:* <p:selectOneMenu value="#{controllerAluno.aluno.zona_procedencia}" style="width: 180px;" required="true"
+                                             requiredMessage="campo Zona de Procedência é obrigatório." >
+                                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                        <f:selectItem itemLabel="Urbana" itemValue="Ubarna" />
+                                        <f:selectItem itemLabel="Rural" itemValue="Rural" />
+                                    </p:selectOneMenu>
+
+                                
+                                    Data de Nascimento:* <p:calendar value="#{controllerAluno.aluno.data_nascimento}" />
+                                    
+                                    UF da Naturalidade: <p:inputText value="#{controllerAluno.aluno.uf_naturalidade}" style="width: 170px;"/>
+                                   
+                                    
+                                    <p:commandButton value="Buscar CEP" actionListener="#{controllerAluno.buscarCep()}" ajax="true" update="@form"/>
+                                    <p:inputText value="#{controllerAluno.aluno.cep}" />
+                              Estado Civil:* <p:selectOneMenu value="#{controllerAluno.aluno.estado_civil}" style="width: 180px;" required="true"
+                                             requiredMessage="campo Estado Civil é obrigatório." >
+                                    <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                    <f:selectItem itemLabel="Solteiro" itemValue="solteiro" />
+                                    <f:selectItem itemLabel="Casado" itemValue="casado" />
+                                    <f:selectItem itemLabel="Divociado" itemValue="divociado" />
+                                    <f:selectItem itemLabel="Separado Judicialmente" itemValue="Separado Judicialmente" />
+                                    <f:selectItem itemLabel="Viúvo" itemValue="viúvo" />
+                                    <f:selectItem itemLabel="Não declarado" itemValue="N/D" />
+                                </p:selectOneMenu>
+                                  
+                               Logradouro:* <p:inputText value="#{controllerAluno.aluno.logradouro}" />
+                                    
+                                  
+                               Genero: <p:selectOneMenu value="#{controllerAluno.aluno.genero}" style="width: 180px;" required="true"
+                                             requiredMessage="campo Genero é obrigatório.">
+                                    <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                    <f:selectItem itemLabel="Masculino" itemValue="M" />
+                                    <f:selectItem itemLabel="Feminino" itemValue="F" />
+                                    <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />      
+                                </p:selectOneMenu>
+                                   
+                                Bairro:* <p:inputText value="#{controllerAluno.aluno.bairro}" />
+                                
+                                Etnia:<p:selectOneMenu value="#{controllerAluno.aluno.etnia}" style="width: 180px;" required="true"
+                                             requiredMessage="campo Etnia é obrigatório." >
+                                    <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                    <f:selectItem itemLabel="Branca" itemValue="branca" />
+                                    <f:selectItem itemLabel="Pardo" itemValue="pardo" />
+                                    <f:selectItem itemLabel="Negra" itemValue="negra" />
+                                    <f:selectItem itemLabel="Amarela" itemValue="amarelo" />
+                                    <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
+                                </p:selectOneMenu>
+                                Numero:* <p:inputText value="#{controllerAluno.aluno.numero_lote}" />
+                                
+                           
+
+                                Necessidade Espeial: <h:selectOneRadio 
+                                    value="#{controllerAluno.aluno.necessidade_especial}">
+                                    <f:selectItem  itemLabel="Sim" itemValue="true" />
+                                    <f:selectItem  itemLabel="Não" itemValue="false" />
+                                </h:selectOneRadio>
+                                Cidade:* <p:inputText value="#{controllerAluno.aluno.cidade}" />
+                                 
+                                 
+                                
+                                Naturalidade:* <p:inputText value="#{controllerAluno.aluno.naturalidade}" label="naturalidade" style="width: 180px;" required="true"
+                                             requiredMessage="campo Naturalidade é obrigatório." />
+                                UF:* <p:inputText value="#{controllerAluno.aluno.uf}" />
+                                Nacionalidade:* <p:inputText value="#{controllerAluno.aluno.nacionalidade}" style="width: 180px;" required="true"
+                                             requiredMessage="campo Nacionalidade é obrigatório." />
+                                Complemento: <p:inputText value="#{controllerAluno.aluno.complemento}" />
+                                Números de Filhos: <p:inputText value="#{controllerAluno.aluno.numero_filhos}" style="width: 180px;" />
+                                Endereço Curriculo Lattes: <p:inputText value="#{controllerAluno.aluno.end_curriculo_lattes}" />
+                                DDD: <p:inputText value="#{controllerAluno.aluno.ddd}" style="width: 180px;" />
+                                Numero do Telefone: <p:inputText value="#{controllerAluno.aluno.numero_telefone}" />
+                                Ramal: <p:inputText value="#{controllerAluno.aluno.ramal}" style="width: 180px;" />
+
+
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="geral" title="Geral">
+                        <p:panel header="Dados Geral">
+
+                            <h:messages errorClass="error"/>
+
+                            <h:panelGrid columns="2" columnClasses="label, value">
+
+                                Filiação: <p:selectOneMenu  value="#{controllerAluno.aluno.filiacao}" style="width: 180px;" >
+                                    <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <f:selectItem itemLabel="Não" itemValue="false" />
+                                </p:selectOneMenu>
+                                Nome da Mãe*: <p:inputText  value="#{controllerAluno.aluno.nome_mae}"  style="width: 180px;" />
+                                Nome do Pai: <p:inputText  value="#{controllerAluno.aluno.nome_pai}" style="width: 180px;" />
+                                Nome do Responsável: <p:inputText value="#{controllerAluno.aluno.nome_responsavel}" style="width: 180px;" />
+                                CPF do Responsável: <p:inputText value="#{controllerAluno.aluno.cpf_responsavel}" style="width: 180px;" />
+
+                                Parentesco: <p:inputText value="#{controllerAluno.aluno.parentesco}" style="width: 180px;" />
+                                Renda:* <h:selectOneRadio value="#{controllerAluno.aluno.renda}" style="width: 180px;" >
+                                    <f:selectItem  itemLabel="Sim" itemValue="true" />
+                                    <f:selectItem  itemLabel="Não" itemValue="false" />
+                                        </h:selectOneRadio>
+                                Renda Familiar: <p:inputText value="#{controllerAluno.aluno.renda_familiar}" style="width: 180px;" />
+                                Tamanho da Familia: <p:inputText value="#{controllerAluno.aluno.tamanho_familia}" style="width: 180px;" />
+                                Numeros de Filhos: <p:inputText value="#{controllerAluno.aluno.numero_filhos}" style="width: 180px;" />
+
+
+
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+
+                    <p:tab id="formação" title="Formação">
+                        <p:panel header="Dados de Formação">
+
+                            <h:messages errorClass="error"/>
+
+                            <h:panelGrid columns="2" columnClasses="label, value">
+
+                                Curso: <p:selectOneMenu value="#{controllerAluno.aluno.curso}" converter="#{CursoConverter}" style="width: 150px">
+                                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                        <f:selectItems value="#{controllerCurso.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
+                                </p:selectOneMenu>
+
+                                Grau de Formação:* <p:selectOneMenu value="#{controllerAluno.aluno.grau_formacao}" >
+                                    <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                    <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
+                                    <f:selectItem itemLabel="Educação Infantil" itemValue="Educação Infantil" />
+                                    <f:selectItem itemLabel="Ensino Fundamental" itemValue="Ensino Fundamental" />
+                                    <f:selectItem itemLabel="Ensino Médio" itemValue="Ensino Médio" />
+                                    <f:selectItem itemLabel="Graduação" itemValue="Graduação" />
+                                    <f:selectItem itemLabel="Especialização" itemValue="Especialiazação" />
+                                    <f:selectItem itemLabel="Mestrado" itemValue="Mestrado" />
+                                    <f:selectItem itemLabel="Doutorado" itemValue="Doutorado" />
+                                </p:selectOneMenu>
+
+                                Escola Formação Anterior:* <p:inputText value="#{controllerAluno.aluno.escola_formacao_anterior}" />
+                                Ano da Formação Anterior:* <p:inputText value="#{controllerAluno.aluno.ano_formacao_anterior}" />
+                                Tipo da Escola Anterior:* <p:selectOneMenu value="#{controllerAluno.aluno.tipo_escola_anterior}" >
+                                    <f:selectItem itemLabel="Municipal" itemValue="municipal" />
+                                    <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                                    <f:selectItem itemLabel="Estadual" itemValue="estadual" />
+                                    <f:selectItem itemLabel="Federal" itemValue="pederal" /> 
+                                    <f:selectItem itemLabel="Privada" itemValue="private" />
+                                    <f:selectItem itemLabel="Filantrópica" itemValue="filantropica" />
+
+                                </p:selectOneMenu>
+
+
+                                Etapa do Ensino Anterior: <p:selectOneMenu value="#{controllerAluno.aluno.etapa_ensino_anterior}" >
+                                    <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>s
+                                    <f:selectItem itemLabel="Infantil" itemValue="Infantil" />
+                                    <f:selectItem itemLabel="Fundamental" itemValue="Fundamental" />
+                                    <f:selectItem itemLabel="Médio" itemValue="Médio" /> 
+                                    <f:selectItem itemLabel="Superior" itemValue="Superior" />
+
+                                </p:selectOneMenu>
+                                Cidade da Instituição de Ensino: <p:inputText value="#{controllerAluno.aluno.cidade_instituicao_ensino}" />
+                                UF da Instituição de Ensino: <p:inputText value="#{controllerAluno.aluno.uf_instituicao_ensino}" />
+
+
+
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="documentacao" title="Documentação">
+                        <p:panel header="Dados de Documentação">
+
+                            <h:messages errorClass="error"/>
+
+                            <h:panelGrid columns="4" columnClasses="label, value">
+
+                                CPF: <p:inputText value="#{controllerAluno.aluno.cpf}"  />
+                                RG: <p:inputText value="#{controllerAluno.aluno.rg_numero}" />
+                                Orgão Exepedidor: <p:inputText value="#{controllerAluno.aluno.rg_expedidor}" />
+                                Data da Expedição: <p:calendar value="#{controllerAluno.aluno.rg_data_expedicao}" />
+                                Certidão de Nascimento (Número): <p:inputText value="#{controllerAluno.aluno.cnasc_numero}" />
+                                Certidão de Nascimento (Livro/Folha): <p:inputText value="#{controllerAluno.aluno.cnasc_folha}" />
+                                Certidão de Nascimento (Cartório): <p:inputText value="#{controllerAluno.aluno.cnasc_cartorio}" />
+                                Certidão de Nascimento (Data da Expedição): <p:calendar value="#{controllerAluno.aluno.cnasc_data_expedicao}" />
+                                Carteira de Trabalho (Número): <p:inputText value="#{controllerAluno.aluno.ctps_numero}" />
+                                Carteira de Trabalho (Série): <p:inputText value="#{controllerAluno.aluno.ctps_serie}" />
+                                Carteira de Trabalho (PIS/PASEP): <p:inputText value="#{controllerAluno.aluno.pis_pasep}" />
+                                Carteira de Habilitação (Número): <p:inputText value="#{controllerAluno.aluno.chabilitacao_numero}" />
+                                Carteira de Habilitação (Data Expedeição): <p:calendar value="#{controllerAluno.aluno.chabilitacao_data_expedicao}" />
+                                Carteira de Habilitação (Data Validade): <p:calendar value="#{controllerAluno.aluno.chabilitacao_data_validade}" />
+                                Documento Militar (Tipo): <p:inputText value="#{controllerAluno.aluno.dmilitar_tipo}" />
+                                Documento Militar (Número): <p:inputText value="#{controllerAluno.aluno.dmilitar_numero}" />
+                                Documento Militar (Região Militar): <p:inputText value="#{controllerAluno.aluno.dmilitar_regiao}" />
+                                Título de Eleitor (Número): <p:inputText value="#{controllerAluno.aluno.teleitor_numero}" />
+                                Título de Eleitor (Zona/Seção): <p:inputText value="#{controllerAluno.aluno.teleitor_zona}" />
+                                Título de Eleitor (UF): <p:inputText value="#{controllerAluno.aluno.teleitor_uf}" />
+                                Título de Eleitor (Data Exp.): <p:calendar value="#{controllerAluno.aluno.teleitor_data_expedicao}" />
+
+
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+
+                    <p:tab id="profissional" title="Profissional">
+                        <p:panel header="Dados Profissional">
+
+                            <h:messages errorClass="error"/>
+
+                            <h:panelGrid columns="2" columnClasses="label, value">
+
+                                Trabalha:* <h:selectOneRadio 
+                                    value="#{controllerAluno.aluno.trabalha}">
+                                    <f:selectItem  itemLabel="Sim" itemValue="true" />
+                                    <f:selectItem  itemLabel="Não" itemValue="false" />
+
+                                </h:selectOneRadio>    
+                                Local de Trabalho: <p:inputText value="#{controllerAluno.aluno.local_trabalho}" />
+                                Telefone do Trabalho: <p:inputText value="#{controllerAluno.aluno.telefone_trabalho}" />
+                                Profissão: <p:inputText value="#{controllerAluno.aluno.profissao}" />
+
+
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+
+
+
+                    <p:tab id="confirm" title="Confirmação">
+                        <p:panel header="Confirmação">
+
+                            <h:panelGrid id="confirmation" columns="6">
+
+                                
+                                  Nome:* <h:outputText  value="#{controllerAluno.aluno.nome} "/>
+                    Etnia: <h:outputText value="#{controllerAluno.aluno.etnia}"/>
                     
-                <p:column headerText="Área">                        
-                    <h:outputText value="#{p.atividadecomplementar.atividadecomplementartipo.tipo_atividade}"/>
-                </p:column>
 
-                </p:dataTable>
-                
-                
-                </f:view>
-                
-      
-            
+                    Genero: <h:outputText value="#{controllerAluno.aluno.genero}" />
+                   
+                    Necessidade Espeial: <h:outputText value="#{controllerAluno.aluno.necessidade_especial}" />
+                        
+                    Data de Nascimento:* <h:outputText value="#{controllerAluno.aluno.data_nascimento}">
+                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                         </h:outputText>
+                    
+                    Naturalidade: <h:outputText value="#{controllerAluno.aluno.naturalidade}" />
+                    UF da Naturalidade: <h:outputText value="#{controllerAluno.aluno.uf_naturalidade}" />
+                    Nacionalidade:* <h:outputText value="#{controllerAluno.aluno.nacionalidade}" />
+                    Estado Civil:* <h:outputText value="#{controllerAluno.aluno.estado_civil}" />
+                    Números de Filhos: <h:outputText value="#{controllerAluno.aluno.numero_filhos}" />
+                    Endereço Curriculo Lattes: <h:outputText value="#{controllerAluno.aluno.end_curriculo_lattes}" />
+                    DDD: <h:outputText value="#{controllerAluno.aluno.ddd}" />
+                    Numero do Telefone: <h:outputText value="#{controllerAluno.aluno.numero_telefone}" />
+                    Ramal: <h:outputText value="#{controllerAluno.aluno.ramal}" />
+                    Filiação: <h:outputText  value="#{controllerAluno.aluno.filiacao}" />
+                    Nome da Mãe*: <h:outputText  value="#{controllerAluno.aluno.nome_mae}"  />
+                    Nome do Pai: <h:outputText  value="#{controllerAluno.aluno.nome_pai}" />
+                    Nome do Responsável: <h:outputText value="#{controllerAluno.aluno.nome_responsavel}" />
+                    CPF do Responsável: <h:outputText value="#{controllerAluno.aluno.cpf_responsavel}" />
+                    Parentesco: <h:outputText value="#{controllerAluno.aluno.parentesco}" />
+                    Renda:* <h:outputText value="#{controllerAluno.aluno.renda}"/>
+                    Renda Familiar: <h:outputText value="#{controllerAluno.aluno.renda_familiar}" />
+                    Tamanho da Familia: <h:outputText value="#{controllerAluno.aluno.tamanho_familia}" />
+                    Numeros de Filhos: <h:outputText value="#{controllerAluno.aluno.numero_filhos}" />
+                    Grau de Formação:* <h:outputText value="#{controllerAluno.aluno.grau_formacao}" />                                         
+                    Escola Formação Anterior:* <h:outputText value="#{controllerAluno.aluno.escola_formacao_anterior}" />
+                    Ano da Formação Anterior:* <h:outputText value="#{controllerAluno.aluno.ano_formacao_anterior}" />
+                    Tipo da Escola Anterior:* <h:outputText value="#{controllerAluno.aluno.tipo_escola_anterior}"/>
+                    Etapa do Ensino Anterior: <h:outputText value="#{controllerAluno.aluno.etapa_ensino_anterior}" />
+                    Cidade da Instituição de Ensino: <h:outputText value="#{controllerAluno.aluno.cidade_instituicao_ensino}" />
+                    UF da Instituição de Ensino: <h:outputText value="#{controllerAluno.aluno.uf_instituicao_ensino}" />
+                    Zona de Procedência:* <h:outputText value="#{controllerAluno.aluno.zona_procedencia}" />
+                    CEP:* <h:outputText value="#{controllerAluno.aluno.cep}" />
+                    Logradouro:* <h:outputText value="#{controllerAluno.aluno.logradouro}" />
+                    Numero:* <h:outputText value="#{controllerAluno.aluno.numero_lote}" />
+                    Complemento: <h:outputText value="#{controllerAluno.aluno.complemento}" />
+                    Bairro:* <h:outputText value="#{controllerAluno.aluno.bairro}" />
+                    Cidade:* <h:outputText value="#{controllerAluno.aluno.cidade}" />
+                    UF:* <h:outputText value="#{controllerAluno.aluno.uf}" />
+                    CPF: <h:outputText value="#{controllerAluno.aluno.cpf}"  />
+                    RG: <h:outputText value="#{controllerAluno.aluno.rg_numero}" />
+                    Orgão Exepedidor: <h:outputText value="#{controllerAluno.aluno.rg_expedidor}" />
+                    Data da Expedição: <h:outputText value="#{controllerAluno.aluno.rg_data_expedicao}">
+                                       <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                       </h:outputText>  
+                    Cerdidão de Nascimento (Número): <h:outputText value="#{controllerAluno.aluno.cnasc_numero}" />
+                    Cerdidão de Nascimento (Livro/Folha): <h:outputText value="#{controllerAluno.aluno.cnasc_folha}" />
+                    Cerdidão de Nascimento (Cartório): <h:outputText value="#{controllerAluno.aluno.cnasc_cartorio}" />
+                    Cerdidão de Nascimento (Data da Expedição): <h:outputText value="#{controllerAluno.aluno.cnasc_data_expedicao}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>  
+                    
+                    Carteira de Trabalho (Número): <h:outputText value="#{controllerAluno.aluno.ctps_numero}" />
+                    Carteira de Trabalho (Série): <h:outputText value="#{controllerAluno.aluno.ctps_serie}" />
+                    Carteira de Trabalho (PIS/PASEP): <h:outputText value="#{controllerAluno.aluno.pis_pasep}" />
+                    Carteira de Habilitação (Número): <h:outputText value="#{controllerAluno.aluno.chabilitacao_numero}" />
+                    Carteira de Habilitação (Data Expedeição): <h:outputText value="#{controllerAluno.aluno.chabilitacao_data_expedicao}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>                              
+                    Carteira de Habilitação (Data Validade): <h:outputText value="#{controllerAluno.aluno.chabilitacao_data_validade}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                             </h:outputText> 
+                    
+                    Documento Militar (Tipo): <h:outputText value="#{controllerAluno.aluno.dmilitar_tipo}" />
+                    Documento Militar (Número): <h:outputText value="#{controllerAluno.aluno.dmilitar_numero}" />
+                    Documento Militar (Região Militar): <h:outputText value="#{controllerAluno.aluno.dmilitar_regiao}" />
+                    Título de Eleitor (Número): <h:outputText value="#{controllerAluno.aluno.teleitor_numero}" />
+                    Título de Eleitor (Zona/Seção): <h:outputText value="#{controllerAluno.aluno.teleitor_zona}" />
+                    Título de Eleitor (UF): <h:outputText value="#{controllerAluno.aluno.teleitor_uf}" />
+                    Título de Eleitor (Data Exp.): <h:outputText value="#{controllerAluno.aluno.teleitor_data_expedicao}">
+                                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>  
+                    Tabalha:* <h:outputText  value="#{controllerAluno.aluno.trabalha}"/>    
+                    Local de Trabalho: <h:outputText value="#{controllerAluno.aluno.local_trabalho}" />
+                    Telefone do Trabalho: <h:outputText value="#{controllerAluno.aluno.telefone_trabalho}" />
+                    Profissão: <h:outputText value="#{controllerAluno.aluno.profissao}" />
+                                
+                                
+                                
+                            </h:panelGrid>
 
+
+                        </p:panel>
+                    </p:tab>
+
+                </p:wizard>
+                <p:commandButton value="Cadastrar" update="growl" 
+                                             actionListener="#{controllerAluno.alunoSalvar()}"/>
+            </h:form>
             
         </sec:ifAnyGranted>
         
     </ui:define>
     
 </ui:composition>
-
