@@ -59,10 +59,10 @@
                         <h:outputText value="#{p.codigo}"/>
                     </p:column>
                     <p:column>
-                        <p:commandLink value="IncluirEnquivalencia" process="@this" actionListener="#{controllerDisciplina.prepararIncluirEnquivalencia()}" ajax="true" oncomplete="dialogIncluirEquivalencia.show();" update=":formIncluirEquivalencia"/>
+                        <p:commandLink value="IncluirEnquivalencia" process="@this" actionListener="#{controllerDisciplina.prepararAlterar()}" ajax="true" oncomplete="dialogIncluirEquivalencia.show();" update=":formIncluirEquivalencia"/>
                     </p:column>
                      <p:column>
-                         <p:commandLink value="IncluirPreRequisito" process="@this" actionListener="#{controllerDisciplina.prepararIncluirPre()}" ajax="true" oncomplete="dialogIncluirPre.show();" update=":formIncluirPre"/>
+                         <p:commandLink value="IncluirPreRequisito" process="@this" actionListener="#{controllerDisciplina.prepararAlterar()}" ajax="true" oncomplete="dialogIncluirPre.show();" update=":formIncluirPre"/>
                      </p:column>
      
                     <p:column>
@@ -123,6 +123,7 @@
                         <p:messages id="msgs"/> 
                         <h:panelGrid columns="2">
                             
+                           
                             Incluir Equivalência:
                             <p:selectOneMenu value="#{controllerDisciplina.disciplinaEquivalente.disciplina_eq}" converter="#{DisciplinaConverter}">  
                                 <f:selectItems value="#{controllerDisciplina.listaDisc}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.codigo}"/>
@@ -132,7 +133,7 @@
                             
                             
                             <p:commandButton value="Adicionar" actionListener="#{controllerDisciplina.salvarEqv()}" oncomplete="dialogIncluirEquivalencia.hide()" update=":formIncluirEquivalencia,:growl" 
-                                             style="margin-top: 30px" process="@this"/>
+                                             style="margin-top: 30px" />
                             <p:commandButton value="cancelar" actionListener="#{controllerDisciplina.limparDisc()}" oncomplete="dialogIncluirEquivalencia.hide()" update=":formIncluirEquivalencia" 
                                                 style="margin-top: 30px;margin-left: 0px;"/>
                         </h:panelGrid>
@@ -157,7 +158,7 @@
                             
                             
                             <p:commandButton value="Adicionar" actionListener="#{controllerDisciplina.salvarPre()}" oncomplete="dialogIncluirPre.hide()" update=":formIncluirPre,:growl" 
-                                             style="margin-top: 30px" process="@this"/>
+                                             style="margin-top: 30px"/>
                             <p:commandButton value="cancelar" actionListener="#{controllerDisciplina.limparDisc()}" oncomplete="dialogIncluirPre.hide()" update=":formIncluirPre" 
                                                 style="margin-top: 30px;margin-left: 0px;"/>
                         </h:panelGrid>
