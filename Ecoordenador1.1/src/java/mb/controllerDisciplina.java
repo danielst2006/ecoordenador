@@ -10,6 +10,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import rn.DisciplinaEquivalenteRN;
 import rn.DisciplinaRN;
+import rn.PreRequisitoRN;
 
 
 @ManagedBean(name="controllerDisciplina")
@@ -85,6 +86,10 @@ public class controllerDisciplina {
         this.disciplina = (Disciplina)this.listaDataModelDisc.getRowData();
     }
     
+    public void prepararIncluirPre() {
+        this.disciplina = (Disciplina)this.listaDataModelDisc.getRowData();
+    }
+    
     public String salvarEqv(){
         DisciplinaEquivalenteRN rn = new DisciplinaEquivalenteRN();
 //        for(Integer x=0;x<discSelecionadas.size();x++) {
@@ -97,6 +102,23 @@ public class controllerDisciplina {
 //            this.disciplinaEquivalente.setDisciplina_eq(this.);
             this.disciplinaEquivalente.setDisciplina_pk(this.disciplina);
             rn.salvar(this.disciplinaEquivalente);
+//        }
+        limparDisc();
+        return "Salvo";
+    }
+    
+    public String salvarPre(){
+        PreRequisitoRN rn = new PreRequisitoRN();
+//        for(Integer x=0;x<discSelecionadas.size();x++) {
+//            this.disciplinaEquivalente.setDisciplina_eq(disc);
+//            this.disciplinaEquivalente.setDisciplina_pk(this.disciplina);
+//            rn.salvar(this.disciplinaEquivalente);
+//            FacesContext context = FacesContext.getCurrentInstance();  
+//            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"TESTE", ""+disc));
+//            Disciplina disc = discSelecionadas.get(x);
+//            this.disciplinaEquivalente.setDisc iplina_eq(this.);
+            this.pre_requisito.setDisc_pk(this.disciplina);
+            rn.salvar(this.pre_requisito);
 //        }
         limparDisc();
         return "Salvo";

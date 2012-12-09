@@ -59,8 +59,11 @@
                         <h:outputText value="#{p.codigo}"/>
                     </p:column>
                     <p:column>
-                        <p:commandLink value="IncluirEnquivalencia" actionListener="#{controllerDisciplina.prepararIncluirEnquivalencia()}" ajax="true" oncomplete="dialogIncluirEquivalencia.show();" update=":formIncluirEquivalencia"/>
+                        <p:commandLink value="IncluirEnquivalencia" process="@this" actionListener="#{controllerDisciplina.prepararIncluirEnquivalencia()}" ajax="true" oncomplete="dialogIncluirEquivalencia.show();" update=":formIncluirEquivalencia"/>
                     </p:column>
+                     <p:column>
+                         <p:commandLink value="IncluirPreRequisito" process="@this" actionListener="#{controllerDisciplina.prepararIncluirPre()}" ajax="true" oncomplete="dialogIncluirPre.show();" update=":formIncluirPre"/>
+                     </p:column>
      
                     <p:column>
                         <p:commandLink value="alterar" actionListener="#{controllerDisciplina.prepararAlterar()}" ajax="true" oncomplete="dialogAlterar.show();" update=":formAlterar"/>
@@ -137,6 +140,31 @@
                 </h:form>
             </p:dialog>
      
+            
+
+            <p:dialog widgetVar="dialogIncluirPre" resizable="false" closable="false" modal="true" showEffect="slide" hideEffect="slide">
+                <h:form id="formIncluirPre">
+                    <p:panel style="width: 320px;">
+                        <p:messages id="msgs"/> 
+                        <h:panelGrid columns="2">
+                            
+                            Incluir Equivalência:
+                            <p:selectOneMenu value="#{controllerDisciplina.pre_requisito.disc_eq}" converter="#{DisciplinaConverter}">  
+                                <f:selectItems value="#{controllerDisciplina.listaDisc}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.codigo}"/>
+                            </p:selectOneMenu>
+                    
+                                           
+                            
+                            
+                            <p:commandButton value="Adicionar" actionListener="#{controllerDisciplina.salvarPre()}" oncomplete="dialogIncluirPre.hide()" update=":formIncluirPre,:growl" 
+                                             style="margin-top: 30px" process="@this"/>
+                            <p:commandButton value="cancelar" actionListener="#{controllerDisciplina.limparDisc()}" oncomplete="dialogIncluirPre.hide()" update=":formIncluirPre" 
+                                                style="margin-top: 30px;margin-left: 0px;"/>
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </p:dialog>
+            
             
             
 
