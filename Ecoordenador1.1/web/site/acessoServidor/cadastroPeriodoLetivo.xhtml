@@ -22,17 +22,17 @@
                     <p:messages id="msgs"/> 
                     <h:panelGrid columns="2" >
                         
-                    Ano:* <p:inputText value="#{controllerPeriodoLetivo.periodo.ano}" required="true" requiredMessage="Campo Ano é Obrigatório."  />
+                    Ano:* <p:inputText value="#{controllerPeriodoLetivo.periodo.ano}" required="true" requiredMessage="Campo Ano é Obrigatório."   style="width: 170px"/>
                     
-                    Semestre:* <p:selectOneMenu value="#{controllerPeriodoLetivo.periodo.semestre}" style="width:160px;" required="true"  requiredMessage="Campo Semestre é obrigatório."   >
+                    Semestre:* <p:selectOneMenu value="#{controllerPeriodoLetivo.periodo.semestre}" style="width:200px;" required="true"  requiredMessage="Campo Semestre é obrigatório."   >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
                         <f:selectItem itemLabel="1" itemValue="1" />
                         <f:selectItem itemLabel="2" itemValue="2" />
                                                
                     </p:selectOneMenu> 
                     
-                    Data Inicio:* <p:calendar value="#{controllerPeriodoLetivo.periodo.data_inicio}" required="true" requiredMessage="Campo Data Inicio é obrigatório."  />
-                    Data Fim:* <p:calendar value="#{controllerPeriodoLetivo.periodo.data_fim}" required="true" requiredMessage="Campo Data de Fim é obrigatório."  />
+                    Data Inicio:* <p:calendar value="#{controllerPeriodoLetivo.periodo.data_inicio}" required="true" requiredMessage="Campo Data Inicio é obrigatório."   style="width: 200px"/>
+                    Data Fim:* <p:calendar value="#{controllerPeriodoLetivo.periodo.data_fim}" required="true" requiredMessage="Campo Data de Fim é obrigatório."   style="width: 200px"/>
                     
                     <p:commandButton value="Salvar" update="@form" actionListener="#{controllerPeriodoLetivo.salvar()}"/>
                          
@@ -46,9 +46,6 @@
                 <p:dataTable id="tabela" var="p" value="#{controllerPeriodoLetivo.listaDM}" emptyMessage="Nada encontrado..."
                              paginator="true" rows="5" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
                      rowsPerPageTemplate="5,10,15"   >
-                    <p:column headerText="Cod">
-                        <h:outputText value="#{p.id}"/>
-                    </p:column>
                     <p:column headerText="Ano">
                         <h:outputText value="#{p.ano}"/>
                     </p:column>
@@ -95,14 +92,14 @@
                         <p:messages id="msgs"/> 
                         <h:panelGrid columns="2">
                                 
-                            Ano: <p:inputText value="#{controllerPeriodoLetivo.periodo.ano}" />
-                            Semestre: <p:selectOneMenu value="#{controllerPeriodoLetivo.periodo.semestre}"  style="width:160px;"   >
+                            Ano: <p:inputText value="#{controllerPeriodoLetivo.periodo.ano}"  style="width: 170px"/>
+                            Semestre: <p:selectOneMenu value="#{controllerPeriodoLetivo.periodo.semestre}"  style="width:200px;"   >
                                 <f:selectItem itemLabel="1" itemValue="1" />
                                 <f:selectItem itemLabel="2" itemValue="2" />
 
                             </p:selectOneMenu> 
-                            Data Inicio: <p:calendar value="#{controllerPeriodoLetivo.periodo.data_inicio}" />
-                            Data Fim : <p:calendar value="#{controllerPeriodoLetivo.periodo.data_fim}" />
+                            Data Inicio: <p:calendar value="#{controllerPeriodoLetivo.periodo.data_inicio}"  style="width: 200px"/>
+                            Data Fim : <p:calendar value="#{controllerPeriodoLetivo.periodo.data_fim}"  style="width: 200px"/>
                             
                             
                             <p:commandButton value="Alterar" actionListener="#{controllerPeriodoLetivo.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 

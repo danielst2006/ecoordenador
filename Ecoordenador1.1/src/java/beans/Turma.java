@@ -23,6 +23,9 @@ public class Turma implements Serializable {
         @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="idgen")
         private Integer id;
         
+        @Column(name="numero_turma")
+        private Integer numero_turma;
+        
         @Column(name="turno")
         private String turno;
         
@@ -36,6 +39,15 @@ public class Turma implements Serializable {
         
         @OneToMany(mappedBy="turma")
         Set<Classe> classes;
+
+        
+    public Integer getNumero_turma() {
+        return numero_turma;
+    }
+
+    public void setNumero_turma(Integer numero_turma) {
+        this.numero_turma = numero_turma;
+    }
 
     public PeriodoLetivo getPeriodoletivo() {
         return periodoletivo;

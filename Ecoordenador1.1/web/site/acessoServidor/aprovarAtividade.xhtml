@@ -24,13 +24,13 @@
                     <p:dataTable id="tabela" var="p" value="#{controllerEntradaAtividade.listaDMAutorizar}" paginator="true" rows="5" 
                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
                      rowsPerPageTemplate="5,10,15"       emptyMessage="Nada encontrado...">
-                    <p:column headerText="Solicitante">
+                    <p:column headerText="Solicitante" filterBy="#{p.aluno.nome}">
                         <h:outputText  value="#{p.aluno.nome}"/>
                     </p:column>
-                    <p:column headerText="Área">
+                    <p:column headerText="Área" filterBy="#{p.atividadecomplementar.atividadecomplementartipo.tipo_atividade}">
                         <h:outputText value="#{p.atividadecomplementar.atividadecomplementartipo.tipo_atividade}"/>
                     </p:column>
-                    <p:column headerText="Atividade">
+                    <p:column headerText="Atividade" filterBy="#{p.atividadecomplementar.atividade}">
                         <h:outputText value="#{p.atividadecomplementar.atividade}"/>
                     </p:column>
    
