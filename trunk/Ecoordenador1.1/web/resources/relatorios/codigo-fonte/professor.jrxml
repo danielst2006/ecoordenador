@@ -56,7 +56,7 @@ and p.nome=$P{nome} and pl.ano=$P{ano} and pl.semestre=$P{semestre}]]>
 		<band height="86" splitType="Stretch">
 			<image>
 				<reportElement uuid="3eddbb67-2d10-47ed-976d-d8f5ecb590e6" x="0" y="0" width="343" height="85"/>
-				<imageExpression><![CDATA["C:\\Users\\Caio\\Documents\\NetBeansProjects\\TCC\\trunk\\Ecoordenador1.1\\web\\resources\\images\\topo_ifto.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\Users\\daniel\\Documents\\NetBeansProjects\\eCoordenador\\trunk\\Ecoordenador1.1\\web\\resources\\images\\topo_ifto.jpg"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement uuid="c05918aa-bcbd-48e5-8fcc-427b51ef3606" x="613" y="32" width="189" height="23"/>

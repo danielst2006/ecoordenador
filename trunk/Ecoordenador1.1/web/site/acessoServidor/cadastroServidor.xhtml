@@ -10,6 +10,24 @@
     <ui:define name="menu_horizontal">
         <sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
             <ui:include src="/site/acessoServidor/menu.xhtml" />
+            <style type="text/css">
+
+
+                .outputLabel {
+                    font-weight: bold;
+                }
+
+                .value{
+
+                    padding:5px;
+                    border-spacing: 10px;
+                    border-collapse: separate;
+                    border-collapse: collapse;
+                }
+
+
+
+            </style>
         </sec:ifAnyGranted>
     </ui:define>
     
@@ -33,19 +51,19 @@
                 <h:panelGrid columns="2" columnClasses="label, value">
 
                                 Usuário: *
-                                <p:inputText size="20" value="#{controllerServidor.usuario.login}" style="width: 180px;" required="true"
+                                <p:inputText size="20" value="#{controllerServidor.usuario.login}" style="width: 200px;" required="true"
                                              requiredMessage="campo usuário é obrigatório."/>
 
                                 Senha: *
-                                <p:password size="18" value="#{controllerServidor.usuario.senha}" style="width: 180px;" required="true"
+                                <p:password size="18" value="#{controllerServidor.usuario.senha}" style="width: 200px;" required="true"
                                             requiredMessage="campo senha é obrigatório."/>
                                 
                                 Senha: *
-                                <p:password size="18" value="#{controllerServidor.usuario.senha2}" style="width: 180px;" required="true"
+                                <p:password size="18" value="#{controllerServidor.usuario.senha2}" style="width: 200px;" required="true"
                                             requiredMessage="confirmação de senha obrigatório"/>
                                 
                                 Email: *
-                                <p:inputText value="#{controllerServidor.usuario.email}" style="width: 180px;" required="true"
+                                <p:inputText value="#{controllerServidor.usuario.email}" style="width: 200px;" required="true"
                                              requiredMessage="campo email obrigatório."/>
 
                 </h:panelGrid>
@@ -60,17 +78,17 @@
                 <h:messages errorClass="error"/>
 
                 <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid" >
-                    Nome:*<p:inputText value="#{controllerServidor.servidor.nome}" label="nome" style="width: 230px;">
+                    Nome:*<p:inputText value="#{controllerServidor.servidor.nome}" label="nome" style="width: 200px;">
                     </p:inputText>
                
                  
-                    CEP:* <p:inputText value="#{controllerServidor.servidor.cep}" style="width: 230px;"/>
-                    Logradouro:* <p:inputText value="#{controllerServidor.servidor.logradouro}" style="width: 230px;"/>
-                    Numero:* <p:inputText value="#{controllerServidor.servidor.numero_lote}" style="width: 230px;"/>
-                    Complemento: <p:inputText value="#{controllerServidor.servidor.complemento}" style="width: 230px;"/>
-                    Bairro:* <p:inputText value="#{controllerServidor.servidor.bairro}" style="width: 230px;"/>
-                    Cidade:* <p:inputText value="#{controllerServidor.servidor.cidade}" style="width: 230px;"/>
-                    UF:* <p:inputText value="#{controllerServidor.servidor.uf}" style="width: 230px;"/>
+                    CEP:* <p:inputText value="#{controllerServidor.servidor.cep}" style="width: 200px;"/>
+                    Logradouro:* <p:inputText value="#{controllerServidor.servidor.logradouro}" style="width: 200px;"/>
+                    Numero:* <p:inputText value="#{controllerServidor.servidor.numero_lote}" style="width: 200px;"/>
+                    Complemento: <p:inputText value="#{controllerServidor.servidor.complemento}" style="width: 200px;"/>
+                    Bairro:* <p:inputText value="#{controllerServidor.servidor.bairro}" style="width: 200px;"/>
+                    Cidade:* <p:inputText value="#{controllerServidor.servidor.cidade}" style="width: 200px;"/>
+                    UF:* <p:inputText value="#{controllerServidor.servidor.uf}" style="width: 200px;"/>
 
                     Zona de Procedência:* <p:selectOneMenu value="#{controllerServidor.servidor.zona_procedencia}" style="width: 230px;">
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
@@ -95,17 +113,17 @@
                         <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />      
                     </p:selectOneMenu> 
 
-                    Necessidade Especial: <h:selectOneRadio 
+                    Necessidade Especial: <h:selectOneRadio  style="width: 200px;"
                         value="#{controllerServidor.servidor.necessidade_especial}">
                         <f:selectItem  itemLabel="Sim" itemValue="true" />
                         <f:selectItem  itemLabel="Não" itemValue="false" />
                     </h:selectOneRadio>
 
-                    Data de Nascimento: *<p:calendar value="#{controllerServidor.servidor.data_nascimento}" />
-                    Naturalidade: <p:inputText value="#{controllerServidor.servidor.naturalidade}" />
-                    UF da Naturalidade: <p:inputText value="#{controllerServidor.servidor.uf_naturalidade}" />
-                    Nacionalidade: <p:inputText value="#{controllerServidor.servidor.nacionalidade}" />
-                    Tipo Sanguineo: <p:selectOneMenu value="#{controllerServidor.servidor.tipo_sanguineo}" >
+                    Data de Nascimento: *<p:calendar value="#{controllerServidor.servidor.data_nascimento}" style="width: 200px;"/>
+                    Naturalidade: <p:inputText value="#{controllerServidor.servidor.naturalidade}" style="width: 200px;" />
+                    UF da Naturalidade: <p:inputText value="#{controllerServidor.servidor.uf_naturalidade}" style="width: 200px;" />
+                    Nacionalidade: <p:inputText value="#{controllerServidor.servidor.nacionalidade}"  style="width: 200px;"/>
+                    Tipo Sanguineo: <p:selectOneMenu value="#{controllerServidor.servidor.tipo_sanguineo}" style="width: 230px;" >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="A" itemValue="A" />
                         <f:selectItem itemLabel="B" itemValue="B" />
@@ -115,14 +133,14 @@
 
                     </p:selectOneMenu>
 
-                    Fator Rh: <p:selectOneMenu value="#{controllerServidor.servidor.fator_rh}" >
+                    Fator Rh: <p:selectOneMenu value="#{controllerServidor.servidor.fator_rh}" style="width: 230px;" >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Positivo" itemValue="positivo" />
                         <f:selectItem itemLabel="Negativo" itemValue="negativo" />
                         <f:selectItem itemLabel="Não Declarado" itemValue="N/D" /> 
 
                     </p:selectOneMenu>
-                    Grau de Formação: <p:selectOneMenu value="#{controllerServidor.servidor.grau_formacao}" >
+                    Grau de Formação: <p:selectOneMenu value="#{controllerServidor.servidor.grau_formacao}" style="width: 230px;" >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
                         <f:selectItem itemLabel="Educação Infantil" itemValue="Educação Infantil" />
@@ -133,10 +151,10 @@
                         <f:selectItem itemLabel="Mestrado" itemValue="Mestrado" />
                         <f:selectItem itemLabel="Doutorado" itemValue="Doutorado" />
                     </p:selectOneMenu>
-                    Endereço Curriculo Lattes: <p:inputText value="#{controllerServidor.servidor.end_curriculo_lattes}" />
-                    DDD: <p:inputText value="#{controllerServidor.servidor.ddd}" />
-                    Numero do Telefone: <p:inputText value="#{controllerServidor.servidor.numero_telefone}" />
-                    Ramal: <p:inputText value="#{controllerServidor.servidor.ramal}" />
+                    Endereço Curriculo Lattes: <p:inputText value="#{controllerServidor.servidor.end_curriculo_lattes}" style="width: 200px;"/>
+                    DDD: <p:inputText value="#{controllerServidor.servidor.ddd}" style="width: 200px;"/>
+                    Numero do Telefone: <p:inputText value="#{controllerServidor.servidor.numero_telefone}" style="width: 200px;" />
+                    Ramal: <p:inputText value="#{controllerServidor.servidor.ramal}" style="width: 200px;" />
 
                 </h:panelGrid>
             </p:panel>
@@ -149,7 +167,7 @@
 
                 <h:panelGrid columns="2" columnClasses="label, value">
 
-                   Estado Civil: <p:selectOneMenu value="#{controllerServidor.servidor.estado_civil}" >
+                   Estado Civil: <p:selectOneMenu value="#{controllerServidor.servidor.estado_civil}" style="width: 230px;" >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Solteiro" itemValue="solteiro" />
                         <f:selectItem itemLabel="Casado" itemValue="casado" />
@@ -159,14 +177,14 @@
                         <f:selectItem itemLabel="Não declarado" itemValue="N/D" />
                     </p:selectOneMenu>
 
-                    Filiação: <p:selectOneMenu value="#{controllerServidor.servidor.filiacao}" >
+                    Filiação: <p:selectOneMenu value="#{controllerServidor.servidor.filiacao}" style="width: 230px;" >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Sim" itemValue="true" />
                         <f:selectItem itemLabel="Não" itemValue="false" />
                         
                     </p:selectOneMenu>
-                    Nome da Mãe:* <p:inputText value="#{controllerServidor.servidor.nome_mae}" />
-                    Nome do Pai: <p:inputText value="#{controllerServidor.servidor.nome_pai}" />
+                    Nome da Mãe:* <p:inputText value="#{controllerServidor.servidor.nome_mae}" style="width: 200px;" />
+                    Nome do Pai: <p:inputText value="#{controllerServidor.servidor.nome_pai}" style="width: 200px;" />
                     
      
                 </h:panelGrid>
@@ -181,88 +199,98 @@
 
                 <h:panelGrid columns="4" columnClasses="label, value">
                    
-                    Matricula Siape:<p:inputText value="#{controllerServidor.servidor.matricula_siape}">
+                    Matricula Siape:<p:inputText value="#{controllerServidor.servidor.matricula_siape}" style="width: 200px;">
                         </p:inputText>
                     
-                    Cargo:*<p:inputText value="#{controllerServidor.servidor.cargo}">
+                    Cargo:*<p:inputText value="#{controllerServidor.servidor.cargo}" style="width: 200px;">
                         </p:inputText>
                     
-                    Mandato da Função:*<p:inputText value="#{controllerServidor.servidor.mandato_funcao}">
+                    Mandato da Função:*<p:inputText value="#{controllerServidor.servidor.mandato_funcao}" style="width: 200px;">
                         </p:inputText>
                    
-                    Data de Inicio:*<p:calendar value="#{controllerServidor.servidor.data_inicio}">
+                    Data de Inicio:*<p:calendar value="#{controllerServidor.servidor.data_inicio}" style="width: 200px;">
                         </p:calendar>
                     
-                    Data de Terminio:<p:calendar value="#{controllerServidor.servidor.data_termino}">
+                    Data de Terminio:<p:calendar value="#{controllerServidor.servidor.data_termino}" style="width: 200px;">
                         </p:calendar>
                     
-                    Unidade de Ensino:*<p:inputText value="#{controllerServidor.servidor.unidade_ensino}">
+                    Unidade de Ensino:*<p:inputText value="#{controllerServidor.servidor.unidade_ensino}" style="width: 200px;">
                         </p:inputText>
                     
-                    Regime Juridico:*<p:inputText value="#{controllerServidor.servidor.regime_juridico}">
+                    Regime Juridico:*<p:inputText value="#{controllerServidor.servidor.regime_juridico}" style="width: 200px;">
                         </p:inputText>
                     
-                    Situação:*<p:inputText value="#{controllerServidor.servidor.situacao}">
+                    Situação:*<p:inputText value="#{controllerServidor.servidor.situacao}" style="width: 200px;">
                         </p:inputText>
                     
-                    Data de Admissão:<p:calendar value="#{controllerServidor.servidor.data_admissao}">
+                    Data de Admissão:<p:calendar value="#{controllerServidor.servidor.data_admissao}" style="width: 200px;">
                         </p:calendar>
                     
-                    Banco:*<p:inputText value="#{controllerServidor.servidor.banco}">
+                    Banco:*<p:inputText value="#{controllerServidor.servidor.banco}" style="width: 200px;">
                         </p:inputText>
                     
-                    Agencia:*<p:inputText value="#{controllerServidor.servidor.agencia}">
+                    Agencia:*<p:inputText value="#{controllerServidor.servidor.agencia}" style="width: 200px;">
                         </p:inputText>
                     
-                    Conta:*<p:inputText value="#{controllerServidor.servidor.conta}">
+                    Conta:*<p:inputText value="#{controllerServidor.servidor.conta}" style="width: 200px;">
                         </p:inputText>
                     
-                    Classe:*<p:inputText value="#{controllerServidor.servidor.classe}">
+                    Classe:*<p:inputText value="#{controllerServidor.servidor.classe}" style="width: 200px;">
                         </p:inputText>
                     
-                    Nivel funcional:*<p:inputText value="#{controllerServidor.servidor.nivel_funcional}">
+                    Nivel funcional:*<p:inputText value="#{controllerServidor.servidor.nivel_funcional}" style="width: 200px;">
                         </p:inputText>
                     
-                    Area de Conhecimento:<p:inputText value="#{controllerServidor.servidor.area_conhecimento}">
+                    Area de Conhecimento:<p:inputText value="#{controllerServidor.servidor.area_conhecimento}" style="width: 200px;">
                         </p:inputText>
                     
-                    Regime de Trabalho:<p:inputText value="#{controllerServidor.servidor.regime_trabalho}">
+                    Regime de Trabalho:<p:inputText value="#{controllerServidor.servidor.regime_trabalho}" style="width: 200px;">
                         </p:inputText>
                     
-                    Classificação:<p:inputText value="#{controllerServidor.servidor.classificacao}">
+                    Classificação:<p:inputText value="#{controllerServidor.servidor.classificacao}" style="width: 200px;">
                         </p:inputText>
                     
-                    Tipo do ato de autorização:<p:inputText value="#{controllerServidor.servidor.ato_autorizativo_tipo}">
+                    Tipo do ato de autorização:<p:inputText value="#{controllerServidor.servidor.ato_autorizativo_tipo}" style="width: 200px;">
                         </p:inputText>
                     
-                    Numero:<p:inputText value="#{controllerServidor.servidor.numero}">
+                    Numero:<p:inputText value="#{controllerServidor.servidor.numero}" style="width: 200px;">
                         </p:inputText>
                     
-                    Data de Expedição:<p:calendar value="#{controllerServidor.servidor.data_expedicao}">
+                    Data de Expedição:<p:calendar value="#{controllerServidor.servidor.data_expedicao}" style="width: 200px;">
                         </p:calendar>
                     
-                    Data do Diario Oficial:<p:calendar value="#{controllerServidor.servidor.data_diario_oficial}">
+                    Data do Diario Oficial:<p:calendar value="#{controllerServidor.servidor.data_diario_oficial}" style="width: 200px;">
                         </p:calendar>
                     
-                    Orgao de origem da Matricula:<p:inputText value="#{controllerServidor.servidor.orgao_origem_matricula}">
+                    Orgao de origem da Matricula:<p:inputText value="#{controllerServidor.servidor.orgao_origem_matricula}" style="width: 200px;">
                         </p:inputText>
                     
-                    Orgão de Origem:<p:inputText value="#{controllerServidor.servidor.orgao_origem}">
+                    Orgão de Origem:<p:inputText value="#{controllerServidor.servidor.orgao_origem}" style="width: 200px;">
                         </p:inputText>
                     
-                    Orgão de origem do Cargo:<p:inputText value="#{controllerServidor.servidor.orgao_origem_cargo}">
+                    Orgão de origem do Cargo:<p:inputText value="#{controllerServidor.servidor.orgao_origem_cargo}" style="width: 200px;">
                         </p:inputText>
                     
-                    Servidor Rede:<p:selectOneMenu value="#{controllerServidor.servidor.servidor_rede}" >
+                    Servidor Rede:<p:selectOneMenu value="#{controllerServidor.servidor.servidor_rede}" style="width: 230px;" >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItem itemLabel="Sim" itemValue="true" />
                         <f:selectItem itemLabel="Não" itemValue="false" />
                         
                     </p:selectOneMenu>
                     
-                    Carga Horaria Semanal:<p:inputText value="#{controllerServidor.servidor.carga_horaria_semanal}">
-                        </p:inputText>
-                   
+                    Carga Horaria Semanal: <p:selectOneMenu value="#{controllerServidor.servidor.dedicacao_exclusiva}" style="width: 230px;" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sim" itemValue="true" />
+                        <f:selectItem itemLabel="Não" itemValue="false" />
+                        
+                    </p:selectOneMenu>
+                        
+                    Dedicação Exclusiva: <p:selectOneMenu value="#{controllerServidor.servidor.dedicacao_exclusiva}" style="width: 230px;" >
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sim" itemValue="true" />
+                        <f:selectItem itemLabel="Não" itemValue="false" />
+                        
+                    </p:selectOneMenu>
                 </h:panelGrid>
             </p:panel>
         </p:tab>
@@ -277,289 +305,243 @@
 
                 <h:panelGrid columns="4" columnClasses="label, value">
 
-                 CPF:*<p:inputText value="#{controllerServidor.servidor.cpf}">
+                 CPF:*<p:inputText value="#{controllerServidor.servidor.cpf}" style="width: 200px;">
                         </p:inputText>
                  
-                 RG: <p:inputText value="#{controllerServidor.servidor.rg_numero}" />
-                 Orgão Exepedidor: <p:inputText value="#{controllerServidor.servidor.rg_expedidor}" />
-                 Data da Expedição: <p:calendar value="#{controllerServidor.servidor.rg_data_expedicao}" />   
-                 Certidão de Nascimento (Número): <p:inputText value="#{controllerServidor.servidor.cnasc_numero}" />
-                 Certidão de Nascimento (Livro/Folha): <p:inputText value="#{controllerServidor.servidor.cnasc_folha}" />
-                 Certidão de Nascimento (Cartório): <p:inputText value="#{controllerServidor.servidor.cnasc_cartorio}" />
-                 Certidão de Nascimento (Data da Expedição): <p:calendar value="#{controllerServidor.servidor.cnasc_data_expedicao}" />
-                 Carteira de Trabalho (Número): <p:inputText value="#{controllerServidor.servidor.ctps_numero}" />
-                 Carteira de Trabalho (Série): <p:inputText value="#{controllerServidor.servidor.ctps_serie}" />
-                 Carteira de Trabalho (PIS/PASEP): <p:inputText value="#{controllerServidor.servidor.pis_pasep}" />
-                 Carteira de Habilitação (Número): <p:inputText value="#{controllerServidor.servidor.chabilitacao_numero}" />
-                 Carteira de Habilitação (Data Expedeição): <p:calendar value="#{controllerServidor.servidor.chabilitacao_data_expedicao}" />
-                 Carteira de Habilitação (Data Validade): <p:calendar value="#{controllerServidor.servidor.chabilitacao_data_validade}" />
-                 Documento Militar (Tipo): <p:inputText value="#{controllerServidor.servidor.dmilitar_tipo}" />
-                 Documento Militar (Número): <p:inputText value="#{controllerServidor.servidor.dmilitar_numero}" />
-                 Documento Militar (Região Militar): <p:inputText value="#{controllerServidor.servidor.dmilitar_regiao}" />
-                 Título de Eleitor (Número): <p:inputText value="#{controllerServidor.servidor.teleitor_numero}" />
-                 Título de Eleitor (Zona/Seção): <p:inputText value="#{controllerServidor.servidor.teleitor_zona}" />
-                 Título de Eleitor (UF): <p:inputText value="#{controllerServidor.servidor.teleitor_uf}" />
-                 Título de Eleitor (Data Exp.): <p:calendar value="#{controllerServidor.servidor.teleitor_data_expedicao}" />
+                 RG: <p:inputText value="#{controllerServidor.servidor.rg_numero}" style="width: 200px;"/>
+                 Orgão Exepedidor: <p:inputText value="#{controllerServidor.servidor.rg_expedidor}" style="width: 200px;" />
+                 Data da Expedição: <p:calendar value="#{controllerServidor.servidor.rg_data_expedicao}"  style="width: 200px;"/>   
+                 Certidão de Nascimento (Número): <p:inputText value="#{controllerServidor.servidor.cnasc_numero}" style="width: 200px;" />
+                 Certidão de Nascimento (Livro/Folha): <p:inputText value="#{controllerServidor.servidor.cnasc_folha}" style="width: 200px;" />
+                 Certidão de Nascimento (Cartório): <p:inputText value="#{controllerServidor.servidor.cnasc_cartorio}" style="width: 200px;" />
+                 Certidão de Nascimento (Data da Expedição): <p:calendar value="#{controllerServidor.servidor.cnasc_data_expedicao}" style="width: 200px;"/>
+                 Carteira de Trabalho (Número): <p:inputText value="#{controllerServidor.servidor.ctps_numero}" style="width: 200px;"/>
+                 Carteira de Trabalho (Série): <p:inputText value="#{controllerServidor.servidor.ctps_serie}" style="width: 200px;"/>
+                 Carteira de Trabalho (PIS/PASEP): <p:inputText value="#{controllerServidor.servidor.pis_pasep}" style="width: 200px;" />
+                 Carteira de Habilitação (Número): <p:inputText value="#{controllerServidor.servidor.chabilitacao_numero}" style="width: 200px;" />
+                 Carteira de Habilitação (Data Expedeição): <p:calendar value="#{controllerServidor.servidor.chabilitacao_data_expedicao}" style="width: 200px;" />
+                 Carteira de Habilitação (Data Validade): <p:calendar value="#{controllerServidor.servidor.chabilitacao_data_validade}" style="width: 200px;" />
+                 Documento Militar (Tipo): <p:inputText value="#{controllerServidor.servidor.dmilitar_tipo}" style="width: 200px;" />
+                 Documento Militar (Número): <p:inputText value="#{controllerServidor.servidor.dmilitar_numero}" style="width: 200px;" />
+                 Documento Militar (Região Militar): <p:inputText value="#{controllerServidor.servidor.dmilitar_regiao}" style="width: 200px;" />
+                 Título de Eleitor (Número): <p:inputText value="#{controllerServidor.servidor.teleitor_numero}" style="width: 200px;"/>
+                 Título de Eleitor (Zona/Seção): <p:inputText value="#{controllerServidor.servidor.teleitor_zona}" style="width: 200px;"/>
+                 Título de Eleitor (UF): <p:inputText value="#{controllerServidor.servidor.teleitor_uf}" style="width: 200px;" />
+                 Título de Eleitor (Data Exp.): <p:calendar value="#{controllerServidor.servidor.teleitor_data_expedicao}" style="width: 200px;" />
 
                     
                 </h:panelGrid>
             </p:panel>
         </p:tab>
 
-        <p:tab id="confirm" title="Confirmation">
-            <p:panel header="Confirmation">
+        <p:tab id="confirm" title="Confirmação">
+            <p:panelGrid columns="2" style="border: 0">
 
                 <h:panelGrid id="confirmation" columns="6">
                     
-                    Usuário: *
-                    <h:outputText value="#{controllerAluno.usuario.login}" />
+                    Usuário:
+                    <h:outputText value="#{controllerAluno.usuario.login}" styleClass="outputLabel" />
 
-                    Senha: *
-                    <h:outputText value="#{controllerAluno.usuario.senha}" />
+                   
+                    <h:inputHidden value="#{controllerAluno.usuario.senha}"  />
 
-                    Senha: *
-                    <h:outputText value="#{controllerAluno.usuario.senha2}" />
+                  
+                    <h:inputHidden value="#{controllerAluno.usuario.senha2}"  />
 
-                    Email: *
-                    <h:outputText value="#{controllerAluno.usuario.email}" />
+                    Email: 
+                    <h:outputText value="#{controllerAluno.usuario.email}" styleClass="outputLabel" />
 
                     
 
-                    Nome:*<h:outputText value="#{controllerServidor.servidor.nome}" />
+                    Nome:<h:outputText value="#{controllerServidor.servidor.nome}" styleClass="outputLabel" />
 
 
 
 
-                    Etnia:<p:selectOneMenu value="#{controllerServidor.servidor.etnia}"    >
-                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                        <f:selectItem itemLabel="Branca" itemValue="branca" />
-                        <f:selectItem itemLabel="Pardo" itemValue="pardo" />
-                        <f:selectItem itemLabel="Negra" itemValue="negra" />
-                        <f:selectItem itemLabel="Amarela" itemValue="amarelo" />
-                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
-                    </p:selectOneMenu>
-                    Genero: <p:selectOneMenu value="#{controllerServidor.servidor.genero}" >
-                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                        <f:selectItem itemLabel="Masculino" itemValue="M" />
-                        <f:selectItem itemLabel="Feminino" itemValue="F" />
-                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />      
-                    </p:selectOneMenu> 
+                    Etnia:<h:outputText value="#{controllerServidor.servidor.etnia}" styleClass="outputLabel"   />
+                        
+                    Genero: <h:outputText value="#{controllerServidor.servidor.genero}" styleClass="outputLabel" />
+                        
 
-                    Necessidade Especial: <h:selectOneRadio 
-                        value="#{controllerServidor.servidor.necessidade_especial}">
-                        <f:selectItem  itemLabel="Sim" itemValue="true" />
-                        <f:selectItem  itemLabel="Não" itemValue="false" />
-                    </h:selectOneRadio>
+                    Necessidade Especial: <h:outputText value="#{controllerServidor.servidor.necessidade_especial}" styleClass="outputLabel"/>
+                     
 
-                    Data de Nascimento:* <h:outputText value="#{controllerServidor.servidor.data_nascimento}">
+                    Data de Nascimento: <h:outputText value="#{controllerServidor.servidor.data_nascimento}" styleClass="outputLabel">
                                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
                                                                 </h:outputText>  
                     
-                    Naturalidade: <h:outputText value="#{controllerServidor.servidor.naturalidade}" />
-                    UF da Naturalidade: <h:outputText value="#{controllerServidor.servidor.uf_naturalidade}" />
-                    Nacionalidade: <h:outputText value="#{controllerServidor.servidor.nacionalidade}" />
-                    Tipo Sanguineo: <p:selectOneMenu value="#{controllerServidor.servidor.tipo_sanguineo}" >
-                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                        <f:selectItem itemLabel="A" itemValue="A" />
-                        <f:selectItem itemLabel="B" itemValue="B" />
-                        <f:selectItem itemLabel="AB" itemValue="AB" /> 
-                        <f:selectItem itemLabel="O" itemValue="O" />
-                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
-
-                    </p:selectOneMenu>
-
-                    Fator Rh: <p:selectOneMenu value="#{controllerServidor.servidor.fator_rh}" >
-                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                        <f:selectItem itemLabel="Positivo" itemValue="positivo" />
-                        <f:selectItem itemLabel="Negativo" itemValue="negativo" />
-                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" /> 
-
-                    </p:selectOneMenu>
-                    Grau de Formação: <p:selectOneMenu value="#{controllerServidor.servidor.grau_formacao}" >
-                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                        <f:selectItem itemLabel="Não Declarado" itemValue="N/D" />
-                        <f:selectItem itemLabel="Educação Infantil" itemValue="Educação Infantil" />
-                        <f:selectItem itemLabel="Ensino Fundamental" itemValue="Ensino Fundamental" />
-                        <f:selectItem itemLabel="Ensino Médio" itemValue="Ensino Médio" />
-                        <f:selectItem itemLabel="Graduação" itemValue="Graduação" />
-                        <f:selectItem itemLabel="Especialização" itemValue="Especialiazação" />
-                        <f:selectItem itemLabel="Mestrado" itemValue="Mestrado" />
-                        <f:selectItem itemLabel="Doutorado" itemValue="Doutorado" />
-                    </p:selectOneMenu>
+                    Naturalidade: <h:outputText value="#{controllerServidor.servidor.naturalidade}" styleClass="outputLabel"/>
+                    UF da Naturalidade: <h:outputText value="#{controllerServidor.servidor.uf_naturalidade}" styleClass="outputLabel" />
+                    Nacionalidade: <h:outputText value="#{controllerServidor.servidor.nacionalidade}" styleClass="outputLabel" />
+                    Tipo Sanguineo: <h:outputText value="#{controllerServidor.servidor.tipo_sanguineo}" styleClass="outputLabel" />
                     
 
-                    Endereço Curriculo Lattes: <h:outputText value="#{controllerServidor.servidor.end_curriculo_lattes}" />
+                    Fator Rh: <h:outputText value="#{controllerServidor.servidor.fator_rh}" styleClass="outputLabel" />
+                      
+                    Grau de Formação: <h:outputText value="#{controllerServidor.servidor.grau_formacao}" styleClass="outputLabel" />
+                   
+                    
+
+                    Endereço Curriculo Lattes: <h:outputText value="#{controllerServidor.servidor.end_curriculo_lattes}" styleClass="outputLabel" />
                     DDD: <h:outputText value="#{controllerServidor.servidor.ddd}" />
-                    Numero do Telefone: <h:outputText value="#{controllerServidor.servidor.numero_telefone}" />
-                    Ramal: <h:outputText value="#{controllerServidor.servidor.ramal}" />
-                    Estado Civil: <p:selectOneMenu value="#{controllerServidor.servidor.estado_civil}" >
-                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                        <f:selectItem itemLabel="Solteiro" itemValue="solteiro" />
-                        <f:selectItem itemLabel="Casado" itemValue="casado" />
-                        <f:selectItem itemLabel="Divociado" itemValue="divociado" />
-                        <f:selectItem itemLabel="Separado Judicialmente" itemValue="Separado Judicialmente" />
-                        <f:selectItem itemLabel="Viúvo" itemValue="viúvo" />
-                        <f:selectItem itemLabel="Não declarado" itemValue="N/D" />
-                    </p:selectOneMenu>
+                    Numero do Telefone: <h:outputText value="#{controllerServidor.servidor.numero_telefone}" styleClass="outputLabel" />
+                    Ramal: <h:outputText value="#{controllerServidor.servidor.ramal}" styleClass="outputLabel" />
+                    Estado Civil: <h:outputText value="#{controllerServidor.servidor.estado_civil}" styleClass="outputLabel" />
+                       
 
-                    Filiação: <p:selectOneMenu value="#{controllerServidor.servidor.filiacao}" >
-                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                        <f:selectItem itemLabel="Sim" itemValue="true" />
-                        <f:selectItem itemLabel="Não" itemValue="false" />
+                    Filiação: <h:outputText value="#{controllerServidor.servidor.filiacao}" styleClass="outputLabel" />
 
-                    </p:selectOneMenu>
-                    Nome da Mãe:* <h:outputText value="#{controllerServidor.servidor.nome_mae}" />
-                    Nome do Pai: <h:outputText value="#{controllerServidor.servidor.nome_pai}" />
-                    Matricula Siape:<h:outputText value="#{controllerServidor.servidor.matricula_siape}"/>
+                
+                    Nome da Mãe: <h:outputText value="#{controllerServidor.servidor.nome_mae}" styleClass="outputLabel" />
+                    Nome do Pai: <h:outputText value="#{controllerServidor.servidor.nome_pai}" styleClass="outputLabel"/>
+                    Matricula Siape:<h:outputText value="#{controllerServidor.servidor.matricula_siape}" styleClass="outputLabel"/>
                     
 
-                    Cargo:*<h:outputText value="#{controllerServidor.servidor.cargo}"/>
+                    Cargo:<h:outputText value="#{controllerServidor.servidor.cargo}" styleClass="outputLabel"/>
                     
 
-                    Mandato da Função:*<h:outputText value="#{controllerServidor.servidor.mandato_funcao}"/>
+                    Mandato da Função:<h:outputText value="#{controllerServidor.servidor.mandato_funcao}" styleClass="outputLabel"/>
                    
 
-                    Data de Inicio:* <h:outputText value="#{controllerServidor.servidor.data_inicio}">
+                    Data de Inicio: <h:outputText value="#{controllerServidor.servidor.data_inicio}" styleClass="outputLabel">
                                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
                                                                 </h:outputText>  
                   
 
-                    Data de Terminio: <h:outputText value="#{controllerServidor.servidor.data_termino}">
+                    Data de Terminio: <h:outputText value="#{controllerServidor.servidor.data_termino}" styleClass="outputLabel">
                                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
                                                                 </h:outputText>  
                     
    
-                    Unidade de Ensino:*<h:outputText value="#{controllerServidor.servidor.unidade_ensino}"/>
+                    Unidade de Ensino:<h:outputText value="#{controllerServidor.servidor.unidade_ensino}" styleClass="outputLabel"/>
                   
 
-                    Regime Juridico:*<h:outputText value="#{controllerServidor.servidor.regime_juridico}"/>
+                    Regime Juridico:<h:outputText value="#{controllerServidor.servidor.regime_juridico}" styleClass="outputLabel"/>
                     
 
-                    Situação:*<h:outputText value="#{controllerServidor.servidor.situacao}"/>
+                    Situação:<h:outputText value="#{controllerServidor.servidor.situacao}" styleClass="outputLabel"/>
                    
 
-                    Data de Admissão: <h:outputText value="#{controllerServidor.servidor.data_admissao}">
+                    Data de Admissão: <h:outputText value="#{controllerServidor.servidor.data_admissao}" styleClass="outputLabel">
                                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
                                                                 </h:outputText>
                     
                
 
-                    Banco:*<h:outputText value="#{controllerServidor.servidor.banco}"/>
+                    Banco:<h:outputText value="#{controllerServidor.servidor.banco}" styleClass="outputLabel"/>
                     
 
-                    Agencia:*<h:outputText value="#{controllerServidor.servidor.agencia}"/>
+                    Agencia:<h:outputText value="#{controllerServidor.servidor.agencia}" styleClass="outputLabel"/>
                     
 
-                    Conta:*<h:outputText value="#{controllerServidor.servidor.conta}"/>
+                    Conta:<h:outputText value="#{controllerServidor.servidor.conta}" styleClass="outputLabel"/>
                     
 
-                    Classe:*<h:outputText value="#{controllerServidor.servidor.classe}"/>
+                    Classe:<h:outputText value="#{controllerServidor.servidor.classe}" styleClass="outputLabel"/>
                    
 
-                    Nivel funcional:*<h:outputText value="#{controllerServidor.servidor.nivel_funcional}"/>
+                    Nivel funcional:<h:outputText value="#{controllerServidor.servidor.nivel_funcional}" styleClass="outputLabel"/>
                  
 
-                    Area de Conhecimento:<h:outputText value="#{controllerServidor.servidor.area_conhecimento}"/>
+                    Area de Conhecimento:<h:outputText value="#{controllerServidor.servidor.area_conhecimento}" styleClass="outputLabel"/>
                     
                         
-                    Regime de Trabalho:<h:outputText value="#{controllerServidor.servidor.regime_trabalho}"/>
+                    Regime de Trabalho:<h:outputText value="#{controllerServidor.servidor.regime_trabalho}" styleClass="outputLabel"/>
                    
 
-                    Classificação:<h:outputText value="#{controllerServidor.servidor.classificacao}"/>
+                    Classificação:<h:outputText value="#{controllerServidor.servidor.classificacao}" styleClass="outputLabel"/>
                   
 
-                    Tipo do ato de autorização:<h:outputText value="#{controllerServidor.servidor.ato_autorizativo_tipo}"/>
+                    Tipo do ato de autorização:<h:outputText value="#{controllerServidor.servidor.ato_autorizativo_tipo}" styleClass="outputLabel"/>
                
 
-                    Numero:<h:outputText value="#{controllerServidor.servidor.numero}"/>
+                    Numero:<h:outputText value="#{controllerServidor.servidor.numero}" styleClass="outputLabel"/>
                 
 
-                    Data de Expedição: <h:outputText value="#{controllerServidor.servidor.data_expedicao}">
+                    Data de Expedição: <h:outputText value="#{controllerServidor.servidor.data_expedicao}" styleClass="outputLabel">
                                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
                                                                 </h:outputText>
                     
-                    Data do Diario Oficial: <h:outputText value="#{controllerServidor.servidor.data_diario_oficial}">
+                    Data do Diario Oficial: <h:outputText value="#{controllerServidor.servidor.data_diario_oficial}" styleClass="outputLabel">
                                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
                                                                 </h:outputText>
                     
 
-                    Orgao de origem da Matricula:<h:outputText value="#{controllerServidor.servidor.orgao_origem_matricula}"/>
+                    Orgao de origem da Matricula:<h:outputText value="#{controllerServidor.servidor.orgao_origem_matricula}" styleClass="outputLabel"/>
                     
 
-                    Orgão de Origem:<h:outputText value="#{controllerServidor.servidor.orgao_origem}"/>
+                    Orgão de Origem:<h:outputText value="#{controllerServidor.servidor.orgao_origem}" styleClass="outputLabel"/>
                     
                         
-                    Orgão de origem do Cargo:<h:outputText value="#{controllerServidor.servidor.orgao_origem_cargo}"/>
+                    Orgão de origem do Cargo:<h:outputText value="#{controllerServidor.servidor.orgao_origem_cargo}" styleClass="outputLabel"/>
                     
 
-                    Servidor Rede:<p:selectOneMenu value="#{controllerServidor.servidor.servidor_rede}" >
-                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                        <f:selectItem itemLabel="Sim" itemValue="true" />
-                        <f:selectItem itemLabel="Não" itemValue="false" />
+                    Servidor Rede:<h:outputText value="#{controllerServidor.servidor.servidor_rede}" styleClass="outputLabel"/>
 
-                    </p:selectOneMenu>
-
-                    Carga Horaria Semanal:<h:outputText value="#{controllerServidor.servidor.carga_horaria_semanal}"/>
+                                        
+                    Carga Horaria Semanal: <h:outputText value="#{controllerServidor.servidor.dedicacao_exclusiva}" styleClass="outputLabel"  />
+                  
+                        
+                    Dedicação Exclusiva: <h:outputText value="#{controllerServidor.servidor.dedicacao_exclusiva}" styleClass="outputLabel" />
+                      
                     
-                    Zona de Procedência:* <p:selectOneMenu value="#{controllerServidor.servidor.zona_procedencia}" >
-                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                        <f:selectItem itemLabel="Urbana" itemValue="Ubarna" />
-                        <f:selectItem itemLabel="Rural" itemValue="Rural" />
-                    </p:selectOneMenu>
-                    CEP:* <h:outputText value="#{controllerServidor.servidor.cep}" />
-                    Logradouro:* <h:outputText value="#{controllerServidor.servidor.logradouro}" />
-                    Numero:* <h:outputText value="#{controllerServidor.servidor.numero_lote}" />
-                    Complemento: <h:outputText value="#{controllerServidor.servidor.complemento}" />
-                    Bairro:* <h:outputText value="#{controllerServidor.servidor.bairro}" />
-                    Cidade:* <h:outputText value="#{controllerServidor.servidor.cidade}" />
-                    UF:* <h:outputText value="#{controllerServidor.servidor.uf}" />
-                    CPF:*<h:outputText value="#{controllerServidor.servidor.cpf}"/>
+                    Zona de Procedência: <h:outputText value="#{controllerServidor.servidor.zona_procedencia}" styleClass="outputLabel" />
+                       
+                    CEP:* <h:outputText value="#{controllerServidor.servidor.cep}" styleClass="outputLabel"/>
+                    Logradouro:* <h:outputText value="#{controllerServidor.servidor.logradouro}" styleClass="outputLabel" />
+                    Numero:* <h:outputText value="#{controllerServidor.servidor.numero_lote}" styleClass="outputLabel" />
+                    Complemento: <h:outputText value="#{controllerServidor.servidor.complemento}" styleClass="outputLabel" />
+                    Bairro:* <h:outputText value="#{controllerServidor.servidor.bairro}" styleClass="outputLabel" />
+                    Cidade:* <h:outputText value="#{controllerServidor.servidor.cidade}" styleClass="outputLabel"/>
+                    UF:* <h:outputText value="#{controllerServidor.servidor.uf}" styleClass="outputLabel" />
+                    CPF:*<h:outputText value="#{controllerServidor.servidor.cpf}" styleClass="outputLabel"/>
                     
 
-                    RG: <h:outputText value="#{controllerServidor.servidor.rg_numero}" />
-                    Orgão Exepedidor: <h:outputText value="#{controllerServidor.servidor.rg_expedidor}" />
-                    Data da Expedição: <h:outputText value="#{controllerServidor.servidor.rg_data_expedicao}">
+                    RG: <h:outputText value="#{controllerServidor.servidor.rg_numero}" styleClass="outputLabel" />
+                    Orgão Exepedidor: <h:outputText value="#{controllerServidor.servidor.rg_expedidor}" styleClass="outputLabel" />
+                    Data da Expedição: <h:outputText value="#{controllerServidor.servidor.rg_data_expedicao}" styleClass="outputLabel">
                                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                                                </h:outputText>                       
-                    Cerdidão de Nascimento (Número): <h:outputText value="#{controllerServidor.servidor.cnasc_numero}" />
-                    Cerdidão de Nascimento (Livro/Folha): <h:outputText value="#{controllerServidor.servidor.cnasc_folha}" />
-                    Cerdidão de Nascimento (Cartório): <h:outputText value="#{controllerServidor.servidor.cnasc_cartorio}" />
-                    Cerdidão de Nascimento (Data da Expedição): <h:outputText value="#{controllerServidor.servidor.cnasc_data_expedicao}">
+                                                                </h:outputText>                        
+                    Cerdidão de Nascimento (Número): <h:outputText value="#{controllerServidor.servidor.cnasc_numero}" styleClass="outputLabel"/>
+                    Cerdidão de Nascimento (Livro/Folha): <h:outputText value="#{controllerServidor.servidor.cnasc_folha}" styleClass="outputLabel"/>
+                    Cerdidão de Nascimento (Cartório): <h:outputText value="#{controllerServidor.servidor.cnasc_cartorio}" styleClass="outputLabel"/>
+                    Cerdidão de Nascimento (Data da Expedição): <h:outputText value="#{controllerServidor.servidor.cnasc_data_expedicao}" styleClass="outputLabel">
                                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
                                                                 </h:outputText>      
                     
                    
-                    Carteira de Trabalho (Número): <h:outputText value="#{controllerServidor.servidor.ctps_numero}" />
-                    Carteira de Trabalho (Série): <h:outputText value="#{controllerServidor.servidor.ctps_serie}" />
-                    Carteira de Trabalho (PIS/PASEP): <h:outputText value="#{controllerServidor.servidor.pis_pasep}" />
-                    Carteira de Habilitação (Número): <h:outputText value="#{controllerServidor.servidor.chabilitacao_numero}" />
-                    Carteira de Habilitação (Data Expedeição): <h:outputText value="#{controllerServidor.servidor.chabilitacao_data_expedicao}">
+                    Carteira de Trabalho (Número): <h:outputText value="#{controllerServidor.servidor.ctps_numero}" styleClass="outputLabel"/>
+                    Carteira de Trabalho (Série): <h:outputText value="#{controllerServidor.servidor.ctps_serie}" styleClass="outputLabel" />
+                    Carteira de Trabalho (PIS/PASEP): <h:outputText value="#{controllerServidor.servidor.pis_pasep}" styleClass="outputLabel" />
+                    Carteira de Habilitação (Número): <h:outputText value="#{controllerServidor.servidor.chabilitacao_numero}" styleClass="outputLabel" />
+                    Carteira de Habilitação (Data Expedeição): <h:outputText value="#{controllerServidor.servidor.chabilitacao_data_expedicao}" styleClass="outputLabel">
                                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
                                                                 </h:outputText>
-                    Carteira de Habilitação (Data Validade): <h:outputText value="#{controllerServidor.servidor.chabilitacao_data_validade}">
+                    Carteira de Habilitação (Data Validade): <h:outputText value="#{controllerServidor.servidor.chabilitacao_data_validade}" styleClass="outputLabel">
                                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
                                                                 </h:outputText>
                     
                     
-                    Documento Militar (Tipo): <h:outputText value="#{controllerServidor.servidor.dmilitar_tipo}" />
-                    Documento Militar (Número): <h:outputText value="#{controllerServidor.servidor.dmilitar_numero}" />
-                    Documento Militar (Região Militar): <h:outputText value="#{controllerServidor.servidor.dmilitar_regiao}" />
-                    Título de Eleitor (Número): <h:outputText value="#{controllerServidor.servidor.teleitor_numero}" />
-                    Título de Eleitor (Zona/Seção): <h:outputText value="#{controllerServidor.servidor.teleitor_zona}" />
-                    Título de Eleitor (UF): <h:outputText value="#{controllerServidor.servidor.teleitor_uf}" />
-                    Título de Eleitor (Data Exp.): <h:outputText value="#{controllerServidor.servidor.teleitor_data_expedicao}">
+                    Documento Militar (Tipo): <h:outputText value="#{controllerServidor.servidor.dmilitar_tipo}" styleClass="outputLabel" />
+                    Documento Militar (Número): <h:outputText value="#{controllerServidor.servidor.dmilitar_numero}" styleClass="outputLabel"/>
+                    Documento Militar (Região Militar): <h:outputText value="#{controllerServidor.servidor.dmilitar_regiao}" styleClass="outputLabel" />
+                    Título de Eleitor (Número): <h:outputText value="#{controllerServidor.servidor.teleitor_numero}" styleClass="outputLabel" />
+                    Título de Eleitor (Zona/Seção): <h:outputText value="#{controllerServidor.servidor.teleitor_zona}" styleClass="outputLabel"/>
+                    Título de Eleitor (UF): <h:outputText value="#{controllerServidor.servidor.teleitor_uf}" styleClass="outputLabel"/>
+                    Título de Eleitor (Data Exp.): <h:outputText value="#{controllerServidor.servidor.teleitor_data_expedicao}" styleClass="outputLabel">
                                                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
                                                                 </h:outputText> 
                 </h:panelGrid>
                 
                 
-                        </p:panel>
+            </p:panelGrid><br/>
+             <p:commandButton value="Cadastrar" update="growl" 
+                                 actionListener="#{controllerServidor.salvar()}"/>
                     </p:tab>
 
   </p:wizard>
 
-                <p:commandButton value="Cadastrar" update="growl" 
-                                 actionListener="#{controllerServidor.salvar()}"/>
+               
 
        
               </h:form>

@@ -135,9 +135,7 @@
                             <p:selectOneMenu value="#{controllerDisciplina.disciplinaEquivalente.disciplina_eq}" converter="#{DisciplinaConverter}">  
                                 <f:selectItems value="#{controllerDisciplina.listaDisc}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.codigo}"/>
                             </p:selectOneMenu>
-                    
-                                           
-                            
+
                             
                             <p:commandButton value="Adicionar" actionListener="#{controllerDisciplina.salvarEqv()}" oncomplete="dialogIncluirEquivalencia.hide()" update=":formIncluirEquivalencia,:growl" 
                                              style="margin-top: 30px" />

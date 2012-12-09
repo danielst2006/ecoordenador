@@ -77,10 +77,12 @@ public class controllerAluno {
         rn3.salvar(this.permissao);
         
         this.aluno.setUsuario(this.usuario);
-        
-             
+                   
         rn.salvar(this.aluno);
+        FacesContext context = FacesContext.getCurrentInstance();  
+        context.addMessage(null, new FacesMessage("Cadastrado com Sucesso")); 
         limpar();
+        
         } else {
                 FacesContext context = FacesContext.getCurrentInstance();  
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Atenção", "Senhas devem ser iguais."));
