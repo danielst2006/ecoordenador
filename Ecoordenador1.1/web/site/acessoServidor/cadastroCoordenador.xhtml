@@ -20,14 +20,14 @@ and open the template in the editor.
                     
                     Servidor:
                     <!-- POPULANDO COM OBJETO -->
-                    <p:selectOneMenu value="#{controllerCoordenador.coordenador.id_servidor}" converter="#{ServidorConverter}" style="width: 150px">
+                    <p:selectOneMenu value="#{controllerCoordenador.coordenador.servidor}" converter="#{ServidorConverter}" style="width: 150px">
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItems value="#{controllerServidor.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
                     </p:selectOneMenu>
                     
                     Curso:
                     <!-- POPULANDO COM OBJETO -->
-                    <p:selectOneMenu value="#{controllerCoordenador.coordenador.curso_id}" converter="#{CursoConverter}" style="width: 150px">
+                    <p:selectOneMenu value="#{controllerCoordenador.coordenador.curso}" converter="#{CursoConverter}" style="width: 150px">
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
                         <f:selectItems value="#{controllerCurso.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}"/>
                     </p:selectOneMenu>

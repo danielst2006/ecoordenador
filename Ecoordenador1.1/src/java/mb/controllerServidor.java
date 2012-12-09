@@ -83,6 +83,9 @@ public class controllerServidor {
         
              
         rn.salvar(this.getServidor());
+        FacesContext context = FacesContext.getCurrentInstance();            
+        context.addMessage(null, new FacesMessage("Cadastrado com Sucesso")); 
+        
         limpar();
         } else {
                 FacesContext context = FacesContext.getCurrentInstance();  

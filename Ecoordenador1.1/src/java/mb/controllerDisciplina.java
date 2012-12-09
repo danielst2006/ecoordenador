@@ -81,12 +81,13 @@ public class controllerDisciplina {
     }
     
     
-    public String salvarEqv(){
+    public void salvarEqv(){
+        
         DisciplinaEquivalenteRN rn = new DisciplinaEquivalenteRN();
         this.disciplinaEquivalente.setDisciplina_pk(this.disciplina);
         rn.salvar(this.disciplinaEquivalente);
         limparDisc();
-        return "Salvo";
+        
     }
     
     public String salvarPre(){
