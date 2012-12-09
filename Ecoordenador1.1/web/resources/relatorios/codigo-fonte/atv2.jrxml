@@ -28,6 +28,8 @@
 		</conditionalStyle>
 	</style>
 	<parameter name="id" class="java.lang.Integer"/>
+	<parameter name="data1" class="java.util.Date"/>
+	<parameter name="data2" class="java.util.Date"/>
 	<queryString>
 		<![CDATA[select e.data_entrada,t.tipo_atividade,c.atividade,e.pontuacao, c.ch_horaria
 
@@ -36,6 +38,7 @@ entrada_atividade e, pessoa p
 where t.id_tipo=c.id_tipo and c.id_atividade=e.id_atividade
 
 and p.discriminador='A' and p.id=$P{id}
+and e.data_entrada between  $P{data1} and $P{data2}
 
 order by e.data_entrada]]>
 	</queryString>
