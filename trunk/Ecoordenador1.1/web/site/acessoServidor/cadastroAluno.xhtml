@@ -175,7 +175,7 @@
 
                     Curso: <p:selectOneMenu value="#{controllerAluno.aluno.curso}" converter="#{CursoConverter}" style="width: 230px;">
                             <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
-                            <f:selectItems value="#{controllerCurso.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}" style="width: 230px;"/>
+                            <f:selectItems value="#{controllerCurso.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.nome}" />
                     </p:selectOneMenu>                        
                     Grau de Formação:* <p:selectOneMenu value="#{controllerAluno.aluno.grau_formacao}" style="width: 230px;" >
                         <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
