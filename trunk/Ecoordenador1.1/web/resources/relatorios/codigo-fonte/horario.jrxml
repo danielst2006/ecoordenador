@@ -122,7 +122,7 @@ and p.id_servidor=$P{user} and p.id_servidor=s.id order by p.dia;]]>
 			</textField>
 			<image>
 				<reportElement uuid="90b440fe-f54d-43e5-947b-8339574372bf" x="1" y="0" width="329" height="76"/>
-				<imageExpression><![CDATA["/home/cesar/NetBeansProjects/TCC/trunk/Ecoordenador1.1/web/resources/images/topo_ifto.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\Users\\daniel\\Documents\\NetBeansProjects\\eCoordenador\\trunk\\Ecoordenador1.1\\web\\resources\\images\\topo_ifto.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

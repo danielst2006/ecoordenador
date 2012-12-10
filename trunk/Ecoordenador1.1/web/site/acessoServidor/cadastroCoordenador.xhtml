@@ -1,22 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        
-    </h:head>
-    <h:body>
-        <h:form>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../../resources/templates/login.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:sec="http://www.springframework.org/security/facelets/tags" >
+
+    <ui:define name="menu_horizontal">
+        <title>eCoordenador</title>
+        <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
+            <ui:include src="/site/acessoServidor/menu.xhtml" />
+        </sec:ifAnyGranted>
+    </ui:define>
+    
+    <ui:define name="corpo">
+        <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
             
-            <p:panel>
-                <p:messages/>
-                <h:panelGrid>
+            <h:form id="formSalvar">
+                <p:growl id="growl" showDetail="true" sticky="true" /> 
+                <p:panel  header="Manter Tipos de Atividades Complementares"> 
+                    <p:messages id="msgs"/> 
+                    <h:panelGrid columns="2" >
                     
                     Servidor:
                     <!-- POPULANDO COM OBJETO -->
@@ -36,10 +41,13 @@ and open the template in the editor.
                     
                     <p:commandButton value="Cadastrar" actionListener="#{controllerCoordenador.salvar()}" ajax="true" update="@form"/>
                     
-                </h:panelGrid>
-                
-            </p:panel>
+                    </h:panelGrid>
+                </p:panel>
+                 </h:form>
+        </sec:ifAnyGranted>
+                           
 
-        </h:form>
-    </h:body>
-</html>
+    </ui:define>
+
+</ui:composition>
+

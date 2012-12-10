@@ -3,9 +3,11 @@ package mb;
 import beans.Curso;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import org.primefaces.event.FileUploadEvent;
@@ -54,6 +56,8 @@ public class controllerCurso {
     public String salvar(){
         CursoRN rn = new CursoRN();
         rn.salvar(this.curso);
+        FacesContext context = FacesContext.getCurrentInstance();  
+        context.addMessage(null, new FacesMessage("Cadastrado com Sucesso"));
         limpar();
         return "Salvo";
     }
