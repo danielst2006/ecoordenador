@@ -49,10 +49,6 @@ order by d.periodo asc]]>
 	</background>
 	<title>
 		<band height="86" splitType="Stretch">
-			<image>
-				<reportElement uuid="3eddbb67-2d10-47ed-976d-d8f5ecb590e6" x="0" y="0" width="343" height="85"/>
-				<imageExpression><![CDATA["C:\\Users\\Caio\\Documents\\NetBeansProjects\\TCC\\trunk\\Ecoordenador1.1\\web\\resources\\images\\topo_ifto.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement uuid="ffcf9ecf-54bd-4906-b7ad-cb440d025fdf" x="731" y="30" width="71" height="26"/>
 				<textElement>
@@ -60,6 +56,10 @@ order by d.periodo asc]]>
 				</textElement>
 				<text><![CDATA[GRADE]]></text>
 			</staticText>
+			<image>
+				<reportElement uuid="305a8e66-4d9b-43a7-b1e5-e920aaefcc30" x="0" y="1" width="343" height="85"/>
+				<imageExpression><![CDATA["/home/cesar/NetBeansProjects/TCC/trunk/Ecoordenador1.1/web/resources/images/topo_ifto.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -86,7 +86,7 @@ order by d.periodo asc]]>
 				<text><![CDATA[Período]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="5850b4ae-4683-46d1-9ce1-9820a3412bec" x="315" y="15" width="271" height="20"/>
+				<reportElement uuid="5850b4ae-4683-46d1-9ce1-9820a3412bec" x="315" y="15" width="319" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -116,7 +116,7 @@ order by d.periodo asc]]>
 				<textFieldExpression><![CDATA[$F{periodo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="90361a07-44ab-4843-9a44-a17046da6be8" x="315" y="0" width="271" height="20"/>
+				<reportElement uuid="90361a07-44ab-4843-9a44-a17046da6be8" x="315" y="0" width="319" height="20"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
@@ -133,14 +133,14 @@ order by d.periodo asc]]>
 				<reportElement uuid="011f8540-72f3-48ad-b81e-53f7a8bf983f" x="0" y="0" width="802" height="10" forecolor="#009933" backcolor="#009933"/>
 			</rectangle>
 			<staticText>
-				<reportElement uuid="26efd95a-31db-4cdf-8bfc-a0617c9b1608" x="168" y="13" width="466" height="20"/>
+				<reportElement uuid="26efd95a-31db-4cdf-8bfc-a0617c9b1608" x="145" y="13" width="512" height="20"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Instituto Federal de Educação Ciência e Tecnologia do Tocantins]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="462fa3a7-2af4-413a-b52c-028e6ea2e22d" x="274" y="34" width="255" height="20"/>
+				<reportElement uuid="462fa3a7-2af4-413a-b52c-028e6ea2e22d" x="264" y="34" width="274" height="20"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>

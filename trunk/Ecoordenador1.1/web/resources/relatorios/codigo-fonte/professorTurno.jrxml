@@ -27,15 +27,16 @@
 			<style backcolor="#F3F8F3"/>
 		</conditionalStyle>
 	</style>
-	<parameter name="nome" class="java.lang.String"/>
 	<parameter name="ano" class="java.lang.Integer"/>
 	<parameter name="semestre" class="java.lang.Integer"/>
+	<parameter name="turno" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select p.nome, d.unidade_curricular, d.codigo, d.periodo, h.dia_semana, h.horario_inicio, h.horario_fim,pl.ano,pl.semestre
 from classe c, pessoa p, disciplina d, horario h, turma t, periodo_letivo pl
 where p.discriminador='S' and p.id=c.servidor and c.id_classe=h.id_classe and c.turma=t.id and t.periodoletivo=pl.id
 and c.disciplina=d.id_disciplina
-and p.nome=$P{nome} and pl.ano=$P{ano} and pl.semestre=$P{semestre}]]>
+and t.turno=$P{turno}
+and pl.ano=$P{ano} and pl.semestre=$P{semestre}]]>
 	</queryString>
 	<field name="nome" class="java.lang.String"/>
 	<field name="unidade_curricular" class="java.lang.String"/>
@@ -84,35 +85,35 @@ and p.nome=$P{nome} and pl.ano=$P{ano} and pl.semestre=$P{semestre}]]>
 				<text><![CDATA[SERVIDOR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="bc78b4b1-e4d4-41ac-8de4-74ea486f409a" x="260" y="0" width="250" height="20"/>
+				<reportElement uuid="bc78b4b1-e4d4-41ac-8de4-74ea486f409a" x="271" y="0" width="250" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[MATÉRIA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b03d54df-8621-4800-924c-e919550a2a0a" x="510" y="0" width="120" height="20"/>
+				<reportElement uuid="b03d54df-8621-4800-924c-e919550a2a0a" x="521" y="0" width="120" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DIA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="a53bf8d7-455d-4748-8e3c-6484883809cd" x="630" y="0" width="60" height="20"/>
+				<reportElement uuid="a53bf8d7-455d-4748-8e3c-6484883809cd" x="641" y="0" width="60" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[INÍCIO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="45566cc7-484f-4176-b22b-792ea0b6a393" x="690" y="0" width="60" height="20"/>
+				<reportElement uuid="45566cc7-484f-4176-b22b-792ea0b6a393" x="701" y="0" width="60" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[FIM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="e80d80dd-8048-4a24-896f-acec6ba8b57b" x="200" y="0" width="60" height="20"/>
+				<reportElement uuid="e80d80dd-8048-4a24-896f-acec6ba8b57b" x="200" y="0" width="71" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -135,7 +136,7 @@ and p.nome=$P{nome} and pl.ano=$P{ano} and pl.semestre=$P{semestre}]]>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="b06e7b46-4138-4a4f-a31b-60667adc34a1" x="260" y="0" width="250" height="20"/>
+				<reportElement uuid="b06e7b46-4138-4a4f-a31b-60667adc34a1" x="271" y="0" width="250" height="20"/>
 				<box leftPadding="3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
@@ -143,28 +144,28 @@ and p.nome=$P{nome} and pl.ano=$P{ano} and pl.semestre=$P{semestre}]]>
 				<textFieldExpression><![CDATA[$F{unidade_curricular}+" ("+$F{codigo}+")"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="cba4f60a-e6cb-4903-8335-544ef205c0bd" x="510" y="0" width="120" height="20"/>
+				<reportElement uuid="cba4f60a-e6cb-4903-8335-544ef205c0bd" x="521" y="0" width="120" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{dia_semana}]]></textFieldExpression>
 			</textField>
 			<textField pattern="HH.mm">
-				<reportElement uuid="55c3d0c9-3029-45e2-ba35-c99945777519" x="630" y="0" width="60" height="20"/>
+				<reportElement uuid="55c3d0c9-3029-45e2-ba35-c99945777519" x="641" y="0" width="60" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{horario_inicio}]]></textFieldExpression>
 			</textField>
 			<textField pattern="HH.mm">
-				<reportElement uuid="c640173c-165b-44e1-8afa-b13b2d8aa13c" x="690" y="0" width="60" height="20"/>
+				<reportElement uuid="c640173c-165b-44e1-8afa-b13b2d8aa13c" x="701" y="0" width="60" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{horario_fim}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="f71cd2a9-3a2f-4846-8b7f-6b56bb0edab9" x="200" y="0" width="60" height="20"/>
+				<reportElement uuid="f71cd2a9-3a2f-4846-8b7f-6b56bb0edab9" x="200" y="0" width="71" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
@@ -181,14 +182,14 @@ and p.nome=$P{nome} and pl.ano=$P{ano} and pl.semestre=$P{semestre}]]>
 				<reportElement uuid="011f8540-72f3-48ad-b81e-53f7a8bf983f" x="0" y="0" width="802" height="10" forecolor="#009933" backcolor="#009933"/>
 			</rectangle>
 			<staticText>
-				<reportElement uuid="26efd95a-31db-4cdf-8bfc-a0617c9b1608" x="168" y="13" width="466" height="20"/>
+				<reportElement uuid="26efd95a-31db-4cdf-8bfc-a0617c9b1608" x="168" y="13" width="511" height="20"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Instituto Federal de Educação Ciência e Tecnologia do Tocantins]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="462fa3a7-2af4-413a-b52c-028e6ea2e22d" x="274" y="34" width="255" height="20"/>
+				<reportElement uuid="462fa3a7-2af4-413a-b52c-028e6ea2e22d" x="274" y="34" width="271" height="20"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>

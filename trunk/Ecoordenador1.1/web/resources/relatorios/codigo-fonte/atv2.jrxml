@@ -27,26 +27,26 @@
 			<style backcolor="#F3F8F3"/>
 		</conditionalStyle>
 	</style>
-	<parameter name="id" class="java.lang.Integer"/>
 	<parameter name="data1" class="java.util.Date"/>
 	<parameter name="data2" class="java.util.Date"/>
 	<queryString>
-		<![CDATA[select e.data_entrada,t.tipo_atividade,c.atividade,e.pontuacao, c.ch_horaria
-
+		<![CDATA[select e.data_entrada,p.nome,t.tipo_atividade,c.atividade,e.pontuacao, c.ch_horaria,sum(e.pontuacao) as total
 from atividade_complementar_tipo t, atividade_complementar c,
 entrada_atividade e, pessoa p
 where t.id_tipo=c.id_tipo and c.id_atividade=e.id_atividade
 
-and p.discriminador='A' and p.id=$P{id}
-and e.data_entrada between  $P{data1} and $P{data2}
-
+and p.discriminador='A' and e.aprovado='true'
+and e.data_entrada between $P{data1} and $P{data2}
+group by e.data_entrada,t.tipo_atividade,c.atividade,e.pontuacao, c.ch_horaria, c.ch_horaria,p.nome
 order by e.data_entrada]]>
 	</queryString>
 	<field name="data_entrada" class="java.sql.Date"/>
+	<field name="nome" class="java.lang.String"/>
 	<field name="tipo_atividade" class="java.lang.String"/>
 	<field name="atividade" class="java.lang.String"/>
 	<field name="pontuacao" class="java.lang.Integer"/>
 	<field name="ch_horaria" class="java.lang.Integer"/>
+	<field name="total" class="java.lang.Long"/>
 	<variable name="Zebra" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA["1"]]></variableExpression>
 	</variable>
@@ -56,8 +56,8 @@ order by e.data_entrada]]>
 	<title>
 		<band height="86" splitType="Stretch">
 			<image>
-				<reportElement uuid="305a8e66-4d9b-43a7-b1e5-e920aaefcc30" x="0" y="1" width="343" height="85"/>
-				<imageExpression><![CDATA["C:\\Users\\daniel\\Documents\\NetBeansProjects\\eCoordenador\\trunk\\Ecoordenador1.1\\web\\resources\\images\\topo_ifto.jpg"]]></imageExpression>
+				<reportElement uuid="0cfb0d91-547b-4024-a3b7-1e1ef631b0b5" x="0" y="1" width="343" height="85"/>
+				<imageExpression><![CDATA["/home/cesar/NetBeansProjects/TCC/trunk/Ecoordenador1.1/web/resources/images/topo_ifto.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -72,38 +72,45 @@ order by e.data_entrada]]>
 		<band height="50" splitType="Stretch">
 			<staticText>
 				<reportElement uuid="744b54f8-38ac-4a69-af9d-3c79552af061" x="0" y="15" width="100" height="20"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Data]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="d87520da-f488-4917-9c9e-dda89e7be7a4" x="100" y="15" width="100" height="20"/>
-				<textElement>
+				<reportElement uuid="d87520da-f488-4917-9c9e-dda89e7be7a4" x="376" y="15" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo Atv.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="c0eaf841-3b29-4d20-b373-a9281c57b8d6" x="200" y="15" width="100" height="20"/>
-				<textElement>
+				<reportElement uuid="c0eaf841-3b29-4d20-b373-a9281c57b8d6" x="476" y="15" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Atividade]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="81bd531f-de29-430f-8f3f-91de7ffeaa1a" x="300" y="15" width="100" height="20"/>
-				<textElement>
+				<reportElement uuid="81bd531f-de29-430f-8f3f-91de7ffeaa1a" x="576" y="15" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Pontuação]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="1c436dd2-28e8-4e90-94c6-b24ae29c6c22" x="400" y="15" width="112" height="20"/>
-				<textElement>
+				<reportElement uuid="1c436dd2-28e8-4e90-94c6-b24ae29c6c22" x="676" y="15" width="112" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Carga Horária]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ef377b48-fca4-4fbc-907a-fca097ae0d2d" x="100" y="15" width="276" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -114,40 +121,47 @@ order by e.data_entrada]]>
 					<printWhenExpression><![CDATA[new Boolean(new Integer(($V{Zebra}.intValue())%2).equals(new Integer("0")) )]]></printWhenExpression>
 				</reportElement>
 			</rectangle>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement uuid="2aa0e088-627a-4674-b968-06fe82ee1ad6" x="0" y="0" width="100" height="20"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{data_entrada}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="58be2d17-1b79-4ae0-b7e6-446a35165f08" x="100" y="0" width="100" height="20"/>
-				<textElement>
+				<reportElement uuid="58be2d17-1b79-4ae0-b7e6-446a35165f08" x="376" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tipo_atividade}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="205f694b-065a-4107-9067-1d9218833cf5" x="200" y="0" width="100" height="20"/>
-				<textElement>
+				<reportElement uuid="205f694b-065a-4107-9067-1d9218833cf5" x="476" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{atividade}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="bcf80641-1159-430e-bed4-c3a984b4b085" x="300" y="0" width="100" height="20"/>
-				<textElement>
+				<reportElement uuid="bcf80641-1159-430e-bed4-c3a984b4b085" x="576" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{pontuacao}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="3bf90281-24d6-42ca-bb7b-d87fbd039f24" x="400" y="0" width="112" height="20"/>
-				<textElement>
+				<reportElement uuid="3bf90281-24d6-42ca-bb7b-d87fbd039f24" x="676" y="0" width="112" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ch_horaria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="510b7903-89ef-4e5d-bd6e-cdcb57d5ea80" x="100" y="0" width="276" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -54,10 +54,6 @@ and p.nome=$P{nome} and pl.ano=$P{ano} and pl.semestre=$P{semestre}]]>
 	</background>
 	<title>
 		<band height="86" splitType="Stretch">
-			<image>
-				<reportElement uuid="3eddbb67-2d10-47ed-976d-d8f5ecb590e6" x="0" y="0" width="343" height="85"/>
-				<imageExpression><![CDATA["C:\\Users\\daniel\\Documents\\NetBeansProjects\\eCoordenador\\trunk\\Ecoordenador1.1\\web\\resources\\images\\topo_ifto.jpg"]]></imageExpression>
-			</image>
 			<textField>
 				<reportElement uuid="c05918aa-bcbd-48e5-8fcc-427b51ef3606" x="613" y="32" width="189" height="23"/>
 				<textElement>
@@ -65,6 +61,10 @@ and p.nome=$P{nome} and pl.ano=$P{ano} and pl.semestre=$P{semestre}]]>
 				</textElement>
 				<textFieldExpression><![CDATA["SEMESTRE "+$F{ano}+"/"+$F{semestre}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement uuid="5dc24647-f9df-4ac7-a27f-e9eb7af63cab" x="0" y="0" width="343" height="85"/>
+				<imageExpression><![CDATA["/home/cesar/NetBeansProjects/TCC/trunk/Ecoordenador1.1/web/resources/images/topo_ifto.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -84,35 +84,35 @@ and p.nome=$P{nome} and pl.ano=$P{ano} and pl.semestre=$P{semestre}]]>
 				<text><![CDATA[SERVIDOR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="bc78b4b1-e4d4-41ac-8de4-74ea486f409a" x="260" y="0" width="250" height="20"/>
+				<reportElement uuid="bc78b4b1-e4d4-41ac-8de4-74ea486f409a" x="265" y="0" width="282" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[MATÉRIA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b03d54df-8621-4800-924c-e919550a2a0a" x="510" y="0" width="120" height="20"/>
+				<reportElement uuid="b03d54df-8621-4800-924c-e919550a2a0a" x="547" y="0" width="120" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DIA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="a53bf8d7-455d-4748-8e3c-6484883809cd" x="630" y="0" width="60" height="20"/>
+				<reportElement uuid="a53bf8d7-455d-4748-8e3c-6484883809cd" x="667" y="0" width="60" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[INÍCIO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="45566cc7-484f-4176-b22b-792ea0b6a393" x="690" y="0" width="60" height="20"/>
+				<reportElement uuid="45566cc7-484f-4176-b22b-792ea0b6a393" x="727" y="0" width="60" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[FIM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="e80d80dd-8048-4a24-896f-acec6ba8b57b" x="200" y="0" width="60" height="20"/>
+				<reportElement uuid="e80d80dd-8048-4a24-896f-acec6ba8b57b" x="200" y="0" width="65" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -135,7 +135,7 @@ and p.nome=$P{nome} and pl.ano=$P{ano} and pl.semestre=$P{semestre}]]>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="b06e7b46-4138-4a4f-a31b-60667adc34a1" x="260" y="0" width="250" height="20"/>
+				<reportElement uuid="b06e7b46-4138-4a4f-a31b-60667adc34a1" x="265" y="0" width="282" height="20"/>
 				<box leftPadding="3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
@@ -143,28 +143,28 @@ and p.nome=$P{nome} and pl.ano=$P{ano} and pl.semestre=$P{semestre}]]>
 				<textFieldExpression><![CDATA[$F{unidade_curricular}+" ("+$F{codigo}+")"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="cba4f60a-e6cb-4903-8335-544ef205c0bd" x="510" y="0" width="120" height="20"/>
+				<reportElement uuid="cba4f60a-e6cb-4903-8335-544ef205c0bd" x="547" y="0" width="120" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{dia_semana}]]></textFieldExpression>
 			</textField>
 			<textField pattern="HH.mm">
-				<reportElement uuid="55c3d0c9-3029-45e2-ba35-c99945777519" x="630" y="0" width="60" height="20"/>
+				<reportElement uuid="55c3d0c9-3029-45e2-ba35-c99945777519" x="667" y="0" width="60" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{horario_inicio}]]></textFieldExpression>
 			</textField>
 			<textField pattern="HH.mm">
-				<reportElement uuid="c640173c-165b-44e1-8afa-b13b2d8aa13c" x="690" y="0" width="60" height="20"/>
+				<reportElement uuid="c640173c-165b-44e1-8afa-b13b2d8aa13c" x="727" y="0" width="60" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{horario_fim}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="f71cd2a9-3a2f-4846-8b7f-6b56bb0edab9" x="200" y="0" width="60" height="20"/>
+				<reportElement uuid="f71cd2a9-3a2f-4846-8b7f-6b56bb0edab9" x="200" y="0" width="65" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
@@ -181,14 +181,14 @@ and p.nome=$P{nome} and pl.ano=$P{ano} and pl.semestre=$P{semestre}]]>
 				<reportElement uuid="011f8540-72f3-48ad-b81e-53f7a8bf983f" x="0" y="0" width="802" height="10" forecolor="#009933" backcolor="#009933"/>
 			</rectangle>
 			<staticText>
-				<reportElement uuid="26efd95a-31db-4cdf-8bfc-a0617c9b1608" x="168" y="13" width="466" height="20"/>
+				<reportElement uuid="26efd95a-31db-4cdf-8bfc-a0617c9b1608" x="145" y="13" width="512" height="20"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Instituto Federal de Educação Ciência e Tecnologia do Tocantins]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="462fa3a7-2af4-413a-b52c-028e6ea2e22d" x="274" y="34" width="255" height="20"/>
+				<reportElement uuid="462fa3a7-2af4-413a-b52c-028e6ea2e22d" x="265" y="34" width="272" height="20"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
