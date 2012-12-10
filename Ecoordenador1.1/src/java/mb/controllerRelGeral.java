@@ -77,6 +77,75 @@ public class controllerRelGeral {
     }
     
     ////////////////////////////////////////////////////////////////////////////
+    //Relatório Pontuação Individual
+    
+    public List<Usuario> alunoUser;
+    
+    public void relatorioPontoInd() throws JRException, SQLException, IOException{
+        String login = pegarUser();
+        UsuarioRN rnu = new UsuarioRN();
+        this.alunoUser = rnu.buscaPersonalizada("login", login);
+        
+        parametro = new HashMap();
+        parametro.put("id", this.alunoUser.get(0).getId());
+        FacesContext context = FacesContext.getCurrentInstance();
+        ServletContext servContext = (ServletContext)context.getExternalContext().getContext();
+        String caminho = servContext.getRealPath("/resources/relatorios/atv1.jasper");
+        impressao = JasperFillManager.fillReport(caminho, this.parametro,DAOFactory.getConnection());
+        HttpServletResponse response = (HttpServletResponse)FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        ServletOutputStream outStream= response.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(this.impressao, outStream);
+        context.getApplication().getStateManager().saveView(context);
+        context.responseComplete();
+    }
+
+    public List<Usuario> getAlunoUser() {
+        return alunoUser;
+    }
+
+    public void setAlunoUser(List<Usuario> alunoUser) {
+        this.alunoUser = alunoUser;
+    }
+    
+    
+    ////////////////////////////////////////////////////////////////////////////
+    //Relatório de Atividades Aprovadas
+    
+    private Date atvDate1;
+    private Date atvDate2;
+    
+    public void relatorioAtvAprovado() throws JRException, SQLException, IOException{
+        parametro = new HashMap();
+        parametro.put("data1", this.atvDate1);
+        parametro.put("data2", this.atvDate2);
+        FacesContext context = FacesContext.getCurrentInstance();
+        ServletContext servContext = (ServletContext)context.getExternalContext().getContext();
+        String caminho = servContext.getRealPath("/resources/relatorios/atv2.jasper");
+        impressao = JasperFillManager.fillReport(caminho, this.parametro,DAOFactory.getConnection());
+        HttpServletResponse response = (HttpServletResponse)FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        ServletOutputStream outStream= response.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(this.impressao, outStream);
+        context.getApplication().getStateManager().saveView(context);
+        context.responseComplete();
+    }
+
+    public Date getAtvDate1() {
+        return atvDate1;
+    }
+
+    public void setAtvDate1(Date atvDate1) {
+        this.atvDate1 = atvDate1;
+    }
+
+    public Date getAtvDate2() {
+        return atvDate2;
+    }
+
+    public void setAtvDate2(Date atvDate2) {
+        this.atvDate2 = atvDate2;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
     //Relatório de Grade
     private String curso;
     
