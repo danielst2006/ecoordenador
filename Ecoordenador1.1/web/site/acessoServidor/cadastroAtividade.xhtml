@@ -8,15 +8,15 @@
                 xmlns:sec="http://www.springframework.org/security/facelets/tags" >
 
     <ui:define name="menu_horizontal">
-    <title>eCoordenador</title>
+        <title>eCoordenador</title>
         <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
             <ui:include src="/site/acessoServidor/menu.xhtml" />
         </sec:ifAnyGranted>
     </ui:define>
-    
+
     <ui:define name="corpo">
         <sec:ifAnyGranted roles="ROLE_SERVIDOR,ROLE_ADMINISTRADOR">
-            
+
             <h:form id="formSalvar">
                 <p:panel> 
                     <p:messages id="msgs"/> 
@@ -35,7 +35,7 @@
                         Nome da atividade:* <p:inputText value="#{controllerAtvComp.atvComp.atividade}" required="true" requiredMessage="Campo Nome da Atividade Obrigatório." style="width: 170px"/>
 
                         Carga Horária:* <p:inputText value="#{controllerAtvComp.atvComp.ch_horaria}" required="true" requiredMessage="Campo Pontuação Obrigatório." style="width: 170px"/>
-                        
+
 
                         <p:commandButton value="Salvar" actionListener="#{controllerAtvComp.salvar()}"  update="@form"/>
 
@@ -45,7 +45,7 @@
                 </p:panel>
 
                 <p:dataTable id="tabela" var="p" value="#{controllerAtvComp.listaDM}" emptyMessage="Nada encontrado...">
-                    
+
                     <p:column headerText="Cod">
                         <h:outputText value="#{p.id}"/>
                     </p:column>
@@ -59,77 +59,77 @@
                         <h:outputText value="#{p.ch_horaria}h"/>
                     </p:column>
                     <p:column>
-                       <p:commandLink  actionListener="#{controllerAtvComp.prepararAlterar()}"  process="@this" oncomplete="dialogVizualizar.show();" update=":formVizualizar">
-                        <p:graphicImage  value="/resources/images/lupa.png" />
-                       </p:commandLink>
+                        <p:commandLink  actionListener="#{controllerAtvComp.prepararAlterar()}"  process="@this" oncomplete="dialogVizualizar.show();" update=":formVizualizar">
+                            <p:graphicImage  value="/resources/images/lupa.png" />
+                        </p:commandLink>
 
                         <p:commandLink  actionListener="#{controllerAtvComp.prepararAlterar()}"  process="@this" oncomplete="dialogAlterar.show();" update=":formAlterar">
-                        <p:graphicImage  value="/resources/images/edit.png" />
+                            <p:graphicImage  value="/resources/images/edit.png" />
                         </p:commandLink>
                         <p:commandLink  actionListener="#{controllerAtvComp.remover()}" process="@this" update="@form"> 
-                        <p:graphicImage  value="/resources/images/delete.png" />  
+                            <p:graphicImage  value="/resources/images/delete.png" />  
                         </p:commandLink>    
                     </p:column>
                 </p:dataTable>
 
             </h:form>
-            
-            
-             
-              <p:dialog widgetVar="dialogAlterar" resizable="false" closable="false" modal="true" showEffect="slide" hideEffect="slide">
+
+
+
+            <p:dialog widgetVar="dialogAlterar" resizable="false" closable="false" modal="true" showEffect="slide" hideEffect="slide">
                 <h:form id="formAlterar">
                     <p:panel style="width: 320px;">
                         <p:messages id="msgs"/> 
                         <h:panelGrid columns="2">
-                                
-                      
-                        Tipo da atividade:*
-                        <!-- POPULANDO COM OBJETO -->
-                        <p:selectOneMenu value="#{controllerAtvComp.atvComp.atividadecomplementartipo}" converter="#{AtividadeComplementarTipoConverter}"  style="width: 160px">
-                            
-                            <f:selectItems value="#{controllerAtvCompTipo.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.tipo_atividade}"/>
-                        </p:selectOneMenu>
 
-                        Nome da atividade:* <p:inputText value="#{controllerAtvComp.atvComp.atividade}"  />
 
-                        Carga Horária:* <p:inputText value="#{controllerAtvComp.atvComp.ch_horaria}"  />
-                                             
- 
-                        <p:commandButton value="Alterar" actionListener="#{controllerAtvComp.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
-                                                style="margin-top: 30px"/>
-                        <p:commandButton value="cancelar" actionListener="#{controllerAtvComp.limpar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
-                                                style="margin-top: 30px;margin-left: 0px;"/>
+                            Tipo da atividade:*
+                            <!-- POPULANDO COM OBJETO -->
+                            <p:selectOneMenu value="#{controllerAtvComp.atvComp.atividadecomplementartipo}" converter="#{AtividadeComplementarTipoConverter}"  style="width: 160px">
+
+                                <f:selectItems value="#{controllerAtvCompTipo.lista}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.tipo_atividade}"/>
+                            </p:selectOneMenu>
+
+                            Nome da atividade:* <p:inputText value="#{controllerAtvComp.atvComp.atividade}"  />
+
+                            Carga Horária:* <p:inputText value="#{controllerAtvComp.atvComp.ch_horaria}"  />
+
+
+                            <p:commandButton value="Alterar" actionListener="#{controllerAtvComp.alterar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
+                                             style="margin-top: 30px"/>
+                            <p:commandButton value="cancelar" actionListener="#{controllerAtvComp.limpar()}" oncomplete="dialogAlterar.hide()" update=":formSalvar" 
+                                             style="margin-top: 30px;margin-left: 0px;"/>
                         </h:panelGrid>
                     </p:panel>
                 </h:form>
             </p:dialog>
-            
-            
-            
-           <p:dialog widgetVar="dialogVizualizar" resizable="false" closable="false" modal="true" showEffect="slide" hideEffect="slide">
+
+
+
+            <p:dialog widgetVar="dialogVizualizar" resizable="false" closable="false" modal="true" showEffect="slide" hideEffect="slide">
                 <h:form id="formVizualizar">
                     <p:panel style="width: 320px;">
                         <p:messages id="msgs"/> 
                         <h:panelGrid columns="2">
-                                
-                        Cod: <h:outputText value="#{controllerAtvComp.atvComp.id}"  />              
-                        Tipo da atividade:
-                        <!-- POPULANDO COM OBJETO -->
-                        <h:outputText value="#{controllerAtvComp.atvComp.atividadecomplementartipo.tipo_atividade}"/> 
-                       
-                        Nome da atividade: <h:outputText value="#{controllerAtvComp.atvComp.atividade}"  />
 
-                        Carga Horária: <h:outputText value="#{controllerAtvComp.atvComp.ch_horaria}"  />
-                                             
- 
-                        <p:commandButton value="cancelar" actionListener="#{controllerAtvComp.limpar()}" oncomplete="dialogVizualizar.hide()" update=":formSalvar" 
-                                                style="margin-top: 30px;margin-left: 0px;"/>
+                            Cod: <h:outputText value="#{controllerAtvComp.atvComp.id}"  />              
+                            Tipo da atividade:
+                            <!-- POPULANDO COM OBJETO -->
+                            <h:outputText value="#{controllerAtvComp.atvComp.atividadecomplementartipo.tipo_atividade}"/> 
+
+                            Nome da atividade: <h:outputText value="#{controllerAtvComp.atvComp.atividade}"  />
+
+                            Carga Horária: <h:outputText value="#{controllerAtvComp.atvComp.ch_horaria}"  />
+
+
+                            <p:commandButton value="cancelar" actionListener="#{controllerAtvComp.limpar()}" oncomplete="dialogVizualizar.hide()" update=":formSalvar" 
+                                             style="margin-top: 30px;margin-left: 0px;"/>
                         </h:panelGrid>
                     </p:panel>
                 </h:form>
             </p:dialog>
-            
+
         </sec:ifAnyGranted>
     </ui:define>
-    
+
 </ui:composition>

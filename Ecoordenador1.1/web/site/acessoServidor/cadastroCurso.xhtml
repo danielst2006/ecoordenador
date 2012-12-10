@@ -29,32 +29,32 @@
 
                 <h:messages errorClass="error"/>
 
-                <h:panelGrid columns="1" columnClasses="label, value" styleClass="grid">
+                <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
                     
-                    Nome:<p:inputText value="#{controllerCurso.curso.nome}"  maxlength="50" required="true" requiredMessage="Campo Nome Obrigatorio."/>
-                    Nome reduzido:<p:inputText value="#{controllerCurso.curso.nome_reduzido}" maxlength="10" required="true" requiredMessage="Campo Nome Reduzido Obrigatorio."/>
-                    Tipo ato de autorização:<p:inputText value="#{controllerCurso.curso.ato_autorizativo_tipo}" required="true" requiredMessage="Campo Tipo de Ato de autorização Obrigatorio."/>
-                    Número ato autorizativo:<p:inputText value="#{controllerCurso.curso.ato_autorizativo_numero}" required="true" requiredMessage="Campo Numero autorizativo Obrigatorio."/>
-                    Data expedição ato autorizativo:<p:calendar value="#{controllerCurso.curso.ato_autorizativo_data_expedicao}" required="true" requiredMessage="Campo Data expedição ato autorizativo Obrigatorio."/>
-                    Data DOU ato autorizativo:<p:calendar value="#{controllerCurso.curso.ato_autorizacao_ato_dou}" required="true" requiredMessage="Campo Data DOU ato autorizativo Obrigatorio."/>
-                    Periodicidade de ingresso:<p:inputText value="#{controllerCurso.curso.periodicidade_ingresso}" required="true" requiredMessage="Campo  Periodicidade de ingresso Obrigatorio."/>
-                    Data início:<p:calendar value="#{controllerCurso.curso.data_inicio}" required="true" requiredMessage="Campo  Data início Obrigatorio."/>
-                    Data fim:<p:calendar value="#{controllerCurso.curso.data_fim}" required="true" requiredMessage="Campo  Data fim Obrigatorio." />
-                    Numero de períodos mínimo para integralização:<p:inputText value="#{controllerCurso.curso.periodo_minimo_numero_integralizacao}" required="true" requiredMessage="Campo Numero de períodos mínimo para integralização Obrigatorio." />
-                    Numero de períodos máximo para integralização:<p:inputText value="#{controllerCurso.curso.periodo_maximo_numero_integralizacao}"/>
-                    Área de conhecimento:<p:inputText value="#{controllerCurso.curso.area_conhecimento}" required="true" requiredMessage="Campo Área de conhecimento Obrigatorio."/>
-                    Regime de competência:<p:selectBooleanButton value="#{controllerCurso.curso.regime_competencia}" onLabel="Sim" offLabel="Não"/>
-                    Regime de matrícula:<p:inputText value="#{controllerCurso.curso.regime_matricula}" required="true" requiredMessage="Campo Regime de matrícula Obrigatorio."/>
-                    Situação:<p:inputText value="#{controllerCurso.curso.situacao}" required="true" requiredMessage="Campo Situação Obrigatorio."/>
-                    Nível de ensino:<p:inputText value="#{controllerCurso.curso.nivel_ensino}"/>
-                    Etapa de ensino:<p:inputText value="#{controllerCurso.curso.etapa_ensino}"/>
-                    Modalidade de ensino:<p:inputText value="#{controllerCurso.curso.modalidade_ensino}"/>
-                    Tipo de ato reconhecimento:<p:inputText value="#{controllerCurso.curso.ato_reconhecimento_tipo}"/>
-                    Número do ato reconhecimento:<p:inputText value="#{controllerCurso.curso.ato_reconhecimento_numero}"/>
-                    Data de expedição reconhecimento:<p:calendar value="#{controllerCurso.curso.data_expedicao_reconhecimento}"/>
-                    Data DOU reconhecimento:<p:calendar value="#{controllerCurso.curso.data_dou_reconhecimento}"/>
-                    Formação profissional:<p:inputText value="#{controllerCurso.curso.formacao_profissional}"/>
-                    Formação acadêmica:<p:inputText value="#{controllerCurso.curso.formacao_academica}"/>
+                    Nome:<p:inputText value="#{controllerCurso.curso.nome}"  maxlength="50" required="true" requiredMessage="Campo Nome Obrigatorio." style="width: 200px;"/>
+                    Nome reduzido:<p:inputText value="#{controllerCurso.curso.nome_reduzido}" maxlength="10" required="true" requiredMessage="Campo Nome Reduzido Obrigatorio." style="width: 200px;"/>
+                    Tipo ato de autorização:<p:inputText value="#{controllerCurso.curso.ato_autorizativo_tipo}" required="true" requiredMessage="Campo Tipo de Ato de autorização Obrigatorio." style="width: 200px;"/>
+                    Número ato autorizativo:<p:inputText value="#{controllerCurso.curso.ato_autorizativo_numero}" required="true" requiredMessage="Campo Numero autorizativo Obrigatorio." style="width: 200px;"/>
+                    Data expedição ato autorizativo:<p:calendar value="#{controllerCurso.curso.ato_autorizativo_data_expedicao}" required="true" requiredMessage="Campo Data expedição ato autorizativo Obrigatorio." style="width: 200px;"/>
+                    Data DOU ato autorizativo:<p:calendar value="#{controllerCurso.curso.ato_autorizacao_ato_dou}" required="true" requiredMessage="Campo Data DOU ato autorizativo Obrigatorio." style="width: 200px;"/>
+                    Periodicidade de ingresso:<p:inputText value="#{controllerCurso.curso.periodicidade_ingresso}" required="true" requiredMessage="Campo  Periodicidade de ingresso Obrigatorio." style="width: 200px;"/>
+                    Data início:<p:calendar value="#{controllerCurso.curso.data_inicio}" required="true" requiredMessage="Campo  Data início Obrigatorio." style="width: 200px;"/>
+                    Data fim:<p:calendar value="#{controllerCurso.curso.data_fim}" required="true" requiredMessage="Campo  Data fim Obrigatorio." style="width: 200px;"/>
+                    Numero de períodos mínimo para integralização:<p:inputText value="#{controllerCurso.curso.periodo_minimo_numero_integralizacao}" required="true" requiredMessage="Campo Numero de períodos mínimo para integralização Obrigatorio." style="width: 200px;" />
+                    Numero de períodos máximo para integralização:<p:inputText value="#{controllerCurso.curso.periodo_maximo_numero_integralizacao}" style="width: 200px;"/>
+                    Área de conhecimento:<p:inputText value="#{controllerCurso.curso.area_conhecimento}" required="true" requiredMessage="Campo Área de conhecimento Obrigatorio." style="width: 200px;"/>
+                    Regime de competência:<p:selectBooleanButton value="#{controllerCurso.curso.regime_competencia}" onLabel="Sim" offLabel="Não" />
+                    Regime de matrícula:<p:inputText value="#{controllerCurso.curso.regime_matricula}" required="true" requiredMessage="Campo Regime de matrícula Obrigatorio." style="width: 200px;"/>
+                    Situação:<p:inputText value="#{controllerCurso.curso.situacao}" required="true" requiredMessage="Campo Situação Obrigatorio." style="width: 200px;"/>
+                    Nível de ensino:<p:inputText value="#{controllerCurso.curso.nivel_ensino}" style="width: 200px;"/>
+                    Etapa de ensino:<p:inputText value="#{controllerCurso.curso.etapa_ensino}" style="width: 200px;"/>
+                    Modalidade de ensino:<p:inputText value="#{controllerCurso.curso.modalidade_ensino}" style="width: 200px;"/>
+                    Tipo de ato reconhecimento:<p:inputText value="#{controllerCurso.curso.ato_reconhecimento_tipo}" style="width: 200px;"/>
+                    Número do ato reconhecimento:<p:inputText value="#{controllerCurso.curso.ato_reconhecimento_numero}" style="width: 200px;"/>
+                    Data de expedição reconhecimento:<p:calendar value="#{controllerCurso.curso.data_expedicao_reconhecimento}" style="width: 200px;"/>
+                    Data DOU reconhecimento:<p:calendar value="#{controllerCurso.curso.data_dou_reconhecimento}" style="width: 200px;"/>
+                    Formação profissional:<p:inputText value="#{controllerCurso.curso.formacao_profissional}" style="width: 200px;"/>
+                    Formação acadêmica:<p:inputText value="#{controllerCurso.curso.formacao_academica}" style="width: 200px;"/>
                     EJA:<p:selectBooleanButton value="#{controllerCurso.curso.eja}" onLabel="Sim" offLabel="Não" />
 
                     
@@ -85,13 +85,13 @@
 
                 <h:messages errorClass="error"/>
 
-                <h:panelGrid columns="4" columnClasses="label, value">
+                <h:panelGrid columns="2" columnClasses="label, value">
                                 
                     Projeto Pedagógico:
                     <p:fileUpload fileUploadListener="#{controllerCurso.handleFileUpload}" mode="advanced" sizeLimit="100000" allowTypes="/(\.|\/)(pdf)$/"
                                   multiple="false" style="width: 600px;" invalidFileMessage="Apenas PDF" invalidSizeMessage="Tamanho máximo 100kb"
                                   required="true" requiredMessage="É obrigatório anexar o arquivo." showButtons="false" label="Arquivo"/>
-                    Data do projeto pedagógico:<p:calendar value="#{controllerCurso.curso.data_projeto_pedagogico}" required="true"/>
+                    Data do projeto pedagógico:<p:calendar value="#{controllerCurso.curso.data_projeto_pedagogico}" />
 
                 </h:panelGrid>
             </p:panel>
@@ -101,10 +101,10 @@
 
         
         
-        <p:tab id="confirm" title="Confirmation">
+        <p:tab id="confirm" title="Confirmação">
             <p:panel header="Confirmation">
 
-                <h:panelGrid id="confirmation" columns="4">
+                <h:panelGrid id="confirmation" columns="2">
 
                     Nome:<h:outputText value="#{controllerCurso.curso.nome}"  />
                     Nome reduzido:<h:outputText value="#{controllerCurso.curso.nome_reduzido}" />
@@ -152,10 +152,7 @@
                     Instituição:<h:outputText value="#{controllerCurso.curso.instituicao}" />
                     Unidade de ensino:<h:outputText value="#{controllerCurso.curso.unidade_ensino}" />
                     Unidade organizacional:<h:outputText value="#{controllerCurso.curso.unidade_organizacional}" />
-                    Projeto Pedagógico:
-                    <p:fileUpload fileUploadListener="#{controllerCurso.handleFileUpload}" mode="advanced" sizeLimit="100000" allowTypes="/(\.|\/)(pdf)$/"
-                                  multiple="false" style="width: 600px;" invalidFileMessage="Apenas PDF" invalidSizeMessage="Tamanho máximo 100kb"
-                                  required="true" requiredMessage="É obrigatório anexar o arquivo." showButtons="false" label="Arquivo"/>
+                    
                     Data do projeto pedagógico:<h:outputText value="#{controllerCurso.curso.data_projeto_pedagogico}">
                                          <f:convertDateTime pattern="dd/MM/yyyy"/>
                                          </h:outputText>
